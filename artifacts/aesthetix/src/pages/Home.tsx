@@ -524,7 +524,7 @@ export default function Home() {
                   <span className="font-display text-xl font-medium">@aesthetix_systems</span>
                 </a>
                 
-                <a href="https://wa.me/447700000000" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-white hover:text-[#C9A84C] transition-colors group">
+                <a href="https://wa.me/447495963388" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-white hover:text-[#C9A84C] transition-colors group">
                   <div className="w-12 h-12 rounded-full bg-[#222222] flex items-center justify-center group-hover:bg-[#C9A84C]/10 transition-colors">
                     <MessageCircle size={24} />
                   </div>
