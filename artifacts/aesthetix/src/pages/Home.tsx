@@ -141,7 +141,87 @@ export default function Home() {
       )}
 
       {/* 2. HERO */}
-      <section id="home" className="min-h-screen pt-32 pb-20 flex flex-col justify-center relative bg-[#1A1A1A]">
+      <section id="home" className="min-h-screen pt-32 pb-20 flex flex-col justify-center relative bg-[#1A1A1A] overflow-hidden">
+
+        {/* ── Animated background ── */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {/* Scrolling gold grid */}
+          <div className="hero-grid" />
+
+          {/* Glowing orbs */}
+          <div className="hero-orb-1" />
+          <div className="hero-orb-2" />
+          <div className="hero-orb-3" />
+
+          {/* Subtle ring glows centred on headline */}
+          <div className="hero-ring" />
+          <div className="hero-ring-inner" />
+
+          {/* Floating particles */}
+          {[
+            { left: "12%",  bottom: "8%",  dur: "7s",  delay: "0s"   },
+            { left: "22%",  bottom: "15%", dur: "9s",  delay: "1.5s" },
+            { left: "38%",  bottom: "5%",  dur: "11s", delay: "3s"   },
+            { left: "55%",  bottom: "12%", dur: "8s",  delay: "0.8s" },
+            { left: "70%",  bottom: "20%", dur: "10s", delay: "2s"   },
+            { left: "82%",  bottom: "7%",  dur: "6s",  delay: "4s"   },
+            { left: "91%",  bottom: "18%", dur: "13s", delay: "1s"   },
+          ].map((p, i) => (
+            <div
+              key={i}
+              className="hero-particle"
+              style={{ left: p.left, bottom: p.bottom, animationDuration: p.dur, animationDelay: p.delay }}
+            />
+          ))}
+
+          {/* Floating SaaS UI cards */}
+          {/* Card 1 — metric */}
+          <div className="hero-card hero-card-1">
+            <div style={{ fontSize: 9, color: "rgba(201,168,76,0.7)", letterSpacing: "0.12em", marginBottom: 8, textTransform: "uppercase" }}>Revenue</div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: "#fff", lineHeight: 1, marginBottom: 6 }}>£50k+</div>
+            <div style={{ display: "flex", gap: 3, marginBottom: 8 }}>
+              {[40, 55, 35, 70, 60, 80, 65].map((h, i) => (
+                <div key={i} style={{ width: 8, height: h * 0.4, background: i === 6 ? "#C9A84C" : "rgba(201,168,76,0.25)", borderRadius: 2, alignSelf: "flex-end" }} />
+              ))}
+            </div>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>Generated for clients</div>
+          </div>
+
+          {/* Card 2 — delivery */}
+          <div className="hero-card hero-card-2">
+            <div style={{ fontSize: 9, color: "rgba(201,168,76,0.7)", letterSpacing: "0.12em", marginBottom: 8, textTransform: "uppercase" }}>Status</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {[
+                { label: "Design", w: "90%", done: true },
+                { label: "Build",  w: "70%", done: true },
+                { label: "Launch", w: "40%", done: false },
+              ].map((row) => (
+                <div key={row.label}>
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "rgba(255,255,255,0.4)", marginBottom: 3 }}>
+                    <span>{row.label}</span>
+                    <span style={{ color: row.done ? "#C9A84C" : "rgba(255,255,255,0.3)" }}>{row.done ? "✓" : "…"}</span>
+                  </div>
+                  <div style={{ height: 3, background: "rgba(255,255,255,0.06)", borderRadius: 2 }}>
+                    <div style={{ height: "100%", width: row.w, background: row.done ? "#C9A84C" : "rgba(201,168,76,0.3)", borderRadius: 2, transition: "width 1s ease" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 8, fontSize: 9, color: "rgba(255,255,255,0.3)" }}>6-day delivery</div>
+          </div>
+
+          {/* Card 3 — bookings */}
+          <div className="hero-card hero-card-3">
+            <div style={{ fontSize: 9, color: "rgba(201,168,76,0.7)", letterSpacing: "0.12em", marginBottom: 6, textTransform: "uppercase" }}>Bookings</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 4 }}>+24 <span style={{ fontSize: 10, fontWeight: 400, color: "#C9A84C" }}>this week</span></div>
+            <div style={{ display: "flex", gap: 2 }}>
+              {[1,1,1,0,1,1,0,1,1,1,1,0,1,1].map((on, i) => (
+                <div key={i} style={{ width: 7, height: 7, borderRadius: 2, background: on ? "rgba(201,168,76,0.5)" : "rgba(255,255,255,0.06)" }} />
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-5xl mx-auto px-6 w-full relative z-10 flex flex-col items-center text-center">
           
           <FadeInSection className="flex items-center space-x-4 mb-8">
