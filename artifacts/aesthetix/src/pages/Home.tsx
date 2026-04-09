@@ -385,7 +385,7 @@ export default function Home() {
               </ul>
 
               {/* Expandable detail */}
-              <div style={{ maxHeight: standardExpanded ? "600px" : "0", overflow: "hidden", transition: "max-height 0.4s ease" }}>
+              <div style={{ maxHeight: standardExpanded ? "1000px" : "0", overflow: "hidden", transition: "max-height 0.5s ease" }}>
                 <div className="border-t border-white/10 pt-6 mb-6 space-y-4 text-sm text-white/70">
                   <p className="text-[#C9A84C] font-semibold uppercase tracking-wider text-xs mb-3">What's included in detail</p>
                   <p>Your website is designed and built from scratch, fully tailored to your brand, colours and tone of voice.</p>
@@ -438,7 +438,7 @@ export default function Home() {
               </ul>
 
               {/* Expandable detail */}
-              <div style={{ maxHeight: proExpanded ? "700px" : "0", overflow: "hidden", transition: "max-height 0.4s ease" }}>
+              <div style={{ maxHeight: proExpanded ? "1200px" : "0", overflow: "hidden", transition: "max-height 0.5s ease" }}>
                 <div className="border-t border-white/10 pt-6 mb-6 space-y-4 text-sm text-white/70">
                   <p className="text-[#C9A84C] font-semibold uppercase tracking-wider text-xs mb-3">What's included in detail</p>
                   <p>A full, multi-section website built completely from scratch — hero, services, about, gallery, FAQ, contact and any additional sections your business needs.</p>
