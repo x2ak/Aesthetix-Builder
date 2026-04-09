@@ -376,7 +376,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Our Work</h2>
-            <p className="text-[#999999] text-lg">Real sites. Real businesses. Real results.</p>
+            <p className="text-[#C9A84C] text-lg">Real sites. Real businesses. Real results.</p>
           </FadeInSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
