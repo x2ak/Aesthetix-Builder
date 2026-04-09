@@ -327,46 +327,33 @@ export default function Home() {
       </section>
 
       {/* 4. HOW IT WORKS */}
-      <section id="how" className="py-32 bg-[#1A1A1A] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <FadeInSection className="text-center mb-20">
-            <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">How It Works</h2>
-            <p className="text-[#C9A84C] text-lg">Simple process. Fast results.</p>
+      <section id="how" className="py-14 md:py-20 bg-[#1A1A1A] overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6">
+          <FadeInSection className="text-center mb-8 md:mb-12">
+            <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-2">How It Works</h2>
+            <p className="text-[#C9A84C] text-base md:text-lg">Simple process. Fast results.</p>
           </FadeInSection>
           
           <div className="relative" ref={howRef}>
-            {/* Desktop Connector Line */}
-            <div className="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-[2px] z-0">
-              <div className={`h-full w-full bg-[linear-gradient(to_right,#C9A84C_50%,transparent_50%)] bg-[length:15px_2px] bg-repeat-x transition-all duration-[1.5s] ease-out origin-left ${howIsVisible ? 'scale-x-100' : 'scale-x-0'}`}></div>
+            {/* Connector Line */}
+            <div className="absolute top-[32px] left-[18%] right-[18%] h-[2px] z-0">
+              <div className={`h-full w-full bg-[linear-gradient(to_right,#C9A84C_50%,transparent_50%)] bg-[length:12px_2px] bg-repeat-x transition-all duration-[1.5s] ease-out origin-left ${howIsVisible ? 'scale-x-100' : 'scale-x-0'}`}></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 relative z-10">
-              {/* Step 1 */}
-              <FadeInSection className="flex flex-col items-center text-center bg-[#1A1A1A]">
-                <div className="w-20 h-20 bg-[#1A1A1A] flex items-center justify-center mb-6">
-                  <span className="font-display font-bold text-6xl text-[#C9A84C]">1</span>
-                </div>
-                <h3 className="font-display font-bold text-xl text-white mb-4 tracking-wide uppercase">Discovery</h3>
-                <p className="text-[#999999] max-w-xs">We learn about your clinic, your treatments and what's currently holding you back — enquiries, no-shows, admin overload.</p>
-              </FadeInSection>
-              
-              {/* Step 2 */}
-              <FadeInSection className="flex flex-col items-center text-center bg-[#1A1A1A]">
-                <div className="w-20 h-20 bg-[#1A1A1A] flex items-center justify-center mb-6">
-                  <span className="font-display font-bold text-6xl text-[#C9A84C]">2</span>
-                </div>
-                <h3 className="font-display font-bold text-xl text-white mb-4 tracking-wide uppercase">Build</h3>
-                <p className="text-[#999999] max-w-xs">We design and build your clinic's website — tailored to your treatments, brand and clients. Delivered in days, not months.</p>
-              </FadeInSection>
-              
-              {/* Step 3 */}
-              <FadeInSection className="flex flex-col items-center text-center bg-[#1A1A1A]">
-                <div className="w-20 h-20 bg-[#1A1A1A] flex items-center justify-center mb-6">
-                  <span className="font-display font-bold text-6xl text-[#C9A84C]">3</span>
-                </div>
-                <h3 className="font-display font-bold text-xl text-white mb-4 tracking-wide uppercase">Launch</h3>
-                <p className="text-[#999999] max-w-xs">Your clinic goes live, takes bookings and runs on autopilot — clients booked, deposits collected, reminders sent, all without lifting a finger.</p>
-              </FadeInSection>
+            <div className="grid grid-cols-3 gap-3 md:gap-8 relative z-10">
+              {[
+                { n: "1", title: "Discovery", desc: "We learn about your clinic, treatments and what's holding you back." },
+                { n: "2", title: "Build",     desc: "We design and build your site — tailored to your brand. Delivered in days." },
+                { n: "3", title: "Launch",    desc: "You go live, take bookings and run on autopilot." },
+              ].map(({ n, title, desc }) => (
+                <FadeInSection key={n} className="flex flex-col items-center text-center bg-[#1A1A1A] px-1 md:px-4">
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center mb-3 md:mb-5">
+                    <span className="font-display font-bold text-4xl md:text-5xl text-[#C9A84C]">{n}</span>
+                  </div>
+                  <h3 className="font-display font-bold text-xs md:text-lg text-white mb-2 tracking-wide uppercase">{title}</h3>
+                  <p className="text-[#999999] text-xs md:text-sm leading-relaxed">{desc}</p>
+                </FadeInSection>
+              ))}
             </div>
           </div>
         </div>
