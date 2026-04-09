@@ -288,6 +288,17 @@
   animation: orb-1 10s ease-in-out infinite reverse;
 }
 
+/* Banner animations */
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px #C9A84C; }
+  50%       { opacity: 0.4; box-shadow: 0 0 2px #C9A84C; }
+}
+
 /* Mobile optimisations */
 @media (max-width: 767px) {
   .hero-card { display: none; }

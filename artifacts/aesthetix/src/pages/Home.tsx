@@ -84,9 +84,44 @@ export default function Home() {
 
   return (
     <div className="bg-[#1A1A1A] min-h-screen text-white font-sans overflow-x-hidden">
+      {/* SCARCITY BANNER */}
+      <div className="fixed top-0 left-0 right-0 z-[60] overflow-hidden" style={{ background: "#0d0d0d", borderBottom: "1px solid rgba(201,168,76,0.25)" }}>
+        {/* Shimmer sweep */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(105deg, transparent 40%, rgba(201,168,76,0.07) 50%, transparent 60%)",
+          animation: "shimmer-sweep 3s ease-in-out infinite",
+          pointerEvents: "none",
+        }} />
+        <div className="relative flex items-center justify-center gap-3 py-2 px-4 text-center">
+          {/* Pulsing dot */}
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <span style={{
+              width: 7, height: 7, borderRadius: "50%", background: "#C9A84C",
+              boxShadow: "0 0 6px #C9A84C",
+              animation: "pulse-dot 1.8s ease-in-out infinite",
+              display: "inline-block", flexShrink: 0,
+            }} />
+          </span>
+          <span style={{ color: "rgba(255,255,255,0.75)", fontSize: 12, letterSpacing: "0.04em", fontWeight: 400 }}>
+            Only{" "}
+            <span style={{ color: "#C9A84C", fontWeight: 700 }}>2 spots</span>
+            {" "}remaining this month
+          </span>
+          <span style={{ width: 1, height: 12, background: "rgba(201,168,76,0.3)", display: "inline-block" }} />
+          <a
+            href="#contact"
+            style={{ color: "#C9A84C", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textDecoration: "none", whiteSpace: "nowrap" }}
+            className="hover:opacity-70 transition-opacity uppercase tracking-widest"
+          >
+            Secure yours →
+          </a>
+        </div>
+      </div>
+
       {/* 1. NAV */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-in-out border-b ${
+        className={`fixed top-[37px] left-0 right-0 z-50 transition-all duration-200 ease-in-out border-b ${
           isScrolled ? "bg-[#1A1A1A] border-[#C9A84C]" : "bg-[#1A1A1A]/90 backdrop-blur-sm border-[#C9A84C]/30"
         }`}
       >
@@ -139,7 +174,7 @@ export default function Home() {
       )}
 
       {/* 2. HERO */}
-      <section id="home" className="min-h-screen pt-32 pb-20 flex flex-col justify-center relative bg-[#1A1A1A] overflow-hidden">
+      <section id="home" className="min-h-screen pt-[137px] pb-20 flex flex-col justify-center relative bg-[#1A1A1A] overflow-hidden">
 
         {/* ── Animated background ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -277,13 +312,6 @@ export default function Home() {
           
         </div>
       </section>
-
-      {/* SCARCITY BANNER */}
-      <div className="bg-[#C9A84C] text-black text-xs md:text-sm font-bold text-center py-3 px-4 tracking-wide flex items-center justify-center gap-2">
-        <span>🔥</span>
-        <span>Only 2 client spots remaining this month — <a href="#contact" className="underline underline-offset-2 hover:opacity-70 transition-opacity">secure yours now</a></span>
-        <span>🔥</span>
-      </div>
 
       {/* 3. SERVICES */}
       <section id="services" className="py-32 bg-[#222222]">
