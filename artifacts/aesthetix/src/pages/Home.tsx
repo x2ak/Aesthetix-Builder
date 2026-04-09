@@ -396,7 +396,7 @@ export default function Home() {
                 ★ Most Popular
               </div>
               <h3 className="font-display font-bold text-2xl text-white mb-1">GROWTH</h3>
-              <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£800</div>
+              <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£999.99</div>
               <p className="text-[#999999] text-sm mb-8 font-medium">Your full digital presence</p>
               
               <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
