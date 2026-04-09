@@ -282,7 +282,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">What We Build</h2>
-            <p className="text-[#999999] text-lg">Premium websites built specifically for aesthetics & beauty clinics.</p>
+            <p className="text-[#C9A84C] text-lg">Premium websites built specifically for aesthetics & beauty clinics.</p>
           </FadeInSection>
 
           <FadeInSection className="max-w-4xl mx-auto bg-[#1A1A1A] border-t-[3px] border-[#C9A84C] p-10 rounded-sm gold-glow">
