@@ -393,7 +393,7 @@ export default function Home() {
                 href: "#",
               },
               {
-                videoSrc: "/flawlessskin-web.mp4",
+                videoSrc: "/flawlessskin-web.mov",
                 mobileImg: "/flawlessskin-mobile.jpg",
                 phoneColor: "#7A8C6A",
                 initials: "FS",
