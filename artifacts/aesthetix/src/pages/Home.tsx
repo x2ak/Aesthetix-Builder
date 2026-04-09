@@ -405,6 +405,7 @@ export default function Home() {
                 href: "#",
               },
               {
+                videoSrc: "/starraesthetics-web.mov",
                 initials: "SA",
                 tag: "DEMO BUILD",
                 name: "Starr Aesthetics",
