@@ -548,7 +548,7 @@ export default function Home() {
           </div>
 
           {/* Footer note */}
-          <p className="text-center mt-14" style={{ color: "#555555", fontSize: 13, fontStyle: "italic" }}>
+          <p className="text-center mt-14" style={{ color: "#C9A84C", fontSize: 13, fontStyle: "italic" }}>
             All sites built and delivered within 6 days.
           </p>
         </div>
