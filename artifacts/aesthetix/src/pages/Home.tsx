@@ -423,7 +423,7 @@ export default function Home() {
             {/* Elite */}
             <FadeInSection className="bg-[#222222] p-8 rounded-sm transition-all duration-200 hover:scale-[1.02] border border-transparent h-full flex flex-col">
               <h3 className="font-display font-bold text-2xl text-white mb-1">ELITE</h3>
-              <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£2,000</div>
+              <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£1,999.99</div>
               <p className="text-[#999999] text-sm mb-8 font-medium">Website + full automation stack</p>
               
               <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
