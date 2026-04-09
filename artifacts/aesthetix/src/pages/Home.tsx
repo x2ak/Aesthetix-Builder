@@ -226,7 +226,7 @@ export default function Home() {
           
           <FadeInSection className="flex items-center space-x-4 mb-8">
             <div className="h-[1px] w-8 bg-[#C9A84C]"></div>
-            <span className="text-[#C9A84C] text-xs font-bold tracking-[0.2em] uppercase">Web Builds & Business Systems</span>
+            <span className="text-[#C9A84C] text-xs font-bold tracking-[0.2em] uppercase">For Aesthetics & Beauty Clinics</span>
             <div className="h-[1px] w-8 bg-[#C9A84C]"></div>
           </FadeInSection>
           
@@ -238,7 +238,7 @@ export default function Home() {
           
           <FadeInSection className="max-w-2xl mx-auto mb-10">
             <p className="text-[#999999] text-lg md:text-xl leading-relaxed">
-              We build premium websites and intelligent systems that handle your bookings, enquiries and operations — so you don't have to.
+              We build premium websites and automation systems built specifically for aesthetics and beauty clinics — so you can focus on your clients, not your admin.
             </p>
           </FadeInSection>
           
@@ -282,7 +282,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">What We Build</h2>
-            <p className="text-[#999999] text-lg">Two core offerings. One agency.</p>
+            <p className="text-[#999999] text-lg">Everything your clinic needs to get booked solid and run on autopilot.</p>
           </FadeInSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -297,14 +297,14 @@ export default function Home() {
                   <circle cx="20" cy="10" r="1.5" fill="#C9A84C" stroke="none"/>
                 </svg>
               </div>
-              <h3 className="font-display font-bold text-2xl text-white mb-4">Premium Website Builds</h3>
+              <h3 className="font-display font-bold text-2xl text-white mb-4">Clinic Websites That Convert</h3>
               <ul className="space-y-4 mb-10 flex-grow text-[#999999]">
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Custom design & build</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Booking calendar + Stripe payments</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Admin portal</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Auto email confirmations</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Before & after galleries, video sections</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> 6-day delivery</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Custom design built for your clinic's brand</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Online booking calendar + Stripe deposits</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Before & after treatment galleries</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Treatment menus, pricing & video sections</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Auto email & SMS confirmations</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Live in 6 days</li>
               </ul>
               <a href="#pricing" className="border border-[#C9A84C] text-[#C9A84C] font-semibold px-6 py-3 rounded text-center hover:bg-[#C9A84C]/10 transition-colors duration-200 mt-auto">
                 View Packages
@@ -326,14 +326,14 @@ export default function Home() {
                   <circle cx="20" cy="20" r="4"/>
                 </svg>
               </div>
-              <h3 className="font-display font-bold text-2xl text-white mb-4">Business Automation Systems</h3>
+              <h3 className="font-display font-bold text-2xl text-white mb-4">Clinic Automation Systems</h3>
               <ul className="space-y-4 mb-10 flex-grow text-[#999999]">
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> AI email reply bot</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> WhatsApp booking notifications</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Missed enquiry follow-up automation</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Content repurposing pipeline</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Telegram approval flows</li>
-                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Full workflow handover</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Auto-reply to new enquiries & DMs</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> WhatsApp booking reminders & confirmations</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> No-show & cancellation follow-up flows</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Aftercare instructions sent automatically</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Review request sequences post-treatment</li>
+                <li className="flex items-start gap-3"><span className="text-[#C9A84C] font-bold">✓</span> Full workflow handover included</li>
               </ul>
               <a href="#pricing" className="border border-[#C9A84C] text-[#C9A84C] font-semibold px-6 py-3 rounded text-center hover:bg-[#C9A84C]/10 transition-colors duration-200 mt-auto">
                 View Packages
@@ -364,7 +364,7 @@ export default function Home() {
                   <span className="font-display font-bold text-6xl text-[#C9A84C]">1</span>
                 </div>
                 <h3 className="font-display font-bold text-xl text-white mb-4 tracking-wide uppercase">Discovery</h3>
-                <p className="text-[#999999] max-w-xs">We learn your business, your goals and exactly what's slowing you down.</p>
+                <p className="text-[#999999] max-w-xs">We learn about your clinic, your treatments and what's currently holding you back — enquiries, no-shows, admin overload.</p>
               </FadeInSection>
               
               {/* Step 2 */}
@@ -373,7 +373,7 @@ export default function Home() {
                   <span className="font-display font-bold text-6xl text-[#C9A84C]">2</span>
                 </div>
                 <h3 className="font-display font-bold text-xl text-white mb-4 tracking-wide uppercase">Build</h3>
-                <p className="text-[#999999] max-w-xs">We design and build your site or system — fully tailored, delivered in days not months.</p>
+                <p className="text-[#999999] max-w-xs">We design and build your clinic's website or automation system — tailored to your treatments, brand and clients. Delivered in days, not months.</p>
               </FadeInSection>
               
               {/* Step 3 */}
@@ -382,7 +382,7 @@ export default function Home() {
                   <span className="font-display font-bold text-6xl text-[#C9A84C]">3</span>
                 </div>
                 <h3 className="font-display font-bold text-xl text-white mb-4 tracking-wide uppercase">Launch</h3>
-                <p className="text-[#999999] max-w-xs">You go live, take bookings and run your business on autopilot from day one.</p>
+                <p className="text-[#999999] max-w-xs">Your clinic goes live, takes bookings and runs on autopilot — clients booked, deposits collected, reminders sent, all without lifting a finger.</p>
               </FadeInSection>
             </div>
           </div>
@@ -540,7 +540,7 @@ export default function Home() {
                   <p>We embed your existing booking calendar (Calendly, Acuity, Google Calendar and more) directly into your site — no disruption to your current setup. Need a brand new calendar system? That's something we can discuss and quote separately.</p>
                   <p>2 rounds of amends after the first draft is delivered — any tweaks, copy changes or layout adjustments included across both rounds.</p>
                   <p>Handed over in 3 working days from project kick-off. Full walkthrough call so you know how to manage everything yourself.</p>
-                  <p className="text-[#C9A84C]">Ideal for: service businesses, consultants, sole traders and anyone who needs a clean, professional online presence fast.</p>
+                  <p className="text-[#C9A84C]">Ideal for: aesthetics practitioners, beauty therapists and solo clinic owners who want a clean, professional site up fast — without the wait or the expense of a full build.</p>
                 </div>
               </div>
 
@@ -594,7 +594,7 @@ export default function Home() {
                   <p>Before & after gallery with a lightbox — perfect for aesthetics clinics, hair studios, tattoo artists and any visual service business.</p>
                   <p>Embedded video sections so you can showcase treatments, walkthroughs or testimonials directly on your site.</p>
                   <p>3 rounds of amends after the first draft — plenty of room to fine-tune every detail until it's exactly right. Full handover call and video walkthrough so you can manage everything yourself from day one.</p>
-                  <p className="text-[#C9A84C]">Ideal for: aesthetics clinics, beauty studios, hair salons, fitness coaches and any service business ready to take bookings and payments online.</p>
+                  <p className="text-[#C9A84C]">Ideal for: aesthetics clinics offering botox, fillers, skin treatments or body contouring — ready to take bookings, deposits and run their clinic professionally online.</p>
                 </div>
               </div>
 
@@ -664,10 +664,11 @@ export default function Home() {
                   <div className="space-y-2">
                     <label className="text-sm text-white/80 font-medium block">What do you need?</label>
                     <select className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all appearance-none">
-                      <option>Website Build</option>
-                      <option>Automation System</option>
-                      <option>Both</option>
-                      <option>Not Sure</option>
+                      <option>Clinic Website Build</option>
+                      <option>Booking & Payment System</option>
+                      <option>Automation (reminders, follow-ups)</option>
+                      <option>Full Package (Website + Automation)</option>
+                      <option>Not Sure — Let's Talk</option>
                     </select>
                   </div>
                   
@@ -724,7 +725,7 @@ export default function Home() {
             <span className="font-sans text-xs tracking-[0.3em] text-[#C9A84C] font-semibold mt-2 uppercase">SYSTEMS</span>
           </a>
           
-          <p className="text-[#999999] italic font-sans mb-12">Built to convert. Built to last.</p>
+          <p className="text-[#999999] italic font-sans mb-12">The digital partner for aesthetics & beauty clinics.</p>
           
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16">
             <a href="#services" className="text-white/70 hover:text-[#C9A84C] transition-colors text-sm uppercase tracking-wider font-semibold">Services</a>
