@@ -379,7 +379,8 @@ export default function Home() {
                 <li>✓ Single page custom website</li>
                 <li>✓ Mobile responsive design</li>
                 <li>✓ Contact & booking form</li>
-                <li>✓ 1 round of revisions</li>
+                <li>✓ Calendar embed (we embed your existing calendar)</li>
+                <li>✓ 2 rounds of revisions</li>
                 <li>✓ Delivered in 3 days</li>
               </ul>
 
@@ -391,7 +392,8 @@ export default function Home() {
                   <p>Single page covering all your key sections — hero, services, about, contact — laid out cleanly and professionally.</p>
                   <p>Fully optimised for mobile, tablet and desktop. Your clients will have a seamless experience on any device.</p>
                   <p>Contact form sends enquiries straight to your inbox. Built-in booking form lets clients schedule with you instantly.</p>
-                  <p>1 round of amends after the first draft is delivered — any tweaks, copy changes or layout adjustments included.</p>
+                  <p>We embed your existing booking calendar (Calendly, Acuity, Google Calendar and more) directly into your site — no disruption to your current setup. Need a brand new calendar system? That's something we can discuss and quote separately.</p>
+                  <p>2 rounds of amends after the first draft is delivered — any tweaks, copy changes or layout adjustments included across both rounds.</p>
                   <p>Handed over in 3 working days from project kick-off. Full walkthrough call so you know how to manage everything yourself.</p>
                   <p className="text-[#C9A84C]">Ideal for: service businesses, consultants, sole traders and anyone who needs a clean, professional online presence fast.</p>
                 </div>
@@ -424,13 +426,14 @@ export default function Home() {
               
               <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
                 <li>✓ Full multi-section website</li>
-                <li>✓ Custom booking calendar</li>
+                <li>✓ Calendar embed (we embed your existing calendar)</li>
+                <li>✓ Need a new calendar? — we can discuss & build</li>
                 <li>✓ Stripe deposit + payment system</li>
                 <li>✓ Admin portal</li>
                 <li>✓ Auto email confirmations</li>
                 <li>✓ Before & after gallery</li>
                 <li>✓ Video sections</li>
-                <li>✓ 1 round of revisions</li>
+                <li>✓ 3 rounds of revisions</li>
                 <li>✓ Delivered in 6 days</li>
               </ul>
 
@@ -439,13 +442,13 @@ export default function Home() {
                 <div className="border-t border-white/10 pt-6 mb-6 space-y-4 text-sm text-white/70">
                   <p className="text-[#C9A84C] font-semibold uppercase tracking-wider text-xs mb-3">What's included in detail</p>
                   <p>A full, multi-section website built completely from scratch — hero, services, about, gallery, FAQ, contact and any additional sections your business needs.</p>
-                  <p>Custom booking calendar integrated directly into your site. Clients pick a date and time, pay their deposit, and you're confirmed — no back and forth.</p>
+                  <p>We embed your existing booking calendar (Calendly, Acuity, Google Calendar and more) directly into your site — seamlessly styled to match your brand. If you need a brand new calendar system built from scratch, that's something we can discuss and quote separately based on your requirements.</p>
                   <p>Stripe payment integration handles deposits or full payments automatically at the point of booking. You receive funds directly to your Stripe account.</p>
                   <p>Admin portal so you can manage your own bookings, update your content, upload images and view enquiries — no developer needed after handover.</p>
                   <p>Auto email confirmations sent to both you and your client the moment a booking is made. Professional, branded, and completely hands-off.</p>
                   <p>Before & after gallery with a lightbox — perfect for aesthetics clinics, hair studios, tattoo artists and any visual service business.</p>
                   <p>Embedded video sections so you can showcase treatments, walkthroughs or testimonials directly on your site.</p>
-                  <p>1 round of amends after the first draft. Full handover call and video walkthrough so you can manage everything yourself from day one.</p>
+                  <p>3 rounds of amends after the first draft — plenty of room to fine-tune every detail until it's exactly right. Full handover call and video walkthrough so you can manage everything yourself from day one.</p>
                   <p className="text-[#C9A84C]">Ideal for: aesthetics clinics, beauty studios, hair salons, fitness coaches and any service business ready to take bookings and payments online.</p>
                 </div>
               </div>
