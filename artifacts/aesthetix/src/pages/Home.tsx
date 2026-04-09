@@ -330,7 +330,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-20">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">How It Works</h2>
-            <p className="text-[#999999] text-lg">Simple process. Fast results.</p>
+            <p className="text-[#C9A84C] text-lg">Simple process. Fast results.</p>
           </FadeInSection>
           
           <div className="relative" ref={howRef}>
