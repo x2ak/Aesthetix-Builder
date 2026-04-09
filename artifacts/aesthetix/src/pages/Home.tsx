@@ -400,7 +400,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                img: "/dermadoll.png",
+                img: "/dermadoll-web.png",
+                mobileImg: "/dermadoll-mobile.jpg",
                 initials: "DA",
                 tag: "WEBSITE BUILD",
                 name: "Dermadoll Aesthetics",
@@ -440,13 +441,15 @@ export default function Home() {
                   onClick={() => project.href !== "#" && window.open(project.href, "_blank")}
                 >
                   {/* Screenshot / Placeholder */}
-                  <div style={{ position: "relative", height: 260, overflow: "hidden", flexShrink: 0 }}>
+                  <div style={{ position: "relative", height: 260, overflow: "hidden", flexShrink: 0, background: "#111" }}>
+                    {/* Desktop screenshot */}
                     <img
                       src={project.img}
                       alt={project.name}
                       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
                       onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; (e.currentTarget.nextSibling as HTMLElement).style.display = "flex"; }}
                     />
+                    {/* Fallback initials */}
                     <div
                       style={{
                         display: "none",
@@ -459,6 +462,52 @@ export default function Home() {
                     >
                       <span className="font-display font-bold text-[#C9A84C]" style={{ fontSize: 32 }}>{project.initials}</span>
                     </div>
+                    {/* Mobile phone overlay — only when mobileImg is provided */}
+                    {"mobileImg" in project && project.mobileImg && (
+                      <>
+                        {/* Subtle dark gradient so phone pops */}
+                        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent 40%, rgba(0,0,0,0.55) 100%)" }} />
+                        {/* Phone mockup */}
+                        <div style={{
+                          position: "absolute",
+                          bottom: 12,
+                          right: 14,
+                          width: 68,
+                          height: 138,
+                          borderRadius: 12,
+                          border: "2px solid rgba(201,168,76,0.55)",
+                          boxShadow: "0 8px 24px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.12)",
+                          overflow: "hidden",
+                          background: "#000",
+                        }}>
+                          {/* Phone notch */}
+                          <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 24, height: 6, background: "rgba(201,168,76,0.4)", borderRadius: "0 0 4px 4px", zIndex: 2 }} />
+                          <img
+                            src={(project as typeof project & { mobileImg: string }).mobileImg}
+                            alt={`${project.name} mobile`}
+                            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+                          />
+                        </div>
+                        {/* "Web + Mobile" label */}
+                        <div style={{
+                          position: "absolute",
+                          top: 12,
+                          right: 12,
+                          background: "rgba(201,168,76,0.15)",
+                          border: "1px solid rgba(201,168,76,0.4)",
+                          color: "#C9A84C",
+                          fontSize: 9,
+                          fontWeight: 700,
+                          letterSpacing: "0.1em",
+                          padding: "3px 8px",
+                          borderRadius: 20,
+                          textTransform: "uppercase" as const,
+                          backdropFilter: "blur(4px)",
+                        }}>
+                          Web + Mobile
+                        </div>
+                      </>
+                    )}
                   </div>
 
                   {/* Card content */}
