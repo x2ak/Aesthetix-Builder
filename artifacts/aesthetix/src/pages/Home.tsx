@@ -393,50 +393,115 @@ export default function Home() {
       <section id="work" className="py-32 bg-[#222222]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
-            <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Real Results</h2>
-            <p className="text-[#999999] text-lg">Built for real businesses. Delivering real outcomes.</p>
+            <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Our Work</h2>
+            <p className="text-[#999999] text-lg">Real sites. Real businesses. Real results.</p>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Case 1 */}
-            <FadeInSection className="bg-[#1A1A1A] border border-[#C9A84C]/30 p-8 rounded-sm transition-all duration-300 hover:-translate-y-2 gold-glow flex flex-col">
-              <div className="self-start bg-[#C9A84C] text-black text-xs font-bold px-3 py-1 rounded-full mb-6 tracking-wide">
-                WEBSITE BUILD
-              </div>
-              <h3 className="font-display font-bold text-2xl text-white mb-2">DERMADOLL AESTHETICS</h3>
-              <p className="text-white/90 text-lg mb-6 font-medium">Premium aesthetics clinic — fully booked from launch</p>
-              <ul className="space-y-3 text-[#999999] mb-8 flex-grow">
-                <li>— Full custom website with booking calendar & Stripe payments</li>
-                <li>— 50% deposit taken automatically</li>
-                <li>— Admin portal to manage bookings, media and content</li>
-                <li>— Before & after gallery, video sections, reviews carousel</li>
-                <li>— Auto email confirmations</li>
-                <li>— FAQ, training courses section, full mobile responsive</li>
-              </ul>
-              <div className="bg-[#C9A84C] text-black font-bold px-4 py-3 text-center rounded-sm mt-auto w-full">
-                Delivered in 6 days
-              </div>
-            </FadeInSection>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                img: "/dermadoll.png",
+                initials: "DA",
+                tag: "WEBSITE BUILD",
+                name: "Dermadoll Aesthetics",
+                description: "Premium aesthetics clinic in Birmingham. Custom booking calendar, Stripe deposit payments, admin portal and auto email confirmations.",
+                features: ["Booking System", "Stripe", "Admin Portal", "6 Days"],
+                href: "#",
+              },
+              {
+                img: "/flawlessskin.png",
+                initials: "FS",
+                tag: "WEBSITE BUILD",
+                name: "FlawlessSkin",
+                description: "Luxury aesthetics clinic website built with a cream and sage design system. Calendly booking and Stripe payment integration.",
+                features: ["Calendly", "Stripe", "Luxury Design", "Mobile First"],
+                href: "#",
+              },
+              {
+                img: "/starraesthetics.png",
+                initials: "SA",
+                tag: "DEMO BUILD",
+                name: "Starr Aesthetics",
+                description: "Demo aesthetics website showcasing a clean, modern design with full treatment listings and booking integration.",
+                features: ["Demo", "Booking", "Treatment Menu", "Responsive"],
+                href: "#",
+              },
+            ].map((project) => (
+              <FadeInSection key={project.name}>
+                <div
+                  className="portfolio-card group cursor-pointer flex flex-col h-full"
+                  style={{
+                    background: "#1A1A1A",
+                    border: "1px solid #333333",
+                    borderRadius: 12,
+                    overflow: "hidden",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  }}
+                  onClick={() => project.href !== "#" && window.open(project.href, "_blank")}
+                >
+                  {/* Screenshot / Placeholder */}
+                  <div style={{ position: "relative", height: 260, overflow: "hidden", flexShrink: 0 }}>
+                    <img
+                      src={project.img}
+                      alt={project.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; (e.currentTarget.nextSibling as HTMLElement).style.display = "flex"; }}
+                    />
+                    <div
+                      style={{
+                        display: "none",
+                        position: "absolute",
+                        inset: 0,
+                        background: "linear-gradient(135deg, #222222, #2A2A2A)",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <span className="font-display font-bold text-[#C9A84C]" style={{ fontSize: 32 }}>{project.initials}</span>
+                    </div>
+                  </div>
 
-            {/* Case 2 */}
-            <FadeInSection className="bg-[#1A1A1A] border border-[#C9A84C]/30 p-8 rounded-sm transition-all duration-300 hover:-translate-y-2 gold-glow flex flex-col">
-              <div className="self-start bg-[#C9A84C] text-black text-xs font-bold px-3 py-1 rounded-full mb-6 tracking-wide">
-                WEBSITE BUILD
-              </div>
-              <h3 className="font-display font-bold text-2xl text-white mb-2">FLAWLESSSKIN</h3>
-              <p className="text-white/90 text-lg mb-6 font-medium">Aesthetics clinic live and taking bookings within a week</p>
-              <ul className="space-y-3 text-[#999999] mb-8 flex-grow">
-                <li>— Premium single-page website built to a cream & sage design system</li>
-                <li>— Calendly booking integration embedded seamlessly</li>
-                <li>— Stripe payment setup for deposits</li>
-                <li>— Mobile-first design with luxury feel</li>
-                <li>— Fully handed over within 3 days</li>
-              </ul>
-              <div className="bg-[#C9A84C] text-black font-bold px-4 py-3 text-center rounded-sm mt-auto w-full">
-                Built & live in under 7 days
-              </div>
-            </FadeInSection>
+                  {/* Card content */}
+                  <div style={{ padding: 24, display: "flex", flexDirection: "column", flex: 1 }}>
+                    {/* Gold tag pill */}
+                    <div style={{ display: "inline-block", alignSelf: "flex-start", border: "1px solid #C9A84C", color: "#C9A84C", background: "transparent", borderRadius: 20, fontSize: 11, padding: "4px 12px", marginBottom: 12, letterSpacing: "0.08em", textTransform: "uppercase" as const }}>
+                      {project.tag}
+                    </div>
+
+                    {/* Project name */}
+                    <div className="font-display font-bold text-white" style={{ fontSize: 20, marginBottom: 8 }}>{project.name}</div>
+
+                    {/* Description */}
+                    <p style={{ color: "#999999", fontSize: 14, lineHeight: 1.6, marginBottom: 16, flex: 1 }}>{project.description}</p>
+
+                    {/* Feature tags */}
+                    <div style={{ display: "flex", flexWrap: "wrap" as const, gap: 6, marginBottom: 0 }}>
+                      {project.features.map((f) => (
+                        <span key={f} style={{ background: "#2A2A2A", color: "#777777", fontSize: 11, borderRadius: 20, padding: "3px 10px" }}>{f}</span>
+                      ))}
+                    </div>
+
+                    {/* View site link */}
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      style={{ display: "inline-block", color: "#C9A84C", fontSize: 13, marginTop: 16, textDecoration: "none" }}
+                      className="hover:underline"
+                    >
+                      View Site →
+                    </a>
+                  </div>
+                </div>
+              </FadeInSection>
+            ))}
           </div>
+
+          {/* Footer note */}
+          <p className="text-center mt-14" style={{ color: "#555555", fontSize: 13, fontStyle: "italic" }}>
+            All sites built and delivered within 6 days.
+          </p>
         </div>
       </section>
 

@@ -270,6 +270,12 @@
   box-shadow: 0 0 80px 10px rgba(201,168,76,0.04);
   animation: orb-3 14s ease-in-out infinite;
 }
+/* Portfolio card hover */
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(201,168,76,0.20);
+}
+
 .hero-ring-inner {
   position: absolute;
   top: 50%;
