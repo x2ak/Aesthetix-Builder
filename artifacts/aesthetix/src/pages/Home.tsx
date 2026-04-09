@@ -772,7 +772,7 @@ export default function Home() {
             <span className="font-sans text-xs tracking-[0.3em] text-[#C9A84C] font-semibold mt-2 uppercase">SYSTEMS</span>
           </a>
           
-          <p className="text-[#999999] italic font-sans mb-12">The digital partner for aesthetics & beauty clinics.</p>
+          <p className="text-[#C9A84C] italic font-sans mb-12">The digital partner for aesthetics & beauty clinics.</p>
           
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16">
             <a href="#services" className="text-white/70 hover:text-[#C9A84C] transition-colors text-sm uppercase tracking-wider font-semibold">Services</a>
