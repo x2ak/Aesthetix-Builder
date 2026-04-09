@@ -391,7 +391,7 @@ export default function Home() {
                 name: "Dermadoll Aesthetics",
                 description: "Premium aesthetics clinic in Birmingham. Custom booking calendar, Stripe deposit payments, admin portal and auto email confirmations.",
                 features: ["Booking System", "Stripe", "Admin Portal", "6 Days"],
-                href: "#",
+                href: "https://dermadoll-aesthetics.co.uk",
               },
               {
                 videoSrc: "/flawlessskin-web.mov",
@@ -402,7 +402,7 @@ export default function Home() {
                 name: "FlawlessSkin",
                 description: "Luxury aesthetics clinic website built with a cream and sage design system. Calendly booking and Stripe payment integration.",
                 features: ["Calendly", "Stripe", "Luxury Design", "Mobile First"],
-                href: "#",
+                href: "https://flawless-skin.co.uk",
               },
               {
                 videoSrc: "/starraesthetics-web.mov",
