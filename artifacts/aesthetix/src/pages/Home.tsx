@@ -676,7 +676,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Ready to Start?</h2>
-            <p className="text-[#999999] text-lg">Book a free 20-minute discovery call or drop us a message.</p>
+            <p className="text-[#C9A84C] text-lg">Book a free 20-minute discovery call or drop us a message.</p>
           </FadeInSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
