@@ -406,6 +406,8 @@ export default function Home() {
               },
               {
                 videoSrc: "/starraesthetics-web.mov",
+                mobileImg: "/starraesthetics-mobile.jpg",
+                phoneColor: "#7B4F4F",
                 initials: "SA",
                 tag: "DEMO BUILD",
                 name: "Starr Aesthetics",
