@@ -559,7 +559,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Transparent Pricing</h2>
-            <p className="text-[#999999] text-lg">No hidden fees. No surprises. No lock-in.</p>
+            <p className="text-[#C9A84C] text-lg">No hidden fees. No surprises. No lock-in.</p>
           </FadeInSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
