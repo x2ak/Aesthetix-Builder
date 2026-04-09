@@ -430,7 +430,7 @@ export default function Home() {
                 <li>— Calendly booking integration embedded seamlessly</li>
                 <li>— Stripe payment setup for deposits</li>
                 <li>— Mobile-first design with luxury feel</li>
-                <li>— Fully handed over with no ongoing maintenance needed</li>
+                <li>— Fully handed over within 3 days</li>
               </ul>
               <div className="bg-[#C9A84C] text-black font-bold px-4 py-3 text-center rounded-sm mt-auto w-full">
                 Built & live in under 7 days

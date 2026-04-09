@@ -1,0 +1,75 @@
+Add a PORTFOLIO / OUR WORK section to the Aesthetix site:
+
+Background: #222222
+Heading: "Our Work"
+Subheading: "Real sites. Real businesses. Real results."
+
+Display 3 project cards in a 3-column grid on desktop, 
+2 col on tablet, 1 col on mobile.
+
+Each card style:
+- Background: #1A1A1A
+- Border: 1px solid #333333
+- Border-radius: 12px
+- On hover: translateY(-6px) + gold glow box-shadow 
+  (0 8px 30px rgba(201,168,76,0.2))
+- Overflow hidden so screenshot fills top cleanly
+- Cursor pointer on the whole card
+
+Card structure (top to bottom):
+1. Screenshot image — full width, height: 260px, 
+   object-fit: cover, object-position: top.
+   Clicking opens live site in new tab.
+2. Padding: 24px on all sides for content below
+3. Gold tag pill — small caps, gold border 1px, 
+   gold text #C9A84C, background transparent, 
+   border-radius: 20px, font-size: 11px, 
+   padding: 4px 12px, margin-bottom: 12px
+4. Project name — Space Grotesk, bold, white, 20px, 
+   margin-bottom: 8px
+5. Short description — Inter, #999999, 14px, 
+   line-height: 1.6, margin-bottom: 16px
+6. Row of feature tags — small pills, background: #2A2A2A, 
+   color: #777777, font-size: 11px, border-radius: 20px, 
+   padding: 3px 10px, gap: 6px, flex-wrap: wrap
+7. "View Site →" text link at bottom — gold #C9A84C, 
+   Inter, 13px, margin-top: 16px, hover underline
+
+IMAGE FALLBACK:
+If image not found show placeholder div — height: 260px, 
+background: linear-gradient(135deg, #222222, #2A2A2A), 
+centred gold project initials in Space Grotesk 32px bold.
+
+CARD 1 — DERMADOLL AESTHETICS
+Screenshot: dermadoll.png
+Tag: WEBSITE BUILD
+Name: "Dermadoll Aesthetics"
+Description: "Premium aesthetics clinic in Birmingham. 
+Custom booking calendar, Stripe deposit payments, 
+admin portal and auto email confirmations."
+Feature tags: Booking System | Stripe | Admin Portal | 6 Days
+Live site: link placeholder — owner to add
+
+CARD 2 — FLAWLESSSKIN
+Screenshot: flawlessskin.png
+Tag: WEBSITE BUILD
+Name: "FlawlessSkin"
+Description: "Luxury aesthetics clinic website built 
+with a cream and sage design system. Calendly booking 
+and Stripe payment integration."
+Feature tags: Calendly | Stripe | Luxury Design | Mobile First
+Live site: link placeholder — owner to add
+
+CARD 3 — STARR AESTHETICS
+Screenshot: starraesthetics.png
+Tag: DEMO BUILD
+Name: "Starr Aesthetics"
+Description: "Demo aesthetics website showcasing a 
+clean, modern design with full treatment listings 
+and booking integration."
+Feature tags: Demo | Booking | Treatment Menu | Responsive
+Live site: link placeholder — owner to add
+
+Below the 3 cards, centred:
+A subtle line of text in #555555, Inter 13px italic:
+"All sites built and delivered within 6 days."
