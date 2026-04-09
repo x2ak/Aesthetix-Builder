@@ -783,7 +783,7 @@ export default function Home() {
           
           <div className="w-full flex flex-col md:flex-row justify-between items-center text-[#999999] text-xs gap-4 pt-8 border-t border-white/5">
             <p>© 2026 Aesthetix. All rights reserved.</p>
-            <p>Based in London, UK</p>
+            <p style={{ color: "#C9A84C" }}>Based in London, UK</p>
           </div>
         </div>
       </footer>
