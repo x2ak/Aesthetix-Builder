@@ -666,7 +666,7 @@ export default function Home() {
           </div>
           
           <FadeInSection className="mt-12 text-center">
-            <p className="text-sm text-[#999999] italic">All projects require a 50% deposit upfront, 50% on delivery.</p>
+            <p className="text-sm text-[#C9A84C] italic">All projects require a 50% deposit upfront, 50% on delivery.</p>
           </FadeInSection>
         </div>
       </section>
