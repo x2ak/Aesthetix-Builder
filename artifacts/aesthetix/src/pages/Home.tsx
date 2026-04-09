@@ -457,23 +457,27 @@ export default function Home() {
                           {/* Phone mockup */}
                           <div style={{
                             position: "absolute",
-                            bottom: 12,
-                            right: 14,
-                            width: 68,
-                            height: 138,
-                            borderRadius: 12,
-                            border: `2px solid ${pc}99`,
-                            boxShadow: `0 8px 24px rgba(0,0,0,0.6), 0 0 0 1px ${pc}22`,
+                            bottom: 14,
+                            right: 16,
+                            width: 76,
+                            height: 156,
+                            borderRadius: 18,
+                            border: `1.5px solid ${pc}`,
+                            boxShadow: `0 0 0 3px rgba(0,0,0,0.5), 0 12px 32px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.06)`,
                             overflow: "hidden",
                             background: "#000",
+                            flexShrink: 0,
                           }}>
-                            {/* Phone notch */}
-                            <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 24, height: 6, background: `${pc}66`, borderRadius: "0 0 4px 4px", zIndex: 2 }} />
+                            {/* Screen content */}
                             <img
                               src={(project as typeof project & { mobileImg: string }).mobileImg}
                               alt={`${project.name} mobile`}
                               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
                             />
+                            {/* Dynamic Island pill */}
+                            <div style={{ position: "absolute", top: 7, left: "50%", transform: "translateX(-50%)", width: 22, height: 6, background: "#000", borderRadius: 6, zIndex: 3 }} />
+                            {/* Home indicator */}
+                            <div style={{ position: "absolute", bottom: 5, left: "50%", transform: "translateX(-50%)", width: 24, height: 3, background: "rgba(255,255,255,0.35)", borderRadius: 4, zIndex: 3 }} />
                           </div>
                           {/* "Web + Mobile" label */}
                           <div style={{
