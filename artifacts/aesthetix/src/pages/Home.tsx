@@ -385,6 +385,7 @@ export default function Home() {
                 videoSrc: "/dermadoll-web.mp4",
                 mobileImg: "/dermadoll-mobile.jpg",
                 phoneColor: "#C9A84C",
+                phoneFit: "contain" as const,
                 initials: "DA",
                 tag: "WEBSITE BUILD",
                 name: "Dermadoll Aesthetics",
@@ -451,7 +452,8 @@ export default function Home() {
                     )}
                     {/* Mobile phone overlay — only when mobileImg is provided */}
                     {"mobileImg" in project && project.mobileImg && (() => {
-                      const pc = (project as typeof project & { phoneColor?: string }).phoneColor ?? "#C9A84C";
+                      const pc = (project as typeof project & { phoneColor?: string; phoneFit?: string }).phoneColor ?? "#C9A84C";
+                      const fit = (project as typeof project & { phoneFit?: string }).phoneFit ?? "cover";
                       return (
                         <>
                           {/* Subtle dark gradient so phone pops */}
@@ -474,7 +476,7 @@ export default function Home() {
                             <img
                               src={(project as typeof project & { mobileImg: string }).mobileImg}
                               alt={`${project.name} mobile`}
-                              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+                              style={{ width: "100%", height: "100%", objectFit: fit as "cover" | "contain", objectPosition: "top", display: "block", background: "#000" }}
                             />
                             {/* Dynamic Island pill */}
                             <div style={{ position: "absolute", top: 7, left: "50%", transform: "translateX(-50%)", width: 22, height: 6, background: "#000", borderRadius: 6, zIndex: 3 }} />
