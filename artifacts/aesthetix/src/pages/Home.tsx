@@ -366,10 +366,10 @@ export default function Home() {
             <p className="text-[#999999] text-lg">No hidden fees. No surprises. No lock-in.</p>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
-            {/* Starter */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+            {/* Standard */}
             <FadeInSection className="bg-[#222222] p-8 rounded-sm transition-all duration-200 hover:scale-[1.02] border border-transparent h-full flex flex-col">
-              <h3 className="font-display font-bold text-2xl text-white mb-1">STARTER</h3>
+              <h3 className="font-display font-bold text-2xl text-white mb-1">STANDARD</h3>
               <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£599.99</div>
               <p className="text-[#999999] text-sm mb-8 font-medium">Get online fast</p>
               
@@ -420,30 +420,6 @@ export default function Home() {
               </a>
             </FadeInSection>
 
-            {/* Elite */}
-            <FadeInSection className="bg-[#222222] p-8 rounded-sm transition-all duration-200 hover:scale-[1.02] border border-transparent h-full flex flex-col">
-              <h3 className="font-display font-bold text-2xl text-white mb-1">ELITE</h3>
-              <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£1,999.99</div>
-              <p className="text-[#999999] text-sm mb-8 font-medium">Website + full automation stack</p>
-              
-              <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
-                <li>Everything in Pro</li>
-                <li>AI email reply bot</li>
-                <li>WhatsApp booking notifications</li>
-                <li>Missed enquiry follow-up system</li>
-                <li>Content repurposing pipeline</li>
-                <li>Telegram approval flow</li>
-                <li>Full workflow handover & training</li>
-              </ul>
-              
-              <div className="border-t border-white/10 pt-6 mb-8 text-sm text-[#999999]">
-                Hosting add-on: £75/mo or £700/yr
-              </div>
-              
-              <a href="#contact" className="w-full block border border-[#C9A84C] text-[#C9A84C] font-semibold px-6 py-3 rounded text-center hover:bg-[#C9A84C]/10 transition-colors duration-200 mt-auto">
-                Get Started
-              </a>
-            </FadeInSection>
           </div>
           
           <FadeInSection className="mt-12 text-center">
