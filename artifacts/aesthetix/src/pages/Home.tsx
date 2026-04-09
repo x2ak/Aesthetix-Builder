@@ -413,7 +413,8 @@ export default function Home() {
                 name: "Starr Aesthetics",
                 description: "Demo aesthetics website showcasing a clean, modern design with full treatment listings and booking integration.",
                 features: ["Demo", "Booking", "Treatment Menu", "Responsive"],
-                href: "#",
+                href: "#contact",
+                linkLabel: "Book Your Demo →",
               },
             ].map((project) => (
               <FadeInSection key={project.name}>
@@ -532,13 +533,13 @@ export default function Home() {
                     {/* View site link */}
                     <a
                       href={project.href}
-                      target="_blank"
+                      target={project.href.startsWith("#") ? "_self" : "_blank"}
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       style={{ display: "inline-block", color: "#C9A84C", fontSize: 13, marginTop: 16, textDecoration: "none" }}
                       className="hover:underline"
                     >
-                      View Site →
+                      {"linkLabel" in project ? (project as typeof project & { linkLabel: string }).linkLabel : "View Site →"}
                     </a>
                   </div>
                 </div>
