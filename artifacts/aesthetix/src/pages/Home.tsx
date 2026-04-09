@@ -70,6 +70,8 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [standardExpanded, setStandardExpanded] = useState(false);
+  const [proExpanded, setProExpanded] = useState(false);
   
   // Navigation scroll effect
   useEffect(() => {
@@ -374,12 +376,33 @@ export default function Home() {
               <p className="text-[#999999] text-sm mb-8 font-medium">Get online fast</p>
               
               <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
-                <li>Single page custom website</li>
-                <li>Mobile responsive design</li>
-                <li>Contact & booking form</li>
-                <li>1 round of revisions</li>
-                <li>Delivered in 3 days</li>
+                <li>✓ Single page custom website</li>
+                <li>✓ Mobile responsive design</li>
+                <li>✓ Contact & booking form</li>
+                <li>✓ 1 round of revisions</li>
+                <li>✓ Delivered in 3 days</li>
               </ul>
+
+              {/* Expandable detail */}
+              <div style={{ maxHeight: standardExpanded ? "600px" : "0", overflow: "hidden", transition: "max-height 0.4s ease" }}>
+                <div className="border-t border-white/10 pt-6 mb-6 space-y-4 text-sm text-white/70">
+                  <p className="text-[#C9A84C] font-semibold uppercase tracking-wider text-xs mb-3">What's included in detail</p>
+                  <p>Your website is designed and built from scratch, fully tailored to your brand, colours and tone of voice.</p>
+                  <p>Single page covering all your key sections — hero, services, about, contact — laid out cleanly and professionally.</p>
+                  <p>Fully optimised for mobile, tablet and desktop. Your clients will have a seamless experience on any device.</p>
+                  <p>Contact form sends enquiries straight to your inbox. Built-in booking form lets clients schedule with you instantly.</p>
+                  <p>1 round of amends after the first draft is delivered — any tweaks, copy changes or layout adjustments included.</p>
+                  <p>Handed over in 3 working days from project kick-off. Full walkthrough call so you know how to manage everything yourself.</p>
+                  <p className="text-[#C9A84C]">Ideal for: service businesses, consultants, sole traders and anyone who needs a clean, professional online presence fast.</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setStandardExpanded(!standardExpanded)}
+                className="w-full text-sm text-[#C9A84C] border border-[#C9A84C]/30 rounded py-2 mb-4 hover:border-[#C9A84C] hover:bg-[#C9A84C]/5 transition-all duration-200 flex items-center justify-center gap-2"
+              >
+                {standardExpanded ? "View Less ↑" : "View More ↓"}
+              </button>
               
               <div className="border-t border-white/10 pt-6 mb-8 text-sm text-[#999999]">
                 Hosting add-on: £45/mo or £360/yr <span className="text-[#C9A84C]">(2 months free)</span>
@@ -400,16 +423,39 @@ export default function Home() {
               <p className="text-[#999999] text-sm mb-8 font-medium">Your full digital presence</p>
               
               <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
-                <li>Full multi-section website</li>
-                <li>Custom booking calendar</li>
-                <li>Stripe deposit + payment system</li>
-                <li>Admin portal</li>
-                <li>Auto email confirmations</li>
-                <li>Before & after gallery</li>
-                <li>Video sections</li>
-                <li>1 round of revisions</li>
-                <li>Delivered in 6 days</li>
+                <li>✓ Full multi-section website</li>
+                <li>✓ Custom booking calendar</li>
+                <li>✓ Stripe deposit + payment system</li>
+                <li>✓ Admin portal</li>
+                <li>✓ Auto email confirmations</li>
+                <li>✓ Before & after gallery</li>
+                <li>✓ Video sections</li>
+                <li>✓ 1 round of revisions</li>
+                <li>✓ Delivered in 6 days</li>
               </ul>
+
+              {/* Expandable detail */}
+              <div style={{ maxHeight: proExpanded ? "700px" : "0", overflow: "hidden", transition: "max-height 0.4s ease" }}>
+                <div className="border-t border-white/10 pt-6 mb-6 space-y-4 text-sm text-white/70">
+                  <p className="text-[#C9A84C] font-semibold uppercase tracking-wider text-xs mb-3">What's included in detail</p>
+                  <p>A full, multi-section website built completely from scratch — hero, services, about, gallery, FAQ, contact and any additional sections your business needs.</p>
+                  <p>Custom booking calendar integrated directly into your site. Clients pick a date and time, pay their deposit, and you're confirmed — no back and forth.</p>
+                  <p>Stripe payment integration handles deposits or full payments automatically at the point of booking. You receive funds directly to your Stripe account.</p>
+                  <p>Admin portal so you can manage your own bookings, update your content, upload images and view enquiries — no developer needed after handover.</p>
+                  <p>Auto email confirmations sent to both you and your client the moment a booking is made. Professional, branded, and completely hands-off.</p>
+                  <p>Before & after gallery with a lightbox — perfect for aesthetics clinics, hair studios, tattoo artists and any visual service business.</p>
+                  <p>Embedded video sections so you can showcase treatments, walkthroughs or testimonials directly on your site.</p>
+                  <p>1 round of amends after the first draft. Full handover call and video walkthrough so you can manage everything yourself from day one.</p>
+                  <p className="text-[#C9A84C]">Ideal for: aesthetics clinics, beauty studios, hair salons, fitness coaches and any service business ready to take bookings and payments online.</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setProExpanded(!proExpanded)}
+                className="w-full text-sm text-black bg-[#C9A84C]/20 border border-[#C9A84C]/50 rounded py-2 mb-4 hover:bg-[#C9A84C]/30 hover:border-[#C9A84C] transition-all duration-200 text-[#C9A84C] flex items-center justify-center gap-2 font-semibold"
+              >
+                {proExpanded ? "View Less ↑" : "View More ↓"}
+              </button>
               
               <div className="border-t border-white/10 pt-6 mb-8 text-sm text-[#999999]">
                 Hosting add-on: £65/mo or £520/yr <span className="text-[#C9A84C]">(2 months free)</span>
