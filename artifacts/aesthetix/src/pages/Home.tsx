@@ -70,8 +70,6 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [standardExpanded, setStandardExpanded] = useState(false);
-  const [proExpanded, setProExpanded] = useState(false);
   
   // Navigation scroll effect
   useEffect(() => {
@@ -565,103 +563,56 @@ export default function Home() {
             <p className="text-[#C9A84C] text-lg">No hidden fees. No surprises. No lock-in.</p>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 gap-3 md:gap-8 items-stretch max-w-4xl mx-auto">
             {/* Standard */}
-            <FadeInSection className="bg-[#222222] p-8 rounded-sm transition-all duration-200 hover:scale-[1.02] border border-transparent h-full flex flex-col">
-              <h3 className="font-display font-bold text-2xl text-white mb-1">STANDARD</h3>
-              <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£599.99</div>
-              <p className="text-[#999999] text-sm mb-8 font-medium">Get online fast</p>
+            <FadeInSection className="bg-[#222222] p-4 md:p-8 rounded-sm transition-all duration-200 border border-transparent flex flex-col">
+              <h3 className="font-display font-bold text-base md:text-2xl text-white mb-1">STANDARD</h3>
+              <div className="text-[#C9A84C] font-display font-bold text-2xl md:text-4xl mb-1">£599<span className="text-base md:text-2xl">.99</span></div>
+              <p className="text-[#999999] text-xs md:text-sm mb-4 font-medium">Get online fast</p>
               
-              <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
-                <li>✓ Single page custom website</li>
-                <li>✓ Mobile responsive design</li>
-                <li>✓ Contact & booking form</li>
-                <li>✓ Calendar embed (we embed your existing calendar)</li>
-                <li>✓ 2 rounds of revisions</li>
-                <li>✓ Delivered in 3 days</li>
+              <ul className="space-y-2 md:space-y-4 text-white/80 mb-4 flex-grow text-xs md:text-sm">
+                <li>✓ Single page site</li>
+                <li>✓ Mobile responsive</li>
+                <li>✓ Booking form</li>
+                <li>✓ Calendar embed</li>
+                <li>✓ 2 revisions</li>
+                <li>✓ 3 day delivery</li>
               </ul>
 
-              {/* Expandable detail */}
-              <div style={{ maxHeight: standardExpanded ? "1000px" : "0", overflow: "hidden", transition: "max-height 0.5s ease" }}>
-                <div className="border-t border-white/10 pt-6 mb-6 space-y-4 text-sm text-white/70">
-                  <p className="text-[#C9A84C] font-semibold uppercase tracking-wider text-xs mb-3">What's included in detail</p>
-                  <p>Your website is designed and built from scratch, fully tailored to your brand, colours and tone of voice.</p>
-                  <p>Single page covering all your key sections — hero, services, about, contact — laid out cleanly and professionally.</p>
-                  <p>Fully optimised for mobile, tablet and desktop. Your clients will have a seamless experience on any device.</p>
-                  <p>Contact form sends enquiries straight to your inbox. Built-in booking form lets clients schedule with you instantly.</p>
-                  <p>We embed your existing booking calendar (Calendly, Acuity, Google Calendar and more) directly into your site — no disruption to your current setup. Need a brand new calendar system? That's something we can discuss and quote separately.</p>
-                  <p>2 rounds of amends after the first draft is delivered — any tweaks, copy changes or layout adjustments included across both rounds.</p>
-                  <p>Handed over in 3 working days from project kick-off. Full walkthrough call so you know how to manage everything yourself.</p>
-                  <p className="text-[#C9A84C]">Ideal for: aesthetics practitioners, beauty therapists and solo clinic owners who want a clean, professional site up fast — without the wait or the expense of a full build.</p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setStandardExpanded(!standardExpanded)}
-                className="w-full text-sm text-[#C9A84C] border border-[#C9A84C]/30 rounded py-2 mb-4 hover:border-[#C9A84C] hover:bg-[#C9A84C]/5 transition-all duration-200 flex items-center justify-center gap-2"
-              >
-                {standardExpanded ? "View Less ↑" : "View More ↓"}
-              </button>
-              
-              <div className="border-t border-white/10 pt-6 mb-8 text-sm text-[#999999]">
-                Hosting add-on: £45/mo or £360/yr <span className="text-[#C9A84C]">(2 months free)</span>
+              <div className="border-t border-white/10 pt-3 mb-3 text-xs text-[#999999]">
+                Hosting: <span className="text-[#C9A84C]">£45/mo</span>
               </div>
               
-              <a href="#contact" className="w-full block border border-[#C9A84C] text-[#C9A84C] font-semibold px-6 py-3 rounded text-center hover:bg-[#C9A84C]/10 transition-colors duration-200 mt-auto">
+              <a href="#contact" className="w-full block border border-[#C9A84C] text-[#C9A84C] font-semibold px-3 py-2 md:px-6 md:py-3 rounded text-center hover:bg-[#C9A84C]/10 transition-colors duration-200 mt-auto text-xs md:text-sm">
                 Get Started
               </a>
             </FadeInSection>
 
             {/* Pro */}
-            <FadeInSection className="bg-[#222222] p-10 rounded-sm border border-[#C9A84C] scale-100 md:scale-[1.03] hover:scale-[1.03] md:hover:scale-[1.05] transition-all duration-200 relative h-full flex flex-col z-10 shadow-2xl shadow-[#C9A84C]/10">
-              <div className="absolute top-0 right-0 bg-[#C9A84C] text-black text-xs font-bold px-3 py-1 m-4 rounded-full">
-                ★ Most Popular
+            <FadeInSection className="bg-[#222222] p-4 md:p-10 rounded-sm border border-[#C9A84C] transition-all duration-200 relative flex flex-col z-10 shadow-2xl shadow-[#C9A84C]/10">
+              <div className="absolute top-0 right-0 bg-[#C9A84C] text-black text-[9px] md:text-xs font-bold px-2 py-1 m-2 md:m-4 rounded-full">
+                ★ Popular
               </div>
-              <h3 className="font-display font-bold text-2xl text-white mb-1">PRO</h3>
-              <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£999.99</div>
-              <p className="text-[#999999] text-sm mb-8 font-medium">Your full digital presence</p>
+              <h3 className="font-display font-bold text-base md:text-2xl text-white mb-1">PRO</h3>
+              <div className="text-[#C9A84C] font-display font-bold text-2xl md:text-4xl mb-1">£999<span className="text-base md:text-2xl">.99</span></div>
+              <p className="text-[#999999] text-xs md:text-sm mb-4 font-medium">Full digital presence</p>
               
-              <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
-                <li>✓ Full multi-section website</li>
-                <li>✓ Calendar embed (we embed your existing calendar)</li>
-                <li>✓ Need a new calendar? — we can discuss & build</li>
-                <li>✓ Stripe deposit + payment system</li>
+              <ul className="space-y-2 md:space-y-4 text-white/80 mb-4 flex-grow text-xs md:text-sm">
+                <li>✓ Multi-section site</li>
+                <li>✓ Calendar embed</li>
+                <li>✓ Stripe payments</li>
                 <li>✓ Admin portal</li>
-                <li>✓ Auto email confirmations</li>
-                <li>✓ Before & after gallery</li>
-                <li>✓ Video sections</li>
-                <li>✓ 3 rounds of revisions</li>
-                <li>✓ Delivered in 6 days</li>
+                <li>✓ Email confirmations</li>
+                <li>✓ Gallery & video</li>
+                <li>✓ 3 revisions</li>
+                <li>✓ 6 day delivery</li>
               </ul>
 
-              {/* Expandable detail */}
-              <div style={{ maxHeight: proExpanded ? "1200px" : "0", overflow: "hidden", transition: "max-height 0.5s ease" }}>
-                <div className="border-t border-white/10 pt-6 mb-6 space-y-4 text-sm text-white/70">
-                  <p className="text-[#C9A84C] font-semibold uppercase tracking-wider text-xs mb-3">What's included in detail</p>
-                  <p>A full, multi-section website built completely from scratch — hero, services, about, gallery, FAQ, contact and any additional sections your business needs.</p>
-                  <p>We embed your existing booking calendar (Calendly, Acuity, Google Calendar and more) directly into your site — seamlessly styled to match your brand. If you need a brand new calendar system built from scratch, that's something we can discuss and quote separately based on your requirements.</p>
-                  <p>Stripe payment integration handles deposits or full payments automatically at the point of booking. You receive funds directly to your Stripe account.</p>
-                  <p>Admin portal so you can manage your own bookings, update your content, upload images and view enquiries — no developer needed after handover.</p>
-                  <p>Auto email confirmations sent to both you and your client the moment a booking is made. Professional, branded, and completely hands-off.</p>
-                  <p>Before & after gallery with a lightbox — perfect for aesthetics clinics, hair studios, tattoo artists and any visual service business.</p>
-                  <p>Embedded video sections so you can showcase treatments, walkthroughs or testimonials directly on your site.</p>
-                  <p>3 rounds of amends after the first draft — plenty of room to fine-tune every detail until it's exactly right. Full handover call and video walkthrough so you can manage everything yourself from day one.</p>
-                  <p className="text-[#C9A84C]">Ideal for: aesthetics clinics offering botox, fillers, skin treatments or body contouring — ready to take bookings, deposits and run their clinic professionally online.</p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setProExpanded(!proExpanded)}
-                className="w-full text-sm text-black bg-[#C9A84C]/20 border border-[#C9A84C]/50 rounded py-2 mb-4 hover:bg-[#C9A84C]/30 hover:border-[#C9A84C] transition-all duration-200 text-[#C9A84C] flex items-center justify-center gap-2 font-semibold"
-              >
-                {proExpanded ? "View Less ↑" : "View More ↓"}
-              </button>
-              
-              <div className="border-t border-white/10 pt-6 mb-8 text-sm text-[#999999]">
-                Hosting add-on: £65/mo or £520/yr <span className="text-[#C9A84C]">(2 months free)</span>
+              <div className="border-t border-white/10 pt-3 mb-3 text-xs text-[#999999]">
+                Hosting: <span className="text-[#C9A84C]">£65/mo</span>
               </div>
               
-              <a href="#contact" className="w-full block bg-[#C9A84C] text-black font-bold px-6 py-4 rounded text-center hover:bg-[#C9A84C]/90 transition-colors duration-200 mt-auto">
+              <a href="#contact" className="w-full block bg-[#C9A84C] text-black font-bold px-3 py-2 md:px-6 md:py-4 rounded text-center hover:bg-[#C9A84C]/90 transition-colors duration-200 mt-auto text-xs md:text-sm">
                 Get Started
               </a>
             </FadeInSection>
