@@ -84,16 +84,9 @@ export default function Home() {
 
   return (
     <div className="bg-[#1A1A1A] min-h-screen text-white font-sans overflow-x-hidden">
-      {/* SCARCITY BANNER */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-[#C9A84C] text-black text-xs md:text-sm font-bold text-center py-2 px-4 tracking-wide flex items-center justify-center gap-2">
-        <span>🔥</span>
-        <span>Only 2 client spots remaining this month — <a href="#contact" className="underline underline-offset-2 hover:opacity-70 transition-opacity">secure yours now</a></span>
-        <span>🔥</span>
-      </div>
-
       {/* 1. NAV */}
       <nav 
-        className={`fixed top-[36px] left-0 right-0 z-50 transition-all duration-200 ease-in-out border-b ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-in-out border-b ${
           isScrolled ? "bg-[#1A1A1A] border-[#C9A84C]" : "bg-[#1A1A1A]/90 backdrop-blur-sm border-[#C9A84C]/30"
         }`}
       >
@@ -146,7 +139,7 @@ export default function Home() {
       )}
 
       {/* 2. HERO */}
-      <section id="home" className="min-h-screen pt-[136px] pb-20 flex flex-col justify-center relative bg-[#1A1A1A] overflow-hidden">
+      <section id="home" className="min-h-screen pt-32 pb-20 flex flex-col justify-center relative bg-[#1A1A1A] overflow-hidden">
 
         {/* ── Animated background ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -284,6 +277,13 @@ export default function Home() {
           
         </div>
       </section>
+
+      {/* SCARCITY BANNER */}
+      <div className="bg-[#C9A84C] text-black text-xs md:text-sm font-bold text-center py-3 px-4 tracking-wide flex items-center justify-center gap-2">
+        <span>🔥</span>
+        <span>Only 2 client spots remaining this month — <a href="#contact" className="underline underline-offset-2 hover:opacity-70 transition-opacity">secure yours now</a></span>
+        <span>🔥</span>
+      </div>
 
       {/* 3. SERVICES */}
       <section id="services" className="py-32 bg-[#222222]">
