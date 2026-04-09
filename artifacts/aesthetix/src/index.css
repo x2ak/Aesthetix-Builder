@@ -287,3 +287,10 @@
   border: 1px solid rgba(201,168,76,0.05);
   animation: orb-1 10s ease-in-out infinite reverse;
 }
+
+/* Mobile optimisations */
+@media (max-width: 767px) {
+  .hero-card { display: none; }
+  .hero-orb-1, .hero-orb-2, .hero-orb-3 { opacity: 0.4; }
+  .hero-ring, .hero-ring-inner { display: none; }
+}

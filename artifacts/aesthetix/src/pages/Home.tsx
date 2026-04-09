@@ -231,13 +231,16 @@ export default function Home() {
           </FadeInSection>
           
           <FadeInSection>
-            <h1 className="font-display font-bold text-[42px] md:text-[72px] leading-[1.1] text-white mb-6 whitespace-pre-line">
+            <h1
+              className="font-display font-bold text-[42px] md:text-[72px] leading-[1.1] text-white mb-6 whitespace-pre-line"
+              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.7)" }}
+            >
               {"Your Business.\nAutomated."}
             </h1>
           </FadeInSection>
           
           <FadeInSection className="max-w-2xl mx-auto mb-10">
-            <p className="text-[#999999] text-lg md:text-xl leading-relaxed">
+            <p className="text-white/70 text-lg md:text-xl leading-relaxed" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}>
               We build premium websites for aesthetics and beauty clinics — so you can focus on your clients, not your admin.
             </p>
           </FadeInSection>
