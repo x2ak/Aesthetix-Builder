@@ -405,7 +405,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                videoSrc: "/dermadoll-web.mp4",
+                videoSrc: "/dermadoll-web-opt.mp4",
                 mobileImg: "/dermadoll-mobile.jpg",
                 phoneColor: "#C9A84C",
                 phoneFit: "contain" as const,
@@ -417,7 +417,7 @@ export default function Home() {
                 href: "https://dermadoll-aesthetics.co.uk",
               },
               {
-                videoSrc: "/flawlessskin-web.mov",
+                videoSrc: "/flawlessskin-web-opt.mp4",
                 mobileImg: "/flawlessskin-mobile.jpg",
                 phoneColor: "#7A8C6A",
                 initials: "FS",
@@ -428,7 +428,7 @@ export default function Home() {
                 href: "https://flawless-skin.co.uk",
               },
               {
-                videoSrc: "/starraesthetics-web.mov",
+                videoSrc: "/starraesthetics-web-opt.mp4",
                 mobileImg: "/starraesthetics-mobile.jpg",
                 phoneColor: "#7B4F4F",
                 initials: "SA",
