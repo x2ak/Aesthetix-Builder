@@ -390,12 +390,12 @@ export default function Home() {
               </a>
             </FadeInSection>
 
-            {/* Growth */}
+            {/* Pro */}
             <FadeInSection className="bg-[#222222] p-10 rounded-sm border border-[#C9A84C] scale-100 md:scale-[1.03] hover:scale-[1.03] md:hover:scale-[1.05] transition-all duration-200 relative h-full flex flex-col z-10 shadow-2xl shadow-[#C9A84C]/10">
               <div className="absolute top-0 right-0 bg-[#C9A84C] text-black text-xs font-bold px-3 py-1 m-4 rounded-full">
                 ★ Most Popular
               </div>
-              <h3 className="font-display font-bold text-2xl text-white mb-1">GROWTH</h3>
+              <h3 className="font-display font-bold text-2xl text-white mb-1">PRO</h3>
               <div className="text-[#C9A84C] font-display font-bold text-4xl mb-2">£999.99</div>
               <p className="text-[#999999] text-sm mb-8 font-medium">Your full digital presence</p>
               
@@ -427,7 +427,7 @@ export default function Home() {
               <p className="text-[#999999] text-sm mb-8 font-medium">Website + full automation stack</p>
               
               <ul className="space-y-4 text-white/80 mb-8 flex-grow text-sm">
-                <li>Everything in Growth</li>
+                <li>Everything in Pro</li>
                 <li>AI email reply bot</li>
                 <li>WhatsApp booking notifications</li>
                 <li>Missed enquiry follow-up system</li>
