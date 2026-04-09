@@ -382,7 +382,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                img: "/dermadoll-web.png",
+                videoSrc: "/dermadoll-web.mp4",
                 mobileImg: "/dermadoll-mobile.jpg",
                 phoneColor: "#C9A84C",
                 initials: "DA",
@@ -393,7 +393,7 @@ export default function Home() {
                 href: "#",
               },
               {
-                img: "/flawlessskin.png",
+                videoSrc: "/flawlessskin-web.mp4",
                 mobileImg: "/flawlessskin-mobile.jpg",
                 phoneColor: "#7A8C6A",
                 initials: "FS",
@@ -404,7 +404,6 @@ export default function Home() {
                 href: "#",
               },
               {
-                img: "/starraesthetics.png",
                 initials: "SA",
                 tag: "DEMO BUILD",
                 name: "Starr Aesthetics",
@@ -425,28 +424,31 @@ export default function Home() {
                   }}
                   onClick={() => project.href !== "#" && window.open(project.href, "_blank")}
                 >
-                  {/* Screenshot / Placeholder */}
+                  {/* Video / Placeholder */}
                   <div style={{ position: "relative", height: 260, overflow: "hidden", flexShrink: 0, background: "#111" }}>
-                    {/* Desktop screenshot */}
-                    <img
-                      src={project.img}
-                      alt={project.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
-                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; (e.currentTarget.nextSibling as HTMLElement).style.display = "flex"; }}
-                    />
-                    {/* Fallback initials */}
-                    <div
-                      style={{
-                        display: "none",
+                    {"videoSrc" in project && project.videoSrc ? (
+                      /* Auto-playing looped video background */
+                      <video
+                        src={(project as typeof project & { videoSrc: string }).videoSrc}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+                      />
+                    ) : (
+                      /* Initials placeholder for cards without media */
+                      <div style={{
+                        display: "flex",
                         position: "absolute",
                         inset: 0,
                         background: "linear-gradient(135deg, #222222, #2A2A2A)",
                         alignItems: "center",
                         justifyContent: "center",
-                      }}
-                    >
-                      <span className="font-display font-bold text-[#C9A84C]" style={{ fontSize: 32 }}>{project.initials}</span>
-                    </div>
+                      }}>
+                        <span className="font-display font-bold text-[#C9A84C]" style={{ fontSize: 32 }}>{project.initials}</span>
+                      </div>
+                    )}
                     {/* Mobile phone overlay — only when mobileImg is provided */}
                     {"mobileImg" in project && project.mobileImg && (() => {
                       const pc = (project as typeof project & { phoneColor?: string }).phoneColor ?? "#C9A84C";
