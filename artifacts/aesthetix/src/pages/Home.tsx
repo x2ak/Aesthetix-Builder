@@ -382,7 +382,7 @@ export default function Home() {
               </ul>
               
               <div className="border-t border-white/10 pt-6 mb-8 text-sm text-[#999999]">
-                Hosting add-on: £45/mo or £360/yr
+                Hosting add-on: £45/mo or £360/yr <span className="text-[#C9A84C]">(2 months free)</span>
               </div>
               
               <a href="#contact" className="w-full block border border-[#C9A84C] text-[#C9A84C] font-semibold px-6 py-3 rounded text-center hover:bg-[#C9A84C]/10 transition-colors duration-200 mt-auto">
