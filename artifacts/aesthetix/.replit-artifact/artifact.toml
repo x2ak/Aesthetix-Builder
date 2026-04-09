@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Aesthetix"
+version = "1.0.0"
+id = "artifacts/aesthetix"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22549
+
+[services.development]
+run = "pnpm --filter @workspace/aesthetix run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aesthetix", "run", "build" ]
+publicDir = "artifacts/aesthetix/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22549"
+BASE_PATH = "/"

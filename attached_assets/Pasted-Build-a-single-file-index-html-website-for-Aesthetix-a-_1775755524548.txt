@@ -1,0 +1,233 @@
+Build a single-file index.html website for "Aesthetix" — a premium web development 
+and business systems agency based in Birmingham, UK.
+
+DESIGN BRIEF:
+- Background: #1A1A1A deep charcoal
+- Section alternates: #222222 slightly lighter charcoal for cards/sections
+- Primary text: #FFFFFF clean white
+- Accent: #C9A84C warm gold for highlights, buttons, borders, hover states
+- Typography: Google Fonts — "Space Grotesk" for all headings, "Inter" for body text
+- Aesthetic: Dark, sharp, premium agency. Think high-end SaaS meets boutique studio.
+  Lots of breathing room, gold accents used sparingly for impact, nothing overdone.
+- Fully mobile responsive with hamburger menu on mobile
+
+LOGO:
+Render the wordmark as: "AESTHETIX" in bold Space Grotesk, wide letter-spacing,
+white text. Below it in small gold caps: "SYSTEMS". No image needed.
+
+SECTIONS (in order):
+
+1. NAV
+Fixed top navbar. Dark background #1A1A1A with a subtle 1px gold bottom border.
+Logo left. Links right: Services | Work | Pricing | Contact
+"Get Started" pill button — gold filled (#C9A84C), black text, border-radius: 30px.
+Mobile: hamburger icon (3 lines, gold) reveals full-screen dark overlay menu.
+
+2. HERO
+Full viewport height. Dark background.
+Above headline: small gold uppercase label with thin gold lines either side:
+"WEB BUILDS & BUSINESS SYSTEMS"
+Large headline (Space Grotesk, bold, white, 72px desktop / 42px mobile):
+"Your Business.
+Automated."
+Subheading (Inter, 18px, #999999):
+"We build premium websites and intelligent systems that handle your bookings,
+enquiries and operations — so you don't have to."
+Two CTA buttons:
+- "See Our Work" — gold filled (#C9A84C), black text
+- "Book a Free Call" — gold outlined, gold text
+Bottom of hero: animated stat counters in a row separated by gold vertical lines:
+[10+ Clients] [£50k+ Revenue Generated] [6 Day Delivery]
+Stats animate up from 0 when page loads.
+
+3. SERVICES
+Background: #222222
+Heading: "What We Build"
+Subheading: "Two core offerings. One agency."
+
+Two large service cards side by side (stack on mobile).
+Card style: #1A1A1A background, 3px gold top border, hover lifts with gold glow.
+
+Card 1 — WEBSITES
+Inline SVG icon: gold window/browser outline icon
+Title: "Premium Website Builds"
+Body: "Fully custom, mobile-first websites built to convert. Complete with booking
+systems, Stripe payments, admin portals and automated client communications.
+Delivered in 6 days."
+Gold checkmark list:
+✓ Custom design & build
+✓ Booking calendar + Stripe payments
+✓ Admin portal — manage everything yourself
+✓ Auto email confirmations
+✓ Before & after galleries, video sections
+✓ 6-day delivery
+CTA: "View Packages" — gold outlined button
+
+Card 2 — SYSTEMS
+Inline SVG icon: gold circuit/flow outline icon
+Title: "Business Automation Systems"
+Body: "AI-powered workflows that handle your enquiries, follow-ups, content and
+notifications automatically. Built on n8n — no ongoing developer needed."
+Gold checkmark list:
+✓ AI email reply bot
+✓ WhatsApp booking notifications
+✓ Missed enquiry follow-up automation
+✓ Content repurposing pipeline
+✓ Telegram approval flows
+✓ Full workflow handover
+CTA: "View Packages" — gold outlined button
+
+4. HOW IT WORKS
+Background: #1A1A1A
+Heading: "How It Works"
+Subheading: "Simple process. Fast results."
+
+3 steps in a horizontal row (stack on mobile).
+Each step: large gold number, bold title, short description.
+Steps connected by a thin gold dashed line on desktop that animates
+left to right when scrolled into view.
+
+Step 1 — DISCOVERY
+"We learn your business, your goals and exactly what's slowing you down."
+
+Step 2 — BUILD
+"We design and build your site or system — fully tailored, delivered
+in days not months."
+
+Step 3 — LAUNCH
+"You go live, take bookings and run your business on autopilot from day one."
+
+5. CASE STUDIES
+Background: #222222
+Heading: "Real Results"
+Subheading: "Built for real businesses. Delivering real outcomes."
+
+Two case study cards (2 col desktop, 1 col mobile).
+Card style: #1A1A1A background, subtle gold border, hover lift.
+Top of each card: gold tag pill showing the service type.
+
+Card 1 — DERMADOLL AESTHETICS
+Tag: WEBSITE BUILD
+Headline: "Premium aesthetics clinic — fully booked from launch"
+Detail list:
+— Full custom website with booking calendar & Stripe payments
+— 50% deposit taken automatically at time of booking
+— Admin portal to manage bookings, media and content
+— Before & after gallery, video sections, reviews carousel
+— Auto email confirmations sent to client and practitioner
+— FAQ, training courses section, full mobile responsive
+Result badge (gold background, black text): "Delivered in 6 days"
+
+Card 2 — FLAWLESSSKIN
+Tag: WEBSITE BUILD
+Headline: "Aesthetics clinic live and taking bookings within a week"
+Detail list:
+— Premium single-page website built to a cream & sage design system
+— Calendly booking integration embedded seamlessly
+— Stripe payment setup for deposits
+— Mobile-first design with luxury feel
+— Fully handed over with no ongoing maintenance needed
+Result badge (gold background, black text): "Built & live in under 7 days"
+
+6. PRICING
+Background: #1A1A1A
+Heading: "Transparent Pricing"
+Subheading: "No hidden fees. No surprises. No lock-in."
+
+3 pricing cards in a row (stack on mobile).
+Middle card (Growth) is permanently highlighted —
+gold border, slightly scaled up, gold "Most Popular" badge top right.
+
+STARTER — £600
+Subheading: "Get online fast"
+Includes:
+✓ Single page custom website
+✓ Mobile responsive design
+✓ Contact & booking form
+✓ 1 round of revisions
+✓ Delivered in 3 days
+Hosting add-on: £45/mo or £360/yr (2 months free)
+CTA button: "Get Started" — gold outlined
+
+GROWTH — £800
+Badge: ★ Most Popular
+Subheading: "Your full digital presence"
+Includes:
+✓ Full multi-section website
+✓ Custom booking calendar
+✓ Stripe deposit + payment system
+✓ Admin portal
+✓ Auto email confirmations
+✓ Before & after gallery
+✓ Video sections
+✓ 1 round of revisions
+✓ Delivered in 6 days
+Hosting add-on: £45/mo or £360/yr (2 months free)
+CTA button: "Get Started" — gold filled, black text
+
+ELITE — £2,000
+Subheading: "Website + full automation stack"
+Includes:
+✓ Everything in Growth
+✓ AI email reply bot
+✓ WhatsApp booking notifications
+✓ Missed enquiry follow-up system
+✓ Content repurposing pipeline
+✓ Telegram approval flow
+✓ Full workflow handover & training
+Hosting add-on: £75/mo or £700/yr (2 months free)
+CTA button: "Get Started" — gold outlined
+
+Note centred below all 3 cards in small grey italic text:
+"All projects require a 50% deposit upfront, 50% on delivery."
+
+7. CONTACT
+Background: #222222
+Heading: "Ready to Start?"
+Subheading: "Book a free 20-minute discovery call or drop us a message."
+
+Two columns side by side (stack on mobile):
+
+Left — Contact form:
+Fields: Name | Business Name | Email |
+What do you need? (dropdown: Website Build / Automation System / Both / Not Sure)
+Message textarea.
+Submit button: gold filled, black text, full width.
+On submit: show inline gold success message —
+"Message received — we'll be in touch within the same day."
+
+Right — Direct contact block:
+Instagram icon + "@aesthetix_systems" — links to Instagram
+WhatsApp icon + "Message on WhatsApp" — links to wa.me
+Label in small gold caps: "TYPICAL RESPONSE TIME: SAME DAY"
+Divider line (gold, thin)
+"Book a Free Call" — gold outlined button, full width
+
+8. FOOTER
+Background: #111111
+Centred logo wordmark: "AESTHETIX" white bold Space Grotesk,
+"SYSTEMS" gold small caps below, wide letter-spacing.
+Tagline in grey italic Inter: "Built to convert. Built to last."
+Nav links in a row: Services | Work | Pricing | Contact
+Small text: © 2026 Aesthetix. All rights reserved.
+Small text: Based in Birmingham, UK
+
+INTERACTIONS & ANIMATIONS:
+- Smooth scroll on all nav links
+- Navbar: transparent at top, solid #1A1A1A + gold border on scroll
+- Hero stats count up from 0 on page load
+- Service cards: translateY(-6px) + gold box-shadow on hover
+- Pricing cards: scale(1.02) on hover, middle card always scaled
+- How It Works dashed connector animates width left to right on scroll
+- Case study cards: lift on hover with gold glow
+- Contact form: gold focus rings on all inputs, success state on submit
+- Mobile hamburger: full-screen #1A1A1A overlay, links centred in gold,
+  staggered fade-in on open
+- All buttons: smooth background/border transition on hover (200ms ease)
+- Scroll-triggered fade-in on all sections (opacity 0 → 1, translateY 20px → 0)
+
+TECHNICAL:
+- No frameworks. No CDN libraries. Google Fonts only
+  (Space Grotesk + Inter via @import).
+- Single index.html file. All CSS and JS inline.
+- Fully mobile responsive at 768px and 480px breakpoints.
