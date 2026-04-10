@@ -414,7 +414,7 @@ export default function Home() {
       <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 3. SERVICES */}
-      <section id="services" className="py-14 md:py-32 bg-[#1A1A1A]">
+      <section id="services" className="py-14 md:py-32 bg-[#222222]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">What We Build</h2>
@@ -464,7 +464,7 @@ export default function Home() {
       <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 4. CASE STUDIES */}
-      <section id="work" className="py-32 bg-[#222222]">
+      <section id="work" className="py-32 bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Our Work</h2>
@@ -649,7 +649,7 @@ export default function Home() {
       <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 5. HOW IT WORKS */}
-      <section id="how" className="py-14 md:py-20 bg-[#1A1A1A] overflow-hidden relative">
+      <section id="how" className="py-14 md:py-20 bg-[#222222] overflow-hidden relative">
 
         {/* ── Animated background (mirrors hero) ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -701,7 +701,7 @@ export default function Home() {
       <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 6. PRICING */}
-      <section id="pricing" className="py-24 md:py-32 bg-[#222222]">
+      <section id="pricing" className="py-24 md:py-32 bg-[#1A1A1A]">
         <div className="max-w-6xl mx-auto px-6">
           <FadeInSection className="text-center mb-6">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4 tracking-tight">
@@ -850,7 +850,7 @@ export default function Home() {
       <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 7. CONTACT */}
-      <section id="contact" className="py-32 bg-[#1A1A1A]">
+      <section id="contact" className="py-32 bg-[#222222]">
         <div className="max-w-6xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Ready to Start?</h2>
