@@ -174,7 +174,7 @@ export default function Home() {
       )}
 
       {/* 2. HERO */}
-      <section id="home" className="min-h-screen pt-[137px] pb-20 flex flex-col justify-center relative bg-[#1A1A1A] overflow-hidden">
+      <section id="home" className="min-h-screen pt-[137px] pb-8 md:pb-20 flex flex-col justify-center relative bg-[#1A1A1A] overflow-hidden">
 
         {/* ── Animated background ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -314,7 +314,7 @@ export default function Home() {
       </section>
 
       {/* 3. SERVICES */}
-      <section id="services" className="py-32 bg-[#1A1A1A]">
+      <section id="services" className="py-14 md:py-32 bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">What We Build</h2>
