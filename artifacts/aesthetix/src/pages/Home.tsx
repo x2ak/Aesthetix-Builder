@@ -695,6 +695,75 @@ export default function Home() {
             </p>
           </FadeInSection>
 
+          {/* Feature card detail popup */}
+          {expandedCard && (() => {
+            const cards = [
+              {
+                title: "BUILT AROUND YOU",
+                detail: [
+                  "We start every project with a discovery call — no templates, no copy-paste.",
+                  "We learn your treatments, your clients, your vibe. Then we build something that actually fits your business.",
+                  "Aesthetics clinic, beauty salon, barber, PT — every site we build is completely unique to you.",
+                ],
+              },
+              {
+                title: "48HR DELIVERY",
+                detail: [
+                  "Once you've signed off the brief, we move fast.",
+                  "Most projects are designed, built and handed over within 48 hours — no long waits, no chasing.",
+                  "You'll have a live site in days, not weeks.",
+                ],
+              },
+              {
+                title: "TRANSPARENT PRICING",
+                detail: [
+                  "No mystery packages. No surprise invoices.",
+                  "You tell us what you need, we give you a straight price. Simple.",
+                  "DM us on WhatsApp with your requirements and we'll come back to you with a clear, honest quote.",
+                ],
+              },
+            ];
+            const active = cards.find(c => c.title === expandedCard);
+            if (!active) return null;
+            return (
+              <div
+                className="fixed inset-0 z-[200] flex items-center justify-center px-5"
+                style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(6px)" }}
+                onClick={() => setExpandedCard(null)}
+              >
+                <div
+                  className="relative w-full max-w-sm rounded-sm overflow-hidden"
+                  style={{
+                    background: "rgba(26,26,26,0.88)",
+                    backdropFilter: "blur(20px)",
+                    border: "1px solid rgba(201,168,76,0.35)",
+                    borderTop: "2px solid #C9A84C",
+                    boxShadow: "0 0 60px rgba(201,168,76,0.12), 0 24px 64px rgba(0,0,0,0.6)",
+                  }}
+                  onClick={e => e.stopPropagation()}
+                >
+                  <div style={{ height: 2, background: "linear-gradient(90deg, transparent, #C9A84C, transparent)" }} />
+                  <button
+                    onClick={() => setExpandedCard(null)}
+                    className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors text-lg leading-none"
+                  >✕</button>
+                  <div className="px-8 pt-8 pb-10">
+                    <h3 className="font-display font-bold text-white text-lg tracking-wider mb-6 pr-6">{active.title}</h3>
+                    <div className="space-y-4">
+                      {active.detail.map((para, i) => (
+                        <p key={i} className="text-white/70 text-sm leading-relaxed border-l-2 border-[#C9A84C]/30 pl-4">{para}</p>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => setExpandedCard(null)}
+                      className="mt-8 text-white/30 hover:text-white/60 text-xs tracking-wider transition-colors"
+                    >Close</button>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
           <div className="grid grid-cols-3 gap-2 md:gap-5 mb-10 mt-14">
             {[
               {
@@ -721,39 +790,27 @@ export default function Home() {
                   "DM us on WhatsApp with your requirements and we'll come back to you with a clear, honest quote.",
                 ],
               },
-            ].map(({ title, detail }) => {
-              const isOpen = expandedCard === title;
-              return (
-                <FadeInSection key={title} className="h-full">
-                  <div
-                    className="h-full px-3 py-4 md:px-7 md:py-8 flex flex-col items-center text-center"
-                    style={{
-                      background: "#1e1e1e",
-                      border: "1px solid rgba(201,168,76,0.2)",
-                      borderTop: "3px solid #C9A84C",
-                      borderRadius: 4,
-                    }}
+            ].map(({ title }) => (
+              <FadeInSection key={title} className="h-full">
+                <div
+                  className="h-full px-3 py-4 md:px-7 md:py-8 flex flex-col items-center text-center"
+                  style={{
+                    background: "#1e1e1e",
+                    border: "1px solid rgba(201,168,76,0.2)",
+                    borderTop: "3px solid #C9A84C",
+                    borderRadius: 4,
+                  }}
+                >
+                  <h3 className="font-display font-bold text-white text-[10px] md:text-lg mb-2 md:mb-4 tracking-wider leading-tight">{title}</h3>
+                  <button
+                    onClick={() => setExpandedCard(title)}
+                    className="mt-auto text-[#C9A84C] text-[8px] md:text-xs font-semibold tracking-wider uppercase hover:text-[#C9A84C]/70 transition-colors"
                   >
-                    <h3 className="font-display font-bold text-white text-[10px] md:text-lg mb-2 md:mb-4 tracking-wider leading-tight">{title}</h3>
-
-                    {isOpen && (
-                      <div className="w-full mt-1 mb-3 space-y-2 text-left border-t border-white/10 pt-3">
-                        {detail.map((para, i) => (
-                          <p key={i} className="text-white/70 text-[9px] md:text-sm leading-relaxed">{para}</p>
-                        ))}
-                      </div>
-                    )}
-
-                    <button
-                      onClick={() => setExpandedCard(isOpen ? null : title)}
-                      className="mt-auto text-[#C9A84C] text-[8px] md:text-xs font-semibold tracking-wider uppercase hover:text-[#C9A84C]/70 transition-colors"
-                    >
-                      {isOpen ? "VIEW LESS ↑" : "VIEW MORE ↓"}
-                    </button>
-                  </div>
-                </FadeInSection>
-              );
-            })}
+                    VIEW MORE ↓
+                  </button>
+                </div>
+              </FadeInSection>
+            ))}
           </div>
 
           <FadeInSection className="text-center">
