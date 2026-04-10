@@ -394,7 +394,7 @@ export default function Home() {
                 >
                   <AnimatedCounter end={10} suffix="+" />
                 </span>
-                <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Clients</span>
+                <span className="text-xs md:text-sm text-[#C9A84C] uppercase tracking-wider font-semibold text-center">Clients</span>
               </div>
               <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
                 <span
@@ -403,7 +403,7 @@ export default function Home() {
                 >
                   <AnimatedCounter end={50} prefix="£" suffix="k+" />
                 </span>
-                <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Revenue Generated</span>
+                <span className="text-xs md:text-sm text-[#C9A84C] uppercase tracking-wider font-semibold text-center">Revenue Generated</span>
               </div>
               <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
                 <span
@@ -412,7 +412,7 @@ export default function Home() {
                 >
                   <AnimatedCounter end={6} suffix="" />
                 </span>
-                <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Day Delivery</span>
+                <span className="text-xs md:text-sm text-[#C9A84C] uppercase tracking-wider font-semibold text-center">Day Delivery</span>
               </div>
             </div>
           </FadeInSection>
