@@ -649,8 +649,25 @@ export default function Home() {
       <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 5. HOW IT WORKS */}
-      <section id="how" className="py-14 md:py-20 bg-[#1A1A1A] overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6">
+      <section id="how" className="py-14 md:py-20 bg-[#1A1A1A] overflow-hidden relative">
+
+        {/* ── Animated background (mirrors hero) ── */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="hero-grid" />
+          <div className="hero-orb-1" style={{ opacity: 0.5 }} />
+          <div className="hero-orb-2" style={{ opacity: 0.4 }} />
+          {[
+            { left: "8%",  bottom: "10%", dur: "9s",  delay: "0.5s" },
+            { left: "28%", bottom: "20%", dur: "11s", delay: "2s"   },
+            { left: "52%", bottom: "8%",  dur: "7s",  delay: "1s"   },
+            { left: "74%", bottom: "15%", dur: "13s", delay: "3s"   },
+            { left: "90%", bottom: "22%", dur: "8s",  delay: "0s"   },
+          ].map((p, i) => (
+            <div key={i} className="hero-particle" style={{ left: p.left, bottom: p.bottom, animationDuration: p.dur, animationDelay: p.delay }} />
+          ))}
+        </div>
+
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <FadeInSection className="text-center mb-8 md:mb-12">
             <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-2">How It Works</h2>
             <p className="text-[#C9A84C] text-base md:text-lg">Simple process. Fast results.</p>
@@ -668,8 +685,8 @@ export default function Home() {
                 { n: "2", title: "Build",     desc: <>We design and build your site — <span className="text-[#C9A84C]">tailored to your brand</span>. Delivered in days.</> },
                 { n: "3", title: "Launch",    desc: <>You go <span className="text-[#C9A84C]">live</span>, take bookings and run on <span className="text-[#C9A84C]">autopilot</span>.</> },
               ].map(({ n, title, desc }) => (
-                <FadeInSection key={n} className="flex flex-col items-center text-center bg-[#1A1A1A] px-1 md:px-4">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center mb-3 md:mb-5">
+                <FadeInSection key={n} className="flex flex-col items-center text-center px-1 md:px-4">
+                  <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 md:mb-5">
                     <span className="font-display font-bold text-4xl md:text-5xl text-[#C9A84C]">{n}</span>
                   </div>
                   <h3 className="font-display font-bold text-xs md:text-lg text-white mb-2 tracking-wide uppercase">{title}</h3>
