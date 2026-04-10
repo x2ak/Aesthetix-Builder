@@ -73,9 +73,13 @@ export default function Home() {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
 
-  // Welcome popup — show after 3s
+  // Welcome popup — show after 5s, once per session
   useEffect(() => {
-    const t = setTimeout(() => setShowPopup(true), 3000);
+    if (sessionStorage.getItem("aesthetix_popup_seen")) return;
+    const t = setTimeout(() => {
+      setShowPopup(true);
+      sessionStorage.setItem("aesthetix_popup_seen", "1");
+    }, 5000);
     return () => clearTimeout(t);
   }, []);
 
