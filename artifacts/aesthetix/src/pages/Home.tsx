@@ -379,15 +379,30 @@ export default function Home() {
           <FadeInSection className="w-full pt-10 border-t border-[#C9A84C]/20">
             <div className="flex flex-row items-center justify-center divide-x divide-[#C9A84C]/30 w-full">
               <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
-                <span className="font-display font-bold text-3xl md:text-5xl text-white mb-2"><AnimatedCounter end={10} suffix="+" /></span>
+                <span
+                  className="font-display font-bold text-3xl md:text-5xl mb-2"
+                  style={{ animation: "stat-glow 3.2s ease-in-out infinite", animationDelay: "0s" }}
+                >
+                  <AnimatedCounter end={10} suffix="+" />
+                </span>
                 <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Clients</span>
               </div>
               <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
-                <span className="font-display font-bold text-3xl md:text-5xl text-white mb-2"><AnimatedCounter end={50} prefix="£" suffix="k+" /></span>
+                <span
+                  className="font-display font-bold text-3xl md:text-5xl mb-2"
+                  style={{ animation: "stat-glow 4.5s ease-in-out infinite", animationDelay: "1.4s" }}
+                >
+                  <AnimatedCounter end={50} prefix="£" suffix="k+" />
+                </span>
                 <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Revenue Generated</span>
               </div>
               <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
-                <span className="font-display font-bold text-3xl md:text-5xl text-white mb-2"><AnimatedCounter end={6} suffix="" /></span>
+                <span
+                  className="font-display font-bold text-3xl md:text-5xl mb-2"
+                  style={{ animation: "stat-glow 3.8s ease-in-out infinite", animationDelay: "2.7s" }}
+                >
+                  <AnimatedCounter end={6} suffix="" />
+                </span>
                 <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Day Delivery</span>
               </div>
             </div>

@@ -288,6 +288,18 @@
   animation: orb-1 10s ease-in-out infinite reverse;
 }
 
+/* Stat glow pulse — each number pulses gold independently */
+@keyframes stat-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(201,168,76,0.15), 0 0 20px rgba(201,168,76,0.05);
+    color: #ffffff;
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(201,168,76,0.8), 0 0 40px rgba(201,168,76,0.4), 0 0 70px rgba(201,168,76,0.15);
+    color: #f5e6c0;
+  }
+}
+
 /* Banner animations */
 @keyframes shimmer-sweep {
   0%   { transform: translateX(-100%); }
