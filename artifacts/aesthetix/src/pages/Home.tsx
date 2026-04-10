@@ -294,18 +294,18 @@ export default function Home() {
           </FadeInSection>
           
           <FadeInSection className="w-full pt-10 border-t border-[#C9A84C]/20">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-[#C9A84C]/30 w-full">
-              <div className="flex flex-col items-center justify-center px-10 py-4 md:py-0 w-full md:w-1/3">
-                <span className="font-display font-bold text-4xl md:text-5xl text-white mb-2"><AnimatedCounter end={10} suffix="+" /></span>
-                <span className="text-sm text-[#999999] uppercase tracking-wider font-semibold">Clients</span>
+            <div className="flex flex-row items-center justify-center divide-x divide-[#C9A84C]/30 w-full">
+              <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
+                <span className="font-display font-bold text-3xl md:text-5xl text-white mb-2"><AnimatedCounter end={10} suffix="+" /></span>
+                <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Clients</span>
               </div>
-              <div className="flex flex-col items-center justify-center px-10 py-4 md:py-0 w-full md:w-1/3">
-                <span className="font-display font-bold text-4xl md:text-5xl text-white mb-2"><AnimatedCounter end={50} prefix="£" suffix="k+" /></span>
-                <span className="text-sm text-[#999999] uppercase tracking-wider font-semibold">Revenue Generated</span>
+              <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
+                <span className="font-display font-bold text-3xl md:text-5xl text-white mb-2"><AnimatedCounter end={50} prefix="£" suffix="k+" /></span>
+                <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Revenue Generated</span>
               </div>
-              <div className="flex flex-col items-center justify-center px-10 py-4 md:py-0 w-full md:w-1/3">
-                <span className="font-display font-bold text-4xl md:text-5xl text-white mb-2"><AnimatedCounter end={6} suffix="" /></span>
-                <span className="text-sm text-[#999999] uppercase tracking-wider font-semibold">Day Delivery</span>
+              <div className="flex flex-col items-center justify-center px-4 md:px-10 py-0 w-1/3">
+                <span className="font-display font-bold text-3xl md:text-5xl text-white mb-2"><AnimatedCounter end={6} suffix="" /></span>
+                <span className="text-xs md:text-sm text-[#999999] uppercase tracking-wider font-semibold text-center">Day Delivery</span>
               </div>
             </div>
           </FadeInSection>
