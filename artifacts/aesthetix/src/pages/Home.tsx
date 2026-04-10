@@ -578,71 +578,60 @@ export default function Home() {
       </section>
 
       {/* 6. PRICING */}
-      <section id="pricing" className="py-32 bg-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto px-6">
-          <FadeInSection className="text-center mb-16">
-            <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Transparent Pricing</h2>
-            <p className="text-[#C9A84C] text-lg">No hidden fees. No surprises. No lock-in.</p>
+      <section id="pricing" className="py-24 md:py-32 bg-[#1A1A1A]">
+        <div className="max-w-6xl mx-auto px-6">
+          <FadeInSection className="text-center mb-6">
+            <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4 tracking-tight">
+              EVERY PROJECT IS DIFFERENT
+            </h2>
+            <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              We tailor every website to your business — the features, the design, the functionality. No off the shelf packages. No hidden costs. Just exactly what you need.
+            </p>
           </FadeInSection>
 
-          <div className="grid grid-cols-2 gap-3 md:gap-8 items-stretch max-w-4xl mx-auto">
-            {/* Standard */}
-            <FadeInSection className="bg-[#222222] p-4 md:p-8 rounded-sm transition-all duration-200 border border-transparent flex flex-col">
-              <h3 className="font-display font-bold text-base md:text-2xl text-white mb-1">STANDARD</h3>
-              <div className="text-[#C9A84C] font-display font-bold text-2xl md:text-4xl mb-1">£599<span className="text-base md:text-2xl">.99</span></div>
-              <p className="text-[#999999] text-xs md:text-sm mb-4 font-medium">Get online fast</p>
-              
-              <ul className="space-y-2 md:space-y-4 text-white/80 mb-4 flex-grow text-xs md:text-sm">
-                <li>✓ Single page site</li>
-                <li>✓ Mobile responsive</li>
-                <li>✓ Booking form</li>
-                <li>✓ Calendar embed</li>
-                <li>✓ 2 revisions</li>
-                <li>✓ 3 day delivery</li>
-              </ul>
-
-              <div className="border-t border-white/10 pt-3 mb-3 text-xs text-[#999999]">
-                Hosting: <span className="text-[#C9A84C]">£45/mo</span>
-              </div>
-              
-              <a href="#contact" className="w-full block border border-[#C9A84C] text-[#C9A84C] font-semibold px-3 py-2 md:px-6 md:py-3 rounded text-center hover:bg-[#C9A84C]/10 transition-colors duration-200 mt-auto text-xs md:text-sm">
-                Get Started
-              </a>
-            </FadeInSection>
-
-            {/* Pro */}
-            <FadeInSection className="bg-[#222222] p-4 md:p-10 rounded-sm border border-[#C9A84C] transition-all duration-200 relative flex flex-col z-10 shadow-2xl shadow-[#C9A84C]/10">
-              <div className="absolute top-0 right-0 bg-[#C9A84C] text-black text-[9px] md:text-xs font-bold px-2 py-1 m-2 md:m-4 rounded-full">
-                ★ Popular
-              </div>
-              <h3 className="font-display font-bold text-base md:text-2xl text-white mb-1">PRO</h3>
-              <div className="text-[#C9A84C] font-display font-bold text-2xl md:text-4xl mb-1">£999<span className="text-base md:text-2xl">.99</span></div>
-              <p className="text-[#999999] text-xs md:text-sm mb-4 font-medium">Full digital presence</p>
-              
-              <ul className="space-y-2 md:space-y-4 text-white/80 mb-4 flex-grow text-xs md:text-sm">
-                <li>✓ Multi-section site</li>
-                <li>✓ Calendar embed</li>
-                <li>✓ Stripe payments</li>
-                <li>✓ Admin portal</li>
-                <li>✓ Email confirmations</li>
-                <li>✓ Gallery & video</li>
-                <li>✓ 3 revisions</li>
-                <li>✓ 6 day delivery</li>
-              </ul>
-
-              <div className="border-t border-white/10 pt-3 mb-3 text-xs text-[#999999]">
-                Hosting: <span className="text-[#C9A84C]">£65/mo</span>
-              </div>
-              
-              <a href="#contact" className="w-full block bg-[#C9A84C] text-black font-bold px-3 py-2 md:px-6 md:py-4 rounded text-center hover:bg-[#C9A84C]/90 transition-colors duration-200 mt-auto text-xs md:text-sm">
-                Get Started
-              </a>
-            </FadeInSection>
-
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10 mt-14">
+            {[
+              {
+                title: "BUILT AROUND YOU",
+                body: "We learn your business first then build exactly what it needs. Aesthetics clinic, beauty salon, barber, PT — every site is unique.",
+              },
+              {
+                title: "48HR DELIVERY",
+                body: "Most projects delivered within 48 hours of brief sign off. Fast, efficient, no waiting around.",
+              },
+              {
+                title: "TRANSPARENT PRICING",
+                body: "We quote based on what you actually need. DM us with your requirements and we'll give you a straight answer.",
+              },
+            ].map(({ title, body }) => (
+              <FadeInSection key={title}>
+                <div
+                  className="h-full"
+                  style={{
+                    background: "#1e1e1e",
+                    border: "1px solid rgba(201,168,76,0.2)",
+                    borderTop: "3px solid #C9A84C",
+                    borderRadius: 4,
+                    padding: "32px 28px",
+                  }}
+                >
+                  <h3 className="font-display font-bold text-white text-lg mb-4 tracking-wider">{title}</h3>
+                  <p className="text-white/55 text-sm leading-relaxed">{body}</p>
+                </div>
+              </FadeInSection>
+            ))}
           </div>
-          
-          <FadeInSection className="mt-12 text-center">
-            <p className="text-sm text-[#C9A84C] italic">All projects require a 50% deposit upfront, 50% on delivery.</p>
+
+          <FadeInSection className="text-center">
+            <a
+              href="https://wa.me/447495963388"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#C9A84C] text-black font-bold text-sm md:text-base px-10 py-4 tracking-[0.12em] uppercase hover:bg-[#C9A84C]/90 hover:scale-105 transition-all duration-200"
+              style={{ borderRadius: 2, letterSpacing: "0.1em" }}
+            >
+              GET A CUSTOM QUOTE →
+            </a>
           </FadeInSection>
         </div>
       </section>
