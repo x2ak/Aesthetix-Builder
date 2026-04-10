@@ -274,7 +274,7 @@ export default function Home() {
           
           <FadeInSection className="max-w-2xl mx-auto mb-10">
             <p className="text-white/70 text-lg md:text-xl leading-relaxed" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}>
-              We build premium websites for aesthetics and beauty clinics — so you can focus on your clients, not your admin.
+              We build <span className="text-[#C9A84C]">premium websites</span> for aesthetics and beauty clinics — so you can focus on your <span className="text-[#C9A84C]">clients</span>, not your admin.
             </p>
           </FadeInSection>
           
@@ -335,7 +335,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="font-display font-bold text-2xl text-white mb-2 md:whitespace-nowrap">Clinic Websites That Convert</h3>
-                <p className="text-[#999999] text-sm mb-6 md:mb-0 max-w-xs">Everything a modern aesthetics clinic needs — designed, built and live in days.</p>
+                <p className="text-[#999999] text-sm mb-6 md:mb-0 max-w-xs">Everything a modern aesthetics clinic needs — designed, built and <span className="text-[#C9A84C]">live in days</span>.</p>
               </div>
               {/* Feature grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow text-[#999999] text-sm">
@@ -560,9 +560,9 @@ export default function Home() {
             
             <div className="grid grid-cols-3 gap-3 md:gap-8 relative z-10">
               {[
-                { n: "1", title: "Discovery", desc: "We learn about your clinic, treatments and what's holding you back." },
-                { n: "2", title: "Build",     desc: "We design and build your site — tailored to your brand. Delivered in days." },
-                { n: "3", title: "Launch",    desc: "You go live, take bookings and run on autopilot." },
+                { n: "1", title: "Discovery", desc: <>We learn about your <span className="text-[#C9A84C]">clinic</span>, treatments and what's holding you back.</> },
+                { n: "2", title: "Build",     desc: <>We design and build your site — <span className="text-[#C9A84C]">tailored to your brand</span>. Delivered in days.</> },
+                { n: "3", title: "Launch",    desc: <>You go <span className="text-[#C9A84C]">live</span>, take bookings and run on <span className="text-[#C9A84C]">autopilot</span>.</> },
               ].map(({ n, title, desc }) => (
                 <FadeInSection key={n} className="flex flex-col items-center text-center bg-[#1A1A1A] px-1 md:px-4">
                   <div className="w-14 h-14 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center mb-3 md:mb-5">
