@@ -589,7 +589,7 @@ export default function Home() {
             </p>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10 mt-14">
+          <div className="grid grid-cols-3 gap-2 md:gap-5 mb-10 mt-14">
             {[
               {
                 title: "BUILT AROUND YOU",
@@ -604,19 +604,18 @@ export default function Home() {
                 body: "We quote based on what you actually need. DM us with your requirements and we'll give you a straight answer.",
               },
             ].map(({ title, body }) => (
-              <FadeInSection key={title}>
+              <FadeInSection key={title} className="h-full">
                 <div
-                  className="h-full"
+                  className="h-full px-3 py-4 md:px-7 md:py-8"
                   style={{
                     background: "#1e1e1e",
                     border: "1px solid rgba(201,168,76,0.2)",
                     borderTop: "3px solid #C9A84C",
                     borderRadius: 4,
-                    padding: "32px 28px",
                   }}
                 >
-                  <h3 className="font-display font-bold text-white text-lg mb-4 tracking-wider">{title}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{body}</p>
+                  <h3 className="font-display font-bold text-white text-[10px] md:text-lg mb-2 md:mb-4 tracking-wider leading-tight">{title}</h3>
+                  <p className="text-white/55 text-[9px] md:text-sm leading-relaxed hidden sm:block">{body}</p>
                 </div>
               </FadeInSection>
             ))}
