@@ -314,7 +314,7 @@ export default function Home() {
       </section>
 
       {/* 3. SERVICES */}
-      <section id="services" className="py-32 bg-[#222222]">
+      <section id="services" className="py-32 bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">What We Build</h2>
@@ -578,7 +578,7 @@ export default function Home() {
       </section>
 
       {/* 6. PRICING */}
-      <section id="pricing" className="py-24 md:py-32 bg-[#1A1A1A]">
+      <section id="pricing" className="py-24 md:py-32 bg-[#222222]">
         <div className="max-w-6xl mx-auto px-6">
           <FadeInSection className="text-center mb-6">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4 tracking-tight">
