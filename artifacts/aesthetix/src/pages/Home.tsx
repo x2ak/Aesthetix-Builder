@@ -172,7 +172,7 @@ export default function Home() {
               <p className="text-white/55 text-sm leading-relaxed mb-2">
                 Premium websites for aesthetics & beauty clinics.
               </p>
-              <p className="text-white/40 text-xs leading-relaxed mb-8">
+              <p className="text-[#C9A84C] text-xs leading-relaxed mb-8">
                 Built fast. Designed to convert. Ready to talk?
               </p>
 
