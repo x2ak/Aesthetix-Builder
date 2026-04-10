@@ -624,7 +624,7 @@ export default function Home() {
 
           <FadeInSection className="text-center">
             <a
-              href="https://wa.me/447495963388"
+              href="https://wa.me/447495963388?text=Hi%20Sim%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business%20%F0%9F%91%8B"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#C9A84C] text-black font-bold text-sm md:text-base px-10 py-4 tracking-[0.12em] uppercase hover:bg-[#C9A84C]/90 hover:scale-105 transition-all duration-200"
@@ -707,7 +707,7 @@ export default function Home() {
                   <span className="font-display text-xl font-medium">@aesthetix_systems</span>
                 </a>
                 
-                <a href="https://wa.me/447495963388" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-white hover:text-[#C9A84C] transition-colors group">
+                <a href="https://wa.me/447495963388?text=Hi%20Sim%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business%20%F0%9F%91%8B" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-white hover:text-[#C9A84C] transition-colors group">
                   <div className="w-12 h-12 rounded-full bg-[#222222] flex items-center justify-center group-hover:bg-[#C9A84C]/10 transition-colors">
                     <MessageCircle size={24} />
                   </div>
