@@ -70,6 +70,7 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
   
   // Navigation scroll effect
   useEffect(() => {
@@ -593,32 +594,61 @@ export default function Home() {
             {[
               {
                 title: "BUILT AROUND YOU",
-                body: "We learn your business first then build exactly what it needs. Aesthetics clinic, beauty salon, barber, PT — every site is unique.",
+                detail: [
+                  "We start every project with a discovery call — no templates, no copy-paste.",
+                  "We learn your treatments, your clients, your vibe. Then we build something that actually fits your business.",
+                  "Aesthetics clinic, beauty salon, barber, PT — every site we build is completely unique to you.",
+                ],
               },
               {
                 title: "48HR DELIVERY",
-                body: "Most projects delivered within 48 hours of brief sign off. Fast, efficient, no waiting around.",
+                detail: [
+                  "Once you've signed off the brief, we move fast.",
+                  "Most projects are designed, built and handed over within 48 hours — no long waits, no chasing.",
+                  "You'll have a live site in days, not weeks.",
+                ],
               },
               {
                 title: "TRANSPARENT PRICING",
-                body: "We quote based on what you actually need. DM us with your requirements and we'll give you a straight answer.",
+                detail: [
+                  "No mystery packages. No surprise invoices.",
+                  "You tell us what you need, we give you a straight price. Simple.",
+                  "DM us on WhatsApp with your requirements and we'll come back to you with a clear, honest quote.",
+                ],
               },
-            ].map(({ title, body }) => (
-              <FadeInSection key={title} className="h-full">
-                <div
-                  className="h-full px-3 py-4 md:px-7 md:py-8"
-                  style={{
-                    background: "#1e1e1e",
-                    border: "1px solid rgba(201,168,76,0.2)",
-                    borderTop: "3px solid #C9A84C",
-                    borderRadius: 4,
-                  }}
-                >
-                  <h3 className="font-display font-bold text-white text-[10px] md:text-lg mb-2 md:mb-4 tracking-wider leading-tight">{title}</h3>
-                  <p className="text-white/55 text-[9px] md:text-sm leading-relaxed hidden sm:block">{body}</p>
-                </div>
-              </FadeInSection>
-            ))}
+            ].map(({ title, detail }) => {
+              const isOpen = expandedCard === title;
+              return (
+                <FadeInSection key={title} className="h-full">
+                  <div
+                    className="h-full px-3 py-4 md:px-7 md:py-8 flex flex-col items-center text-center"
+                    style={{
+                      background: "#1e1e1e",
+                      border: "1px solid rgba(201,168,76,0.2)",
+                      borderTop: "3px solid #C9A84C",
+                      borderRadius: 4,
+                    }}
+                  >
+                    <h3 className="font-display font-bold text-white text-[10px] md:text-lg mb-2 md:mb-4 tracking-wider leading-tight">{title}</h3>
+
+                    {isOpen && (
+                      <div className="w-full mt-1 mb-3 space-y-2 text-left border-t border-white/10 pt-3">
+                        {detail.map((para, i) => (
+                          <p key={i} className="text-white/70 text-[9px] md:text-sm leading-relaxed">{para}</p>
+                        ))}
+                      </div>
+                    )}
+
+                    <button
+                      onClick={() => setExpandedCard(isOpen ? null : title)}
+                      className="mt-auto text-[#C9A84C] text-[8px] md:text-xs font-semibold tracking-wider uppercase hover:text-[#C9A84C]/70 transition-colors"
+                    >
+                      {isOpen ? "VIEW LESS ↑" : "VIEW MORE ↓"}
+                    </button>
+                  </div>
+                </FadeInSection>
+              );
+            })}
           </div>
 
           <FadeInSection className="text-center">
