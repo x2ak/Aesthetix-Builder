@@ -900,15 +900,6 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm text-white/80 font-medium block">What do you need?</label>
-                    <select className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all appearance-none">
-                      <option>Standard Website (£599.99)</option>
-                      <option>Pro Website (£999.99)</option>
-                      <option>Not Sure — Let's Talk</option>
-                    </select>
-                  </div>
-                  
-                  <div className="space-y-2">
                     <label className="text-sm text-white/80 font-medium block">Message</label>
                     <textarea required rows={4} className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all resize-none"></textarea>
                   </div>
