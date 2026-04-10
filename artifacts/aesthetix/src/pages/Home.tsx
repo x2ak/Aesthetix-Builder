@@ -637,7 +637,7 @@ export default function Home() {
       </section>
 
       {/* 7. CONTACT */}
-      <section id="contact" className="py-32 bg-[#222222]">
+      <section id="contact" className="py-32 bg-[#1A1A1A]">
         <div className="max-w-6xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4">Ready to Start?</h2>
