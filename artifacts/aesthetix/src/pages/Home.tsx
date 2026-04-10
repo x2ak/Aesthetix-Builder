@@ -361,40 +361,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. HOW IT WORKS */}
-      <section id="how" className="py-14 md:py-20 bg-[#1A1A1A] overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6">
-          <FadeInSection className="text-center mb-8 md:mb-12">
-            <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-2">How It Works</h2>
-            <p className="text-[#C9A84C] text-base md:text-lg">Simple process. Fast results.</p>
-          </FadeInSection>
-          
-          <div className="relative" ref={howRef}>
-            {/* Connector Line */}
-            <div className="absolute top-[32px] left-[18%] right-[18%] h-[2px] z-0">
-              <div className={`h-full w-full bg-[linear-gradient(to_right,#C9A84C_50%,transparent_50%)] bg-[length:12px_2px] bg-repeat-x transition-all duration-[1.5s] ease-out origin-left ${howIsVisible ? 'scale-x-100' : 'scale-x-0'}`}></div>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-3 md:gap-8 relative z-10">
-              {[
-                { n: "1", title: "Discovery", desc: "We learn about your clinic, treatments and what's holding you back." },
-                { n: "2", title: "Build",     desc: "We design and build your site — tailored to your brand. Delivered in days." },
-                { n: "3", title: "Launch",    desc: "You go live, take bookings and run on autopilot." },
-              ].map(({ n, title, desc }) => (
-                <FadeInSection key={n} className="flex flex-col items-center text-center bg-[#1A1A1A] px-1 md:px-4">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center mb-3 md:mb-5">
-                    <span className="font-display font-bold text-4xl md:text-5xl text-[#C9A84C]">{n}</span>
-                  </div>
-                  <h3 className="font-display font-bold text-xs md:text-lg text-white mb-2 tracking-wide uppercase">{title}</h3>
-                  <p className="text-[#999999] text-xs md:text-sm leading-relaxed">{desc}</p>
-                </FadeInSection>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CASE STUDIES */}
+      {/* 4. CASE STUDIES */}
       <section id="work" className="py-32 bg-[#222222]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection className="text-center mb-16">
@@ -574,6 +541,39 @@ export default function Home() {
           <p className="text-center mt-14" style={{ color: "#C9A84C", fontSize: 13, fontStyle: "italic" }}>
             All sites built and delivered within 6 days.
           </p>
+        </div>
+      </section>
+
+      {/* 5. HOW IT WORKS */}
+      <section id="how" className="py-14 md:py-20 bg-[#1A1A1A] overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6">
+          <FadeInSection className="text-center mb-8 md:mb-12">
+            <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-2">How It Works</h2>
+            <p className="text-[#C9A84C] text-base md:text-lg">Simple process. Fast results.</p>
+          </FadeInSection>
+          
+          <div className="relative" ref={howRef}>
+            {/* Connector Line */}
+            <div className="absolute top-[32px] left-[18%] right-[18%] h-[2px] z-0">
+              <div className={`h-full w-full bg-[linear-gradient(to_right,#C9A84C_50%,transparent_50%)] bg-[length:12px_2px] bg-repeat-x transition-all duration-[1.5s] ease-out origin-left ${howIsVisible ? 'scale-x-100' : 'scale-x-0'}`}></div>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-3 md:gap-8 relative z-10">
+              {[
+                { n: "1", title: "Discovery", desc: "We learn about your clinic, treatments and what's holding you back." },
+                { n: "2", title: "Build",     desc: "We design and build your site — tailored to your brand. Delivered in days." },
+                { n: "3", title: "Launch",    desc: "You go live, take bookings and run on autopilot." },
+              ].map(({ n, title, desc }) => (
+                <FadeInSection key={n} className="flex flex-col items-center text-center bg-[#1A1A1A] px-1 md:px-4">
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center mb-3 md:mb-5">
+                    <span className="font-display font-bold text-4xl md:text-5xl text-[#C9A84C]">{n}</span>
+                  </div>
+                  <h3 className="font-display font-bold text-xs md:text-lg text-white mb-2 tracking-wide uppercase">{title}</h3>
+                  <p className="text-[#999999] text-xs md:text-sm leading-relaxed">{desc}</p>
+                </FadeInSection>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
