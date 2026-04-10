@@ -889,14 +889,14 @@ export default function Home() {
                   onSubmit={(e) => {
                     e.preventDefault();
                     const msg = [
-                      `👋 New enquiry from Aesthetix website`,
+                      `New enquiry from Aesthetix website`,
                       ``,
-                      `👤 Name: ${formName}`,
-                      `📞 Phone: ${formPhone}`,
-                      `📧 Email: ${formEmail}`,
-                      formSocial ? `📱 Social: ${formSocial}` : null,
+                      `Name: ${formName}`,
+                      `Phone: ${formPhone}`,
+                      `Email: ${formEmail}`,
+                      formSocial ? `Social: ${formSocial}` : null,
                       ``,
-                      `💬 Message:`,
+                      `Message:`,
                       formMessage,
                     ].filter(l => l !== null).join("\n");
                     window.open(
