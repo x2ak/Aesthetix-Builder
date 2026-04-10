@@ -70,6 +70,11 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formName, setFormName] = useState("");
+  const [formPhone, setFormPhone] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formMessage, setFormMessage] = useState("");
+  const [formSocial, setFormSocial] = useState("");
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -881,32 +886,50 @@ export default function Home() {
                 </div>
               ) : (
                 <form 
-                  onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const msg = [
+                      `👋 New enquiry from Aesthetix website`,
+                      ``,
+                      `👤 Name: ${formName}`,
+                      `📞 Phone: ${formPhone}`,
+                      `📧 Email: ${formEmail}`,
+                      formSocial ? `📱 Social: ${formSocial}` : null,
+                      ``,
+                      `💬 Message:`,
+                      formMessage,
+                    ].filter(l => l !== null).join("\n");
+                    window.open(
+                      `https://wa.me/447495963388?text=${encodeURIComponent(msg)}`,
+                      "_blank"
+                    );
+                    setFormSubmitted(true);
+                  }}
                   className="space-y-6 bg-[#1A1A1A] p-8 rounded-sm"
                 >
                   <div className="space-y-2">
                     <label className="text-sm text-white/80 font-medium block">Name</label>
-                    <input required type="text" placeholder="Your full name" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
+                    <input required type="text" value={formName} onChange={e => setFormName(e.target.value)} placeholder="Your full name" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm text-white/80 font-medium block">Phone Number</label>
-                    <input required type="tel" placeholder="+44 7700 000000" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
+                    <input required type="tel" value={formPhone} onChange={e => setFormPhone(e.target.value)} placeholder="+44 7700 000000" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm text-white/80 font-medium block">Email</label>
-                    <input required type="email" placeholder="hello@yourclinic.com" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
+                    <input required type="email" value={formEmail} onChange={e => setFormEmail(e.target.value)} placeholder="hello@yourclinic.com" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm text-white/80 font-medium block">Message</label>
-                    <textarea required rows={4} placeholder="Tell us about your clinic and what you're looking for..." className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all resize-none"></textarea>
+                    <textarea required rows={4} value={formMessage} onChange={e => setFormMessage(e.target.value)} placeholder="Tell us about your clinic and what you're looking for..." className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all resize-none"></textarea>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm text-white/80 font-medium block">Social Handle <span className="text-white/35 font-normal">(optional)</span></label>
-                    <input type="text" placeholder="@yourclinic" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
+                    <input type="text" value={formSocial} onChange={e => setFormSocial(e.target.value)} placeholder="@yourclinic" className="w-full bg-[#222222] border border-white/10 rounded px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] transition-all" />
                   </div>
                   
                   <button type="submit" className="w-full bg-[#C9A84C] text-black font-bold px-6 py-4 rounded text-center hover:bg-[#C9A84C]/90 transition-colors duration-200">
