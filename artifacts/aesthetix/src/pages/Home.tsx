@@ -697,9 +697,9 @@ export default function Home() {
             
             <div className="grid grid-cols-3 gap-3 md:gap-8 relative z-10">
               {[
-                { n: "1", title: "Discovery", desc: <>We learn about your <span className="text-[#C9A84C]">clinic</span>, treatments and what's holding you back.</> },
-                { n: "2", title: "Build",     desc: <>We design and build your site — <span className="text-[#C9A84C]">tailored to your brand</span>. Delivered in days.</> },
-                { n: "3", title: "Launch",    desc: <>You go <span className="text-[#C9A84C]">live</span>, take bookings and run on <span className="text-[#C9A84C]">autopilot</span>.</> },
+                { n: "1", title: "Discovery", desc: <>We learn about your clinic, treatments and what's holding you back.</> },
+                { n: "2", title: "Build",     desc: <>We design and build your site — tailored to your brand. Delivered in days.</> },
+                { n: "3", title: "Launch",    desc: <>You go live, take bookings and run on autopilot.</> },
               ].map(({ n, title, desc }) => (
                 <FadeInSection key={n} className="flex flex-col items-center text-center px-1 md:px-4">
                   <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 md:mb-5">
