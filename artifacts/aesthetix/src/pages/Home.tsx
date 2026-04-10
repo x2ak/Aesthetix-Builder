@@ -610,7 +610,14 @@ export default function Home() {
                     </div>
 
                     {/* Project name */}
-                    <div className="font-display font-bold text-white" style={{ fontSize: 20, marginBottom: 8 }}>{project.name}</div>
+                    <div className="font-display font-bold text-white" style={{ fontSize: 20, marginBottom: 8 }}>
+                      {(() => {
+                        const words = project.name.split(" ");
+                        const gold = words.slice(0, 2).join(" ");
+                        const rest = words.slice(2).join(" ");
+                        return <><span style={{ color: "#C9A84C" }}>{gold}</span>{rest ? ` ${rest}` : ""}</>;
+                      })()}
+                    </div>
 
                     {/* Description */}
                     <p style={{ color: "#999999", fontSize: 14, lineHeight: 1.6, marginBottom: 16, flex: 1 }}>{project.description}</p>
