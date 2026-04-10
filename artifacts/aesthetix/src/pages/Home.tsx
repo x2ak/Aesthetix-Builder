@@ -357,7 +357,7 @@ export default function Home() {
           
           <FadeInSection className="max-w-2xl mx-auto mb-10">
             <p className="text-white/70 text-lg md:text-xl leading-relaxed" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}>
-              We build <span className="text-[#C9A84C]">premium websites</span> for aesthetics and beauty clinics — so you can focus on your <span className="text-[#C9A84C]">clients</span>, not your admin.
+              We build <span className="text-[#C9A84C]">premium websites for aesthetics and beauty clinics</span> — so you can focus on your clients, not your admin.
             </p>
           </FadeInSection>
           
