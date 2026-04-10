@@ -314,6 +314,8 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
+
       {/* 3. SERVICES */}
       <section id="services" className="py-14 md:py-32 bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-6">
@@ -361,6 +363,8 @@ export default function Home() {
           </FadeInSection>
         </div>
       </section>
+
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 4. CASE STUDIES */}
       <section id="work" className="py-32 bg-[#222222]">
@@ -545,6 +549,8 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
+
       {/* 5. HOW IT WORKS */}
       <section id="how" className="py-14 md:py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="max-w-5xl mx-auto px-6">
@@ -577,6 +583,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 6. PRICING */}
       <section id="pricing" className="py-24 md:py-32 bg-[#222222]">
@@ -664,6 +672,8 @@ export default function Home() {
           </FadeInSection>
         </div>
       </section>
+
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 7. CONTACT */}
       <section id="contact" className="py-32 bg-[#1A1A1A]">
@@ -757,6 +767,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
       {/* 8. FOOTER */}
       <footer className="bg-[#111111] pt-20 pb-10 border-t border-white/5">
