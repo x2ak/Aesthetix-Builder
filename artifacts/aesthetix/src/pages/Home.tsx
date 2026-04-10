@@ -584,7 +584,7 @@ export default function Home() {
             <h2 className="font-display font-bold text-4xl md:text-5xl text-white mb-4 tracking-tight">
               EVERY PROJECT IS DIFFERENT
             </h2>
-            <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#C9A84C] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               We tailor every website to your business — the features, the design, the functionality. No off the shelf packages. No hidden costs. Just exactly what you need.
             </p>
           </FadeInSection>
