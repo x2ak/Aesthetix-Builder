@@ -714,29 +714,32 @@ export default function Home() {
 
           {/* Feature card detail popup */}
           {expandedCard && (() => {
+            const G = ({ children }: { children: React.ReactNode }) => (
+              <span style={{ color: "#C9A84C" }}>{children}</span>
+            );
             const cards = [
               {
                 title: "BUILT AROUND YOU",
                 detail: [
-                  "We start every project with a discovery call — no templates, no copy-paste.",
-                  "We learn your treatments, your clients, your vibe. Then we build something that actually fits your business.",
-                  "Aesthetics clinic, beauty salon, barber, PT — every site we build is completely unique to you.",
+                  <><G>Discovery call first</G> — no templates, no copy-paste. We learn before we build.</>,
+                  <>We learn your <G>treatments</G>, your <G>clients</G>, your vibe. Then we build something that actually fits your business.</>,
+                  <>Aesthetics clinic, beauty salon, barber, PT — every site we build is <G>completely unique</G> to you.</>,
                 ],
               },
               {
                 title: "48HR DELIVERY",
                 detail: [
-                  "Once you've signed off the brief, we move fast.",
-                  "Most projects are designed, built and handed over within 48 hours — no long waits, no chasing.",
-                  "You'll have a live site in days, not weeks.",
+                  <>Once you've signed off the brief, <G>we move fast.</G></>,
+                  <>Most projects are <G>designed, built and handed over within 48 hours</G> — no long waits, no chasing.</>,
+                  <>You'll have a <G>live site in days</G>, not weeks.</>,
                 ],
               },
               {
                 title: "TRANSPARENT PRICING",
                 detail: [
-                  "No mystery packages. No surprise invoices.",
-                  "You tell us what you need, we give you a straight price. Simple.",
-                  "DM us on WhatsApp with your requirements and we'll come back to you with a clear, honest quote.",
+                  <><G>No mystery packages.</G> No surprise invoices. What you see is what you pay.</>,
+                  <>You tell us what you need, we give you a <G>straight price</G>. Simple.</>,
+                  <>DM us on WhatsApp with your requirements and we'll come back with a <G>clear, honest quote</G>.</>,
                 ],
               },
             ];
