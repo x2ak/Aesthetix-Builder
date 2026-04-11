@@ -488,7 +488,7 @@ export default function Home() {
                 phoneColor: "#C9A84C",
                 phoneFit: "contain" as const,
                 initials: "DA",
-                tag: "WEBSITE BUILD",
+                tag: "WEBSITE BUILD + FULL BOOKING SYSTEM + ADMIN PORTAL",
                 name: "Dermadoll Aesthetics",
                 description: <><span style={{color:"#C9A84C"}}>Premium aesthetics</span> clinic in Birmingham. <span style={{color:"#C9A84C"}}>Custom booking calendar</span>, Stripe deposit payments, <span style={{color:"#C9A84C"}}>admin portal</span> and auto email confirmations.</>,
                 features: ["Booking System", "Stripe", "Admin Portal", "6 Days"],
