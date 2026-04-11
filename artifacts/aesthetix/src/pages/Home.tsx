@@ -488,7 +488,7 @@ export default function Home() {
                 phoneColor: "#C9A84C",
                 phoneFit: "contain" as const,
                 initials: "DA",
-                tag: "WEBSITE BUILD + FULL BOOKING SYSTEM + ADMIN PORTAL",
+                tags: ["WEBSITE BUILD", "FULL BOOKING SYSTEM", "ADMIN PORTAL"],
                 name: "Dermadoll Aesthetics",
                 description: <><span style={{color:"#C9A84C"}}>Premium aesthetics</span> clinic in Birmingham. <span style={{color:"#C9A84C"}}>Custom booking calendar</span>, Stripe deposit payments, <span style={{color:"#C9A84C"}}>admin portal</span> and auto email confirmations.</>,
                 features: ["Booking System", "Stripe", "Admin Portal", "6 Days"],
@@ -499,7 +499,7 @@ export default function Home() {
                 mobileImg: "/flawlessskin-mobile.jpg",
                 phoneColor: "#7A8C6A",
                 initials: "FS",
-                tag: "WEBSITE BUILD",
+                tags: ["WEBSITE BUILD"],
                 name: "FlawlessSkin",
                 description: <><span style={{color:"#C9A84C"}}>Luxury aesthetics</span> clinic website built with a <span style={{color:"#C9A84C"}}>cream and sage design system</span>. Calendly booking and <span style={{color:"#C9A84C"}}>Stripe payment</span> integration.</>,
                 features: ["Calendly", "Stripe", "Luxury Design", "Mobile First"],
@@ -510,7 +510,7 @@ export default function Home() {
                 mobileImg: "/starraesthetics-mobile.jpg",
                 phoneColor: "#7B4F4F",
                 initials: "SA",
-                tag: "DEMO BUILD",
+                tags: ["DEMO BUILD"],
                 name: "Starr Aesthetics",
                 description: <><span style={{color:"#C9A84C"}}>Demo aesthetics</span> website showcasing a <span style={{color:"#C9A84C"}}>clean, modern design</span> with full <span style={{color:"#C9A84C"}}>treatment listings</span> and booking integration.</>,
                 features: ["Demo", "Booking", "Treatment Menu", "Responsive"],
@@ -613,9 +613,13 @@ export default function Home() {
 
                   {/* Card content */}
                   <div style={{ padding: 24, display: "flex", flexDirection: "column", flex: 1 }}>
-                    {/* Gold tag pill */}
-                    <div style={{ display: "inline-block", alignSelf: "flex-start", border: "1px solid #C9A84C", color: "#C9A84C", background: "transparent", borderRadius: 20, fontSize: 11, padding: "4px 12px", marginBottom: 12, letterSpacing: "0.08em", textTransform: "uppercase" as const }}>
-                      {project.tag}
+                    {/* Gold tag pills */}
+                    <div style={{ display: "flex", flexWrap: "wrap" as const, gap: 6, marginBottom: 12 }}>
+                      {project.tags.map((tag: string) => (
+                        <div key={tag} style={{ border: "1px solid #C9A84C", color: "#C9A84C", background: "transparent", borderRadius: 20, fontSize: 11, padding: "4px 12px", letterSpacing: "0.08em", textTransform: "uppercase" as const }}>
+                          {tag}
+                        </div>
+                      ))}
                     </div>
 
                     {/* Project name */}
