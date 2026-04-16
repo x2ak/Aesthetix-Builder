@@ -576,7 +576,7 @@ export default function Home() {
             {[
               { name: "STARTER", price: "£400", sub: "one-time build fee", tag: "", highlight: false, features: ["Custom single-page website", "Treatment menu and pricing", "Instagram + WhatsApp contact links", "Mobile optimised", "Hosting: £25/mo"] },
               { name: "CORE", price: "£650", sub: "one-time build fee", tag: "MOST POPULAR", highlight: true, features: ["Everything in Starter", "Multi-page website (up to 6 sections)", "Custom booking calendar", "Stripe deposit collection", "Automated email confirmations", "Before & after gallery", "Hosting: £35/mo"] },
-              { name: "PREMIUM", price: "£950", sub: "one-time build fee", tag: "", highlight: false, features: ["Everything in Core", "Custom AI assistant trained on your business", "AI answers client questions 24/7", "AI captures leads overnight", "Admin portal — manage bookings and clients", "Priority support", "Hosting: £45/mo"] },
+              { name: "PREMIUM", price: "£1,099.99", sub: "one-time build fee", tag: "", highlight: false, features: ["Everything in Core", "Custom AI assistant trained on your business", "AI answers client questions 24/7", "AI captures leads overnight", "Admin portal — manage bookings and clients", "Priority support", "Hosting: £45/mo"] },
             ].map((p, i) => (
               <FadeIn key={i} delay={i * 80}>
                 <div style={{
