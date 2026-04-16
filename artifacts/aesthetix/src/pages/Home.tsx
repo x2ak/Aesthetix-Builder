@@ -430,7 +430,7 @@ export default function Home() {
 
           <FadeIn>
             <div style={{ padding: isMobile ? "36px 0" : "60px 48px", borderTop: `1px solid ${BDR}`, textAlign: "center", marginTop: 0 }}>
-              <p style={{ fontFamily: DISP, fontStyle: "italic", fontSize: isMobile ? "1.3rem" : "clamp(1.4rem, 2.5vw, 2rem)", color: G1, lineHeight: 1.5 }}>
+              <p style={{ fontFamily: DISP, fontStyle: "italic", fontSize: isMobile ? "1.3rem" : "clamp(1.4rem, 2.5vw, 2rem)", color: R, lineHeight: 1.5 }}>
                 "Every website we build comes with a strategy, not just a template."
               </p>
             </div>
