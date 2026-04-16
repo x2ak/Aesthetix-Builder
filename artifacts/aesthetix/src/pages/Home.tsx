@@ -273,7 +273,7 @@ export default function Home() {
           paddingTop: topBarVis ? (isMobile ? "90px" : "101px") : "64px",
           paddingBottom: isMobile ? "56px" : "0px",
         }}>
-          <div className="fade-up-1" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: isMobile ? 12 : 0 }}>
+          <div className="fade-up-1" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: isMobile ? 20 : 0 }}>
             <div className="pulse-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: R, flexShrink: 0 }} />
             <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: R, letterSpacing: "0.15em", textTransform: "uppercase" }}>
               Aesthetix Systems · London, UK
@@ -283,7 +283,7 @@ export default function Home() {
           <h1 className="fade-up-2" style={{
             fontFamily: DISP, fontStyle: "italic", fontWeight: 300,
             fontSize: isMobile ? "clamp(3rem, 13vw, 4.5rem)" : "clamp(4rem, 8.5vw, 8.5rem)",
-            lineHeight: 0.95, color: WH, margin: isMobile ? "12px 0 0" : "20px 0 0", letterSpacing: "-0.5px",
+            lineHeight: 0.95, color: WH, margin: isMobile ? "0 0 0" : "20px 0 0", letterSpacing: "-0.5px",
           }}>
             <span style={{ display: "block" }}>Your Clinic.</span>
             <span style={{ display: "block", color: R }}>Your Brand.</span>
@@ -294,12 +294,12 @@ export default function Home() {
             fontFamily: DISP, fontStyle: "italic", fontWeight: 300,
             fontSize: isMobile ? "1.2rem" : "clamp(1.3rem, 2.2vw, 1.7rem)",
             color: WH, lineHeight: 1.6, maxWidth: 520,
-            margin: isMobile ? "16px 0 24px" : "24px 0 40px",
+            margin: isMobile ? "24px 0 32px" : "24px 0 40px",
           }}>
             Premium websites, booking systems and AI assistants built exclusively for aesthetics businesses. Your digital presence, elevated.
           </p>
 
-          <div className="fade-up-4" style={{ display: "flex", gap: 12, flexDirection: isMobile ? "column" : "row", flexWrap: "wrap" }}>
+          <div className="fade-up-4" style={{ display: "flex", gap: 14, flexDirection: isMobile ? "column" : "row", flexWrap: "wrap" }}>
             <a href="#contact" style={{
               background: R, color: WH, padding: isMobile ? "13px 0" : "13px 28px",
               borderRadius: 1, fontFamily: BODY, fontWeight: 400, fontSize: 12,
