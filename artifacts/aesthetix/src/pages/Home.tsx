@@ -365,7 +365,6 @@ export default function Home() {
               { full: true, gradient: "linear-gradient(135deg, #1A0A12, #3D1020)", tag: "AESTHETICS CLINIC · BIRMINGHAM", name: "Dermadoll Aesthetics", services: "Website · Booking System · Admin Portal", live: true, href: "https://dermadoll-aesthetics.co.uk" },
               { full: false, gradient: "linear-gradient(135deg, #0D1520, #1A2A3D)", tag: "SKIN CLINIC · BIRMINGHAM", name: "FlawlessSkin", services: "Website · Stripe Payments · Luxury Design", href: "https://flawless-skin.co.uk" },
               { full: false, gradient: "linear-gradient(135deg, #1A1508, #2E2510)", tag: "AESTHETICS CLINIC · DEMO", name: "Starr Aesthetics", services: "Website · Booking · Treatment Menu", href: "#contact" },
-              { full: false, gradient: "linear-gradient(135deg, #0A1A14, #152A1E)", tag: "BEAUTY CLINIC · LONDON", name: "Naturelle Aesthetics", services: "Website · AI Assistant · Lead Capture" },
             ].map((card, i) => (
               <FadeIn key={i} delay={i * 80}
                 style={{ gridColumn: (!isMobile && card.full) ? "1 / -1" : undefined }}
