@@ -15,6 +15,17 @@ const DISP = "'Cormorant Garamond', Georgia, serif";
 const BODY = "'DM Sans', sans-serif";
 const WA = "https://wa.me/447495963388?text=Hi%20Sim%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business%20%F0%9F%91%8B";
 
+/* ─── Section break divider ─── */
+function SectionBreak() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", padding: "0 48px", background: BK }}>
+      <div style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${BDR})` }} />
+      <div style={{ width: 5, height: 5, borderRadius: "50%", background: R, margin: "0 12px", flexShrink: 0, boxShadow: `0 0 8px ${R}` }} />
+      <div style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${BDR})` }} />
+    </div>
+  );
+}
+
 /* ─── Mobile hook ─── */
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -232,7 +243,7 @@ export default function Home() {
       )}
 
       {/* ── HERO ── */}
-      <section id="home" style={{ minHeight: "100dvh", background: BK, position: "relative", overflow: "hidden", display: "flex", alignItems: "center" }}>
+      <section id="home" style={{ minHeight: isMobile ? "auto" : "100dvh", background: BK, position: "relative", overflow: "hidden", display: "flex", alignItems: "center" }}>
         {/* Ghost wordmark */}
         <div style={{
           position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
@@ -260,7 +271,7 @@ export default function Home() {
           position: "relative", zIndex: 3, maxWidth: 1200, margin: "0 auto",
           padding: isMobile ? `0 20px` : `0 48px`, width: "100%",
           paddingTop: topBarVis ? (isMobile ? "90px" : "101px") : "64px",
-          paddingBottom: isMobile ? "80px" : "0px",
+          paddingBottom: isMobile ? "56px" : "0px",
         }}>
           <div className="fade-up-1" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: isMobile ? 12 : 0 }}>
             <div className="pulse-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: R, flexShrink: 0 }} />
@@ -280,10 +291,14 @@ export default function Home() {
           </h1>
 
           <p className="fade-up-3" style={{
-            fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 16, color: G1,
-            lineHeight: 1.7, maxWidth: 480, margin: isMobile ? "16px 0 24px" : "24px 0 40px",
+            fontFamily: DISP, fontStyle: "italic", fontWeight: 300,
+            fontSize: isMobile ? "1.2rem" : "clamp(1.3rem, 2.2vw, 1.7rem)",
+            color: WH, lineHeight: 1.6, maxWidth: 520,
+            margin: isMobile ? "16px 0 24px" : "24px 0 40px",
           }}>
-            Premium websites, booking systems and AI assistants built exclusively for aesthetics businesses. Your digital presence, elevated.
+            Premium websites, booking systems and AI assistants built{" "}
+            <span style={{ color: R }}>exclusively</span> for aesthetics businesses.{" "}
+            Your digital presence, <span style={{ color: R }}>elevated</span>.
           </p>
 
           <div className="fade-up-4" style={{ display: "flex", gap: 12, flexDirection: isMobile ? "column" : "row", flexWrap: "wrap" }}>
@@ -344,6 +359,8 @@ export default function Home() {
         )}
       </section>
 
+      <SectionBreak />
+
       {/* ── WORK / PORTFOLIO ── */}
       <section id="work" style={{ background: OBK, padding: `${sectionPy} 0` }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
@@ -395,6 +412,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionBreak />
+
       {/* ── SERVICES ── */}
       <section id="services" style={{ background: BK, padding: `${sectionPy} 0` }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
@@ -437,6 +456,8 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
+      <SectionBreak />
 
       {/* ── AI ASSISTANT ── */}
       <section id="ai" style={{ background: CH, padding: `${sectionPy} 0` }}>
@@ -512,6 +533,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionBreak />
+
       {/* ── PROCESS ── */}
       <section id="process" style={{ background: OBK, padding: `${sectionPy} 0` }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
@@ -558,6 +581,8 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
+      <SectionBreak />
 
       {/* ── PRICING ── */}
       <section id="pricing" style={{ background: BK, padding: `${sectionPy} 0` }}>
@@ -627,6 +652,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionBreak />
+
       {/* ── ABOUT ── */}
       <section id="about" style={{ background: CH, padding: `${sectionPy} ${px}` }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "5fr 4fr", gap: isMobile ? 40 : 80 }}>
@@ -664,6 +691,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionBreak />
+
       {/* ── TESTIMONIALS ── */}
       <section id="proof" style={{ background: OBK, padding: `${sectionPy} 0` }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
@@ -698,6 +727,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SectionBreak />
 
       {/* ── FAQ ── */}
       <section id="faq" style={{ background: BK, padding: `${sectionPy} 0` }}>
@@ -737,6 +768,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SectionBreak />
 
       {/* ── CONTACT ── */}
       <section id="contact" style={{ background: CH, padding: `${sectionPy} 0` }}>
