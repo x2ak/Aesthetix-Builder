@@ -1,0 +1,1344 @@
+Build a single index.html website for "Aesthetix Systems" —
+a premium web design agency specialising exclusively in
+aesthetics clinics and beauty businesses across the UK.
+
+This is the agency's own website — not a client site.
+It must look significantly more elevated, editorial and
+technically impressive than any site we build for clients.
+When an aesthetics business owner lands on this page they
+must immediately think: "I need this person."
+
+Single index.html — all CSS and JS inline.
+No frameworks. No external JS. Google Fonts via @import.
+Fully responsive, mobile-first.
+
+===============================================================
+BRAND IDENTITY
+===============================================================
+
+Company: Aesthetix Systems
+Tagline: "We build the digital presence your clinic deserves."
+Location: Birmingham, UK
+Instagram: @aesthetixsystems
+Email: hello@aesthetix-systems.co.uk
+Domain: aesthetix-systems.co.uk
+Founder: Sim
+
+Core services:
+- Premium website design for aesthetics businesses
+- Custom booking systems with Stripe deposit collection
+- Admin portals — manage bookings, clients, media
+- AI assistant chatbot — trained on the business,
+  works 24/7, talks like the owner, answers questions,
+  handles enquiries and captures leads automatically
+- Monthly hosting and maintenance retainers
+
+Target clients:
+- Aesthetic clinic owners
+- Solo beauty practitioners
+- Salon and spa owners
+- Any beauty or wellness business wanting a premium
+  digital presence that actually converts
+
+===============================================================
+AESTHETIC DIRECTION
+===============================================================
+
+This is the agency behind the luxury client sites.
+The client sites are warm, feminine, soft.
+This site is the opposite — dark, editorial, precise.
+
+Direction: Dark editorial luxury meets precision technology.
+Think: high-fashion creative agency that only works
+with beauty brands. Dazed & Confused meets a surgical
+instrument. Every element intentional. Nothing decorative
+that doesn't earn its place.
+
+PALETTE:
+--black: #0A0A0A
+--off-black: #111111
+--charcoal: #1A1A1A
+--surface: #1E1E1E
+--border: #2A2A2A
+--border-light: #333333
+--rose: #C2185B
+--rose-dim: rgba(194,24,91,0.12)
+--rose-glow: rgba(194,24,91,0.06)
+--white: #FAFAFA
+--grey-1: #888888
+--grey-2: #555555
+--grey-3: #333333
+
+TYPOGRAPHY:
+Display headings, pull quotes, large numbers:
+  Cormorant Garamond 300 italic — generous, editorial
+Body, nav, labels, buttons, UI:
+  DM Sans 300/400 — clean, precise, slightly technical
+
+@import both from Google Fonts.
+
+DESIGN PRINCIPLES:
+- Dark backgrounds throughout — this is a dark-mode brand
+- Rose is surgical — used for accents, active states,
+  key highlights only. Never decorative.
+- Oversized ghost text behind sections: opacity 0.025
+- Thin 1px borders and rules — rose or border colour
+- No rounded buttons — border-radius 0 or 1px max
+- Numbers and stats: Cormorant Garamond italic
+- Hover states: rose underline or rose colour shift
+- The site itself is the portfolio — it must be stunning
+- Micro-animations: CSS transitions only, no JS animation
+
+===============================================================
+SECTION 1 — TOP BAR
+===============================================================
+
+background: var(--rose)
+padding: 9px 24px text-align center
+DM Sans 300 11px letter-spacing 0.07em color var(--white)
+
+"Birmingham, UK · @aesthetixsystems ·
+Currently Accepting New Clients"
+
+Hide on scroll down, reappear on scroll up (JS)
+
+===============================================================
+SECTION 2 — NAV
+===============================================================
+
+position: fixed top 0 z-index 100
+Initially: transparent
+On scroll past 60px:
+  background: rgba(10,10,10,0.96)
+  backdrop-filter: blur(12px)
+  border-bottom: 1px solid var(--border)
+Transition: all 300ms
+Height: 64px
+
+LEFT — Logo:
+  "AESTHETIX" DM Sans 400 15px var(--white)
+    letter-spacing 0.18em
+  "SYSTEMS" DM Sans 300 9px var(--rose)
+    letter-spacing 0.22em
+  Stacked two lines gap 2px
+
+RIGHT — Desktop links:
+  Work | Services | Process | Pricing | Contact
+  DM Sans 300 12px var(--grey-1)
+  letter-spacing 0.06em gap 36px
+  Hover: var(--white) transition 200ms
+  Active: var(--rose)
+
+  "Start a Project" — CTA pill:
+    background var(--rose) color var(--white)
+    padding 8px 18px border-radius 2px
+    DM Sans 400 11px letter-spacing 0.08em
+    Hover: background #A01048
+
+MOBILE: hamburger (3 lines rose)
+  Full screen overlay: background var(--black)
+  Links Cormorant italic 2.2rem white stacked
+  Rose horizontal rules between
+  "Start a Project" rose button centred bottom
+
+===============================================================
+SECTION 3 — HERO
+===============================================================
+
+height: 100dvh
+background: var(--black)
+overflow: hidden position: relative
+
+BACKGROUND LAYERS (CSS only):
+
+Layer 1 — Ghost wordmark:
+  "AESTHETIX" Cormorant Garamond 300
+  font-size clamp(10rem, 20vw, 18rem)
+  color var(--white) opacity 0.025
+  position absolute top 50% left 50%
+  transform translate(-50%, -50%)
+  white-space nowrap pointer-events none
+  letter-spacing 0.1em
+  z-index 0
+
+Layer 2 — Rose gradient orb:
+  position absolute
+  width 600px height 600px
+  background: radial-gradient(
+    circle at center,
+    rgba(194,24,91,0.12) 0%,
+    transparent 70%
+  )
+  top 50% right 15%
+  transform translateY(-50%)
+  pointer-events none z-index 1
+
+Layer 3 — Thin horizontal scan lines:
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.008) 2px,
+    rgba(255,255,255,0.008) 4px
+  )
+  position absolute inset 0
+  pointer-events none z-index 2
+
+CONTENT — centred or left-aligned:
+  position relative z-index 3
+  max-width 1200px margin 0 auto
+  padding 0 48px
+  height 100% display flex
+  flex-direction column justify-content center
+  gap 0
+
+  Top label row (fadeUp 0.2s):
+    display flex align-items center gap 16px
+    
+    Rose dot: 6px circle background var(--rose)
+      animation: pulse 2s infinite
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.8); }
+      }
+    
+    "AESTHETIX SYSTEMS · BIRMINGHAM, UK"
+      DM Sans 300 10px var(--grey-1)
+      letter-spacing 0.18em text-transform uppercase
+
+  H1 (fadeUp 0.4s):
+    Cormorant Garamond 300 italic
+    font-size clamp(4rem, 8.5vw, 8.5rem)
+    line-height 0.95 color var(--white)
+    margin: 20px 0 0
+    letter-spacing -0.5px
+
+    Line 1: "Your Clinic."
+    Line 2: "Your Brand." — color var(--rose)
+    Line 3: "Online."
+
+    Each line: display block
+
+  Subtext (fadeUp 0.6s):
+    DM Sans 300 font-size 16px var(--grey-1)
+    line-height 1.7 max-width 480px
+    margin: 24px 0 40px
+    "Premium websites, booking systems and AI assistants
+    built exclusively for aesthetics businesses.
+    Your digital presence, elevated."
+
+  CTA row (fadeUp 0.8s):
+    display flex gap 14px align-items center
+    flex-wrap wrap
+
+    "Start a Project" — rose filled:
+      background var(--rose) color var(--white)
+      padding 14px 32px border-radius 1px
+      DM Sans 400 12px uppercase letter-spacing 0.1em
+      box-shadow 0 0 40px rgba(194,24,91,0.3)
+      Hover: background #A01048
+        box-shadow 0 0 60px rgba(194,24,91,0.4)
+
+    "View Our Work" — ghost:
+      background transparent
+      border 1px solid var(--border-light)
+      color var(--grey-1)
+      padding 14px 32px border-radius 1px
+      DM Sans 400 12px uppercase letter-spacing 0.1em
+      Hover: border-color var(--white) color var(--white)
+
+  Stats row (fadeUp 1.0s):
+    display flex gap 48px margin-top 64px
+    padding-top 40px
+    border-top 1px solid var(--border)
+    flex-wrap wrap
+
+    Each stat:
+      Number: Cormorant Garamond 300 italic
+        font-size 2.8rem color var(--white)
+        line-height 1
+      Label: DM Sans 300 11px var(--grey-1)
+        letter-spacing 0.1em text-transform uppercase
+        margin-top 4px
+
+    Stats:
+      "10+" / "Clinics Launched"
+      "£0" / "Setup Surprises"
+      "24/7" / "AI Assistant Coverage"
+      "100%" / "Aesthetics Focused"
+
+  Scroll indicator bottom centre:
+    position absolute bottom 32px left 50%
+    transform translateX(-50%)
+    display flex flex-direction column
+    align-items center gap 8px
+    DM Sans 300 9px var(--grey-2)
+    letter-spacing 0.15em "SCROLL"
+    Animated line: 1px rose 20px height
+      extends downward animation
+
+MOBILE HERO:
+  padding 0 24px
+  H1: clamp(3.2rem, 10vw, 5rem)
+  Stats: 2x2 grid
+  Both CTAs full width stacked
+
+CSS fadeUp:
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+===============================================================
+SECTION 4 — WORK / PORTFOLIO
+===============================================================
+
+id="work"
+background: var(--off-black)
+padding: 100px 0 / 60px 0
+
+Container max-width 1200px margin 0 auto padding 0 48px
+
+Section label row:
+  display flex justify-content space-between
+  align-items baseline margin-bottom 64px
+
+  Left:
+    Ghost "02" Cormorant 300 font-size 8rem
+      var(--white) opacity 0.025 position absolute
+      left 48px top -20px
+
+    "OUR WORK" DM Sans 300 10px var(--rose)
+      letter-spacing 0.2em margin-bottom 12px
+    
+    "Built for beauty." Cormorant italic
+      font-size clamp(2.5rem, 5vw, 4rem)
+      var(--white) line-height 1.1
+
+  Right (desktop only):
+    "View all projects →" DM Sans 300 12px var(--grey-1)
+    Hover: var(--rose)
+
+PORTFOLIO GRID:
+Desktop: CSS grid grid-template-columns 1fr 1fr gap 2px
+Mobile: single column stack
+
+Each portfolio item is a CARD:
+  position relative overflow hidden
+  aspect-ratio: 4/3 (first card: 8/5)
+  background: var(--surface)
+  cursor pointer
+
+  Background: gradient placeholder until real images
+    Card 1: linear-gradient(135deg, #1A0A12, #3D1020)
+    Card 2: linear-gradient(135deg, #0D1520, #1A2A3D)
+    Card 3: linear-gradient(135deg, #1A1508, #2E2510)
+    Card 4: linear-gradient(135deg, #0A1A14, #152A1E)
+
+  CARD CONTENT — always visible:
+    position absolute bottom 0 left 0 right 0
+    padding 28px
+    background: linear-gradient(
+      to top, rgba(0,0,0,0.85) 0%, transparent 100%)
+    
+    Tag: DM Sans 300 9px var(--rose)
+      letter-spacing 0.15em uppercase
+      margin-bottom 8px
+      e.g. "AESTHETICS CLINIC · BIRMINGHAM"
+    
+    Project name: Cormorant italic 22px var(--white)
+    
+    Services row: DM Sans 300 11px var(--grey-1)
+      e.g. "Website · Booking System · AI Assistant"
+
+  HOVER STATE:
+    ::before overlay:
+      background rgba(194,24,91,0.08)
+      position absolute inset 0
+      opacity 0 transition 400ms
+    
+    Card slightly scales: transform scale(1.02)
+      transition 400ms ease
+    
+    Arrow appears: "→" Cormorant 2rem var(--rose)
+      position absolute top 24px right 24px
+      opacity 0 → 1 transform translateX(-8px) → 0
+
+  FIRST CARD spans full width (grid-column 1/-1)
+  on desktop: aspect-ratio 8/5
+
+PROJECTS TO SHOW (4 cards):
+
+Card 1 (full width):
+  Tag: "AESTHETICS CLINIC · NORTH LONDON"
+  Name: "Naturelle Aesthetics"
+  Services: "Website · Booking System · AI Assistant"
+  Result tag top-right: small rose pill
+    "Live ↗" DM Sans 300 10px
+
+Card 2:
+  Tag: "SKIN CLINIC · LEEDS"
+  Name: "Mimis Aesthetics"
+  Services: "Website · Treatment Menu · Booking"
+
+Card 3:
+  Tag: "PEEL CLINIC · LONDON"
+  Name: "The Peel Room"
+  Services: "Website · Booking · AI Assistant"
+
+Card 4:
+  Tag: "INTERIORS · WEST LONDON"
+  Name: "Fine Living Interiors"
+  Services: "Website · Lead Capture · Email Automation"
+
+Below grid:
+  Centred "Start Your Project →" rose button
+  margin-top 48px
+
+MOBILE: cards full width stacked
+  Each: aspect-ratio 4/3
+
+===============================================================
+SECTION 5 — SERVICES
+===============================================================
+
+id="services"
+background: var(--black)
+padding: 100px 0 / 60px 0
+
+Container max-width 1200px margin 0 auto padding 0 48px
+
+Section header:
+  Ghost "03" behind
+  "WHAT WE BUILD" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+  Heading: Cormorant italic
+    clamp(2.5rem, 5vw, 4rem) white
+    "Everything your clinic needs.
+    Nothing you don't."
+
+Services grid — 3 columns desktop / 1 mobile:
+  grid-template-columns: repeat(3, 1fr) gap 1px
+  background: var(--border) (creates grid lines)
+  margin-top 64px
+
+Each service cell:
+  background: var(--black) padding 40px 36px
+  position relative overflow hidden
+  transition: background 300ms
+
+  Top: service number Cormorant italic
+    font-size 3.5rem var(--border-light)
+    line-height 1 margin-bottom 20px
+
+  Title: DM Sans 400 16px var(--white)
+    letter-spacing 0.02em margin-bottom 12px
+
+  Description: DM Sans 300 14px var(--grey-1)
+    line-height 1.75
+
+  Feature list: DM Sans 300 12px var(--grey-1)
+    margin-top 16px padding-top 16px
+    border-top 1px solid var(--border)
+    List items with rose "—" prefix
+    gap 8px
+
+  Hover:
+    background: var(--surface)
+    Number becomes rose
+    Title becomes rose
+
+SERVICES:
+
+01 — Premium Websites
+  "A website that sells while you sleep."
+  Features:
+  — Fully custom design, built around your brand
+  — Mobile-first, fast-loading, SEO ready
+  — Treatments, pricing, about, gallery sections
+  — Delivered in 3–5 days
+
+02 — Booking Systems
+  "Take deposits. Block your calendar. Stop the no-shows."
+  Features:
+  — Custom calendar and availability management
+  — 50% Stripe deposit collected at booking
+  — Automated confirmation emails to you and client
+  — Reschedule and cancellation policy enforcement
+
+03 — AI Assistant
+  "24/7 support, trained on your business."
+  Features:
+  — Trained on your treatments, prices, FAQs
+  — Talks exactly like you — your tone, your brand
+  — Answers client questions around the clock
+  — Captures enquiries and booking requests overnight
+  — No client left waiting for a reply again
+
+Below grid — wide pull quote:
+  padding 60px 48px
+  border-top 1px solid var(--border)
+  Cormorant italic font-size clamp(1.4rem, 2.5vw, 2rem)
+  var(--grey-1) text-align center
+  "Every website we build comes with a strategy,
+  not just a template."
+
+===============================================================
+SECTION 6 — AI ASSISTANT SPOTLIGHT
+===============================================================
+
+id="ai"
+background: var(--charcoal)
+padding: 100px 0 / 60px 0
+
+Container max-width 1200px margin 0 auto padding 0 48px
+
+Two-column desktop grid 1fr 1fr gap 80px
+Mobile: stacked
+
+LEFT — Content:
+  "AI ASSISTANT" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+  
+  Heading: Cormorant italic
+    clamp(2.5rem, 5vw, 4rem) white
+    "Your best employee.
+    Never takes a day off."
+  
+  Body: DM Sans 300 15px var(--grey-1)
+    line-height 1.8 margin-top 20px max-width 420px
+    "We build and train a custom AI assistant
+    for your clinic. It lives on your website,
+    knows everything about your business, and
+    handles enquiries 24 hours a day — even
+    while you're in treatment."
+  
+  Feature rows margin-top 32px:
+    Each row:
+      display flex gap 14px align-items flex-start
+      padding 12px 0
+      border-bottom 1px solid var(--border)
+      Last: border-bottom none
+      
+      Rose dash: DM Sans 400 14px var(--rose) "—"
+      Content:
+        Title DM Sans 400 13px var(--white)
+        Sub DM Sans 300 12px var(--grey-1) margin-top 3px
+
+  Feature rows:
+    "Trained on your business"
+    / "Treatments, prices, FAQs, aftercare — all loaded in"
+
+    "Sounds like you"
+    / "Custom tone, your brand voice, your personality"
+
+    "Captures leads while you sleep"
+    / "Collects name, number and enquiry automatically"
+
+    "Answers instantly"
+    / "No more clients waiting hours for a reply on Instagram"
+
+    "Works on any device"
+    / "Embedded directly into your website — no extra apps"
+
+  CTA button margin-top 32px:
+    Rose filled: "Add AI to My Website"
+    links to #contact
+
+RIGHT — Chat UI mock:
+  A fake chat interface showing the AI in action
+  background: var(--surface)
+  border 1px solid var(--border)
+  border-radius 2px
+  overflow hidden
+
+  Chat header:
+    background var(--off-black)
+    padding 14px 18px
+    display flex align-items center gap 10px
+    border-bottom 1px solid var(--border)
+    
+    Green pulsing dot: 8px circle #22C55E
+      animation pulse 2s infinite
+    
+    "Lumi — Dermadoll Aesthetics"
+      DM Sans 400 13px var(--white)
+    Sub: "AI Assistant · Online now"
+      DM Sans 300 10px var(--grey-1)
+
+  Chat body: padding 20px 18px
+    display flex flex-direction column gap 12px
+
+    Message bubbles:
+
+    Client message (right aligned):
+      background var(--rose)
+      padding 10px 14px border-radius 2px 12px 12px 12px
+      DM Sans 300 13px var(--white) max-width 80%
+      align-self flex-end
+      "Hi! How much is lip filler?"
+
+    AI response (left aligned):
+      background var(--border)
+      padding 10px 14px border-radius 12px 2px 12px 12px
+      DM Sans 300 13px var(--white) max-width 85%
+      align-self flex-start
+      line-height 1.6
+      "Hi! 💋 Lip filler starts from £100 for 0.5ml
+      and goes up to £150 for 1.1ml. We also have
+      Russian technique available!
+      
+      Would you like to book in? I can check
+      availability for you right now 🌸"
+
+    Client message:
+      background var(--rose) align-self flex-end
+      "Yes please! What dates do you have?"
+
+    AI response:
+      background var(--border) align-self flex-start
+      "I'd love to get you booked in! 🗓
+      
+      We have availability this week on:
+      · Thursday 17th April — 2pm, 4pm
+      · Friday 18th April — 10am, 12pm
+      
+      Which works best for you?"
+
+    Typing indicator:
+      background var(--border) align-self flex-start
+      padding 10px 14px border-radius 12px 2px 12px 12px
+      display flex gap 4px align-items center
+      3 dots: 6px circles var(--grey-1)
+        animation staggered bounce
+
+  Chat footer:
+    background var(--off-black)
+    padding 12px 14px
+    border-top 1px solid var(--border)
+    display flex gap 8px align-items center
+    
+    Input: flex 1 background var(--surface)
+      border 1px solid var(--border)
+      padding 9px 12px border-radius 2px
+      DM Sans 300 12px var(--grey-1)
+      "Type a message..."
+    
+    Send button: rose background 32px square
+      border-radius 2px
+      Arrow icon SVG
+
+  Note below chat (centred):
+    DM Sans 300 11px var(--grey-2) italic
+    "* AI assistant demo — based on a real
+    client implementation"
+
+MOBILE: chat mock sits below content
+  Full width scaled down
+
+===============================================================
+SECTION 7 — PROCESS
+===============================================================
+
+id="process"
+background: var(--off-black)
+padding: 100px 0 / 60px 0
+
+Container max-width 1200px margin 0 auto padding 0 48px
+
+Section header:
+  Ghost "04" behind
+  "HOW IT WORKS" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+  Heading: Cormorant italic
+    clamp(2.5rem, 5vw, 4rem) white
+    "From first message to
+    live in days."
+
+Process steps — horizontal on desktop
+  vertical stacked on mobile:
+  
+  display grid
+  grid-template-columns: repeat(4, 1fr)
+  gap 0
+  margin-top 64px
+  position relative
+
+  Connecting line (desktop only):
+    ::before absolute top 24px left 0 right 0
+    height 1px background var(--border)
+    z-index 0
+
+Each step:
+  position relative z-index 1
+  padding 0 32px 0 0
+  border-right 1px solid var(--border)
+  Last: border-right none
+
+  Step number circle:
+    width 48px height 48px
+    border 1px solid var(--rose)
+    border-radius 50%
+    display flex align-items center justify-content center
+    background var(--off-black)
+    Cormorant italic 20px var(--rose)
+    margin-bottom 20px
+
+  Step title: DM Sans 400 14px var(--white)
+    letter-spacing 0.02em margin-bottom 10px
+
+  Description: DM Sans 300 13px var(--grey-1)
+    line-height 1.7
+
+  Timeframe: DM Sans 300 10px var(--rose)
+    letter-spacing 0.1em margin-top 12px
+    e.g. "Day 1"
+
+STEPS:
+
+01 — Discovery Call
+  "We learn your brand, your clients,
+  your goals. Quick call or voice note —
+  whatever works for you."
+  Day 1
+
+02 — Design & Build
+  "We design and build your website,
+  booking system and AI assistant
+  tailored to your clinic."
+  Days 2–4
+
+03 — You Review
+  "You see the full site before it
+  goes live. We refine until it's
+  exactly right."
+  Day 5
+
+04 — Go Live
+  "Your new digital presence launches.
+  We handle everything — domain, hosting,
+  testing across all devices."
+  Day 6–7
+
+Below steps:
+  Full-width dark card padding 40px
+  background var(--surface)
+  border 1px solid var(--border)
+  border-left 3px solid var(--rose)
+  margin-top 48px
+  
+  display flex justify-content space-between
+  align-items center gap 32px
+  flex-wrap wrap
+
+  Left: Cormorant italic 24px var(--white)
+    "Most clients are live within one week
+    of their first message."
+  
+  Right: rose filled button
+    "Start the Process →"
+    links to #contact
+
+===============================================================
+SECTION 8 — PRICING
+===============================================================
+
+id="pricing"
+background: var(--black)
+padding: 100px 0 / 60px 0
+
+Container max-width 1100px margin 0 auto padding 0 48px
+
+Section header:
+  Ghost "05" behind
+  "PRICING" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+  Heading: Cormorant italic
+    clamp(2.5rem, 5vw, 4rem) white
+    "Transparent pricing.
+    No surprises."
+
+  Note below heading: DM Sans 300 14px var(--grey-1)
+    "All prices in GBP. Payment split 50% to start,
+    50% on completion."
+
+THREE PRICING CARDS — desktop grid 3 columns
+  gap 1px background var(--border)
+  margin-top 56px
+
+Each card:
+  background var(--black) padding 40px
+  position relative
+
+  Tag (top right):
+    DM Sans 300 9px uppercase letter-spacing 0.15em
+    var(--grey-2)
+    e.g. "MOST POPULAR"
+    For middle card: rose colour + rose border-top
+      3px solid var(--rose) instead of 1px var(--border)
+
+  Plan name: DM Sans 400 11px uppercase
+    letter-spacing 0.15em var(--grey-1) margin-bottom 12px
+
+  Price: Cormorant italic
+    font-size 3.5rem var(--white) line-height 1
+  Price sub: DM Sans 300 13px var(--grey-1)
+    "one-time build fee" margin-top 4px
+
+  Divider 1px var(--border) margin 24px 0
+
+  Feature list DM Sans 300 13px var(--grey-1)
+    gap 10px
+    Each: display flex gap 10px align-items flex-start
+      Rose "→" prefix
+      Feature text
+
+  CTA button full width margin-top 28px:
+    Starter: ghost var(--white) border
+    Core: rose filled (highlighted)
+    Premium: ghost var(--white) border
+
+PLANS:
+
+STARTER — £400
+"Perfect for solo practitioners launching online"
+→ Custom single-page website
+→ Treatment menu and pricing
+→ Instagram + WhatsApp contact links
+→ Mobile optimised
+→ Hosted on Replit
+
+→ Hosting: £25/mo
+
+CORE — £650 (MOST POPULAR)
+"The complete digital presence for your clinic"
+→ Everything in Starter
+→ Multi-page website (up to 6 sections)
+→ Custom booking calendar
+→ Stripe deposit collection
+→ Automated email confirmations
+→ Before & after gallery
+→ FAQ section
+
+→ Hosting: £35/mo
+
+PREMIUM — £950
+"Full system — website, bookings and AI"
+→ Everything in Core
+→ Custom AI assistant trained on your business
+→ AI answers client questions 24/7
+→ AI captures leads and enquiry details overnight
+→ Admin portal — manage bookings and clients
+→ Priority support
+
+→ Hosting: £45/mo
+
+Below cards:
+  Two column info row padding-top 40px
+  border-top 1px solid var(--border)
+  gap 32px flex-wrap wrap
+
+  Left: DM Sans 300 14px var(--grey-1) line-height 1.8
+    "All projects include a discovery call, custom
+    design, one round of revisions, mobile testing
+    across iOS and Android, and handover. No hidden
+    extras, no ongoing design fees."
+
+  Right: list of trust points DM Sans 300 13px
+    var(--grey-1) gap 8px
+    Rose "✓" prefix on each:
+    "50% to start, 50% on completion"
+    "No lock-in contracts on hosting"
+    "Domain setup guidance included"
+    "Revisions until you're happy"
+
+===============================================================
+SECTION 9 — ABOUT / SIM
+===============================================================
+
+id="about"
+background: var(--charcoal)
+padding: 100px 48px / 60px 24px
+
+Two-column desktop grid 5fr 4fr gap 80px
+Mobile: stacked
+
+LEFT:
+  "ABOUT" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+
+  Heading: Cormorant italic
+    clamp(2.5rem, 5vw, 3.5rem) white
+    line-height 1.1
+    "Built by someone who
+    understands your industry."
+
+  Body: DM Sans 300 15px var(--grey-1)
+    line-height 1.85 margin-top 24px
+
+    "Aesthetix Systems was built by Sim — a
+    Birmingham-based developer and designer who
+    works exclusively with aesthetics clinics
+    and beauty businesses.
+
+    Every website is built from scratch, to your
+    brand, with your clients in mind. No templates.
+    No generic layouts. No agencies that also
+    build plumbing websites.
+
+    Just premium digital work, for the industry
+    that deserves it most."
+
+  Credential strip margin-top 28px:
+    DM Sans 300 10px uppercase letter-spacing 0.15em
+    var(--grey-2)
+    display flex gap 24px flex-wrap wrap
+    "BIRMINGHAM, UK · EST. 2024 · 
+    AESTHETICS ONLY · @AESTHETIXSYSTEMS"
+
+RIGHT:
+  Large Cormorant italic pull quote
+  border-left 2px solid var(--rose)
+  padding-left 28px
+  font-size clamp(1.4rem, 3vw, 2.2rem)
+  var(--white) line-height 1.4
+  "I only work with aesthetics businesses.
+  That focus is what makes the work better."
+
+  Attribution: "— Sim, Aesthetix Systems"
+    DM Sans 300 12px var(--grey-1) margin-top 12px
+
+  Stats grid below quote:
+    2x2 gap 0
+    border 1px solid var(--border)
+    margin-top 32px
+
+    Each stat:
+      padding 20px
+      border-right 1px solid var(--border)
+      border-bottom 1px solid var(--border)
+      
+      Number: Cormorant italic 2.5rem var(--rose)
+      Label: DM Sans 300 10px var(--grey-1)
+        uppercase letter-spacing 0.1em
+    
+    Stats:
+    "10+" / "CLINICS LAUNCHED"
+    "7" / "DAYS TO GO LIVE"
+    "100%" / "AESTHETICS FOCUSED"
+    "24/7" / "AI COVERAGE"
+
+===============================================================
+SECTION 10 — TESTIMONIALS / SOCIAL PROOF
+===============================================================
+
+id="proof"
+background: var(--off-black)
+padding: 100px 0 / 60px 0
+
+Container max-width 1200px margin 0 auto padding 0 48px
+
+Section header:
+  "WHAT CLIENTS SAY" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+  Heading: Cormorant italic
+    clamp(2.5rem, 5vw, 4rem) white
+    "Results speak."
+
+DESKTOP — 3 column grid gap 1px
+  background var(--border)
+  margin-top 56px
+MOBILE — single column stack
+
+Each testimonial card:
+  background var(--off-black) padding 36px
+  position relative
+
+  Opening quote mark:
+    Cormorant italic font-size 5rem var(--rose)
+    opacity 0.3 line-height 0 margin-bottom 16px
+    display block
+
+  Quote: Cormorant italic font-size 1.2rem
+    var(--white) line-height 1.65
+
+  Client row margin-top 24px
+    padding-top 20px
+    border-top 1px solid var(--border)
+    display flex align-items center gap 12px
+    
+    Initials circle: 36px rose background
+      DM Sans 400 13px white border-radius 50%
+    
+    Name: DM Sans 400 13px var(--white)
+    Business: DM Sans 300 11px var(--grey-1)
+    
+    Service tag right: DM Sans 300 9px var(--rose)
+      uppercase letter-spacing 0.1em
+
+TESTIMONIALS:
+
+Card 1:
+  "Sim delivered exactly what I asked for —
+  and more. The site looks genuinely high-end
+  and the booking system has completely
+  changed how clients book with me."
+  — Niamh, Dermadoll Aesthetics
+  Service: Website + Booking System
+
+Card 2:
+  "I was sceptical about the AI assistant
+  but it now handles enquiries while I'm
+  in treatments. Clients get answers
+  immediately and I wake up to bookings."
+  — Tyler, The Peel Room
+  Service: Website + AI Assistant
+
+Card 3:
+  "Turned around a full site in under a week.
+  It looks better than clinics charging
+  ten times what I do. I've already had
+  comments from clients about how professional
+  it looks."
+  — Mimi, Mimis Aesthetics
+  Service: Full Website Build
+
+===============================================================
+SECTION 11 — FAQ
+===============================================================
+
+id="faq"
+background: var(--black)
+padding: 80px 0 / 48px 0
+
+Container max-width 800px margin 0 auto padding 0 48px
+
+Section header:
+  "QUESTIONS" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+  Heading: Cormorant italic
+    clamp(2rem, 4vw, 3.5rem) white
+    "Before you reach out."
+
+Accordion:
+  margin-top 48px
+  One open at a time
+
+Each row:
+  border-bottom 1px solid var(--border)
+
+  Question row:
+    padding 20px 0
+    display flex justify-content space-between
+    align-items center cursor pointer
+
+    Question: DM Sans 400 14px var(--white)
+    
+    + / − : Cormorant italic 22px var(--rose)
+      transition transform 300ms
+
+    Open state: question becomes rose
+
+  Answer:
+    padding 0 0 20px 0
+    DM Sans 300 14px var(--grey-1) line-height 1.8
+    max-height 0 → auto
+
+FAQs:
+
+01 How quickly can you build my website?
+Most websites are live within 5–7 days of
+our first conversation. We move fast because
+we know aesthetics businesses can't wait weeks.
+
+02 Do I need to provide my own photos?
+Not for the initial build — we use professional
+placeholder layouts so you can see the design
+before you have photos. You can swap them in
+any time. We recommend getting professional
+images once the site is live.
+
+03 What is the AI assistant exactly?
+It's a custom chatbot trained specifically on
+your business — your treatments, prices, FAQs,
+aftercare advice, booking process. It sits on
+your website and answers client questions 24/7
+in your tone and brand voice. It also captures
+enquiry details so you never miss a lead.
+
+04 Do I own the website?
+Yes. You own all the content, images and
+branding. We host it on your behalf as part
+of the monthly retainer, which you can cancel
+with 30 days' notice.
+
+05 What's included in the monthly hosting fee?
+Hosting, performance monitoring, security
+updates, minor content tweaks (text/price
+changes), and priority support. No surprise
+invoices.
+
+06 Do you work with businesses outside Birmingham?
+Absolutely. We work remotely with clinics and
+beauty businesses across the UK. Everything
+is handled via video call, WhatsApp and email.
+Location is never a barrier.
+
+07 Can I see examples of your work?
+Yes — the portfolio section above shows
+recent projects. You can also view live sites
+linked from our Instagram @aesthetixsystems.
+
+After last FAQ:
+  Two CTA buttons centred margin-top 48px:
+  Rose filled: "Start a Project"
+  Ghost white: "Message on Instagram"
+
+===============================================================
+SECTION 12 — CONTACT
+===============================================================
+
+id="contact"
+background: var(--charcoal)
+padding: 100px 0 / 60px 0
+
+Container max-width 1100px margin 0 auto padding 0 48px
+
+Two-column desktop grid 1fr 1fr gap 80px
+Mobile: stacked
+
+LEFT:
+  "GET IN TOUCH" DM Sans 300 10px rose
+    letter-spacing 0.2em margin-bottom 16px
+  Heading: Cormorant italic
+    clamp(2.5rem, 5vw, 4rem) white
+    "Ready to elevate
+    your clinic online?"
+  Body: DM Sans 300 15px var(--grey-1)
+    line-height 1.8 margin-top 20px
+    "Drop a message with your business name,
+    what you're looking for, and we'll come back
+    within 24 hours with next steps. No hard sell.
+    Just a conversation."
+  
+  Contact details margin-top 32px:
+    Each row: display flex gap 12px align-items center
+      padding 12px 0
+      border-bottom 1px solid var(--border)
+      DM Sans 300 14px var(--grey-1)
+      
+      Rose label: DM Sans 300 10px uppercase
+        letter-spacing 0.1em var(--rose) min-width 80px
+      
+    INSTAGRAM: "@aesthetixsystems →"
+      links to https://instagram.com/aesthetixsystems
+    EMAIL: "hello@aesthetix-systems.co.uk"
+    LOCATION: "Birmingham, UK"
+
+RIGHT:
+  Contact form card:
+    background var(--surface)
+    border 1px solid var(--border)
+    border-top 2px solid var(--rose)
+    padding 36px border-radius 0
+
+  FORM FIELDS:
+
+  Each field wrapper margin-bottom 18px:
+    Label: DM Sans 300 10px uppercase
+      letter-spacing 0.1em var(--grey-1)
+      margin-bottom 6px display block
+    
+    Input / Textarea:
+      width 100% background var(--charcoal)
+      border 1px solid var(--border)
+      border-radius 0 padding 12px 14px
+      DM Sans 300 14px var(--white) outline none
+      transition border-color 200ms
+      Focus: border-color var(--rose)
+      Placeholder: var(--grey-2)
+
+  Fields:
+    YOUR NAME — text input
+    YOUR BUSINESS — text input
+    EMAIL ADDRESS — email input
+    WHAT DO YOU NEED? — select dropdown:
+      "Select a service..."
+      Website Design
+      Booking System
+      AI Assistant
+      Full Package (Website + Booking + AI)
+      Monthly Hosting
+      Not sure — let's talk
+    
+    TELL US A BIT MORE — textarea 4 rows
+      placeholder: "Your current situation, 
+      what's not working, what you're after..."
+
+  Submit button full width height 48px
+    background var(--rose) color var(--white)
+    border 0 border-radius 1px
+    DM Sans 400 12px uppercase letter-spacing 0.1em
+    "Send Message →"
+    Hover: background #A01048
+    cursor pointer
+
+  On submit (JS — no backend):
+    Prevent default
+    Replace form with success message:
+      Rose checkmark SVG 32px centred
+      "Message received." Cormorant italic 24px white
+      "We'll be in touch within 24 hours."
+        DM Sans 300 14px var(--grey-1)
+      "@aesthetixsystems" rose link
+
+===============================================================
+SECTION 13 — FOOTER
+===============================================================
+
+background: var(--black)
+border-top 1px solid var(--border)
+padding: 48px 48px 32px / 32px 24px
+
+Desktop: grid auto-fit minmax 200px gap 40px
+Mobile: stacked gap 28px
+
+Column 1 — Brand:
+  "AESTHETIX" DM Sans 400 16px var(--white)
+    letter-spacing 0.18em
+  "SYSTEMS" DM Sans 300 9px var(--rose)
+    letter-spacing 0.22em margin-top 2px
+  Tagline margin-top 10px:
+    Cormorant italic 14px var(--grey-1)
+    "We build the digital presence
+    your clinic deserves."
+  Location: DM Sans 300 11px var(--grey-2)
+    margin-top 8px "Birmingham, UK"
+
+Column 2 — Navigation:
+  "LINKS" DM Sans 300 9px uppercase var(--grey-2)
+    letter-spacing 0.15em margin-bottom 12px
+  Links: DM Sans 300 12px var(--grey-1) gap 10px
+  Work | Services | Process | Pricing | Contact
+  Hover: var(--white)
+
+Column 3 — Services:
+  "SERVICES" label same style
+  Website Design | Booking Systems |
+  AI Assistant | Hosting
+  DM Sans 300 12px var(--grey-1) stacked gap 10px
+
+Column 4 — Contact:
+  "@aesthetixsystems" — rose hover white
+    instagram link
+  "hello@aesthetix-systems.co.uk"
+    DM Sans 300 12px var(--grey-1) hover white
+
+Bottom bar:
+  margin-top 32px
+  padding-top 24px
+  border-top 1px solid var(--border)
+  display flex justify-content space-between
+  align-items center flex-wrap gap 12px
+
+  Left: "© 2026 Aesthetix Systems · Birmingham, UK"
+    DM Sans 300 10px var(--grey-2)
+  
+  Right: "Built by Aesthetix Systems"
+    DM Sans 300 10px var(--grey-2)
+    hover: var(--rose)
+
+===============================================================
+JAVASCRIPT — ALL INLINE
+===============================================================
+
+1. TOP BAR HIDE/SHOW
+   Track scroll direction
+   Down → translateY(-100%) transition 200ms
+   Up → translateY(0)
+
+2. NAV SCROLL STATE
+   Past 60px → add scrolled class
+   IntersectionObserver each section →
+   active class on matching nav link
+
+3. MOBILE NAV
+   Hamburger → nav-open body class
+   Full overlay slides down from top
+   Close: X or link click
+   Lock body scroll when open
+
+4. ACCORDION (FAQ)
+   Click question → toggle open
+   max-height 0 → 1000px
+   + rotates → × via CSS class
+   One open at a time
+
+5. CONTACT FORM
+   Submit → prevent default
+   Replace form innerHTML with success state
+   No backend needed — routes to Instagram
+
+6. SMOOTH SCROLL
+   All anchors → scrollTo offset
+   Offset = navHeight + 16px
+
+7. STATS COUNTER ANIMATION
+   IntersectionObserver on stats section
+   When visible: count up from 0 to number
+   Duration 1.5s ease-out
+   Cormorant Garamond numbers animate in
+
+8. PORTFOLIO HOVER
+   mouseover → add hovered class
+   CSS handles overlay + arrow transition
+
+9. TYPING INDICATOR IN CHAT MOCK
+   setInterval every 3s
+   Toggle typing dots visibility
+   Simulate a live conversation feeling
+
+10. SCROLL INDICATOR
+    Hero scroll indicator:
+    Fades out when user scrolls past 200px
+    (opacity: 1 → 0 CSS transition)
+
+===============================================================
+SAFARI VIDEO FIX (if hero.mp4 is used)
+===============================================================
+
+If hero video is used instead of CSS gradient:
+Apply full fix from previous specification:
+  autoplay muted loop playsinline webkit-playsinline
+  pointer-events none on video
+  interceptor div over video
+  MutationObserver watching for controls re-add
+  All webkit media controls CSS killed
+
+===============================================================
+FINAL RULES
+===============================================================
+
+- Single index.html — all CSS + JS inline
+- No external JS libraries or CDNs
+- Google Fonts @import only
+- Mobile-first responsive at 375px and 1280px
+- Dark theme throughout — var(--black) base
+- Rose used as surgical accent only
+- No rounded buttons — border-radius 0 or 1px max
+- Ghost oversized text behind section headers
+- Stats counter animation on scroll
+- Chat mock in AI section with typing indicator
+- Contact form success state (no backend)
+- Portfolio cards with hover reveal animation
+- Process steps with connecting line desktop
+- Pricing cards with highlighted middle card
+- Top bar hides on scroll down
+- Nav active states via IntersectionObserver
+- Everything must load fast — no heavy assets
+- The site itself is the portfolio piece —
+  it must be the most impressive thing on the page
+- Comments throughout for easy editing:
+  <!-- Update portfolio projects here -->
+  <!-- Update pricing here -->
+  <!-- Update testimonials here -->
