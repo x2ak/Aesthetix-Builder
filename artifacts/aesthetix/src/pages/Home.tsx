@@ -612,7 +612,7 @@ export default function Home() {
 
           <FadeIn delay={200}>
             <div style={{ display: "flex", gap: 32, paddingTop: 32, borderTop: `1px solid ${BDR}`, marginTop: 1, flexDirection: isMobile ? "column" : "row" }}>
-              <div style={{ flex: 1, fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1, lineHeight: 1.8 }}>
+              <div style={{ flex: 1, fontFamily: BODY, fontWeight: 300, fontSize: 13, color: R, lineHeight: 1.8 }}>
                 All projects include a discovery call, custom design, one round of revisions, mobile testing and handover. No hidden extras.
               </div>
               <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
