@@ -275,8 +275,8 @@ export default function Home() {
         }}>
           <div className="fade-up-1" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: isMobile ? 12 : 0 }}>
             <div className="pulse-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: R, flexShrink: 0 }} />
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: G1, letterSpacing: "0.15em", textTransform: "uppercase" }}>
-              Aesthetix Systems · Birmingham, UK
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: R, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              Aesthetix Systems · London, UK
             </span>
           </div>
 
