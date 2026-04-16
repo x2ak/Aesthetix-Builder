@@ -296,9 +296,7 @@ export default function Home() {
             color: WH, lineHeight: 1.6, maxWidth: 520,
             margin: isMobile ? "16px 0 24px" : "24px 0 40px",
           }}>
-            Premium websites, booking systems and AI assistants built{" "}
-            <span style={{ color: R }}>exclusively</span> for aesthetics businesses.{" "}
-            Your digital presence, <span style={{ color: R }}>elevated</span>.
+            Premium websites, booking systems and AI assistants built exclusively for aesthetics businesses. Your digital presence, elevated.
           </p>
 
           <div className="fade-up-4" style={{ display: "flex", gap: 12, flexDirection: isMobile ? "column" : "row", flexWrap: "wrap" }}>
