@@ -584,9 +584,9 @@ export default function Home() {
                   borderTop: p.highlight ? `3px solid ${R}` : `1px solid ${BDR}`,
                 }}>
                   {p.tag && <div style={{ position: "absolute", top: p.highlight ? 14 : 12, right: 14, fontFamily: BODY, fontWeight: 300, fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: R }}>{p.tag}</div>}
-                  <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.15em", color: G1, marginBottom: 10 }}>{p.name}</div>
+                  <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.15em", color: R, marginBottom: 10 }}>{p.name}</div>
                   <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: "3rem", color: WH, lineHeight: 1 }}>{p.price}</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1, marginTop: 4 }}>{p.sub}</div>
+                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: R, marginTop: 4 }}>{p.sub}</div>
                   <div style={{ height: 1, background: BDR, margin: "20px 0" }} />
                   <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                     {p.features.map((f, j) => (
