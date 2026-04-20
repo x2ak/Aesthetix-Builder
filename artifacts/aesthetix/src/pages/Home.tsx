@@ -97,6 +97,11 @@ function PhoneBrowserBar({ url }: { url: string }) {
 }
 
 function PhoneAnimation() {
+  const isMobile = useIsMobile();
+  const PW = isMobile ? 190 : 264;
+  const PH = isMobile ? 382 : 530;
+  const PR = isMobile ? 30 : 40;
+  const PP = isMobile ? 9 : 12;
   const [step, setStep] = useState(0);
   const [svcSel, setSvcSel] = useState(false);
   const [calDate, setCalDate] = useState(-1);
@@ -119,14 +124,14 @@ function PhoneAnimation() {
   return (
     <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {/* Gold glow */}
-      <div style={{ position: 'absolute', width: 340, height: 340, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.13) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', width: isMobile ? 260 : 340, height: isMobile ? 260 : 340, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.13) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
       <motion.div
         animate={{ y: [0, -9, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ width: 264, height: 530, background: charcoal, borderRadius: 40, padding: 12, boxShadow: `0 0 0 1.5px rgba(201,169,97,0.28), 0 36px 72px rgba(26,26,28,0.28)`, position: 'relative' }}
+        style={{ width: PW, height: PH, background: charcoal, borderRadius: PR, padding: PP, boxShadow: `0 0 0 1.5px rgba(201,169,97,0.28), 0 36px 72px rgba(26,26,28,0.28)`, position: 'relative' }}
       >
         {/* Notch */}
-        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 80, height: 26, background: charcoal, borderRadius: '0 0 14px 14px', zIndex: 10 }} />
+        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: isMobile ? 60 : 80, height: isMobile ? 20 : 26, background: charcoal, borderRadius: '0 0 14px 14px', zIndex: 10 }} />
 
         {/* Screen */}
         <div style={{ width: '100%', height: '100%', background: cream, borderRadius: 30, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
@@ -610,44 +615,45 @@ function Nav() {
 function Hero() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: cream, padding: isMobile ? '80px 20px 60px' : '120px 0 80px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 48 : 80, alignItems: 'center' }}>
+    <section style={{ background: cream, padding: isMobile ? '88px 20px 48px' : '120px 0 80px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 80, alignItems: 'center' }}>
         {/* Left — Copy */}
         <div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: '6px 14px', marginBottom: 28 }}>
-            <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold }}>
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: isMobile ? '5px 10px' : '6px 14px', marginBottom: isMobile ? 16 : 28 }}>
+            <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 8 : 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold }}>
               Websites & Booking Systems · For UK Aesthetics Clinics
             </span>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ fontFamily: BODY, fontWeight: 600, fontSize: 'clamp(3rem,6vw,5rem)', lineHeight: 1.0, color: charcoal, margin: '0 0 20px' }}>
+            style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 'clamp(2.2rem, 8vw, 2.8rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, margin: isMobile ? '0 0 14px' : '0 0 20px' }}>
             Turn followers into{' '}
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: 'block', lineHeight: 1.1 }}>bookings</em>
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: isMobile ? 'inline' : 'block', lineHeight: 1.1 }}>bookings</em>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.55 }}
-            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.75, maxWidth: 480, margin: '0 0 32px' }}>
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 17, color: inkSoft, lineHeight: 1.7, maxWidth: 480, margin: isMobile ? '0 0 20px' : '0 0 32px' }}>
             We build premium websites with built-in booking systems for aesthetics clinics, lash techs, and beauty specialists. Look luxury. Book clients 24/7. Stop chasing DMs.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.72 }}
-            style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: 28 }}>
+            style={{ display: 'flex', gap: isMobile ? 10 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 16 : 28 }}>
             <WaBtn large />
-            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: charcoal, textDecoration: 'none', letterSpacing: '0.02em' }}>
+            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 12 : 13, color: charcoal, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-            style={{ paddingTop: 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Trusted by</span>
+            style={{ paddingTop: isMobile ? 14 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 10 : 11, color: inkMute }}>Trusted by</span>
             {['FlawlessSkin', 'Hira Aesthetics', 'Permadoll'].map(n => (
-              <span key={n} style={{ background: goldTint, padding: '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: 11, color: goldHover }}>{n}</span>
+              <span key={n} style={{ background: goldTint, padding: isMobile ? '2px 8px' : '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 10 : 11, color: goldHover }}>{n}</span>
             ))}
-            <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>
+            {!isMobile && <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />}
+            {!isMobile && <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>}
           </motion.div>
         </div>
         {/* Right — Phone */}
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
+          style={{ display: 'flex', justifyContent: 'center' }}>
           <PhoneAnimation />
         </motion.div>
       </div>
