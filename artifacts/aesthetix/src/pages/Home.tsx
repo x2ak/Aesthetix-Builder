@@ -735,9 +735,9 @@ function HowItWorks() {
 function Portfolio() {
   const isMobile = useIsMobile();
   const clients = [
-    { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', grad: `linear-gradient(135deg, ${goldTint}, ${blush})` },
-    { name: 'Dermadoll Aesthetics', loc: 'Birmingham', url: 'https://dermadoll-aesthetics.co.uk', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
-    { name: 'Starr Aesthetics', loc: 'London', url: 'https://starraesthetics.co.uk', grad: `linear-gradient(135deg, ${blush}, ${goldTint})` },
+    { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', preview: '/flawlessskin-preview.png', grad: `linear-gradient(135deg, ${goldTint}, ${blush})` },
+    { name: 'Dermadoll Aesthetics', loc: 'Birmingham', url: 'https://dermadoll-aesthetics.co.uk', preview: '/dermadoll-preview.png', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
+    { name: 'Starr Aesthetics', loc: 'London', url: 'https://starraesthetics.co.uk', preview: null, grad: `linear-gradient(135deg, ${blush}, ${goldTint})` },
   ];
   return (
     <section id="work" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
@@ -748,10 +748,26 @@ function Portfolio() {
           {clients.map((c, i) => (
             <FadeIn key={i} delay={i * 0.1}>
               <div className="portfolio-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, overflow: 'hidden' }}>
-                <div style={{ aspectRatio: '16/10', background: c.grad, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div className="portfolio-img" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 18, color: 'rgba(26,26,28,0.2)' }}>{c.name}</span>
-                  </div>
+                {/* Browser chrome bar */}
+                <div style={{ background: '#F0EDE7', borderBottom: `1px solid ${line}`, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#E5816A', display: 'inline-block' }} />
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#F0C05A', display: 'inline-block' }} />
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#72B87A', display: 'inline-block' }} />
+                  <span style={{ flex: 1, background: 'rgba(26,26,28,0.06)', borderRadius: 4, height: 16, marginLeft: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontFamily: BODY, fontSize: 8, color: inkMute, letterSpacing: '0.02em' }}>{c.url.replace('https://', '')}</span>
+                  </span>
+                </div>
+                <div style={{ aspectRatio: '16/10', background: c.grad, overflow: 'hidden', position: 'relative' }}>
+                  {c.preview ? (
+                    <img src={c.preview} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block', transition: 'transform 0.5s ease' }}
+                      onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
+                      onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                    />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 18, color: 'rgba(26,26,28,0.2)' }}>{c.name}</span>
+                    </div>
+                  )}
                 </div>
                 <div style={{ padding: '20px 22px' }}>
                   <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 21, color: charcoal, margin: '0 0 5px' }}>{c.name}</h3>
