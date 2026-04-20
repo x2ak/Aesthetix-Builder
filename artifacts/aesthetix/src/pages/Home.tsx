@@ -627,7 +627,7 @@ function Nav() {
 function Hero() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: cream, padding: isMobile ? '40px 24px 48px' : '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ background: cream, padding: isMobile ? '56px 24px 64px' : '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
       {/* Floating circle vectors */}
       {[
         { size: 420, top: '-100px', right: '-100px', y: [0, -22, 0], dur: 9, delay: 0, fill: false },
@@ -661,32 +661,32 @@ function Hero() {
         {/* Left — Copy */}
         <div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: isMobile ? '5px 12px' : '6px 14px', marginBottom: isMobile ? 22 : 28 }}>
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: isMobile ? '6px 14px' : '6px 14px', marginBottom: isMobile ? 32 : 28 }}>
             <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: isMobile ? '0.12em' : '0.18em', color: gold }}>
               {isMobile ? 'Websites & Booking Systems · UK' : 'Websites & Booking Systems · For UK Aesthetics Clinics'}
             </span>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 'clamp(2.2rem, 8vw, 2.8rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.08, color: charcoal, margin: isMobile ? '0 0 20px' : '0 0 20px' }}>
+            style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 'clamp(2.2rem, 8vw, 2.8rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.08, color: charcoal, margin: isMobile ? '0 0 30px' : '0 0 24px' }}>
             Turn followers into{' '}
             <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: isMobile ? 'inline' : 'block', lineHeight: 1.1 }}>bookings</em>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.55 }}
-            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 28px' : '0 0 32px' }}>
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 38px' : '0 0 36px' }}>
             We build premium websites with built-in booking systems for aesthetics clinics, lash techs, and beauty specialists. Look luxury. Book clients 24/7. Stop chasing DMs.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.72 }}
-            style={{ display: 'flex', gap: isMobile ? 12 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 24 : 28 }}>
+            style={{ display: 'flex', gap: isMobile ? 14 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 36 : 28 }}>
             <WaBtn large />
             <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-            style={{ paddingTop: isMobile ? 20 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 10, flexWrap: 'wrap' }}>
+            style={{ paddingTop: isMobile ? 28 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 10 : 10, flexWrap: 'wrap' }}>
             <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 11, color: inkMute }}>Trusted by</span>
             {['FlawlessSkin', 'Dermadoll', 'Starr Aesthetics'].map(n => (
-              <span key={n} style={{ background: goldTint, padding: isMobile ? '3px 10px' : '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 11, color: goldHover }}>{n}</span>
+              <span key={n} style={{ background: goldTint, padding: isMobile ? '5px 13px' : '4px 11px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 11, color: goldHover }}>{n}</span>
             ))}
             {!isMobile && <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />}
             {!isMobile && <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>}
