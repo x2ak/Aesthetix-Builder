@@ -972,9 +972,8 @@ function Testimonials() {
   const isMobile = useIsMobile();
   const reviews = [
     { q: 'Booking enquiries doubled in the first month. Clients actually book now instead of just following.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F' },
-    { q: 'I used to spend hours a week on Instagram DMs. Now the site handles all of it. I just show up and do treatments.', name: 'Hira Aesthetics', biz: 'Manchester', init: 'H' },
     { q: 'The site looks more premium than clinics charging double what I do. Clients comment on it every single week.', name: 'Permadoll', biz: 'Birmingham', init: 'P' },
-    { q: 'Sim turned it around in under a week. The deposit system alone has saved me hundreds in no-shows.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F' },
+    { q: 'From enquiry to deposit — fully automated. I woke up to three confirmed bookings on the first night it went live.', name: 'Starr Aesthetics', biz: 'London', init: 'S' },
   ];
   return (
     <section id="results" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
@@ -983,7 +982,7 @@ function Testimonials() {
         <FadeIn delay={0.1} style={{ marginBottom: 48 }}>
           <SectionHead regular="What happens when your site" italic="actually works" size="clamp(2rem,4vw,3rem)" />
         </FadeIn>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 16 : 24, alignItems: 'stretch' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 16 : 24, alignItems: 'stretch' }}>
           {reviews.map((r, i) => (
             <FadeIn key={i} delay={i * 0.08}>
               <div style={{
