@@ -874,7 +874,7 @@ function Bento() {
   );
 
   return (
-    <section style={{ background: goldTint, padding: isMobile ? '48px 16px' : '100px 0' }}>
+    <section style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '48px 16px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn><Overline>What's Included</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ marginBottom: 36 }}><SectionHead regular="Everything your clinic" italic="actually needs" /></FadeIn>
@@ -1079,7 +1079,7 @@ function Pricing() {
   );
 
   return (
-    <section id="pricing" style={{ background: goldTint, padding: isMobile ? '64px 20px' : '100px 0' }}>
+    <section id="pricing" style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 20px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center' }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
