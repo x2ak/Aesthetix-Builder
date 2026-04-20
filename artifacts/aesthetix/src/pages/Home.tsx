@@ -1279,7 +1279,7 @@ function FinalCTA() {
         <FadeIn delay={0.28}>
           <div style={{ marginTop: 38, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
             <WaBtn large light label="Message on WhatsApp" />
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.35)', margin: 0 }}>Reply in under 2 hours, Mon–Sat.</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: gold, margin: 0 }}>Reply in under 2 hours, Mon–Sat.</p>
           </div>
         </FadeIn>
       </div>
