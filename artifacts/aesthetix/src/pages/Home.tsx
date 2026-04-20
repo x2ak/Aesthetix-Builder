@@ -1442,11 +1442,11 @@ function Footer() {
         </div>
       </div>
 
-      {/* Gold bottom bar */}
-      <div style={{ background: gold, padding: isMobile ? '14px 20px' : '14px 32px', position: 'relative', zIndex: 1 }}>
+      {/* Bottom bar */}
+      <div style={{ borderTop: `1px solid ${line}`, padding: isMobile ? '14px 20px' : '14px 32px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
-          <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, letterSpacing: '0.02em' }}>Aesthetix Systems · London, UK · © 2026</span>
-          <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, letterSpacing: '0.02em' }}>Built by Aesthetix Systems</span>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.02em' }}>Aesthetix Systems · London, UK · © 2026</span>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.02em' }}>Built by Aesthetix Systems</span>
         </div>
       </div>
     </footer>
