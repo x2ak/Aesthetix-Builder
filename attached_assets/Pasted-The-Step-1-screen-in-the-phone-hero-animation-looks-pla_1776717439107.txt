@@ -1,0 +1,170 @@
+The Step 1 screen in the phone hero animation 
+looks plain and empty — it needs to look like a 
+real premium aesthetics clinic website homepage.
+
+Find the Step 1 content in the phone animation 
+component and replace it with this richer version:
+
+===============================================================
+STEP 1 — REPLACE THE INNER WEBSITE CONTENT
+===============================================================
+
+The phone screen at Step 1 should show a convincing 
+mini website hero section. It needs to feel like a 
+real luxury aesthetics website — not just a heading 
+and a button on a blank page.
+
+Keep the browser chrome bar at top (lock icon + 
+lumina-aesthetics.co.uk URL). Only change what's 
+below it — the website content area.
+
+WEBSITE CONTENT (inside the phone screen):
+
+Background: warm cream #F7F4EE — full height
+
+TOP NAV BAR (very thin — 28px height):
+  Left: "LUMINA" in Inter Tight 500 8px 
+    letter-spacing 0.15em charcoal #1A1A1C
+  Right: hamburger icon (3 tiny lines 8px) charcoal
+  Padding: 0 12px
+  Border-bottom: 1px solid #E5DFD3
+
+HERO IMAGE AREA (height ~80px):
+  background: linear-gradient(
+    135deg,
+    #2A1F18 0%,
+    #1A1A1C 50%,
+    #3A2820 100%
+  )
+  Position relative overflow hidden
+  
+  Subtle botanical SVG overlay:
+    Two thin curved leaf/stem shapes
+    stroke: rgba(201,169,97,0.15)
+    stroke-width: 0.5
+    positioned top-right corner
+    No fill — just delicate outlines
+  
+  Text over image (padding 10px 12px):
+    "LUMINA AESTHETICS"
+    Inter Tight 400 6px uppercase
+    letter-spacing 0.2em
+    color rgba(247,244,238,0.6)
+    margin-bottom 4px
+    
+    "Your Skin."
+    Instrument Serif italic 18px
+    color #F7F4EE line-height 1.0
+    
+    "Flawless."
+    Instrument Serif italic 18px
+    color #C9A961 line-height 1.0
+
+BODY SECTION (below image — cream background):
+  padding: 10px 12px
+
+  Subtext (2 lines):
+    "Advanced aesthetics clinic"
+    "Hall Green, Birmingham"
+    Inter Tight 300 8px color #8A8A8E
+    line-height 1.4 margin-bottom 10px
+
+  BOOK NOW BUTTON:
+    width: 100%
+    background: #C9A961
+    color: #1A1A1C
+    padding: 8px 0
+    text-align: center
+    Inter Tight 600 9px uppercase
+    letter-spacing: 0.15em
+    border-radius: 4px
+    This is what the cursor taps
+
+  Below button — two small trust pills:
+    display flex gap 4px margin-top 6px
+    
+    Each pill:
+      background rgba(201,169,97,0.1)
+      border 1px solid rgba(201,169,97,0.2)
+      border-radius 999px
+      padding 2px 7px
+      Inter Tight 300 7px color #8A8A8E
+    
+    "★ 4.9 rated" · "Hall Green, B28"
+
+  Thin divider 1px #E5DFD3 margin-top 8px
+
+  TREATMENTS ROW (below divider):
+    Label: "TREATMENTS" 
+    Inter Tight 400 6px uppercase letter-spacing 0.15em
+    color #8A8A8E margin-bottom 5px
+    
+    Three small treatment pills in a row:
+      background white
+      border 1px solid #E5DFD3
+      border-radius 4px padding 4px 7px
+      Inter Tight 300 7px charcoal
+      display flex gap 4px flex-wrap wrap
+      
+      "Russian Lips" · "Lip Filler" · "Anti-Wrinkle"
+
+This full content should be visible BEFORE the 
+cursor animation begins. The cursor then appears 
+from the right side and moves to the BOOK NOW button.
+
+===============================================================
+ANIMATION TIMING FOR STEP 1
+===============================================================
+
+Step 1 duration: 2 seconds total
+
+0.0s — Website content fades in fully rendered
+        (not building in — just appears complete)
+0.4s — Cursor appears bottom-right of phone screen
+0.6s — Cursor moves smoothly to BOOK NOW button
+        (CSS transition or Framer Motion x/y)
+1.2s — Cursor reaches button, button scales 0.95
+        (tap animation)
+1.4s — Button returns to normal scale
+1.6s — Transition begins to Step 2
+        (slide left out)
+
+The key: the website must look COMPLETE and REAL
+for at least 0.4 seconds before the cursor appears.
+This gives the viewer time to register 
+"that's a proper website" before the booking 
+flow begins.
+
+===============================================================
+BOTANICAL SVG DECORATION
+===============================================================
+
+In the dark image area, add this subtle SVG:
+
+<svg width="60" height="50" viewBox="0 0 60 50" 
+  fill="none" xmlns="http://www.w3.org/2000/svg"
+  style="position:absolute;top:0;right:0;opacity:0.4">
+  <path d="M55 2 C40 8, 30 20, 45 35" 
+    stroke="#C9A961" stroke-width="0.5" 
+    fill="none"/>
+  <path d="M60 10 C50 15, 45 25, 55 38" 
+    stroke="#C9A961" stroke-width="0.4" 
+    fill="none"/>
+  <path d="M50 0 C35 12, 38 28, 48 40" 
+    stroke="#C9A961" stroke-width="0.3" 
+    fill="none"/>
+  <circle cx="45" cy="35" r="1" 
+    fill="#C9A961" opacity="0.5"/>
+  <circle cx="55" cy="38" r="0.8" 
+    fill="#C9A961" opacity="0.4"/>
+</svg>
+
+===============================================================
+DO NOT CHANGE
+===============================================================
+
+- Phone frame shape and bezel unchanged
+- Steps 2, 3, 4, 5 unchanged
+- All other page sections unchanged
+- Overall animation loop timing unchanged
+- Only Step 1 inner website content changes

@@ -141,45 +141,81 @@ function PhoneAnimation() {
               {/* ── Step 0: Clinic website hero ── */}
               {step === 0 && (
                 <motion.div key="s0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.4 }}
-                  style={{ position: 'absolute', inset: 0, background: cream, display: 'flex', flexDirection: 'column' }}>
+                  style={{ position: 'absolute', inset: 0, background: cream, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
-                  {/* Mini site nav */}
-                  <div style={{ padding: '10px 16px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 9, color: gold, letterSpacing: '0.05em' }}>Lumina Aesthetics</span>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      {[0, 1, 2].map(i => <div key={i} style={{ width: 12, height: 1.2, background: charcoal, borderRadius: 1 }} />)}
+                  {/* Top nav */}
+                  <div style={{ height: 28, padding: '0 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid ${line}`, flexShrink: 0 }}>
+                    <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 8, letterSpacing: '0.15em', color: charcoal }}>LUMINA</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 1.8 }}>
+                      {['a','b','c'].map(k => <div key={k} style={{ width: 11, height: 1, background: charcoal, borderRadius: 1 }} />)}
                     </div>
                   </div>
 
-                  {/* Hero content */}
-                  <div style={{ padding: '16px 16px 0', flex: 1 }}>
-                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 28, color: charcoal, margin: 0, lineHeight: 1.1 }}>Your Skin.</p>
-                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 28, color: gold, margin: '0 0 10px', lineHeight: 1.1 }}>Flawless.</p>
-                    <p style={{ fontFamily: BODY, fontSize: 8, color: inkMute, margin: '0 0 18px', lineHeight: 1.6 }}>Advanced aesthetics clinic{'\n'}Hall Green, Birmingham</p>
+                  {/* Hero image area */}
+                  <div style={{ height: 84, position: 'relative', overflow: 'hidden', flexShrink: 0, background: 'linear-gradient(135deg, #2A1F18 0%, #1A1A1C 50%, #3A2820 100%)' }}>
+                    {/* Botanical SVG */}
+                    <svg width="60" height="50" viewBox="0 0 60 50" fill="none" style={{ position: 'absolute', top: 0, right: 0, opacity: 0.4, pointerEvents: 'none' }}>
+                      <path d="M55 2 C40 8, 30 20, 45 35" stroke={gold} strokeWidth="0.5" fill="none" />
+                      <path d="M60 10 C50 15, 45 25, 55 38" stroke={gold} strokeWidth="0.4" fill="none" />
+                      <path d="M50 0 C35 12, 38 28, 48 40" stroke={gold} strokeWidth="0.3" fill="none" />
+                      <circle cx="45" cy="35" r="1" fill={gold} opacity="0.5" />
+                      <circle cx="55" cy="38" r="0.8" fill={gold} opacity="0.4" />
+                    </svg>
+                    {/* Text over image */}
+                    <div style={{ padding: '10px 12px' }}>
+                      <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 6, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(247,244,238,0.6)', margin: '0 0 4px' }}>Lumina Aesthetics</p>
+                      <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 18, color: cream, margin: 0, lineHeight: 1.0 }}>Your Skin.</p>
+                      <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 18, color: gold, margin: 0, lineHeight: 1.0 }}>Flawless.</p>
+                    </div>
+                  </div>
+
+                  {/* Body section */}
+                  <div style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    {/* Subtext */}
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: inkMute, lineHeight: 1.4, margin: '0 0 10px' }}>
+                      Advanced aesthetics clinic<br />Hall Green, Birmingham
+                    </p>
 
                     {/* BOOK NOW button */}
                     <motion.div
-                      animate={{ scale: [1, 1, 0.94, 1] }}
-                      transition={{ delay: 1.4, duration: 0.28, times: [0, 0.55, 0.75, 1] }}
-                      style={{ width: '100%', background: gold, borderRadius: 8, padding: '11px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      animate={{ scale: [1, 1, 0.95, 1] }}
+                      transition={{ delay: 1.2, duration: 0.25, times: [0, 0.5, 0.7, 1] }}
+                      style={{ width: '100%', background: gold, borderRadius: 4, padding: '8px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     >
-                      <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 10, color: charcoal, letterSpacing: '0.14em' }}>BOOK NOW</span>
+                      <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 9, color: charcoal, letterSpacing: '0.15em', textTransform: 'uppercase' }}>BOOK NOW</span>
                     </motion.div>
 
-                    {/* Faint botanical circle decoration */}
-                    <div style={{ position: 'absolute', bottom: -30, right: -30, width: 130, height: 130, borderRadius: '50%', border: `1px solid rgba(201,169,97,0.12)`, pointerEvents: 'none' }} />
-                    <div style={{ position: 'absolute', bottom: -10, right: -10, width: 80, height: 80, borderRadius: '50%', border: `1px solid rgba(201,169,97,0.1)`, pointerEvents: 'none' }} />
+                    {/* Trust pills */}
+                    <div style={{ display: 'flex', gap: 4, marginTop: 6 }}>
+                      {['★ 4.9 rated', 'Hall Green, B28'].map(label => (
+                        <div key={label} style={{ background: 'rgba(201,169,97,0.1)', border: '1px solid rgba(201,169,97,0.2)', borderRadius: 999, padding: '2px 7px' }}>
+                          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 7, color: inkMute }}>{label}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Divider */}
+                    <div style={{ height: 1, background: line, margin: '8px 0' }} />
+
+                    {/* Treatments row */}
+                    <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 6, letterSpacing: '0.15em', textTransform: 'uppercase', color: inkMute, margin: '0 0 5px' }}>Treatments</p>
+                    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                      {['Russian Lips', 'Lip Filler', 'Anti-Wrinkle'].map(t => (
+                        <div key={t} style={{ background: surface, border: `1px solid ${line}`, borderRadius: 4, padding: '4px 7px' }}>
+                          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 7, color: charcoal }}>{t}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Animated cursor */}
                   <motion.div
-                    initial={{ x: 180, y: 300, opacity: 0 }}
-                    animate={{ x: [180, 110, 110], y: [300, 220, 220], opacity: [0, 1, 1, 0] }}
-                    transition={{ delay: 0.8, duration: 0.9, times: [0, 0.45, 0.85, 1] }}
-                    style={{ position: 'absolute', width: 12, height: 12, pointerEvents: 'none', zIndex: 20 }}
+                    initial={{ x: 190, y: 320, opacity: 0 }}
+                    animate={{ x: [190, 120, 120], y: [320, 218, 218], opacity: [0, 1, 1, 0] }}
+                    transition={{ delay: 0.4, duration: 1.0, times: [0, 0.35, 0.82, 1] }}
+                    style={{ position: 'absolute', pointerEvents: 'none', zIndex: 20 }}
                   >
-                    {/* Cursor SVG arrow */}
-                    <svg width="12" height="12" viewBox="0 0 12 12">
+                    <svg width="11" height="11" viewBox="0 0 12 12">
                       <polygon points="1,1 1,10 4,7.5 6,11 7.5,10.3 5.5,6.8 9,6.5" fill={charcoal} stroke={surface} strokeWidth="0.5" />
                     </svg>
                   </motion.div>
