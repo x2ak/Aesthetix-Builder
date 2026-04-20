@@ -694,8 +694,37 @@ function Hero() {
         </div>
         {/* Right — Phone */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
-          style={{ display: 'flex', justifyContent: 'center' }}>
-          <PhoneAnimation />
+          style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+          {/* Floating circles around phone */}
+          {[
+            { size: 260, top: '10%',  left: '-30px',  y: [0,-18,0], dur: 10, delay: 0.3,  fill: false },
+            { size: 120, top: '55%',  left: '-10px',  y: [0,-12,0], dur: 8,  delay: 1.6,  fill: true  },
+            { size: 72,  top: '5%',   left: '15%',    y: [0,-10,0], dur: 7,  delay: 2.4,  fill: false },
+            { size: 44,  top: '75%',  left: '5%',     y: [0,-8,0],  dur: 9,  delay: 0.8,  fill: true  },
+            { size: 36,  top: '35%',  right: '5%',    y: [0,-7,0],  dur: 6.5,delay: 3.2,  fill: true  },
+          ].map((c, i) => (
+            <motion.div
+              key={`ph-${i}`}
+              animate={{ y: c.y }}
+              transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                position: 'absolute',
+                width: c.size,
+                height: c.size,
+                borderRadius: '50%',
+                border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.32)`,
+                background: c.fill ? `radial-gradient(circle, rgba(201,169,97,0.14) 0%, transparent 70%)` : 'transparent',
+                top: (c as any).top,
+                left: (c as any).left,
+                right: (c as any).right,
+                pointerEvents: 'none',
+                zIndex: 0,
+              }}
+            />
+          ))}
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <PhoneAnimation />
+          </div>
         </motion.div>
       </div>
     </section>
