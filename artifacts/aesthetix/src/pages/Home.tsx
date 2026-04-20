@@ -837,7 +837,7 @@ function Portfolio() {
                     </a>
                   )}
                   {c.demo && (
-                    <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: gold, letterSpacing: '0.02em' }}>Demo site</span>
+                    <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: gold, letterSpacing: '0.02em' }}>Demo build</span>
                   )}
                 </div>
               </div>
