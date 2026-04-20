@@ -894,8 +894,6 @@ function Pricing() {
   const PLANS = [
     {
       name: 'Starter',
-      price: '£29.99',
-      sub: 'per month · all-in',
       desc: 'Perfect for solo practitioners getting online for the first time.',
       features: ['Premium one-page website', 'Mobile-optimised & fast loading', 'Calendly or Fresha booking embedded', 'Instagram & WhatsApp links', 'Basic SEO setup', 'Hosting, security & support'],
       hero: false,
@@ -903,8 +901,6 @@ function Pricing() {
     },
     {
       name: 'Growth',
-      price: '£49.99',
-      sub: 'per month · all-in',
       desc: 'The complete digital presence. Your own booking system — no Fresha, no Booksy, no third-party fees.',
       features: ['Full multi-page bespoke website', 'YOUR OWN booking calendar', 'Clients book on YOUR site & brand', '50% deposit collection via Stripe', 'Automatic SMS + email confirmations', 'Admin portal — manage all bookings'],
       hero: true,
@@ -912,8 +908,6 @@ function Pricing() {
     },
     {
       name: 'Premium',
-      price: '£79.99',
-      sub: 'per month · all-in',
       desc: 'Everything in Growth, plus AI that books clients for you — 24/7, from first enquiry to confirmed appointment.',
       features: ['Everything in Growth', 'AI assistant trained on your services', 'AI answers questions & books 24/7', 'Team management (multi-practitioner)', 'Analytics dashboard & reporting', 'No-show recovery automations'],
       hero: false,
@@ -946,19 +940,16 @@ function Pricing() {
                     Most Popular
                   </div>
                 )}
-                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 16px' }}>{plan.name}</p>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, flexWrap: 'wrap' }}>
-                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.2rem', color: plan.hero ? cream : charcoal, lineHeight: 1, margin: 0 }}>{plan.price}</p>
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: plan.hero ? 'rgba(247,244,238,0.45)' : inkMute }}>/mo</span>
+                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 14px' }}>{plan.name}</p>
+                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '1.9rem', color: plan.hero ? cream : charcoal, lineHeight: 1.25, margin: '0 0 4px' }}>Builds start from £749</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: plan.hero ? 'rgba(247,244,238,0.4)' : inkMute, margin: '0 0 18px', letterSpacing: '0.02em' }}>bespoke quote for your clinic</p>
+                <div style={{ marginBottom: 20 }}>
+                  <WaBtn large={false} outlined={plan.hero} label="Get a quote" />
                 </div>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: plan.hero ? 'rgba(247,244,238,0.38)' : inkMute, margin: '3px 0 20px', letterSpacing: '0.02em' }}>{plan.sub}</p>
                 <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
                 <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? 'rgba(247,244,238,0.6)' : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
                 <div style={{ flex: 1 }}>
                   {plan.features.map(t => checkRow(t, plan.light))}
-                </div>
-                <div style={{ marginTop: 24 }}>
-                  <WaBtn large={true} outlined={plan.hero} label="Message on WhatsApp" />
                 </div>
               </div>
             </FadeIn>
@@ -967,7 +958,7 @@ function Pricing() {
 
         <FadeIn delay={0.3}>
           <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, textAlign: 'center', marginTop: 28 }}>
-            All plans include hosting, security updates and priority support. No setup fees. Cancel anytime.
+            All builds include hosting, ongoing support &amp; security. Every quote is bespoke — message us to discuss your clinic.
           </p>
         </FadeIn>
       </div>
