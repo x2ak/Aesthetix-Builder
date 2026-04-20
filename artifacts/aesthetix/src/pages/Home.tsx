@@ -327,34 +327,54 @@ function CalIllust() {
   );
 }
 
-/* ─── Notification Illustration ─── */
+/* ─── Email Notification Illustration ─── */
+const INBOX = [
+  { from: 'FlawlessSkin Bookings', subj: 'New booking: Sarah M', time: '2:14 PM' },
+  { from: 'FlawlessSkin Bookings', subj: 'New booking: Jade T', time: '3:02 PM' },
+  { from: 'FlawlessSkin Bookings', subj: 'New booking: Amy R', time: '4:47 PM' },
+];
 function NotifIllust() {
-  const [msgs, setMsgs] = useState<string[]>([]);
-  const all = ['New booking: Sarah M', 'New booking: Jade T', 'New booking: Amy R'];
+  const [visible, setVisible] = useState<number[]>([]);
   useEffect(() => {
     let i = 0;
     const add = () => {
-      if (i < all.length) { setMsgs(m => [...m.slice(-2), all[i]]); i++; setTimeout(add, 1100); }
-      else { setTimeout(() => { setMsgs([]); i = 0; setTimeout(add, 400); }, 1200); }
+      if (i < INBOX.length) { setVisible(v => [...v, i]); i++; setTimeout(add, 1000); }
+      else { setTimeout(() => { setVisible([]); i = 0; setTimeout(add, 600); }, 1400); }
     };
     const t = setTimeout(add, 300);
     return () => clearTimeout(t);
   }, []);
   return (
     <div style={{ width: '100%', maxWidth: 210, height: 112, margin: '0 auto' }}>
-      <div style={{ border: `1px solid ${line}`, borderRadius: 8, height: '100%', background: charcoal, padding: '8px 10px', overflow: 'hidden' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
-          <Smartphone size={9} color={gold} />
-          <span style={{ fontFamily: BODY, fontSize: 7, color: 'rgba(247,244,238,0.5)' }}>Notifications</span>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 8, height: '100%', background: surface, overflow: 'hidden' }}>
+        {/* Email app header */}
+        <div style={{ background: '#F5F5F5', padding: '5px 10px', borderBottom: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 5 }}>
+          <Mail size={9} color={gold} />
+          <span style={{ fontFamily: BODY, fontSize: 7.5, fontWeight: 500, color: charcoal }}>Inbox</span>
+          <span style={{ marginLeft: 'auto', background: gold, color: charcoal, borderRadius: 8, padding: '1px 5px', fontFamily: BODY, fontSize: 6.5, fontWeight: 600 }}>{visible.length}</span>
         </div>
-        <AnimatePresence>
-          {msgs.map((msg, i) => (
-            <motion.div key={msg + i} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-              style={{ background: charcoalSoft, borderRadius: 6, padding: '5px 8px', marginBottom: 5, borderLeft: `2px solid ${gold}` }}>
-              <p style={{ fontFamily: BODY, fontSize: 8, color: cream, margin: 0, fontWeight: 300 }}>{msg}</p>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        {/* Email rows */}
+        <div style={{ overflow: 'hidden' }}>
+          <AnimatePresence>
+            {visible.filter(idx => idx < INBOX.length).map(idx => (
+              <motion.div key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+                style={{ padding: '6px 10px', borderBottom: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 7, background: idx === visible[visible.length - 1] ? goldTint : surface }}>
+                <div style={{ width: 18, height: 18, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontFamily: BODY, fontSize: 7, fontWeight: 600, color: charcoal }}>F</span>
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{ fontFamily: BODY, fontSize: 7.5, fontWeight: 500, color: charcoal, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{INBOX[idx].subj}</p>
+                  <p style={{ fontFamily: BODY, fontSize: 6.5, fontWeight: 300, color: inkMute, margin: 0 }}>{INBOX[idx].from}</p>
+                </div>
+                <span style={{ fontFamily: BODY, fontSize: 6.5, color: inkMute, flexShrink: 0 }}>{INBOX[idx].time}</span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
