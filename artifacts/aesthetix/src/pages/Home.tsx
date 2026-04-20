@@ -1,932 +1,1000 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, Mail, MessageCircle, Menu, X, ChevronDown, Smartphone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
-/* ─── Design tokens ─── */
-const R = "#C2185B";
-const BK = "#0A0A0A";
-const OBK = "#111111";
-const CH = "#1A1A1A";
-const SRF = "#1E1E1E";
-const BDR = "#2A2A2A";
-const BDRL = "#333333";
-const WH = "#FAFAFA";
-const G1 = "#888888";
-const G2 = "#555555";
-const DISP = "'Cormorant Garamond', Georgia, serif";
-const BODY = "'DM Sans', sans-serif";
-const WA = "https://wa.me/447495963388?text=Hi%20Sim%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business%20%F0%9F%91%8B";
+/* ─── Design Tokens ─── */
+const cream = '#F7F4EE';
+const surface = '#FFFFFF';
+const charcoal = '#1A1A1C';
+const charcoalSoft = '#2E2E32';
+const inkSoft = '#4A4A4E';
+const inkMute = '#8A8A8E';
+const line = '#E5DFD3';
+const gold = '#C9A961';
+const goldHover = '#A8894A';
+const goldTint = '#F5EDD9';
+const sage = '#6B8E5A';
+const blush = '#E8D5D2';
+const DISP = "'Instrument Serif', Georgia, serif";
+const BODY = "'Inter Tight', system-ui, sans-serif";
+const WA = "https://wa.me/447495963388?text=Hi%20Sim%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20clinic!";
 
-/* ─── Section break divider ─── */
-function SectionBreak() {
+/* ─── Fade In on Scroll ─── */
+function FadeIn({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", padding: "0 48px", background: BK }}>
-      <div style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${BDR})` }} />
-      <div style={{ width: 5, height: 5, borderRadius: "50%", background: R, margin: "0 12px", flexShrink: 0, boxShadow: `0 0 8px ${R}` }} />
-      <div style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${BDR})` }} />
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.65, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      style={style}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── WhatsApp Button ─── */
+function WaBtn({ large = false, outlined = false, light = false, label = "Message on WhatsApp" }: {
+  large?: boolean; outlined?: boolean; light?: boolean; label?: string;
+}) {
+  const cls = outlined ? 'wa-btn wa-outlined' : light ? 'wa-btn wa-light' : 'wa-btn wa-default';
+  return (
+    <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} style={{ display: 'inline-block' }}>
+      <a href={WA} target="_blank" rel="noopener noreferrer" className={`${cls}${large ? ' wa-large' : ''}`}>
+        <FaWhatsapp size={large ? 16 : 14} color={gold} />
+        {label}
+      </a>
+    </motion.span>
+  );
+}
+
+/* ─── Overline Label ─── */
+function Overline({ children, centered = false }: { children: React.ReactNode; centered?: boolean }) {
+  return (
+    <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: gold, marginBottom: 16, textAlign: centered ? 'center' : 'left' }}>
+      {children}
+    </p>
+  );
+}
+
+/* ─── Section Headline ─── */
+function SectionHead({ regular, italic, size = 'clamp(2.5rem,5vw,4rem)', light = false, centered = false }: {
+  regular: string; italic: string; size?: string; light?: boolean; centered?: boolean;
+}) {
+  return (
+    <h2 style={{ fontFamily: BODY, fontWeight: 600, fontSize: size, lineHeight: 1.05, color: light ? cream : charcoal, margin: 0, textAlign: centered ? 'center' : 'left' }}>
+      {regular}{' '}
+      <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: 'block', lineHeight: 1.1 }}>{italic}</em>
+    </h2>
+  );
+}
+
+/* ─── Phone Booking Animation ─── */
+const STEP_DUR = [1900, 1900, 2400, 1900, 1900];
+function PhoneAnimation() {
+  const [step, setStep] = useState(0);
+  const [svcSel, setSvcSel] = useState(false);
+  const [calDate, setCalDate] = useState(-1);
+  const [calTime, setCalTime] = useState(-1);
+
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>;
+    const advance = (cur: number) => {
+      if (cur === 1) { setSvcSel(false); setTimeout(() => setSvcSel(true), 900); }
+      if (cur === 2) { setCalDate(-1); setCalTime(-1); setTimeout(() => setCalDate(16), 900); setTimeout(() => setCalTime(2), 1800); }
+      t = setTimeout(() => { const nx = (cur + 1) % 5; setStep(nx); advance(nx); }, STEP_DUR[cur]);
+    };
+    advance(0);
+    return () => clearTimeout(t);
+  }, []);
+
+  const DAYS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const avail = [3, 7, 9, 12, 14, 16, 18, 21, 23];
+
+  return (
+    <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ position: 'absolute', width: 320, height: 320, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.13) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
+      <motion.div
+        animate={{ y: [0, -9, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ width: 264, height: 530, background: charcoal, borderRadius: 40, padding: 12, boxShadow: `0 0 0 1.5px rgba(201,169,97,0.28), 0 36px 72px rgba(26,26,28,0.28)`, position: 'relative' }}
+      >
+        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 80, height: 26, background: charcoal, borderRadius: '0 0 14px 14px', zIndex: 10 }} />
+        <div style={{ width: '100%', height: '100%', background: cream, borderRadius: 30, overflow: 'hidden', position: 'relative' }}>
+          <AnimatePresence mode="wait">
+
+            {/* Step 0 — Clinic Website */}
+            {step === 0 && (
+              <motion.div key="s0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.4 }}
+                style={{ width: '100%', height: '100%', background: '#1A1A1C', position: 'relative' }}>
+                <div style={{ padding: '28px 18px 0' }}>
+                  <p style={{ fontFamily: BODY, fontSize: 7, letterSpacing: '0.2em', color: gold, textTransform: 'uppercase', margin: 0 }}>Lumina Aesthetics</p>
+                  <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 21, color: cream, margin: '6px 0 0', lineHeight: 1.2 }}>Book your next treatment</h3>
+                </div>
+                <div style={{ height: 110, margin: '14px 18px 0', background: 'linear-gradient(135deg,#2E2E32,#1A1A1C)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 12, color: 'rgba(247,244,238,0.25)' }}>treatment image</span>
+                </div>
+                <div style={{ padding: '14px 18px 0' }}>
+                  <p style={{ fontFamily: BODY, fontSize: 8, color: 'rgba(247,244,238,0.45)', margin: 0, lineHeight: 1.7 }}>Russian Lips · Lip Filler · Microneedling</p>
+                  <motion.button
+                    animate={{ scale: [1, 1, 0.93, 1] }}
+                    transition={{ delay: 1.2, duration: 0.3, times: [0, 0.5, 0.7, 1] }}
+                    style={{ marginTop: 14, width: '100%', padding: '10px', background: gold, color: charcoal, border: 'none', borderRadius: 8, fontFamily: BODY, fontWeight: 600, fontSize: 10, letterSpacing: '0.12em', cursor: 'pointer' }}
+                  >
+                    BOOK NOW
+                  </motion.button>
+                </div>
+                <motion.div
+                  initial={{ x: 180, y: 220, opacity: 0 }}
+                  animate={{ x: 120, y: 220, opacity: [0, 1, 1, 0] }}
+                  transition={{ delay: 0.7, duration: 0.7, times: [0, 0.2, 0.7, 1] }}
+                  style={{ position: 'absolute', width: 10, height: 10, background: cream, borderRadius: '50%', boxShadow: '0 0 8px rgba(255,255,255,0.6)', pointerEvents: 'none', zIndex: 20 }}
+                />
+              </motion.div>
+            )}
+
+            {/* Step 1 — Service Picker */}
+            {step === 1 && (
+              <motion.div key="s1" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -40, opacity: 0 }} transition={{ duration: 0.35 }}
+                style={{ width: '100%', height: '100%', padding: '28px 16px 16px' }}>
+                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: charcoal, margin: '0 0 2px' }}>Choose a service</p>
+                <p style={{ fontFamily: BODY, fontSize: 9, color: inkMute, margin: '0 0 14px' }}>Select your treatment</p>
+                {['Russian Lips', 'Lip Filler', 'Microneedling', 'Tear Trough'].map((s, i) => (
+                  <motion.div key={s} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
+                    style={{ padding: '10px 12px', marginBottom: 6, borderRadius: 8, border: `1px solid ${i === 0 && svcSel ? gold : line}`, background: i === 0 && svcSel ? goldTint : surface, display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.3s' }}>
+                    <span style={{ fontFamily: BODY, fontSize: 10, color: i === 0 && svcSel ? goldHover : inkSoft, fontWeight: i === 0 ? 500 : 300 }}>{s}</span>
+                    {i === 0 && svcSel && (
+                      <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
+                        style={{ width: 14, height: 14, background: gold, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Check size={8} color={charcoal} />
+                      </motion.div>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            {/* Step 2 — Calendar */}
+            {step === 2 && (
+              <motion.div key="s2" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: -40, opacity: 0 }} transition={{ duration: 0.35 }}
+                style={{ width: '100%', height: '100%', padding: '28px 14px 14px' }}>
+                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: charcoal, margin: '0 0 2px' }}>Pick a date</p>
+                <p style={{ fontFamily: BODY, fontSize: 9, color: inkMute, margin: '0 0 10px' }}>May 2025</p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2, marginBottom: 4 }}>
+                  {DAYS.map((d, i) => <div key={i} style={{ textAlign: 'center', fontFamily: BODY, fontSize: 7, color: inkMute }}>{d}</div>)}
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2 }}>
+                  {[null, null].map((_, i) => <div key={`e${i}`} />)}
+                  {Array.from({ length: 25 }, (_, i) => i + 1).map(d => {
+                    const isSel = calDate === d;
+                    const isAv = avail.includes(d);
+                    return (
+                      <motion.div key={d} animate={isSel ? { scale: [1, 0.85, 1] } : {}} transition={{ duration: 0.25 }}
+                        style={{ width: '100%', aspectRatio: '1', borderRadius: '50%', background: isSel ? gold : isAv ? goldTint : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={{ fontFamily: BODY, fontSize: 7, color: isSel ? charcoal : isAv ? goldHover : inkMute, fontWeight: isSel ? 600 : 300 }}>{d}</span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+                <AnimatePresence>
+                  {calDate > 0 && (
+                    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 10 }}>
+                      <p style={{ fontFamily: BODY, fontSize: 8, color: inkMute, margin: '0 0 6px' }}>Available times</p>
+                      <div style={{ display: 'flex', gap: 6 }}>
+                        {['10:00', '11:00', '14:00'].map((t, i) => (
+                          <motion.div key={t} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
+                            style={{ padding: '5px 8px', borderRadius: 6, border: `1px solid ${calTime === 2 && i === 2 ? gold : line}`, background: calTime === 2 && i === 2 ? gold : surface, fontFamily: BODY, fontSize: 9, color: calTime === 2 && i === 2 ? charcoal : inkSoft, fontWeight: calTime === 2 && i === 2 ? 600 : 300, transition: 'all 0.3s' }}>
+                            {t}
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            )}
+
+            {/* Step 3 — Confirmation */}
+            {step === 3 && (
+              <motion.div key="s3" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
+                style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.2 }}
+                  style={{ width: 54, height: 54, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
+                  <Check size={26} color={surface} strokeWidth={2.5} />
+                </motion.div>
+                {[
+                  { t: 'Booking Confirmed ✓', w: 500, s: 14, c: charcoal, mb: 14 },
+                  { t: 'Sarah M · Russian Lips', w: 300, s: 11, c: inkSoft, mb: 5 },
+                  { t: 'Friday 16 May · 2:00 PM', w: 300, s: 11, c: inkSoft, mb: 5 },
+                  { t: 'FlawlessSkin · Hall Green', w: 300, s: 10, c: inkMute, mb: 0 },
+                ].map((row, i) => (
+                  <motion.p key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1 }}
+                    style={{ fontFamily: BODY, fontWeight: row.w, fontSize: row.s, color: row.c, marginBottom: row.mb, textAlign: 'center' }}>
+                    {row.t}
+                  </motion.p>
+                ))}
+              </motion.div>
+            )}
+
+            {/* Step 4 — SMS Toast */}
+            {step === 4 && (
+              <motion.div key="s4" style={{ width: '100%', height: '100%', position: 'relative', background: cream }}>
+                <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, opacity: 0.25 }}>
+                  <div style={{ width: 54, height: 54, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
+                    <Check size={26} color={surface} strokeWidth={2.5} />
+                  </div>
+                  <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 14, color: charcoal, textAlign: 'center' }}>Booking Confirmed ✓</p>
+                </div>
+                <motion.div initial={{ y: -90, opacity: 0 }} animate={{ y: 14, opacity: 1 }} transition={{ duration: 0.45, ease: 'easeOut' }}
+                  style={{ position: 'absolute', top: 0, left: 12, right: 12, background: surface, borderRadius: 14, padding: '12px 14px', boxShadow: '0 8px 32px rgba(26,26,28,0.16)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div style={{ display: 'flex', gap: 4 }}>
+                    <MessageCircle size={14} color={gold} />
+                    <Mail size={14} color={gold} />
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, color: charcoal, margin: 0 }}>Confirmation sent ✓</p>
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: inkMute, margin: 0 }}>SMS + Email sent to Sarah</p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+
+          </AnimatePresence>
+        </div>
+      </motion.div>
     </div>
   );
 }
 
-/* ─── Mobile hook ─── */
-function useIsMobile() {
-  const [m, setM] = useState(window.innerWidth < 768);
+/* ─── Browser Illustration ─── */
+function BrowserIllust() {
+  const [f, setF] = useState(0);
   useEffect(() => {
-    const fn = () => setM(window.innerWidth < 768);
-    window.addEventListener("resize", fn);
-    return () => window.removeEventListener("resize", fn);
+    let i = 0;
+    const t = setInterval(() => { i = (i + 1) % 4; setF(i); }, 900);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div style={{ width: '100%', maxWidth: 210, height: 112, margin: '0 auto' }}>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 8, overflow: 'hidden', height: '100%', background: surface }}>
+        <div style={{ background: '#F2F2F2', padding: '5px 8px', display: 'flex', alignItems: 'center', gap: 4, borderBottom: `1px solid ${line}` }}>
+          <div style={{ display: 'flex', gap: 3 }}>
+            {['#FF5F57', '#FFBD2E', '#28C840'].map(c => <div key={c} style={{ width: 6, height: 6, borderRadius: '50%', background: c }} />)}
+          </div>
+          <div style={{ flex: 1, background: '#E8E8E8', borderRadius: 3, padding: '2px 8px', marginLeft: 4 }}>
+            <span style={{ fontFamily: BODY, fontSize: 7, color: inkMute }}>yourclinic.co.uk</span>
+          </div>
+        </div>
+        <div style={{ padding: 12 }}>
+          <motion.div animate={{ opacity: f > 0 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: '60%', height: 5, background: charcoal, borderRadius: 2, marginBottom: 7 }} />
+          <motion.div animate={{ opacity: f > 1 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: '85%', height: 3, background: line, borderRadius: 2, marginBottom: 4 }} />
+          <motion.div animate={{ opacity: f > 1 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.1 }} style={{ width: '70%', height: 3, background: line, borderRadius: 2, marginBottom: 12 }} />
+          <motion.div animate={{ opacity: f > 2 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: 52, height: 20, background: gold, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontFamily: BODY, fontSize: 7, color: charcoal, fontWeight: 600 }}>BOOK NOW</span>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Calendar Illustration ─── */
+function CalIllust() {
+  const [filled, setFilled] = useState(0);
+  const [full, setFull] = useState(false);
+  const goldDays = [4, 7, 11, 15];
+  useEffect(() => {
+    const go = () => {
+      let i = 0;
+      const fill = () => {
+        if (i < goldDays.length) { i++; setFilled(i); setTimeout(fill, 650); }
+        else { setFull(true); setTimeout(() => { setFull(false); setFilled(0); i = 0; setTimeout(fill, 400); }, 1200); }
+      };
+      fill();
+    };
+    const t = setTimeout(go, 300);
+    return () => clearTimeout(t);
+  }, []);
+  return (
+    <div style={{ width: '100%', maxWidth: 210, height: 112, margin: '0 auto' }}>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 8, padding: 10, height: '100%', background: surface, position: 'relative' }}>
+        <p style={{ fontFamily: BODY, fontSize: 8, fontWeight: 500, color: charcoal, margin: '0 0 7px' }}>May 2025</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 3 }}>
+          {Array.from({ length: 21 }, (_, i) => {
+            const d = i + 1;
+            const gi = goldDays.indexOf(d);
+            const isG = gi !== -1 && gi < filled;
+            return (
+              <motion.div key={d} animate={{ background: isG ? gold : goldTint }} transition={{ duration: 0.3 }}
+                style={{ aspectRatio: '1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ fontFamily: BODY, fontSize: 6, color: isG ? charcoal : inkMute }}>{d}</span>
+              </motion.div>
+            );
+          })}
+        </div>
+        <AnimatePresence>
+          {full && (
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
+              style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', background: charcoal, color: cream, borderRadius: 6, padding: '4px 10px', fontFamily: BODY, fontSize: 9, fontWeight: 500 }}>
+              CALENDAR FULL ✓
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Notification Illustration ─── */
+function NotifIllust() {
+  const [msgs, setMsgs] = useState<string[]>([]);
+  const all = ['New booking: Sarah M', 'New booking: Jade T', 'New booking: Amy R'];
+  useEffect(() => {
+    let i = 0;
+    const add = () => {
+      if (i < all.length) { setMsgs(m => [...m.slice(-2), all[i]]); i++; setTimeout(add, 1100); }
+      else { setTimeout(() => { setMsgs([]); i = 0; setTimeout(add, 400); }, 1200); }
+    };
+    const t = setTimeout(add, 300);
+    return () => clearTimeout(t);
+  }, []);
+  return (
+    <div style={{ width: '100%', maxWidth: 210, height: 112, margin: '0 auto' }}>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 8, height: '100%', background: charcoal, padding: '8px 10px', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+          <Smartphone size={9} color={gold} />
+          <span style={{ fontFamily: BODY, fontSize: 7, color: 'rgba(247,244,238,0.5)' }}>Notifications</span>
+        </div>
+        <AnimatePresence>
+          {msgs.map((msg, i) => (
+            <motion.div key={msg + i} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+              style={{ background: charcoalSoft, borderRadius: 6, padding: '5px 8px', marginBottom: 5, borderLeft: `2px solid ${gold}` }}>
+              <p style={{ fontFamily: BODY, fontSize: 8, color: cream, margin: 0, fontWeight: 300 }}>{msg}</p>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Calendar Bento Animation ─── */
+function CalBento() {
+  const [booked, setBooked] = useState(0);
+  const goldDates = [5, 9, 14, 18];
+  const dates = Array.from({ length: 21 }, (_, i) => i + 2);
+  useEffect(() => {
+    const t = setInterval(() => setBooked(b => b >= goldDates.length ? 0 : b + 1), 850);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div style={{ marginTop: 20 }}>
+      <p style={{ fontFamily: BODY, fontSize: 9, color: inkMute, margin: '0 0 8px', letterSpacing: '0.1em' }}>JUNE 2025</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 5 }}>
+        {dates.map(d => {
+          const gi = goldDates.indexOf(d);
+          const isB = gi !== -1 && gi < booked;
+          return (
+            <motion.div key={d} animate={{ background: isB ? gold : goldTint }} transition={{ duration: 0.35 }}
+              style={{ aspectRatio: '1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontFamily: BODY, fontSize: 8, color: isB ? charcoal : inkMute }}>{d}</span>
+            </motion.div>
+          );
+        })}
+      </div>
+      <div style={{ marginTop: 14, display: 'flex', alignItems: 'center', gap: 6 }}>
+        <motion.span key={booked} initial={{ opacity: 0, y: -3 }} animate={{ opacity: 1, y: 0 }}
+          style={{ fontFamily: BODY, fontSize: 13, fontWeight: 600, color: charcoal }}>
+          {booked} slot{booked !== 1 ? 's' : ''} booked
+        </motion.span>
+        <span style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>this week</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Nav ─── */
+function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  const links = [{ l: 'Work', h: '#work' }, { l: 'Services', h: '#services' }, { l: 'Pricing', h: '#pricing' }, { l: 'Results', h: '#results' }];
+  return (
+    <>
+      <nav style={{ position: 'sticky', top: 0, zIndex: 50, background: scrolled ? 'rgba(247,244,238,0.92)' : 'rgba(247,244,238,0.75)', backdropFilter: `blur(${scrolled ? 18 : 8}px)`, borderBottom: `1px solid ${scrolled ? line : 'transparent'}`, transition: 'all 0.3s ease' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.5" />
+              <path d="M14 7 L20.5 21 M14 7 L7.5 21 M10.5 16.5 L17.5 16.5" stroke={gold} strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M20.5 21 Q24 17 22.5 13" stroke={gold} strokeWidth="1" strokeLinecap="round" opacity="0.45" />
+            </svg>
+            <div>
+              <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 14, color: charcoal, letterSpacing: '0.15em', margin: 0, lineHeight: 1 }}>AESTHETIX</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: gold, letterSpacing: '0.22em', margin: 0, lineHeight: 1.5 }}>SYSTEMS</p>
+            </div>
+          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="hidden-mobile">
+            {links.map(l => (
+              <a key={l.l} href={l.h} className="nav-gold-link" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, letterSpacing: '0.05em', textDecoration: 'none', transition: 'color 0.2s' }}>{l.l}</a>
+            ))}
+            <WaBtn />
+          </div>
+          <button onClick={() => setOpen(true)} className="show-mobile" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
+            <Menu size={22} color={charcoal} />
+          </button>
+        </div>
+      </nav>
+      <AnimatePresence>
+        {open && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            style={{ position: 'fixed', inset: 0, zIndex: 100, background: charcoal, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => setOpen(false)} style={{ position: 'absolute', top: 22, right: 24, background: 'none', border: 'none', cursor: 'pointer' }}>
+              <X size={24} color={cream} />
+            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 32 }}>
+              {links.map((l, i) => (
+                <motion.a key={l.l} href={l.h} onClick={() => setOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
+                  style={{ fontFamily: BODY, fontWeight: 300, fontSize: 30, color: cream, letterSpacing: '0.08em', textDecoration: 'none' }}>
+                  {l.l}
+                </motion.a>
+              ))}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }}>
+                <WaBtn large />
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+/* ─── Hero ─── */
+function Hero() {
+  const isMobile = useIsMobile();
+  return (
+    <section style={{ background: cream, padding: isMobile ? '80px 20px 60px' : '120px 0 80px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 48 : 80, alignItems: 'center' }}>
+        {/* Left — Copy */}
+        <div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: '6px 14px', marginBottom: 28 }}>
+            <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold }}>
+              Websites & Booking Systems · For UK Aesthetics Clinics
+            </span>
+          </motion.div>
+          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ fontFamily: BODY, fontWeight: 600, fontSize: 'clamp(3rem,6vw,5rem)', lineHeight: 1.0, color: charcoal, margin: '0 0 20px' }}>
+            Turn followers into{' '}
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: 'block', lineHeight: 1.1 }}>bookings</em>
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.55 }}
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.75, maxWidth: 480, margin: '0 0 32px' }}>
+            We build premium websites with built-in booking systems for aesthetics clinics, lash techs, and beauty specialists. Look luxury. Book clients 24/7. Stop chasing DMs.
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.72 }}
+            style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: 28 }}>
+            <WaBtn large />
+            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: charcoal, textDecoration: 'none', letterSpacing: '0.02em' }}>
+              See recent work →
+            </a>
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
+            style={{ paddingTop: 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Trusted by</span>
+            {['FlawlessSkin', 'Hira Aesthetics', 'Permadoll'].map(n => (
+              <span key={n} style={{ background: goldTint, padding: '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: 11, color: goldHover }}>{n}</span>
+            ))}
+            <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in Birmingham, UK</span>
+          </motion.div>
+        </div>
+        {/* Right — Phone */}
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}>
+          <PhoneAnimation />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Problem Strip ─── */
+function ProblemStrip() {
+  const isMobile = useIsMobile();
+  const stats = [
+    { n: '73%', s: 'of beauty clients book outside 9–5. Your DMs aren\'t open at midnight.' },
+    { n: '4+ hrs', s: 'lost every week by the average clinic managing bookings manually.' },
+    { n: 'Gone.', s: 'Clients who can\'t book instantly go to a competitor who lets them.' },
+  ];
+  return (
+    <section style={{ background: charcoal, padding: '52px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 0 : 0 }}>
+        {stats.map((st, i) => (
+          <FadeIn key={i} delay={i * 0.12}>
+            <div style={{ textAlign: 'center', padding: isMobile ? '28px 0' : '0 40px', borderBottom: isMobile && i < 2 ? `1px solid rgba(201,169,97,0.15)` : 'none', borderRight: !isMobile && i < 2 ? `1px solid rgba(201,169,97,0.18)` : 'none' }}>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '2.8rem', color: gold, lineHeight: 1, margin: 0 }}>{st.n}</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: 'rgba(247,244,238,0.65)', lineHeight: 1.65, marginTop: 10, maxWidth: 220, marginLeft: 'auto', marginRight: 'auto' }}>{st.s}</p>
+            </div>
+          </FadeIn>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── How It Works ─── */
+function HowItWorks() {
+  const isMobile = useIsMobile();
+  const cards = [
+    { n: '01', title: 'We design your site', body: 'A bespoke, luxury website built around your brand. No templates. No compromises. Designed to convert visitors into bookings.', Illust: BrowserIllust },
+    { n: '02', title: 'We build your calendar in', body: 'Your own booking calendar — live on your site. No Fresha. No Booksy. No third-party fees. Just your brand, your clients, your bookings.', Illust: CalIllust },
+    { n: '03', title: 'You get bookings 24/7', body: 'Clients book while you sleep. You wake up to a full calendar. No chasing. No confusion. Just pure, automated revenue.', Illust: NotifIllust },
+  ];
+  return (
+    <section id="services" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
+        <FadeIn><Overline>How It Works</Overline></FadeIn>
+        <FadeIn delay={0.1} style={{ marginBottom: 56 }}><SectionHead regular="From DMs to" italic="dashboards" /></FadeIn>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24 }}>
+          {cards.map((c, i) => (
+            <FadeIn key={i} delay={i * 0.12}>
+              <div className="hiw-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 32, height: '100%' }}>
+                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: gold, opacity: 0.38, lineHeight: 1, margin: 0 }}>{c.n}</p>
+                <div style={{ margin: '16px 0' }}><c.Illust /></div>
+                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 17, color: charcoal, margin: '0 0 10px' }}>{c.title}</h3>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.72, margin: 0 }}>{c.body}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Portfolio ─── */
+function Portfolio() {
+  const isMobile = useIsMobile();
+  const clients = [
+    { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', grad: `linear-gradient(135deg, ${goldTint}, ${blush})` },
+    { name: 'Hira Aesthetics', loc: 'Bury, Manchester', url: 'https://hiraaesthetics.com', grad: `linear-gradient(135deg, ${blush}, ${goldTint})` },
+    { name: 'Permadoll Aesthetics', loc: 'Birmingham', url: 'https://permadoll-aesthetics.co.uk', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
+  ];
+  return (
+    <section id="work" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
+        <FadeIn><Overline>Recent Builds</Overline></FadeIn>
+        <FadeIn delay={0.1} style={{ marginBottom: 56 }}><SectionHead regular="Websites that" italic="book themselves" /></FadeIn>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24 }}>
+          {clients.map((c, i) => (
+            <FadeIn key={i} delay={i * 0.1}>
+              <div className="portfolio-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, overflow: 'hidden' }}>
+                <div style={{ aspectRatio: '16/10', background: c.grad, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div className="portfolio-img" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 18, color: 'rgba(26,26,28,0.2)' }}>{c.name}</span>
+                  </div>
+                </div>
+                <div style={{ padding: '20px 22px' }}>
+                  <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 21, color: charcoal, margin: '0 0 5px' }}>{c.name}</h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: gold, margin: '0 0 14px' }}>{c.loc}</p>
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="gold-underline portfolio-arrow"
+                    style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: charcoal, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                    View site →
+                  </a>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Bento Grid ─── */
+function Bento() {
+  const isMobile = useIsMobile();
+  return (
+    <section style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
+        <FadeIn><Overline>What's Included</Overline></FadeIn>
+        <FadeIn delay={0.1} style={{ marginBottom: 48 }}><SectionHead regular="Everything your clinic" italic="actually needs" /></FadeIn>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.4fr 1fr', gap: 16 }}>
+          {/* Card 1 — Large, spans 2 rows */}
+          <FadeIn delay={0.1}>
+            <div style={{ background: cream, border: `1px solid rgba(201,169,97,0.28)`, borderLeft: `3px solid ${gold}`, borderRadius: 14, padding: 36, gridRow: isMobile ? 'auto' : 'span 2', height: '100%' }}>
+              <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 20, color: charcoal, lineHeight: 1.35, margin: '0 0 14px' }}>Your own booking system.<br />Your brand. Zero middlemen.</h3>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.78, margin: 0 }}>
+                No Fresha. No Booksy. No monthly fees to third-party platforms eating into your revenue. Your clients book directly on your site — your calendar, your rules.
+              </p>
+              <CalBento />
+            </div>
+          </FadeIn>
+          {/* Right column */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {/* Card 2 */}
+            <FadeIn delay={0.15}>
+              <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 28, display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                <div style={{ width: 48, height: 80, background: charcoal, borderRadius: 8, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Smartphone size={20} color={gold} />
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 16, color: charcoal, margin: '0 0 8px' }}>Instagram & TikTok ready</h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Optimised for mobile where your clients actually find you. Loads in under 2 seconds.</p>
+                </div>
+              </div>
+            </FadeIn>
+            {/* Card 3 */}
+            <FadeIn delay={0.2}>
+              <div style={{ background: blush, borderRadius: 14, padding: 28 }}>
+                <div style={{ background: charcoal, borderRadius: '12px 12px 12px 4px', padding: '12px 14px', marginBottom: 10 }}>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: cream, margin: 0, lineHeight: 1.6 }}>Hi Sarah 💋 Your Russian Lips appointment is confirmed for Fri 16 May at 2pm. See you then! — FlawlessSkin</p>
+                </div>
+                <div style={{ background: surface, borderRadius: 8, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Mail size={12} color={inkMute} />
+                  <div>
+                    <p style={{ fontFamily: BODY, fontSize: 10, fontWeight: 500, color: charcoal, margin: 0 }}>Your booking — confirmed ✓</p>
+                    <p style={{ fontFamily: BODY, fontSize: 9, fontWeight: 300, color: inkMute, margin: 0 }}>Hi Sarah, we look forward to...</p>
+                  </div>
+                  <span style={{ marginLeft: 'auto', background: sage, color: surface, borderRadius: 4, padding: '2px 6px', fontFamily: BODY, fontSize: 8, fontWeight: 500 }}>Delivered</span>
+                </div>
+                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '14px 0 6px' }}>Automatic SMS + email confirmations</h3>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Every booking triggers instant confirmations. Zero admin. Zero no-shows chasing.</p>
+              </div>
+            </FadeIn>
+            {/* Card 4 */}
+            <FadeIn delay={0.25}>
+              <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 28 }}>
+                <div style={{ marginBottom: 14 }}>
+                  {[
+                    { t: 'Hi! How much is Russian Lips?', from: 'client' },
+                    { t: 'Hi! Russian Lips is £95 for 1ml 💋 Want to book?', from: 'clinic' },
+                    { t: 'Yes please!', from: 'client' },
+                  ].map((msg, i) => (
+                    <div key={i} style={{ display: 'flex', justifyContent: msg.from === 'clinic' ? 'flex-end' : 'flex-start', marginBottom: 5 }}>
+                      <div style={{ background: msg.from === 'clinic' ? gold : goldTint, borderRadius: msg.from === 'clinic' ? '12px 12px 4px 12px' : '12px 12px 12px 4px', padding: '7px 10px', maxWidth: '80%' }}>
+                        <p style={{ fontFamily: BODY, fontSize: 10, color: msg.from === 'clinic' ? charcoal : inkSoft, margin: 0, fontWeight: 300 }}>{msg.t}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '0 0 6px' }}>AI assistant that actually books</h3>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Answers treatment questions and converts enquiries into bookings. 24/7. Automatically.</p>
+              </div>
+            </FadeIn>
+          </div>
+          {/* Card 5 — Full width */}
+          <FadeIn delay={0.3} style={{ gridColumn: isMobile ? '1' : '1 / -1' }}>
+            <div style={{ background: charcoal, borderRadius: 14, padding: 36, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 32, alignItems: 'center' }}>
+              <div>
+                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 20, color: cream, margin: '0 0 14px', lineHeight: 1.35 }}>Deposits & no-show protection</h3>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: 'rgba(247,244,238,0.6)', lineHeight: 1.78, margin: 0, maxWidth: 380 }}>
+                  Collect a 50% deposit at booking, automatically. No more last-minute cancellations. No more lost revenue. Stripe-powered, bank-grade secure.
+                </p>
+              </div>
+              <div style={{ display: 'flex', justifyContent: isMobile ? 'flex-start' : 'flex-end' }}>
+                <div style={{ background: charcoalSoft, borderRadius: 14, padding: '20px 28px', minWidth: 200, position: 'relative' }}>
+                  <div style={{ position: 'absolute', top: 12, right: 14, display: 'flex', gap: 4, alignItems: 'center' }}>
+                    <span style={{ background: sage, color: surface, fontFamily: BODY, fontSize: 8, fontWeight: 500, borderRadius: 4, padding: '2px 7px' }}>DEPOSIT SECURED</span>
+                  </div>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.5)', letterSpacing: '0.15em', margin: '24px 0 6px' }}>•••• •••• •••• 4242</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={gold} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span style={{ fontFamily: BODY, fontSize: 11, color: gold }}>Stripe-secured</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Pricing ─── */
+function Pricing() {
+  const isMobile = useIsMobile();
+  const checkRow = (text: string, light = false) => (
+    <div key={text} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10 }}>
+      <Check size={14} color={gold} style={{ marginTop: 2, flexShrink: 0 }} />
+      <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: light ? 'rgba(247,244,238,0.8)' : inkSoft, lineHeight: 1.55 }}>{text}</span>
+    </div>
+  );
+  return (
+    <section id="pricing" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
+        <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
+        <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: 56 }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24, alignItems: 'start' }}>
+          {/* Starter */}
+          <FadeIn delay={0.1}>
+            <div className="pricing-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 32, height: '100%' }}>
+              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 16px' }}>Starter</p>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: charcoal, lineHeight: 1, margin: 0 }}>£750</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, margin: '4px 0 20px' }}>one-time build fee</p>
+              <div style={{ height: 1, background: line, margin: '0 0 20px' }} />
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>Perfect for solo practitioners and those starting online for the first time.</p>
+              {['Premium one-page website', 'Mobile-optimised & fast loading', 'Your existing Calendly or Fresha embedded', 'Instagram & WhatsApp links', 'Basic SEO setup', 'Delivered in 5–7 days'].map(t => checkRow(t))}
+              <div style={{ marginTop: 24 }}><WaBtn large label="Message on WhatsApp" /></div>
+            </div>
+          </FadeIn>
+          {/* Growth — Hero Card */}
+          <FadeIn delay={0.18}>
+            <div className="pricing-card" style={{ background: charcoal, border: `2px solid ${gold}`, borderRadius: 14, padding: 32, position: 'relative', marginTop: isMobile ? 28 : 0 }}>
+              <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: gold, color: charcoal, fontFamily: BODY, fontWeight: 600, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '5px 14px', borderRadius: 999 }}>
+                Most Popular
+              </div>
+              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(247,244,238,0.55)', margin: '0 0 16px' }}>Growth</p>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: cream, lineHeight: 1, margin: 0 }}>£1,499</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', margin: '4px 0 20px' }}>one-time build fee</p>
+              <div style={{ height: 1, background: 'rgba(201,169,97,0.2)', margin: '0 0 20px' }} />
+              {/* Ownership statement */}
+              <div style={{ background: 'rgba(201,169,97,0.08)', borderLeft: `2px solid ${gold}`, borderRadius: '0 8px 8px 0', padding: '12px 16px', marginBottom: 20 }}>
+                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: cream, lineHeight: 1.6, margin: '0 0 6px' }}>Your own booking system — built into your website. No Fresha. No Booksy. No third-party fees. Ever.</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: gold, margin: 0 }}>This is YOUR calendar. YOUR brand. YOUR clients. Nobody else's platform.</p>
+              </div>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.6)', lineHeight: 1.7, margin: '0 0 20px' }}>The complete digital presence for your clinic. A bespoke website with a fully custom booking system — no third-party platforms, no monthly subscriptions, no redirecting clients elsewhere to book.</p>
+              {['Full multi-page bespoke website', 'YOUR OWN booking calendar (not Fresha/Booksy)', 'Clients book on YOUR site, in YOUR brand', '50% deposit collection via Stripe', 'Automatic SMS + email confirmations', 'Admin portal — manage bookings & clients', 'Block dates, set hours, manage availability', 'Before & after gallery', 'Delivered in 7–10 days'].map(t => checkRow(t, true))}
+              {/* Comparison */}
+              <div style={{ background: 'rgba(201,169,97,0.08)', border: `1px solid rgba(201,169,97,0.22)`, borderRadius: 8, padding: '14px 16px', marginTop: 20 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, marginBottom: 8 }}>
+                  <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, color: gold, letterSpacing: '0.1em' }}>WITH US</span>
+                  <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, color: inkMute, letterSpacing: '0.1em' }}>FRESHA / BOOKSY</span>
+                </div>
+                {[['Your brand', 'Their brand'], ['Your URL', 'Their URL'], ['One-time fee', 'Monthly forever'], ['You own it', 'They own it']].map(([l, r], i) => (
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingTop: 6, paddingBottom: 6, borderTop: '1px solid rgba(201,169,97,0.1)' }}>
+                    <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: sage }}>✓ {l}</span>
+                    <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute }}>✗ {r}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ marginTop: 24 }}><WaBtn large outlined label="Message on WhatsApp" /></div>
+            </div>
+          </FadeIn>
+          {/* Premium */}
+          <FadeIn delay={0.26}>
+            <div className="pricing-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 32, height: '100%' }}>
+              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 16px' }}>Premium</p>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: charcoal, lineHeight: 1, margin: 0 }}>£2,499+</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, margin: '4px 0 20px' }}>starting price · fully bespoke</p>
+              <div style={{ height: 1, background: line, margin: '0 0 20px' }} />
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>Everything in Growth, plus AI that books clients for you. 24/7 automation from first enquiry to confirmed booking.</p>
+              {['Everything in Growth', 'YOUR OWN booking calendar (no third parties)', 'AI assistant trained on your treatments', 'AI answers questions & books clients 24/7', 'Team management for multi-practitioner clinics', 'Analytics dashboard', 'Automated rebooking SMS campaigns', 'No-show recovery automations', 'Priority support & monthly retainer option'].map(t => checkRow(t))}
+              <div style={{ marginTop: 24 }}><WaBtn large label="Message on WhatsApp" /></div>
+            </div>
+          </FadeIn>
+        </div>
+        {/* Note */}
+        <FadeIn delay={0.3}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, textAlign: 'center', marginTop: 28 }}>
+            Currently booking mid-May slots. April calendar is full. Message now to secure your build date.
+          </p>
+        </FadeIn>
+        {/* Hosting tiers */}
+        <FadeIn delay={0.35} style={{ marginTop: 36 }}>
+          <div style={{ background: goldTint, border: `1px solid rgba(201,169,97,0.2)`, borderRadius: 12, padding: '20px 28px' }}>
+            <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: charcoal, margin: '0 0 14px' }}>Monthly hosting & support included:</p>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 10 : 20 }}>
+              {[{ plan: 'Starter', price: '£25/mo' }, { plan: 'Growth', price: '£35/mo' }, { plan: 'Premium', price: '£45/mo' }].map(h => (
+                <div key={h.plan} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: surface, borderRadius: 8, border: `1px solid ${line}` }}>
+                  <span style={{ fontFamily: BODY, fontSize: 13, color: charcoal, fontWeight: 400 }}>{h.plan}</span>
+                  <span style={{ fontFamily: BODY, fontSize: 13, color: gold, fontWeight: 500 }}>{h.price}</span>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, margin: '12px 0 0' }}>Includes hosting, security, updates and priority support.</p>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Testimonials ─── */
+function Testimonials() {
+  const isMobile = useIsMobile();
+  const reviews = [
+    { q: 'Booking enquiries doubled in the first month. Clients actually book now instead of just following.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F' },
+    { q: 'I used to spend hours a week on Instagram DMs. Now the site handles all of it. I just show up and do treatments.', name: 'Hira Aesthetics', biz: 'Manchester', init: 'H' },
+    { q: 'The site looks more premium than clinics charging double what I do. Clients comment on it every single week.', name: 'Permadoll', biz: 'Birmingham', init: 'P' },
+    { q: 'Sim turned it around in under a week. The deposit system alone has saved me hundreds in no-shows.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F' },
+  ];
+  return (
+    <section id="results" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
+        <FadeIn><Overline>Results</Overline></FadeIn>
+        <FadeIn delay={0.1} style={{ marginBottom: 48 }}>
+          <SectionHead regular="What happens when your site" italic="actually works" size="clamp(2rem,4vw,3rem)" />
+        </FadeIn>
+        <div className={isMobile ? '' : 'testimonial-scroll'} style={isMobile ? { display: 'flex', flexDirection: 'column', gap: 20 } : {}}>
+          {reviews.map((r, i) => (
+            <FadeIn key={i} delay={i * 0.1} style={{ minWidth: isMobile ? undefined : 340, flexShrink: 0 }}>
+              <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 28, boxShadow: '0 4px 20px rgba(26,26,28,0.06)', height: '100%' }}>
+                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '4rem', color: gold, opacity: 0.28, lineHeight: 0, display: 'block', marginBottom: 18 }}>"</span>
+                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '1.12rem', color: charcoal, lineHeight: 1.67, margin: '0 0 20px' }}>{r.q}</p>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <div style={{ width: 32, height: 32, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: charcoal }}>{r.init}</span>
+                    </div>
+                    <div>
+                      <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 12, color: charcoal, margin: 0 }}>{r.name}</p>
+                      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0 }}>{r.biz}</p>
+                    </div>
+                  </div>
+                  <span style={{ fontFamily: BODY, fontSize: 12, color: gold }}>★★★★★</span>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FAQ ─── */
+function FAQ() {
+  const isMobile = useIsMobile();
+  const [open, setOpen] = useState<number | null>(null);
+  const faqs = [
+    { q: 'How long does a build take?', a: 'Most websites are live within 5–10 days of our first conversation. We move fast — we know you can\'t wait weeks to start taking bookings.' },
+    { q: 'Do I own my website?', a: 'Yes — completely. You own the code, the domain, the content and all your client data. We host it for you as part of the monthly support plan, which you can cancel anytime with 30 days notice.' },
+    { q: 'Do I still need Fresha or Booksy?', a: 'No — and that\'s the whole point. Our Growth and Premium packages include your own fully custom booking system, built directly into your website. Your clients book on YOUR site, in YOUR brand, with no redirects to third-party platforms. No monthly Fresha fees. No Booksy branding. Just your clinic, end to end.' },
+    { q: 'Can you integrate my existing Calendly or Fresha?', a: 'Yes — on the Starter package we embed your existing booking tool cleanly into your new site. But most clients switch to our built-in system once they see how much better the experience is for their clients.' },
+    { q: 'Does the AI assistant actually book clients?', a: 'Yes. It\'s trained on your specific treatments, prices and availability. It answers questions, qualifies leads and books clients straight into your calendar — automatically, 24/7. Not just a chatbot that says "DM us for more info."' },
+    { q: 'Do you offer ongoing support?', a: 'Yes — monthly support plans start at £25/mo and include hosting, security updates, minor content changes and priority support. No long-term contracts. Cancel anytime.' },
+  ];
+  return (
+    <section style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
+        <FadeIn><Overline centered>FAQ</Overline></FadeIn>
+        <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: 56 }}>
+          <h2 style={{ fontFamily: BODY, fontWeight: 600, fontSize: 'clamp(2rem,4vw,3rem)', color: charcoal, margin: 0, lineHeight: 1.1 }}>
+            Questions we get{' '}
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>every time</em>
+          </h2>
+        </FadeIn>
+        {faqs.map((f, i) => (
+          <FadeIn key={i} delay={i * 0.06}>
+            <div className="faq-row" style={{ borderBottom: `1px solid ${line}` }} onClick={() => setOpen(open === i ? null : i)}>
+              <div style={{ padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}>
+                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: 0, paddingRight: 16 }}>{f.q}</h3>
+                <motion.div animate={{ rotate: open === i ? 180 : 0 }} transition={{ duration: 0.25 }} style={{ flexShrink: 0 }}>
+                  <ChevronDown size={18} color={gold} />
+                </motion.div>
+              </div>
+              <AnimatePresence>
+                {open === i && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }} style={{ overflow: 'hidden' }}>
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.82, paddingBottom: 20, margin: 0 }}>{f.a}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </FadeIn>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── Final CTA ─── */
+function FinalCTA() {
+  const isMobile = useIsMobile();
+  return (
+    <section style={{ background: charcoal, padding: isMobile ? '80px 20px' : '120px 0', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 400, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.12) 0%, transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: isMobile ? 0 : '0 32px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+        <FadeIn>
+          <h2 style={{ fontFamily: BODY, fontWeight: 600, fontSize: 'clamp(2.8rem,5vw,4.5rem)', color: cream, lineHeight: 1.0, margin: '0 0 0' }}>
+            Ready for a site that actually{' '}
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: 'block', lineHeight: 1.15 }}>books clients?</em>
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.15}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, color: 'rgba(247,244,238,0.58)', lineHeight: 1.72, maxWidth: 460, margin: '22px auto 0' }}>
+            Mid-May slots are filling up. If you want your site live before summer, now is the time.
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.28}>
+          <div style={{ marginTop: 38, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+            <WaBtn large light label="Message on WhatsApp" />
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.35)', margin: 0 }}>Reply in under 2 hours, Mon–Sat.</p>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Footer ─── */
+function Footer() {
+  const isMobile = useIsMobile();
+  return (
+    <footer style={{ background: charcoal, borderTop: `1px solid rgba(201,169,97,0.14)`, padding: '48px 0 32px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '1fr 1fr 1fr 1fr', gap: isMobile ? '28px 20px' : 32 }}>
+          {/* Col 1 Brand */}
+          <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.5" />
+                <path d="M14 7 L20.5 21 M14 7 L7.5 21 M10.5 16.5 L17.5 16.5" stroke={gold} strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <div>
+                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, letterSpacing: '0.15em', margin: 0, lineHeight: 1 }}>AESTHETIX</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: gold, letterSpacing: '0.22em', margin: 0, lineHeight: 1.5 }}>SYSTEMS</p>
+              </div>
+            </div>
+            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 13, color: 'rgba(247,244,238,0.42)', margin: '12px 0 4px', lineHeight: 1.6 }}>We build the digital presence your clinic deserves.</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.28)', margin: 0 }}>Birmingham, UK</p>
+          </div>
+          {/* Col 2 Work */}
+          <div>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>Work</p>
+            {['FlawlessSkin', 'Hira Aesthetics', 'Permadoll'].map(n => (
+              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', margin: '0 0 9px', cursor: 'pointer' }}>{n}</p>
+            ))}
+          </div>
+          {/* Col 3 Services */}
+          <div>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>Services</p>
+            {['Websites', 'Booking Systems', 'AI Assistant', 'Monthly Hosting'].map(n => (
+              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', margin: '0 0 9px' }}>{n}</p>
+            ))}
+          </div>
+          {/* Col 4 Contact */}
+          <div>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>Contact</p>
+            <a href={WA} target="_blank" rel="noopener noreferrer" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textDecoration: 'none', display: 'block', marginBottom: 9 }}>Message on WhatsApp →</a>
+            <a href="https://instagram.com/aesthetixsystems" target="_blank" rel="noopener noreferrer" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', textDecoration: 'none', display: 'block' }}>@aesthetixsystems</a>
+          </div>
+        </div>
+        <div style={{ height: 1, background: 'rgba(201,169,97,0.14)', margin: '32px 0 24px' }} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.22)' }}>Aesthetix Systems · Birmingham, UK · © 2026</span>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.22)' }}>Built by Aesthetix Systems</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─── Mobile Hook ─── */
+function useIsMobile() {
+  const [m, setM] = useState(window.innerWidth < 769);
+  useEffect(() => {
+    const fn = () => setM(window.innerWidth < 769);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
   }, []);
   return m;
 }
 
-/* ─── Animated counter ─── */
-function Counter({ end, prefix = "", suffix = "" }: { end: number; prefix?: string; suffix?: string }) {
-  const [val, setVal] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started.current) {
-        started.current = true;
-        const dur = 1500;
-        const start = Date.now();
-        const tick = () => {
-          const t = Math.min((Date.now() - start) / dur, 1);
-          const ease = 1 - Math.pow(1 - t, 3);
-          setVal(Math.round(ease * end));
-          if (t < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      }
-    }, { threshold: 0.5 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [end]);
-  return <span ref={ref}>{prefix}{val}{suffix}</span>;
-}
-
-/* ─── Fade-in on scroll ─── */
-function FadeIn({ children, style = {}, delay = 0 }: { children: React.ReactNode; style?: React.CSSProperties; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [vis, setVis] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.05 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-  return (
-    <div ref={ref} style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(20px)", transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`, ...style }}>
-      {children}
-    </div>
-  );
-}
-
-/* ─── Rose hover button ─── */
-function RoseBtn({ href, children, outline = false, style = {} }: { href: string; children: React.ReactNode; outline?: boolean; style?: React.CSSProperties }) {
-  return (
-    <a href={href}
-      style={{
-        display: "inline-block", padding: "13px 28px", borderRadius: 1, textDecoration: "none",
-        fontFamily: BODY, fontWeight: 400, fontSize: 12, textTransform: "uppercase" as const, letterSpacing: "0.1em",
-        transition: "background 0.2s, color 0.2s, border-color 0.2s",
-        ...(outline
-          ? { background: "transparent", color: WH, border: `1px solid ${BDRL}` }
-          : { background: R, color: WH, border: "none", boxShadow: "0 0 30px rgba(194,24,91,0.25)" }),
-        ...style,
-      }}
-      onMouseEnter={e => {
-        if (outline) { e.currentTarget.style.borderColor = WH; }
-        else { e.currentTarget.style.background = "#A01048"; }
-      }}
-      onMouseLeave={e => {
-        if (outline) { e.currentTarget.style.borderColor = BDRL; }
-        else { e.currentTarget.style.background = R; }
-      }}
-    >{children}</a>
-  );
-}
-
+/* ─── Home ─── */
 export default function Home() {
-  const isMobile = useIsMobile();
-  const px = isMobile ? "20px" : "48px";
-  const sectionPy = isMobile ? "64px" : "100px";
-
-  const [scrolled, setScrolled] = useState(false);
-  const [topBarVis, setTopBarVis] = useState(true);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [faqOpen, setFaqOpen] = useState<number | null>(null);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formName, setFormName] = useState("");
-  const [formPhone, setFormPhone] = useState("");
-  const [formEmail, setFormEmail] = useState("");
-  const [formMessage, setFormMessage] = useState("");
-  const [formSocial, setFormSocial] = useState("");
-  const lastScroll = useRef(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 60);
-      setTopBarVis(y < lastScroll.current || y < 40);
-      lastScroll.current = y;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const msg = [
-      "New enquiry from Aesthetix Systems website",
-      "",
-      `Name: ${formName}`,
-      `Phone: ${formPhone}`,
-      `Email: ${formEmail}`,
-      formSocial ? `Social: ${formSocial}` : null,
-      "",
-      "Message:",
-      formMessage,
-    ].filter(l => l !== null).join("\n");
-    window.open(`https://wa.me/447495963388?text=${encodeURIComponent(msg)}`, "_blank");
-    setFormSubmitted(true);
-  };
-
-  const navLinks = [
-    { label: "Work", href: "#work" },
-    { label: "Services", href: "#services" },
-    { label: "Process", href: "#process" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Contact", href: "#contact" },
-  ];
-
-  const inputStyle: React.CSSProperties = {
-    width: "100%", background: CH, border: `1px solid ${BDR}`, borderRadius: 0,
-    padding: "12px 14px", fontFamily: BODY, fontWeight: 300, fontSize: 14, color: WH, outline: "none",
-    boxSizing: "border-box",
-  };
-
-  const labelStyle: React.CSSProperties = {
-    fontFamily: BODY, fontWeight: 300, fontSize: 10, textTransform: "uppercase",
-    letterSpacing: "0.1em", color: G1, display: "block", marginBottom: 6,
-  };
-
   return (
-    <div style={{ fontFamily: BODY, background: BK, color: WH, overflowX: "hidden" }}>
-
-      {/* ── TOP BAR ── */}
-      <div style={{
-        background: R, padding: "9px 16px", textAlign: "center",
-        fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 10 : 11, letterSpacing: "0.07em", color: WH,
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-        transform: topBarVis ? "translateY(0)" : "translateY(-100%)",
-        transition: "transform 0.2s ease",
-      }}>
-        {isMobile ? "Birmingham, UK · Currently Accepting Clients" : "Birmingham, UK · @aesthetix_systems · Currently Accepting New Clients"}
-      </div>
-
-      {/* ── NAV ── */}
-      <nav style={{
-        position: "fixed", top: topBarVis ? 37 : 0, left: 0, right: 0, zIndex: 150, height: 56,
-        display: "flex", alignItems: "center", padding: `0 ${px}`,
-        background: scrolled ? "rgba(10,10,10,0.96)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid ${BDR}` : "none",
-        transition: "all 0.3s ease",
-      }}>
-        <a href="#home" style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 2, lineHeight: 1 }}>
-          <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 14, color: WH, letterSpacing: "0.18em" }}>AESTHETIX</span>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: R, letterSpacing: "0.22em" }}>SYSTEMS</span>
-        </a>
-
-        {!isMobile && (
-          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 32 }}>
-            {navLinks.map(l => (
-              <a key={l.label} href={l.href} className="nav-link">{l.label}</a>
-            ))}
-            <a href="#contact" style={{
-              background: R, color: WH, padding: "7px 16px", borderRadius: 2,
-              fontFamily: BODY, fontWeight: 400, fontSize: 11, letterSpacing: "0.08em", textDecoration: "none",
-            }}
-              onMouseEnter={e => e.currentTarget.style.background = "#A01048"}
-              onMouseLeave={e => e.currentTarget.style.background = R}
-            >Start a Project</a>
-          </div>
-        )}
-
-        {isMobile && (
-          <button style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: 8 }} onClick={() => setMobileOpen(true)}>
-            <div style={{ width: 20, height: 2, background: R, marginBottom: 4 }} />
-            <div style={{ width: 20, height: 2, background: R, marginBottom: 4 }} />
-            <div style={{ width: 20, height: 2, background: R }} />
-          </button>
-        )}
-      </nav>
-
-      {/* Mobile overlay */}
-      {mobileOpen && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 300, background: BK, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-          <button onClick={() => setMobileOpen(false)} style={{ position: "absolute", top: 20, right: 20, background: "none", border: "none", color: WH, fontSize: 28, cursor: "pointer" }}>✕</button>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
-            {navLinks.map((l, i) => (
-              <div key={l.label} style={{ width: "100%" }}>
-                <a href={l.href} onClick={() => setMobileOpen(false)} style={{
-                  display: "block", fontFamily: DISP, fontStyle: "italic", fontWeight: 300,
-                  fontSize: "2rem", color: WH, textDecoration: "none", padding: "14px 0", textAlign: "center",
-                }}>{l.label}</a>
-                {i < navLinks.length - 1 && <div style={{ width: 160, height: 1, background: R, margin: "0 auto" }} />}
-              </div>
-            ))}
-          </div>
-          <a href="#contact" onClick={() => setMobileOpen(false)} style={{
-            marginTop: 36, background: R, color: WH, padding: "13px 36px",
-            fontFamily: BODY, fontWeight: 400, fontSize: 12, letterSpacing: "0.1em", textDecoration: "none", borderRadius: 1,
-          }}>Start a Project</a>
-        </div>
-      )}
-
-      {/* ── HERO ── */}
-      <section id="home" style={{ minHeight: isMobile ? "auto" : "100dvh", background: BK, position: "relative", overflow: "hidden", display: "flex", alignItems: "center" }}>
-        {/* Ghost wordmark */}
-        <div style={{
-          position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
-          fontFamily: DISP, fontWeight: 300, fontSize: isMobile ? "clamp(5rem, 40vw, 10rem)" : "clamp(8rem, 18vw, 16rem)",
-          color: WH, opacity: 0.025, whiteSpace: "nowrap", pointerEvents: "none",
-          letterSpacing: "0.1em", zIndex: 0, userSelect: "none",
-        }}>AESTHETIX</div>
-
-        {/* Rose orb */}
-        <div style={{
-          position: "absolute", width: isMobile ? 300 : 600, height: isMobile ? 300 : 600,
-          background: "radial-gradient(circle at center, rgba(194,24,91,0.12) 0%, transparent 70%)",
-          top: "50%", right: isMobile ? "-10%" : "15%", transform: "translateY(-50%)",
-          pointerEvents: "none", zIndex: 1,
-        }} />
-
-        {/* Scan lines */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.008) 2px, rgba(255,255,255,0.008) 4px)",
-          pointerEvents: "none", zIndex: 2,
-        }} />
-
-        <div style={{
-          position: "relative", zIndex: 3, maxWidth: 1200, margin: "0 auto",
-          padding: isMobile ? `0 20px` : `0 48px`, width: "100%",
-          paddingTop: topBarVis ? (isMobile ? "90px" : "101px") : "64px",
-          paddingBottom: isMobile ? "56px" : "0px",
-        }}>
-          <div className="fade-up-1" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: isMobile ? 20 : 0 }}>
-            <div className="pulse-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: R, flexShrink: 0 }} />
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: R, letterSpacing: "0.15em", textTransform: "uppercase" }}>
-              Aesthetix Systems · London, UK
-            </span>
-          </div>
-
-          <h1 className="fade-up-2" style={{
-            fontFamily: DISP, fontStyle: "italic", fontWeight: 300,
-            fontSize: isMobile ? "clamp(3rem, 13vw, 4.5rem)" : "clamp(4rem, 8.5vw, 8.5rem)",
-            lineHeight: 0.95, color: WH, margin: isMobile ? "0 0 0" : "20px 0 0", letterSpacing: "-0.5px",
-          }}>
-            <span style={{ display: "block" }}>Your Clinic.</span>
-            <span style={{ display: "block", color: R }}>Your Brand.</span>
-            <span style={{ display: "block" }}>Online.</span>
-          </h1>
-
-          <p className="fade-up-3" style={{
-            fontFamily: DISP, fontStyle: "italic", fontWeight: 300,
-            fontSize: isMobile ? "1.2rem" : "clamp(1.3rem, 2.2vw, 1.7rem)",
-            color: WH, lineHeight: 1.6, maxWidth: 520,
-            margin: isMobile ? "24px 0 32px" : "24px 0 40px",
-          }}>
-            Premium websites, booking systems and AI assistants built exclusively for aesthetics businesses. Your digital presence, elevated.
-          </p>
-
-          <div className="fade-up-4" style={{ display: "flex", gap: 14, flexDirection: isMobile ? "column" : "row", flexWrap: "wrap" }}>
-            <a href="#contact" style={{
-              background: R, color: WH, padding: isMobile ? "13px 0" : "13px 28px",
-              borderRadius: 1, fontFamily: BODY, fontWeight: 400, fontSize: 12,
-              textTransform: "uppercase", letterSpacing: "0.1em", textDecoration: "none",
-              textAlign: "center", display: "block",
-              boxShadow: "0 0 40px rgba(194,24,91,0.3)",
-            }}
-              onMouseEnter={e => e.currentTarget.style.background = "#A01048"}
-              onMouseLeave={e => e.currentTarget.style.background = R}
-            >Start a Project</a>
-            <a href="#work" style={{
-              background: "transparent", border: `1px solid ${BDRL}`, color: G1,
-              padding: isMobile ? "13px 0" : "13px 28px", borderRadius: 1,
-              fontFamily: BODY, fontWeight: 400, fontSize: 12,
-              textTransform: "uppercase", letterSpacing: "0.1em",
-              textDecoration: "none", textAlign: "center", display: "block",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = WH; e.currentTarget.style.color = WH; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = BDRL; e.currentTarget.style.color = G1; }}
-            >View Our Work</a>
-          </div>
-
-          {/* Stats */}
-          <div className="fade-up-5" style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, auto)",
-            gap: isMobile ? "20px 16px" : "0",
-            columnGap: isMobile ? "16px" : "48px",
-            marginTop: isMobile ? 32 : 64,
-            paddingTop: isMobile ? 24 : 40,
-            borderTop: `1px solid ${BDR}`,
-          }}>
-            {[
-              { num: 10, suf: "+", label: "Clinics Launched" },
-              { num: 0, pre: "£", label: "Setup Surprises" },
-              { suf: "24/7", label: "AI Coverage", raw: true },
-              { suf: "100%", label: "Aesthetics Focused", raw: true },
-            ].map((s, i) => (
-              <div key={i}>
-                <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "2rem" : "2.8rem", color: WH, lineHeight: 1 }}>
-                  {s.raw ? s.suf : <Counter end={s.num!} prefix={s.pre} suffix={s.suf} />}
-                </div>
-                <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: G1, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 4 }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll indicator — hidden on mobile */}
-        {!isMobile && (
-          <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: G2, letterSpacing: "0.15em" }}>SCROLL</span>
-            <div className="scroll-line" style={{ width: 1, background: R }} />
-          </div>
-        )}
-      </section>
-
-      <SectionBreak />
-
-      {/* ── WORK / PORTFOLIO ── */}
-      <section id="work" style={{ background: OBK, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
-          <FadeIn style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 40 }}>
-            <div>
-              <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 10, textTransform: "uppercase" }}>Our Work</div>
-              <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "2rem" : "clamp(2.5rem, 5vw, 4rem)", color: WH, lineHeight: 1.1 }}>Built for beauty.</div>
-            </div>
-            {!isMobile && (
-              <a href="#contact" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1, textDecoration: "none" }}
-                onMouseEnter={e => e.currentTarget.style.color = R}
-                onMouseLeave={e => e.currentTarget.style.color = G1}
-              >Start your project →</a>
-            )}
-          </FadeIn>
-
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 2 }}>
-            {[
-              { full: true, gradient: "linear-gradient(135deg, #1A0A12, #3D1020)", tag: "AESTHETICS CLINIC · BIRMINGHAM", name: "Dermadoll Aesthetics", services: "Website · Booking System · Admin Portal", live: true, href: "https://dermadoll-aesthetics.co.uk" },
-              { full: false, gradient: "linear-gradient(135deg, #0D1520, #1A2A3D)", tag: "SKIN CLINIC · BIRMINGHAM", name: "FlawlessSkin", services: "Website · Stripe Payments · Luxury Design", href: "https://flawless-skin.co.uk" },
-              { full: false, gradient: "linear-gradient(135deg, #1A1508, #2E2510)", tag: "AESTHETICS CLINIC · DEMO", name: "Starr Aesthetics", services: "Website · Booking · Treatment Menu", href: "#contact" },
-            ].map((card, i) => (
-              <FadeIn key={i} delay={i * 80}
-                style={{ gridColumn: (!isMobile && card.full) ? "1 / -1" : undefined }}
-              >
-                <div className="portfolio-card" style={{
-                  position: "relative", background: card.gradient,
-                  aspectRatio: (!isMobile && card.full) ? "8/5" : "4/3",
-                  cursor: card.href ? "pointer" : "default",
-                }}
-                  onClick={() => card.href && window.open(card.href, card.href.startsWith("http") ? "_blank" : "_self")}
-                >
-                  <div className="card-overlay" style={{ position: "absolute", inset: 0, background: "rgba(194,24,91,0.08)" }} />
-                  {!isMobile && <div className="card-arrow" style={{ position: "absolute", top: 24, right: 24, fontFamily: DISP, fontSize: "2rem", color: R }}>→</div>}
-                  {card.live && <div style={{ position: "absolute", top: 16, right: 16, background: R, color: WH, padding: "3px 10px", borderRadius: 20, fontFamily: BODY, fontWeight: 300, fontSize: 10 }}>Live ↗</div>}
-                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "20px 16px" : 28, background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)" }}>
-                    <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: R, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>{card.tag}</div>
-                    <div style={{ fontFamily: DISP, fontStyle: "italic", fontSize: isMobile ? 18 : 22, color: WH, marginBottom: 3 }}>{card.name}</div>
-                    <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: G1 }}>{card.services}</div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: 40 }}>
-            <RoseBtn href="#contact">Start Your Project →</RoseBtn>
-          </div>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── SERVICES ── */}
-      <section id="services" style={{ background: BK, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>What We Build</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.9rem" : "clamp(2.5rem, 5vw, 4rem)", color: WH, lineHeight: 1.1 }}>
-              Everything your clinic needs.<br />Nothing you don't.
-            </div>
-          </FadeIn>
-
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 1, background: BDR, marginTop: 48 }}>
-            {[
-              { n: "01", title: "Premium Websites", desc: "A website that sells while you sleep.", features: ["Fully custom design, built around your brand", "Mobile-first, fast-loading, SEO ready", "Treatments, pricing, about, gallery sections", "Delivered in 3–5 days"] },
-              { n: "02", title: "Booking Systems", desc: "Take deposits. Block your calendar. Stop the no-shows.", features: ["Custom calendar and availability management", "50% Stripe deposit collected at booking", "Automated confirmation emails", "Reschedule and cancellation policy enforcement"] },
-              { n: "03", title: "AI Assistant", desc: "24/7 support, trained on your business.", features: ["Trained on your treatments, prices, FAQs", "Talks exactly like you — your tone, your brand", "Answers client questions around the clock", "Captures enquiries and booking requests overnight"] },
-            ].map((s, i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <div className="service-cell" style={{ background: BK, padding: isMobile ? "28px 20px" : "40px 36px" }}>
-                  <div className="service-num" style={{ fontFamily: DISP, fontStyle: "italic", fontSize: "3rem", color: BDRL, lineHeight: 1, marginBottom: 16 }}>{s.n}</div>
-                  <div className="service-title" style={{ fontFamily: BODY, fontWeight: 400, fontSize: 15, color: WH, marginBottom: 10 }}>{s.title}</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1, lineHeight: 1.75, marginBottom: 16 }}>{s.desc}</div>
-                  <div style={{ borderTop: `1px solid ${BDR}`, paddingTop: 14, display: "flex", flexDirection: "column", gap: 8 }}>
-                    {s.features.map((f, j) => (
-                      <div key={j} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1 }}>
-                        <span style={{ color: R, marginRight: 8 }}>—</span>{f}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          <FadeIn>
-            <div style={{ padding: isMobile ? "36px 0" : "60px 48px", borderTop: `1px solid ${BDR}`, textAlign: "center", marginTop: 0 }}>
-              <p style={{ fontFamily: DISP, fontStyle: "italic", fontSize: isMobile ? "1.3rem" : "clamp(1.4rem, 2.5vw, 2rem)", color: R, lineHeight: 1.5 }}>
-                "Every website we build comes with a strategy, not just a template."
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── AI ASSISTANT ── */}
-      <section id="ai" style={{ background: CH, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}`, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 80 }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>AI Assistant</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.9rem" : "clamp(2.5rem, 5vw, 4rem)", color: WH, lineHeight: 1.1 }}>
-              Your best employee.<br />Never takes a day off.
-            </div>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: G1, lineHeight: 1.8, marginTop: 16, maxWidth: 420 }}>
-              We build and train a custom AI assistant for your clinic. It lives on your website, knows everything about your business, and handles enquiries 24 hours a day — even while you're in treatment.
-            </p>
-            <div style={{ marginTop: 24 }}>
-              {[
-                { t: "Trained on your business", s: "Treatments, prices, FAQs, aftercare — all loaded in" },
-                { t: "Sounds like you", s: "Custom tone, your brand voice, your personality" },
-                { t: "Captures leads while you sleep", s: "Collects name, number and enquiry automatically" },
-                { t: "Answers instantly", s: "No more clients waiting hours for a reply on Instagram" },
-                { t: "Works on any device", s: "Embedded directly into your website — no extra apps" },
-              ].map((f, i) => (
-                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "10px 0", borderBottom: i < 4 ? `1px solid ${BDR}` : "none" }}>
-                  <span style={{ color: R, flexShrink: 0, fontFamily: BODY, fontSize: 14 }}>—</span>
-                  <div>
-                    <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: WH }}>{f.t}</div>
-                    <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: G1, marginTop: 2 }}>{f.s}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <RoseBtn href="#contact" style={{ marginTop: 24 }}>Add AI to My Website</RoseBtn>
-          </FadeIn>
-
-          {/* Chat mock */}
-          <FadeIn delay={200}>
-            <div style={{ background: SRF, border: `1px solid ${BDR}`, borderRadius: 2, overflow: "hidden", maxWidth: isMobile ? "100%" : "unset" }}>
-              <div style={{ background: OBK, padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, borderBottom: `1px solid ${BDR}` }}>
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22C55E", flexShrink: 0 }} />
-                <div>
-                  <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 12, color: WH }}>Lumi — Dermadoll Aesthetics</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: G1 }}>AI Assistant · Online now</div>
-                </div>
-              </div>
-              <div style={{ padding: "16px 14px", display: "flex", flexDirection: "column", gap: 10 }}>
-                <div style={{ alignSelf: "flex-end", background: R, padding: "9px 12px", borderRadius: "2px 12px 12px 12px", fontFamily: BODY, fontWeight: 300, fontSize: 13, color: WH, maxWidth: "80%" }}>
-                  Hi! How much is lip filler?
-                </div>
-                <div style={{ alignSelf: "flex-start", background: BDR, padding: "9px 12px", borderRadius: "12px 2px 12px 12px", fontFamily: BODY, fontWeight: 300, fontSize: 13, color: WH, maxWidth: "85%", lineHeight: 1.5 }}>
-                  Hi! Lip filler starts from £100 for 0.5ml and up to £150 for 1ml. Russian technique also available!<br /><br />Would you like to book in?
-                </div>
-                <div style={{ alignSelf: "flex-end", background: R, padding: "9px 12px", borderRadius: "2px 12px 12px 12px", fontFamily: BODY, fontWeight: 300, fontSize: 13, color: WH, maxWidth: "80%" }}>
-                  Yes please! What dates?
-                </div>
-                <div style={{ alignSelf: "flex-start", background: BDR, padding: "9px 12px", borderRadius: "12px 2px 12px 12px", fontFamily: BODY, fontWeight: 300, fontSize: 13, color: WH, maxWidth: "85%", lineHeight: 1.5 }}>
-                  We have:<br />· Thursday 17th — 2pm, 4pm<br />· Friday 18th — 10am, 12pm<br /><br />Which works?
-                </div>
-                <div style={{ alignSelf: "flex-start", background: BDR, padding: "9px 14px", borderRadius: "12px 2px 12px 12px", display: "flex", gap: 4, alignItems: "center" }}>
-                  <div className="typing-dot-1" style={{ width: 6, height: 6, borderRadius: "50%", background: G1 }} />
-                  <div className="typing-dot-2" style={{ width: 6, height: 6, borderRadius: "50%", background: G1 }} />
-                  <div className="typing-dot-3" style={{ width: 6, height: 6, borderRadius: "50%", background: G1 }} />
-                </div>
-              </div>
-              <div style={{ background: OBK, padding: "10px 12px", borderTop: `1px solid ${BDR}`, display: "flex", gap: 8, alignItems: "center" }}>
-                <div style={{ flex: 1, background: SRF, border: `1px solid ${BDR}`, padding: "8px 10px", borderRadius: 2, fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G2 }}>Type a message...</div>
-                <div style={{ width: 30, height: 30, background: R, borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={WH} strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                </div>
-              </div>
-            </div>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: G2, fontStyle: "italic", textAlign: "center", marginTop: 10 }}>
-              * AI assistant demo — based on a real client implementation
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── PROCESS ── */}
-      <section id="process" style={{ background: OBK, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>How It Works</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.9rem" : "clamp(2.5rem, 5vw, 4rem)", color: WH, lineHeight: 1.1 }}>
-              From first message to<br />live in days.
-            </div>
-          </FadeIn>
-
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? "28px 20px" : "0", marginTop: 48 }}>
-            {[
-              { n: "1", title: "Discovery Call", desc: "We learn your brand, clients and goals.", time: "Day 1" },
-              { n: "2", title: "Design & Build", desc: "We design and build your website, booking system and AI.", time: "Days 2–4" },
-              { n: "3", title: "You Review", desc: "You see the full site before it goes live. We refine until it's perfect.", time: "Day 5" },
-              { n: "4", title: "Go Live", desc: "Your new digital presence launches. Domain, hosting, testing — all handled.", time: "Day 6–7" },
-            ].map((s, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div style={{ paddingRight: (!isMobile && i < 3) ? 24 : 0, paddingLeft: (!isMobile && i > 0) ? 24 : 0, borderRight: (!isMobile && i < 3) ? `1px solid ${BDR}` : "none" }}>
-                  <div style={{ width: 44, height: 44, border: `1px solid ${R}`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16, background: OBK }}>
-                    <span style={{ fontFamily: DISP, fontStyle: "italic", fontSize: 18, color: R }}>{s.n}</span>
-                  </div>
-                  <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: WH, marginBottom: 8 }}>{s.title}</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1, lineHeight: 1.65 }}>{s.desc}</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.1em", marginTop: 10 }}>{s.time}</div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          <FadeIn delay={300}>
-            <div style={{
-              marginTop: 40, padding: isMobile ? 24 : 40, background: SRF,
-              border: `1px solid ${BDR}`, borderLeft: `3px solid ${R}`,
-              display: "flex", flexDirection: isMobile ? "column" : "row",
-              justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center",
-              gap: 24,
-            }}>
-              <div style={{ fontFamily: DISP, fontStyle: "italic", fontSize: isMobile ? "1.2rem" : "1.5rem", color: WH, lineHeight: 1.4 }}>
-                Most clients are live within one week of their first message.
-              </div>
-              <RoseBtn href="#contact" style={{ flexShrink: 0, whiteSpace: "nowrap" as const }}>Start the Process →</RoseBtn>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── PRICING ── */}
-      <section id="pricing" style={{ background: BK, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: `0 ${px}` }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>Pricing</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.9rem" : "clamp(2.5rem, 5vw, 4rem)", color: WH, lineHeight: 1.1 }}>
-              Transparent pricing.<br />No surprises.
-            </div>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1, marginTop: 12 }}>
-              All prices in GBP. Payment split 50% to start, 50% on completion.
-            </p>
-          </FadeIn>
-
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 1, background: BDR, marginTop: 40 }}>
-            {[
-              { name: "STARTER", price: "£499.99", sub: "one-time build fee", tag: "", highlight: false, features: ["Custom single-page website", "Treatment menu and pricing", "Instagram + WhatsApp contact links", "Mobile optimised", "Hosting: £25/mo"] },
-              { name: "CORE", price: "£749.99", sub: "one-time build fee", tag: "MOST POPULAR", highlight: true, features: ["Everything in Starter", "Multi-page website (up to 6 sections)", "Custom booking calendar", "Stripe deposit collection", "Automated email confirmations", "Before & after gallery", "Hosting: £35/mo"] },
-              { name: "PREMIUM", price: "£1,099.99", sub: "one-time build fee", tag: "", highlight: false, features: ["Everything in Core", "Custom AI assistant trained on your business", "AI answers client questions 24/7", "AI captures leads overnight", "Admin portal — manage bookings and clients", "Priority support", "Hosting: £45/mo"] },
-            ].map((p, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div style={{
-                  background: BK, padding: isMobile ? "28px 20px" : 40, position: "relative",
-                  borderTop: p.highlight ? `3px solid ${R}` : `1px solid ${BDR}`,
-                }}>
-                  {p.tag && <div style={{ position: "absolute", top: p.highlight ? 14 : 12, right: 14, fontFamily: BODY, fontWeight: 300, fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: R }}>{p.tag}</div>}
-                  <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.15em", color: R, marginBottom: 10 }}>{p.name}</div>
-                  <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: "3rem", color: WH, lineHeight: 1 }}>{p.price}</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: R, marginTop: 4 }}>{p.sub}</div>
-                  <div style={{ height: 1, background: BDR, margin: "20px 0" }} />
-                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                    {p.features.map((f, j) => (
-                      <div key={j} style={{ display: "flex", gap: 10 }}>
-                        <span style={{ color: R, flexShrink: 0, fontFamily: BODY, fontSize: 13 }}>→</span>
-                        <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1 }}>{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <a href="#contact" style={{
-                    display: "block", textAlign: "center", marginTop: 24, padding: "13px 0", borderRadius: 1,
-                    fontFamily: BODY, fontWeight: 400, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em",
-                    textDecoration: "none", transition: "background 0.2s",
-                    ...(p.highlight ? { background: R, color: WH, border: "none" } : { background: "transparent", color: WH, border: `1px solid ${BDRL}` }),
-                  }}
-                    onMouseEnter={e => { if (p.highlight) e.currentTarget.style.background = "#A01048"; }}
-                    onMouseLeave={e => { if (p.highlight) e.currentTarget.style.background = R; }}
-                  >Get Started →</a>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          <FadeIn delay={200}>
-            <div style={{ display: "flex", gap: 32, paddingTop: 32, borderTop: `1px solid ${BDR}`, marginTop: 1, flexDirection: isMobile ? "column" : "row" }}>
-              <div style={{ flex: 1, fontFamily: BODY, fontWeight: 300, fontSize: 13, color: R, lineHeight: 1.8 }}>
-                All projects include a discovery call, custom design, one round of revisions, mobile testing and handover. No hidden extras.
-              </div>
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
-                {["50% to start, 50% on completion", "No lock-in contracts on hosting", "Domain setup guidance included", "Revisions until you're happy"].map((t, i) => (
-                  <div key={i} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1, display: "flex", gap: 8 }}>
-                    <span style={{ color: R }}>✓</span>{t}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── ABOUT ── */}
-      <section id="about" style={{ background: CH, padding: `${sectionPy} ${px}` }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "5fr 4fr", gap: isMobile ? 40 : 80 }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>About</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.9rem" : "clamp(2.5rem, 5vw, 3.5rem)", color: WH, lineHeight: 1.1 }}>
-              Built by someone who<br />understands your industry.
-            </div>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: G1, lineHeight: 1.85, marginTop: 20 }}>
-              <p>Aesthetix Systems was built by Sim — a Birmingham-based developer and designer who works exclusively with aesthetics clinics and beauty businesses.</p>
-              <p style={{ marginTop: 14 }}>Every website is built from scratch, to your brand, with your clients in mind. No templates. No generic layouts. No agencies that also build plumbing websites.</p>
-              <p style={{ marginTop: 14 }}>Just premium digital work, for the industry that deserves it most.</p>
-            </div>
-            <div style={{ marginTop: 24, fontFamily: BODY, fontWeight: 300, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.12em", color: G2 }}>
-              Birmingham, UK · Est. 2024 · Aesthetics Only · @aesthetix_systems
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={200}>
-            <div style={{ borderLeft: `2px solid ${R}`, paddingLeft: 24 }}>
-              <p style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.3rem" : "clamp(1.4rem, 3vw, 2.2rem)", color: WH, lineHeight: 1.4 }}>
-                "I only work with aesthetics businesses. That focus is what makes the work better."
-              </p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1, marginTop: 10 }}>— Sim, Aesthetix Systems</p>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: `1px solid ${BDR}`, marginTop: 28 }}>
-              {[{ n: "10+", l: "Clinics Launched" }, { n: "7", l: "Days to Go Live" }, { n: "100%", l: "Aesthetics Focused" }, { n: "24/7", l: "AI Coverage" }].map((s, i) => (
-                <div key={i} style={{ padding: 18, borderRight: i % 2 === 0 ? `1px solid ${BDR}` : "none", borderBottom: i < 2 ? `1px solid ${BDR}` : "none" }}>
-                  <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: "2rem", color: R, lineHeight: 1 }}>{s.n}</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: G1, textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 4 }}>{s.l}</div>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── TESTIMONIALS ── */}
-      <section id="proof" style={{ background: OBK, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 ${px}` }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>What Clients Say</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "2rem" : "clamp(2.5rem, 5vw, 4rem)", color: WH }}>Results speak.</div>
-          </FadeIn>
-
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 1, background: BDR, marginTop: 40 }}>
-            {[
-              { quote: "Sim delivered exactly what I asked for — and more. The site looks genuinely high-end and the booking system has completely changed how clients book with me.", name: "Niamh", business: "Dermadoll Aesthetics", initials: "N", service: "Website + Booking" },
-              { quote: "I was sceptical about the AI assistant but it now handles enquiries while I'm in treatments. Clients get answers immediately and I wake up to bookings.", name: "Tyler", business: "The Peel Room", initials: "T", service: "Website + AI Assistant" },
-              { quote: "Turned around a full site in under a week. It looks better than clinics charging ten times what I do. Clients comment on how professional it looks.", name: "Mimi", business: "Mimis Aesthetics", initials: "M", service: "Full Website Build" },
-            ].map((t, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div style={{ background: OBK, padding: isMobile ? "28px 20px" : 36 }}>
-                  <span style={{ fontFamily: DISP, fontStyle: "italic", fontSize: "4rem", color: R, opacity: 0.3, lineHeight: 0, display: "block", marginBottom: 16 }}>"</span>
-                  <p style={{ fontFamily: DISP, fontStyle: "italic", fontSize: "1.1rem", color: WH, lineHeight: 1.65 }}>{t.quote}</p>
-                  <div style={{ marginTop: 20, paddingTop: 16, borderTop: `1px solid ${BDR}`, display: "flex", alignItems: "center", gap: 10, justifyContent: "space-between", flexWrap: "wrap" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: R, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BODY, fontWeight: 400, fontSize: 12, color: WH, flexShrink: 0 }}>{t.initials}</div>
-                      <div>
-                        <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: WH }}>{t.name}</div>
-                        <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: G1 }}>{t.business}</div>
-                      </div>
-                    </div>
-                    <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: R, textTransform: "uppercase", letterSpacing: "0.1em" }}>{t.service}</div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── FAQ ── */}
-      <section id="faq" style={{ background: BK, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 800, margin: "0 auto", padding: `0 ${px}` }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>Questions</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.9rem" : "clamp(2rem, 4vw, 3.5rem)", color: WH }}>Before you reach out.</div>
-          </FadeIn>
-
-          <div style={{ marginTop: 40 }}>
-            {[
-              { q: "How quickly can you build my website?", a: "Most websites are live within 5–7 days of our first conversation. We move fast because we know aesthetics businesses can't wait weeks." },
-              { q: "Do I need to provide my own photos?", a: "Not for the initial build — we use professional placeholder layouts so you can see the design before you have photos. You can swap them in any time." },
-              { q: "What is the AI assistant exactly?", a: "It's a custom chatbot trained specifically on your business — your treatments, prices, FAQs, aftercare advice, booking process. It sits on your website and answers client questions 24/7 in your tone and brand voice." },
-              { q: "Do I own the website?", a: "Yes. You own all the content, images and branding. We host it on your behalf as part of the monthly retainer, which you can cancel with 30 days' notice." },
-              { q: "What's included in the monthly hosting fee?", a: "Hosting, performance monitoring, security updates, minor content tweaks (text/price changes), and priority support. No surprise invoices." },
-              { q: "Do you work with businesses outside Birmingham?", a: "Absolutely. We work remotely with clinics and beauty businesses across the UK. Everything is handled via video call, WhatsApp and email." },
-              { q: "Can I see examples of your work?", a: "Yes — the portfolio section above shows recent projects. You can also view live sites linked from our Instagram @aesthetix_systems." },
-            ].map((f, i) => (
-              <div key={i} className="faq-row">
-                <div style={{ padding: "18px 0", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", gap: 16 }}
-                  onClick={() => setFaqOpen(faqOpen === i ? null : i)}
-                >
-                  <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 13 : 14, color: faqOpen === i ? R : WH, transition: "color 0.3s", flex: 1 }}>{f.q}</span>
-                  <span style={{ fontFamily: DISP, fontStyle: "italic", fontSize: 20, color: R, flexShrink: 0 }}>{faqOpen === i ? "−" : "+"}</span>
-                </div>
-                <div className={`faq-answer${faqOpen === i ? " open" : ""}`}>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1, lineHeight: 1.8, paddingBottom: 18 }}>{f.a}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 40, flexDirection: isMobile ? "column" : "row" }}>
-            <RoseBtn href="#contact">Start a Project</RoseBtn>
-            <RoseBtn href="https://instagram.com/aesthetix_systems" outline>Message on Instagram</RoseBtn>
-          </div>
-        </div>
-      </section>
-
-      <SectionBreak />
-
-      {/* ── CONTACT ── */}
-      <section id="contact" style={{ background: CH, padding: `${sectionPy} 0` }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: `0 ${px}`, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 80 }}>
-          <FadeIn>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: R, letterSpacing: "0.2em", marginBottom: 12, textTransform: "uppercase" }}>Get In Touch</div>
-            <div style={{ fontFamily: DISP, fontStyle: "italic", fontWeight: 300, fontSize: isMobile ? "1.9rem" : "clamp(2.5rem, 5vw, 4rem)", color: WH, lineHeight: 1.1 }}>
-              Ready to elevate<br />your clinic online?
-            </div>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: G1, lineHeight: 1.8, marginTop: 16 }}>
-              Drop a message with your business name, what you're looking for, and we'll come back within 24 hours with next steps. No hard sell. Just a conversation.
-            </p>
-            <div style={{ marginTop: 28 }}>
-              {[
-                { label: "INSTAGRAM", val: "@aesthetix_systems →", href: "https://instagram.com/aesthetix_systems" },
-                { label: "EMAIL", val: "hello@aesthetix-systems.co.uk", href: "mailto:hello@aesthetix-systems.co.uk" },
-                { label: "WHATSAPP", val: "Message Sim directly →", href: WA },
-                { label: "LOCATION", val: "Birmingham, UK" },
-              ].map((row, i) => (
-                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "11px 0", borderBottom: `1px solid ${BDR}`, flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", color: R, minWidth: 90, flexShrink: 0 }}>{row.label}</span>
-                  {row.href ? (
-                    <a href={row.href} target="_blank" rel="noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1, textDecoration: "none", wordBreak: "break-all" }}
-                      onMouseEnter={e => e.currentTarget.style.color = WH}
-                      onMouseLeave={e => e.currentTarget.style.color = G1}
-                    >{row.val}</a>
-                  ) : (
-                    <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1 }}>{row.val}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={200}>
-            <div style={{ background: SRF, border: `1px solid ${BDR}`, borderTop: `2px solid ${R}`, padding: isMobile ? 20 : 36 }}>
-              {formSubmitted ? (
-                <div style={{ textAlign: "center", padding: "32px 0" }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={R} strokeWidth="2" style={{ margin: "0 auto 12px", display: "block" }}>
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                  </svg>
-                  <div style={{ fontFamily: DISP, fontStyle: "italic", fontSize: 22, color: WH, marginBottom: 6 }}>Message received.</div>
-                  <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: G1 }}>We'll be in touch within 24 hours.</div>
-                  <a href="https://instagram.com/aesthetix_systems" target="_blank" rel="noreferrer" style={{ display: "block", marginTop: 12, color: R, fontFamily: BODY, fontWeight: 300, fontSize: 13, textDecoration: "none" }}>@aesthetix_systems</a>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                  {[
-                    { label: "Your Name", type: "text", val: formName, set: setFormName, placeholder: "Your full name", required: true },
-                    { label: "Phone Number", type: "tel", val: formPhone, set: setFormPhone, placeholder: "+44 7700 000000", required: true },
-                    { label: "Email Address", type: "email", val: formEmail, set: setFormEmail, placeholder: "hello@yourclinic.com", required: true },
-                  ].map(f => (
-                    <div key={f.label}>
-                      <label style={labelStyle}>{f.label}</label>
-                      <input required={f.required} type={f.type} value={f.val}
-                        onChange={e => f.set(e.target.value)} placeholder={f.placeholder}
-                        style={inputStyle}
-                        onFocus={e => e.target.style.borderColor = R}
-                        onBlur={e => e.target.style.borderColor = BDR}
-                      />
-                    </div>
-                  ))}
-                  <div>
-                    <label style={labelStyle}>Tell Us More</label>
-                    <textarea required rows={4} value={formMessage} onChange={e => setFormMessage(e.target.value)}
-                      placeholder="Your clinic, what you need, what's not working..."
-                      style={{ ...inputStyle, resize: "none" }}
-                      onFocus={e => e.target.style.borderColor = R}
-                      onBlur={e => e.target.style.borderColor = BDR}
-                    />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Social Handle <span style={{ color: G2 }}>(optional)</span></label>
-                    <input type="text" value={formSocial} onChange={e => setFormSocial(e.target.value)}
-                      placeholder="@yourclinic" style={inputStyle}
-                      onFocus={e => e.target.style.borderColor = R}
-                      onBlur={e => e.target.style.borderColor = BDR}
-                    />
-                  </div>
-                  <button type="submit" style={{
-                    width: "100%", height: 46, background: R, color: WH, border: "none", borderRadius: 1,
-                    cursor: "pointer", fontFamily: BODY, fontWeight: 400, fontSize: 12,
-                    textTransform: "uppercase", letterSpacing: "0.1em", transition: "background 0.2s",
-                  }}
-                    onMouseEnter={e => e.currentTarget.style.background = "#A01048"}
-                    onMouseLeave={e => e.currentTarget.style.background = R}
-                  >Send Message →</button>
-                </form>
-              )}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ── FOOTER ── */}
-      <footer style={{ background: BK, borderTop: `1px solid ${BDR}`, padding: isMobile ? "36px 20px 24px" : "48px 48px 32px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? "28px 16px" : 40 }}>
-          <div style={{ gridColumn: isMobile ? "1 / -1" : "auto" }}>
-            <div style={{ fontFamily: BODY, fontWeight: 400, fontSize: 14, color: WH, letterSpacing: "0.18em" }}>AESTHETIX</div>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: R, letterSpacing: "0.22em", marginTop: 2 }}>SYSTEMS</div>
-            <p style={{ fontFamily: DISP, fontStyle: "italic", fontSize: 13, color: G1, marginTop: 10, lineHeight: 1.5 }}>We build the digital presence your clinic deserves.</p>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: G2, marginTop: 6 }}>Birmingham, UK</div>
-          </div>
-          <div>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: G2, marginBottom: 10 }}>Links</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {navLinks.map(l => (
-                <a key={l.label} href={l.href} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1, textDecoration: "none" }}
-                  onMouseEnter={e => e.currentTarget.style.color = WH}
-                  onMouseLeave={e => e.currentTarget.style.color = G1}
-                >{l.label}</a>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: G2, marginBottom: 10 }}>Services</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {["Website Design", "Booking Systems", "AI Assistant", "Hosting"].map(s => (
-                <span key={s} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1 }}>{s}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: G2, marginBottom: 10 }}>Contact</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <a href="https://instagram.com/aesthetix_systems" target="_blank" rel="noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: G1, textDecoration: "none" }}
-                onMouseEnter={e => e.currentTarget.style.color = R}
-                onMouseLeave={e => e.currentTarget.style.color = G1}
-              >@aesthetix_systems</a>
-              <a href="mailto:hello@aesthetix-systems.co.uk" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: G1, textDecoration: "none", wordBreak: "break-all" }}
-                onMouseEnter={e => e.currentTarget.style.color = WH}
-                onMouseLeave={e => e.currentTarget.style.color = G1}
-              >hello@aesthetix-systems.co.uk</a>
-            </div>
-          </div>
-        </div>
-        <div style={{ maxWidth: 1200, margin: "24px auto 0", paddingTop: 20, borderTop: `1px solid ${BDR}`, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: G2 }}>© 2026 Aesthetix Systems · Birmingham, UK</span>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: G2 }}>Built by Aesthetix Systems</span>
-        </div>
-      </footer>
-
-      {/* ── FLOATING WHATSAPP ── */}
-      <a href={WA} target="_blank" rel="noopener noreferrer"
-        style={{
-          position: "fixed", bottom: 20, right: 20, zIndex: 150,
-          width: 52, height: 52, borderRadius: "50%", background: "#25D366",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 20px rgba(37,211,102,0.4)",
-          transition: "transform 0.2s",
-        }}
-        onMouseEnter={e => e.currentTarget.style.transform = "scale(1.1)"}
-        onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-        aria-label="Chat on WhatsApp"
-      >
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-      </a>
+    <div style={{ background: cream, minHeight: '100vh' }}>
+      <Nav />
+      <Hero />
+      <ProblemStrip />
+      <HowItWorks />
+      <Portfolio />
+      <Bento />
+      <Pricing />
+      <Testimonials />
+      <FAQ />
+      <FinalCTA />
+      <Footer />
     </div>
   );
 }

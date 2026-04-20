@@ -1,0 +1,1037 @@
+Build a premium luxury SaaS landing page for 
+"Aesthetix Systems" — a UK agency that builds 
+bespoke websites and booking systems exclusively 
+for aesthetics and beauty clinics.
+
+Single React component. Tailwind CSS. Framer Motion 
+for all animations. Lucide React for icons.
+Fully responsive, mobile-first.
+No lorem ipsum — use all real copy below.
+
+===============================================================
+DESIGN SYSTEM
+===============================================================
+
+PALETTE:
+--cream: #F7F4EE
+--surface: #FFFFFF
+--charcoal: #1A1A1C
+--charcoal-soft: #2E2E32
+--ink-soft: #4A4A4E
+--ink-mute: #8A8A8E
+--line: #E5DFD3
+--gold: #C9A961
+--gold-hover: #A8894A
+--gold-tint: #F5EDD9
+--sage: #6B8E5A
+--blush: #E8D5D2
+
+NEVER use pure white (#FFFFFF) as a background.
+Cream #F7F4EE is the base background everywhere.
+Gold is surgical — hairlines, icons, accents, 
+one key CTA treatment. Never flood with gold.
+Blue does not exist in this palette.
+
+TYPOGRAPHY:
+Display/headlines: Instrument Serif (italic moments)
+Body/UI: Inter Tight or Geist
+
+Import Instrument Serif from Google Fonts.
+Use Inter Tight as system fallback.
+
+Key typographic moments:
+  Italic Instrument Serif in gold on one or two 
+  words in each major headline — this is the 
+  signature of the brand. Never overdo it.
+
+CORNERS: 10–16px border-radius throughout
+SHADOWS: rgba(26,26,28,0.06) — warm, never harsh black
+SPACING: generous — white space is premium here
+
+MOTION RULES (Framer Motion):
+  whileInView fade + slideUp on every section
+  stagger children with 0.1s delays
+  Buttons: hover scale 1.02, active scale 0.98
+  Links: gold underline grows from left on hover
+  Hero animations start on load with delays
+  Gold accents feel earned — never spammed
+
+===============================================================
+SECTION 1 — STICKY NAV
+===============================================================
+
+Position: sticky top 0 z-50
+Default: cream #F7F4EE background 75% opacity
+  backdrop-blur-md
+On scroll: add warm border-bottom 1px var(--line)
+  increase backdrop blur
+
+LEFT:
+  Logo lockup:
+    Gold "A" with swoosh SVG icon (Aesthetix logo)
+    "AESTHETIX" Inter Tight 500 charcoal 
+      letter-spacing 0.15em font-size 14px
+    "SYSTEMS" Inter Tight 300 gold 
+      letter-spacing 0.22em font-size 9px
+    Stacked two lines
+
+RIGHT — Desktop links:
+  Work | Services | Pricing | Results
+  Inter Tight 300 13px ink-soft
+  letter-spacing 0.05em gap 32px
+  Hover: charcoal transition 200ms
+
+  "Message on WhatsApp" — pill button:
+    background var(--charcoal)
+    border 1px solid rgba(201,169,97,0.3)
+    color var(--cream)
+    border-radius 999px
+    padding 9px 18px
+    Inter Tight 400 12px letter-spacing 0.06em
+    WhatsApp icon (Lucide) in gold left of text
+    Hover: border-color var(--gold)
+    links to: https://wa.me/447000000000
+
+MOBILE: hamburger menu
+  Overlay: charcoal background
+  Links large, cream, stacked centred
+
+===============================================================
+SECTION 2 — HERO
+===============================================================
+
+background: var(--cream)
+padding: 120px 0 80px / 100px 0 60px mobile
+
+TWO COLUMN DESKTOP grid 1fr 1fr gap 80px
+Mobile: stacked — text first, phone mockup below
+
+LEFT — Copy:
+
+  Eyebrow pill (fadeIn 0.2s):
+    background var(--gold-tint)
+    border 1px solid rgba(201,169,97,0.3)
+    border-radius 999px
+    padding 6px 14px
+    Inter Tight 400 10px uppercase
+    letter-spacing 0.2em color var(--gold)
+    "WEBSITES & BOOKING SYSTEMS · 
+    FOR UK AESTHETICS CLINICS"
+
+  H1 (fadeUp 0.4s):
+    "Turn followers into"
+    Inter Tight 600 font-size clamp(3rem,6vw,5rem)
+    line-height 1.0 color var(--charcoal)
+    
+    "bookings"
+    Instrument Serif italic font-size same
+    color var(--gold) display block
+
+  Subhead (fadeUp 0.6s):
+    Inter Tight 300 17px var(--ink-soft)
+    line-height 1.75 max-width 480px
+    margin-top 20px
+    "We build premium websites with built-in 
+    booking systems for aesthetics clinics, 
+    lash techs, and beauty specialists.
+    Look luxury. Book clients 24/7. 
+    Stop chasing DMs."
+
+  CTA row (fadeUp 0.8s):
+    display flex gap 14px align-items center
+    flex-wrap wrap margin-top 32px
+
+    Primary: charcoal background pill button
+      "Message on WhatsApp"
+      WhatsApp Lucide icon in gold left
+      Same style as nav button but larger:
+      padding 14px 24px font-size 13px
+      Hover: background var(--charcoal-soft)
+        border-color var(--gold)
+      links to: https://wa.me/447000000000
+
+    Secondary: ghost link style
+      "See recent work →"
+      Inter Tight 300 13px charcoal
+      Underline in gold grows from left on hover
+      Scrolls to #portfolio on click
+
+  Trust signal row (fadeUp 1.0s):
+    margin-top 28px padding-top 20px
+    border-top 1px solid var(--line)
+    display flex align-items center gap 12px
+    flex-wrap wrap
+
+    Inter Tight 300 11px var(--ink-mute)
+    "Trusted by"
+    
+    Then each client name as a small pill:
+      background var(--gold-tint)
+      padding 3px 10px border-radius 999px
+      Inter Tight 400 11px var(--gold-hover)
+      "FlawlessSkin" · "Hira Aesthetics" · 
+      "Permadoll"
+    
+    Thin vertical divider then:
+    "Based in Birmingham, UK"
+
+RIGHT — Animated Phone Mockup:
+
+  Phone frame:
+    Realistic smartphone shape
+    Charcoal frame color
+    Thin gold hairline bezel highlight
+    Subtle continuous floating animation:
+      y: [0, -8px, 0] duration 4s ease-in-out loop
+    
+    Behind phone:
+      Soft radial gradient glow:
+      background: radial-gradient(
+        ellipse at center,
+        rgba(201,169,97,0.12) 0%,
+        transparent 65%
+      )
+      Blurs into cream background — very subtle
+
+  BOOKING FLOW ANIMATION — 8 second loop:
+  Use Framer Motion AnimatePresence + variants
+
+  STEP 1 (0–1.5s):
+    Phone shows clinic website hero section
+    "BOOK NOW" gold button visible
+    Animated cursor appears, moves to button
+    Cursor taps button — button scales down
+    Transition: slide left out
+
+  STEP 2 (1.5–3s):
+    Service picker screen slides in from right
+    Shows list:
+      "Russian Lips" / "Lip Filler" / 
+      "Microneedling" / "Tear Trough"
+    Animated cursor selects "Russian Lips"
+    Selected item gets gold border + gold tick
+    Transition: slide left out
+
+  STEP 3 (3–5s):
+    Calendar view slides in
+    Month grid visible
+    Available slots show as cream circles
+    Animated cursor moves to a date
+    That date fills gold on hover
+    Cursor clicks — date becomes solid gold
+    Time slots appear below (10:00, 11:00, 14:00)
+    14:00 gets selected — gold fill
+    Transition: slide up out
+
+  STEP 4 (5–6.5s):
+    Confirmation screen slides up from bottom
+    Sage green check circle animates in
+    "Booking Confirmed ✓" Inter Tight 500 charcoal
+    Below: "Sarah M · Russian Lips"
+    Below: "Friday 16 May · 2:00 PM"
+    Below: "FlawlessSkin · Hall Green"
+    All stagger in with 0.1s delays
+
+  STEP 5 (6.5–8s):
+    Notification toast slides down from top of phone
+    White card with warm shadow
+    Left: SMS icon (gold) + Mail icon (gold)
+    Right text:
+      "Confirmation sent ✓" Inter Tight 500 12px
+      "SMS + Email sent to Sarah" 300 11px ink-mute
+    Toast holds 1s then slides back up
+
+  Loop back to Step 1 — smooth crossfade
+
+MOBILE HERO:
+  Phone mockup sits below copy
+  Scales to 80% width centred
+  Same animation plays
+
+===============================================================
+SECTION 3 — PROBLEM STRIP
+===============================================================
+
+background: var(--charcoal)
+padding: 48px 0
+
+Three stats side by side desktop
+Stacked mobile with horizontal gold rules between
+
+Each stat:
+  text-align center padding 0 40px
+  
+  Between each stat (desktop):
+    1px vertical gold divider opacity 0.2
+
+  Number/percentage:
+    Instrument Serif italic font-size 2.8rem
+    color var(--gold) line-height 1
+
+  Statement below:
+    Inter Tight 300 14px color rgba(247,244,238,0.7)
+    line-height 1.6 margin-top 8px
+    max-width 220px margin 8px auto 0
+
+STATS:
+  "73%" / "of beauty clients book outside 9–5.
+  Your DMs aren't open at midnight."
+
+  "4+ hrs" / "lost every week by the average 
+  clinic managing bookings manually."
+
+  "Gone." / "Clients who can't book instantly 
+  go to a competitor who lets them."
+
+===============================================================
+SECTION 4 — HOW IT WORKS
+===============================================================
+
+id="services"
+background: var(--cream)
+padding: 100px 0 / 60px 0
+
+Overline: "HOW IT WORKS" gold uppercase tracking-widest
+Headline:
+  "From DMs to"
+  Inter Tight 600 charcoal clamp(2.5rem,5vw,4rem)
+  "dashboards"
+  Instrument Serif italic gold same size
+
+Three cards desktop grid 1fr 1fr 1fr gap 24px
+Mobile: stacked
+
+Each card:
+  background var(--surface)
+  border 1px solid var(--line)
+  border-radius 14px
+  padding 32px
+  transition all 200ms
+  
+  Hover:
+    transform translateY(-4px)
+    box-shadow 0 12px 40px rgba(26,26,28,0.08)
+    border-bottom 2px solid var(--gold)
+
+  Step number top-left:
+    Instrument Serif italic font-size 3.5rem
+    color var(--gold) opacity 0.4 line-height 1
+
+  Mini animated illustration:
+    Sits between number and title
+    Simple CSS/SVG animation — 200×120px area
+
+  Title: Inter Tight 500 17px charcoal margin-top 16px
+  Body: Inter Tight 300 14px ink-soft 
+    line-height 1.7 margin-top 8px
+
+STEP 01 — "We design your site"
+  Mini illustration: browser window outline
+    Address bar shows "yourclinic.co.uk"
+    Content animates in: image placeholder + 
+    heading + button — appears line by line
+    Subtle entrance animation loops every 4s
+  Body: "A bespoke, luxury website built around 
+  your brand. No templates. No compromises. 
+  Designed to convert visitors into bookings."
+
+STEP 02 — "We build your calendar in"
+  Mini illustration: calendar grid
+    Dates show as small circles
+    Several fill gold one by one
+    Then a "FULL" label appears with a smile
+  Body: "Your own booking calendar — live on your 
+  site. No Fresha. No Booksy. No third-party fees. 
+  Just your brand, your clients, your bookings."
+
+STEP 03 — "You get bookings 24/7"
+  Mini illustration: phone outline
+    Notification badges pulse in top corner
+    SMS bubble appears: "New booking: Sarah M"
+    Then another: "New booking: Jade T"
+    Stagger effect — feels like real notifications
+  Body: "Clients book while you sleep. You wake 
+  up to a full calendar. No chasing. No confusion. 
+  Just pure, automated revenue."
+
+===============================================================
+SECTION 5 — PORTFOLIO
+===============================================================
+
+id="work"
+background: var(--cream)
+padding: 100px 0 / 60px 0
+
+Overline: "RECENT BUILDS" gold uppercase tracking-widest
+Headline:
+  "Websites that"
+  Inter Tight 600 charcoal clamp(2.5rem,5vw,4rem)
+  "book themselves"
+  Instrument Serif italic gold same size
+
+Three cards desktop grid 1fr 1fr 1fr gap 24px
+Mobile: single column stacked
+
+Each portfolio card:
+  background var(--surface)
+  border 1px solid var(--line)
+  border-radius 14px overflow hidden
+  
+  Image area (aspect 16/10):
+    Laptop/phone frame mockup
+    gradient placeholder (cream to gold-tint)
+    transition: transform 300ms ease
+    <!-- Replace with real screenshots -->
+  
+  Hover on card:
+    Image scales 1.03
+    box-shadow lifts
+    Arrow icon slides right 4px
+
+  Below image padding 20px:
+    Client name: Instrument Serif italic 20px charcoal
+    Location: Inter Tight 300 11px uppercase 
+      letter-spacing 0.12em gold margin-top 4px
+    "View site →": Inter Tight 300 13px charcoal
+      gold underline grows on hover
+      margin-top 12px
+
+CLIENTS:
+  FlawlessSkin — Hall Green, Birmingham
+    links to: https://flawless-skin.co.uk
+  
+  Hira Aesthetics — Bury, Manchester
+    links to: https://hiraaesthetics.com
+  
+  Permadoll Aesthetics — Birmingham
+    links to: https://permadoll-aesthetics.co.uk
+
+===============================================================
+SECTION 6 — FEATURE BENTO GRID
+===============================================================
+
+background: var(--cream)
+padding: 100px 0 / 60px 0
+
+Overline: "WHAT'S INCLUDED" gold uppercase tracking-widest
+Headline:
+  "Everything your clinic"
+  Inter Tight 600 charcoal clamp(2.5rem,5vw,4rem)
+  "actually needs"
+  Instrument Serif italic gold same size
+
+ASYMMETRIC BENTO — desktop:
+  CSS grid:
+    grid-template-columns: 1.4fr 1fr
+    grid-template-rows: auto auto auto
+    gap: 16px
+
+  On mobile: single column stack
+
+CARD 1 — Large left (spans 2 rows):
+  background: var(--cream)
+  border: 1px solid var(--gold) opacity 0.3
+  border-radius: 14px padding: 36px
+  
+  Title: Inter Tight 500 20px charcoal
+  "Your own booking system.
+  Your brand. Zero middlemen."
+  
+  Body: Inter Tight 300 14px ink-soft
+  line-height 1.75 margin-top 12px
+  "No Fresha. No Booksy. No monthly fees 
+  to third-party platforms eating into 
+  your revenue. Your clients book directly 
+  on your site — your calendar, your rules."
+  
+  Mini animated calendar:
+    Shows a month grid
+    Available dates as cream circles
+    On loop: 3–4 dates fill gold one by one
+    "3 slots booked" counter increments
+    Feels like real bookings coming in
+  
+  Gold accent: thin 2px gold left-border on card
+
+CARD 2 — Top right:
+  background: var(--surface)
+  border: 1px solid var(--line)
+  border-radius: 14px padding: 28px
+  
+  Phone mockup inline (small, 120px wide)
+  Title: Inter Tight 500 16px charcoal
+  "Instagram & TikTok ready"
+  Body: Inter Tight 300 13px ink-soft
+  "Optimised for mobile where your clients 
+  actually find you. Loads in under 2 seconds."
+
+CARD 3 — Middle right:
+  background: var(--blush) #E8D5D2
+  border-radius: 14px padding: 28px
+  
+  Stacked visual:
+    SMS bubble (charcoal background):
+      "Hi Sarah 💋 Your Russian Lips appointment 
+      is confirmed for Fri 16 May at 2pm. 
+      See you then! — FlawlessSkin"
+      Inter Tight 300 12px cream
+      border-radius 12px 12px 12px 4px
+      padding 12px 14px
+    
+    Email preview card below (white surface):
+      Small "Gmail" style header row
+      Subject: "Your booking — confirmed ✓"
+      Preview: "Hi Sarah, we look forward to..."
+      Sage green dot + "Delivered" tag
+  
+  Title: Inter Tight 500 16px charcoal
+  "Automatic SMS + email confirmations"
+  Body: Inter Tight 300 13px ink-soft
+  "Every booking triggers instant confirmations. 
+  Zero admin. Zero no-shows chasing."
+
+CARD 4 — Bottom right:
+  background: var(--surface)
+  border: 1px solid var(--line)
+  border-radius: 14px padding: 28px
+  
+  Chat bubble illustration:
+    Two bubbles — client (cream) and clinic (gold)
+    Client: "Hi! How much is Russian Lips?"
+    Clinic (gold bubble): "Hi! Russian Lips is £95 
+    for 1ml 💋 Want to book?"
+    Client: "Yes please!"
+  
+  Title: Inter Tight 500 16px charcoal
+  "AI assistant that actually books"
+  Body: Inter Tight 300 13px ink-soft
+  "Answers treatment questions and converts 
+  enquiries into bookings. 24/7. Automatically."
+
+CARD 5 — Bottom wide (full width):
+  background: var(--charcoal)
+  border-radius: 14px padding: 36px
+  
+  Two column layout:
+    Left text, right payment graphic
+  
+  Title: Inter Tight 500 20px cream
+  "Deposits & no-show protection"
+  
+  Body: Inter Tight 300 14px rgba(247,244,238,0.65)
+  line-height 1.75 max-width 400px
+  "Collect a 50% deposit at booking, 
+  automatically. No more last-minute cancellations. 
+  No more lost revenue. Stripe-powered, 
+  bank-grade secure."
+  
+  Payment card graphic right side:
+    Stylised card shape in charcoal-soft
+    Gold card number "•••• •••• •••• 4242"
+    "DEPOSIT SECURED" sage green pill badge
+    Lock icon in gold
+
+===============================================================
+SECTION 7 — PRICING
+===============================================================
+
+id="pricing"
+background: var(--cream)
+padding: 100px 0 / 60px 0
+
+Overline: "INVESTMENT" gold uppercase tracking-widest
+Headline:
+  "Three ways to start"
+  Inter Tight 600 charcoal clamp(2.5rem,5vw,4rem)
+  "booking"
+  Instrument Serif italic gold
+
+Three cards desktop grid 1fr 1fr 1fr gap 24px
+Mobile: stacked
+
+═══════════════════════════
+CARD 1 — STARTER £750
+═══════════════════════════
+background: var(--surface)
+border: 1px solid var(--line)
+border-radius: 14px padding: 32px
+
+Plan name: Inter Tight 400 11px uppercase
+  letter-spacing 0.15em gold "STARTER"
+
+Price: Instrument Serif italic 3.5rem charcoal
+  "£750"
+  Below: Inter Tight 300 12px ink-mute
+  "one-time build fee"
+
+Divider: 1px var(--line)
+
+Description: Inter Tight 300 13px ink-soft
+  "Perfect for solo practitioners and 
+  those starting online for the first time."
+
+Features (gold check icon each):
+  ✓ Premium one-page website
+  ✓ Mobile-optimised & fast loading
+  ✓ Your existing Calendly or Fresha embedded
+  ✓ Instagram & WhatsApp links
+  ✓ Basic SEO setup
+  ✓ Delivered in 5–7 days
+
+CTA: charcoal pill button full width
+  "Message on WhatsApp"
+  WhatsApp icon gold
+
+═══════════════════════════
+CARD 2 — GROWTH £1,499
+MOST POPULAR — THIS IS THE HERO CARD
+═══════════════════════════
+background: var(--charcoal)
+border: 2px solid var(--gold)
+border-radius: 14px padding: 32px
+position: relative
+
+"MOST POPULAR" pill badge:
+  position absolute top -14px left 50%
+  transform translateX(-50%)
+  background var(--gold)
+  color var(--charcoal)
+  Inter Tight 600 10px uppercase
+  letter-spacing 0.15em
+  padding 5px 14px border-radius 999px
+
+Plan name: Inter Tight 400 11px uppercase
+  letter-spacing 0.15em rgba(247,244,238,0.6)
+  "GROWTH"
+
+Price: Instrument Serif italic 3.5rem cream
+  "£1,499"
+  Below: Inter Tight 300 12px rgba(247,244,238,0.5)
+  "one-time build fee"
+
+Divider: 1px rgba(201,169,97,0.2)
+
+OWNERSHIP STATEMENT — THIS IS CRITICAL:
+  Gold border-left card inside the pricing card:
+  background rgba(201,169,97,0.08)
+  border-left 2px solid var(--gold)
+  border-radius 0 8px 8px 0
+  padding 12px 16px margin-bottom 20px
+  
+  Inter Tight 400 13px cream line-height 1.6
+  "Your own booking system — built into 
+  your website. No Fresha. No Booksy. 
+  No third-party fees. Ever."
+  
+  Below in Inter Tight 300 11px gold:
+  "This is YOUR calendar. YOUR brand. 
+  YOUR clients. Nobody else's platform."
+
+Description: Inter Tight 300 13px 
+  rgba(247,244,238,0.65) margin-top 12px
+  "The complete digital presence for your 
+  clinic. A bespoke website with a fully 
+  custom booking system built directly into 
+  it — no third-party platforms, no monthly 
+  subscriptions, no redirecting clients 
+  elsewhere to book."
+
+Features (gold check icon each, cream text):
+  ✓ Full multi-page bespoke website
+  ✓ YOUR OWN booking calendar (not Fresha/Booksy)
+  ✓ Clients book on YOUR site, in YOUR brand
+  ✓ 50% deposit collection via Stripe
+  ✓ Automatic SMS + email confirmations
+  ✓ Admin portal — manage bookings & clients
+  ✓ Block dates, set hours, manage availability
+  ✓ Before & after gallery
+  ✓ Delivered in 7–10 days
+
+"VS FRESHA/BOOKSY" comparison pill below features:
+  background rgba(201,169,97,0.1)
+  border 1px solid rgba(201,169,97,0.25)
+  border-radius 8px padding 12px 14px
+  margin-top 16px
+  
+  Two column micro-table:
+  Left header: Inter Tight 400 10px gold "WITH US"
+  Right header: Inter Tight 400 10px ink-mute 
+    "FRESHA / BOOKSY"
+  
+  Row 1: "Your brand" vs "Their brand"
+  Row 2: "Your URL" vs "Their URL"  
+  Row 3: "One-time fee" vs "Monthly forever"
+  Row 4: "You own it" vs "They own it"
+  
+  Each left cell: sage green text
+  Each right cell: ink-mute text with × icon
+
+CTA: gold-outlined cream pill button full width
+  background transparent
+  border 1px solid var(--gold)
+  color var(--cream)
+  Hover: background var(--gold) color var(--charcoal)
+  "Message on WhatsApp"
+  WhatsApp icon gold
+
+═══════════════════════════
+CARD 3 — PREMIUM £2,499+
+═══════════════════════════
+background: var(--surface)
+border: 1px solid var(--line)
+border-radius: 14px padding: 32px
+
+Plan name: "PREMIUM" same style as Starter
+
+Price: "£2,499+"
+  Below: "starting price · fully bespoke"
+
+Description:
+  "Everything in Growth, plus AI that books 
+  clients for you. 24/7 automation from 
+  first enquiry to confirmed booking."
+
+Features:
+  ✓ Everything in Growth
+  ✓ YOUR OWN booking calendar (no third parties)
+  ✓ AI assistant trained on your treatments
+  ✓ AI answers questions & books clients 24/7
+  ✓ Team management for multi-practitioner clinics
+  ✓ Analytics dashboard
+  ✓ Automated rebooking SMS campaigns
+  ✓ No-show recovery automations
+  ✓ Priority support & monthly retainer option
+
+CTA: charcoal pill button full width
+
+Note below all three cards:
+  Inter Tight 300 12px ink-mute text-align center
+  margin-top 24px
+  "Currently booking mid-May slots. 
+  April calendar is full. 
+  Message now to secure your build date."
+
+HOSTING (below pricing cards):
+  Small section with three hosting tiers:
+  Clean horizontal card row
+  background var(--gold-tint)
+  border 1px solid rgba(201,169,97,0.2)
+  border-radius 12px padding 20px 28px
+  
+  "Monthly hosting & support included:"
+  
+  Three tiers inline:
+  Starter hosting: £25/mo
+  Growth hosting: £35/mo  
+  Premium hosting: £45/mo
+  
+  Inter Tight 300 12px ink-soft
+  "Includes hosting, security, updates 
+  and priority support."
+
+===============================================================
+SECTION 8 — RESULTS / TESTIMONIALS
+===============================================================
+
+id="results"
+background: var(--cream)
+padding: 100px 0 / 60px 0
+
+Overline: "RESULTS" gold uppercase tracking-widest
+Headline:
+  "What happens when your site"
+  Inter Tight 600 charcoal clamp(2rem,4vw,3rem)
+  "actually works"
+  Instrument Serif italic gold
+
+Horizontal scroll on desktop (overflow-x auto)
+Single column on mobile
+
+3–4 testimonial cards:
+  background: var(--surface)
+  border: 1px solid var(--line)
+  border-radius: 14px padding: 28px
+  min-width: 340px (desktop scroll)
+  box-shadow: 0 4px 20px rgba(26,26,28,0.06)
+
+  Opening quote mark:
+    Instrument Serif italic font-size 4rem
+    color var(--gold) opacity 0.3
+    line-height 0 display block margin-bottom 14px
+
+  Quote: Instrument Serif italic 1.15rem charcoal
+    line-height 1.65
+
+  Client row margin-top 18px:
+    Gold initial circle 32px
+    Name: Inter Tight 400 12px charcoal
+    Business: Inter Tight 300 11px ink-mute
+    "★★★★★" gold right side
+
+TESTIMONIALS:
+  "Booking enquiries doubled in the first month. 
+  Clients actually book now instead of just 
+  following." — FlawlessSkin, Birmingham
+
+  "I used to spend hours a week on Instagram DMs. 
+  Now the site handles all of it. I just show up 
+  and do treatments." — Hira Aesthetics, Manchester
+
+  "The site looks more premium than clinics 
+  charging double what I do. Clients comment 
+  on it every single week." — Permadoll, Birmingham
+
+  "Sim turned it around in under a week. 
+  The deposit system alone has saved me 
+  hundreds in no-shows." — FlawlessSkin
+
+===============================================================
+SECTION 9 — FAQ
+===============================================================
+
+background: var(--cream)
+padding: 100px 0 / 60px 0
+
+Container max-width 720px margin 0 auto
+
+Overline: "FAQ" gold uppercase tracking-widest
+Headline: Inter Tight 600 charcoal
+  "Questions we get" Instrument Serif italic gold
+  "every time"
+
+Accordion — Framer Motion AnimatePresence 
+for smooth expand/collapse:
+
+Each item:
+  border-bottom 1px solid var(--line)
+  
+  Question row:
+    padding 20px 0 cursor pointer
+    display flex justify-content space-between
+    Inter Tight 500 15px charcoal
+    ChevronDown Lucide icon gold
+      rotates 180 when open (Framer Motion)
+  
+  Answer:
+    padding 0 0 20px
+    Inter Tight 300 14px ink-soft line-height 1.8
+    AnimatePresence height 0→auto
+
+QUESTIONS:
+
+Q: How long does a build take?
+A: Most websites are live within 5–10 days of 
+   our first conversation. We move fast — we know 
+   you can't wait weeks to start taking bookings.
+
+Q: Do I own my website?
+A: Yes — completely. You own the code, the domain, 
+   the content and all your client data. We host it 
+   for you as part of the monthly support plan, 
+   which you can cancel anytime with 30 days notice.
+
+Q: Do I still need Fresha or Booksy?
+A: No — and that's the whole point. Our Growth and 
+   Premium packages include your own fully custom 
+   booking system, built directly into your website. 
+   Your clients book on YOUR site, in YOUR brand, 
+   with no redirects to third-party platforms. 
+   No monthly Fresha fees. No Booksy branding. 
+   Just your clinic, end to end.
+
+Q: Can you integrate my existing Calendly or Fresha?
+A: Yes — on the Starter package we embed your 
+   existing booking tool cleanly into your new site. 
+   But most clients switch to our built-in system 
+   once they see how much better the experience is 
+   for their clients.
+
+Q: Does the AI assistant actually book clients?
+A: Yes. It's trained on your specific treatments, 
+   prices and availability. It answers questions, 
+   qualifies leads and books clients straight into 
+   your calendar — automatically, 24/7. Not just 
+   a chatbot that says "DM us for more info."
+
+Q: Do you offer ongoing support?
+A: Yes — monthly support plans start at £25/mo 
+   and include hosting, security updates, minor 
+   content changes and priority support. No 
+   long-term contracts. Cancel anytime.
+
+===============================================================
+SECTION 10 — FINAL CTA
+===============================================================
+
+background: var(--charcoal)
+padding: 120px 0 / 80px 0
+position: relative overflow hidden
+
+Radial gold glow behind text:
+  position absolute top 50% left 50%
+  transform translate(-50%, -50%)
+  width 600px height 400px
+  background radial-gradient(
+    ellipse at center,
+    rgba(201,169,97,0.12) 0%,
+    transparent 65%
+  )
+  pointer-events none
+
+Content centred text-align center
+position relative z-index 1
+
+Headline:
+  "Ready for a site that actually"
+  Inter Tight 600 cream clamp(2.8rem,5vw,4.5rem)
+  line-height 1.0
+  "books clients?"
+  Instrument Serif italic color var(--gold) same size
+  display block
+
+Subhead:
+  Inter Tight 300 16px rgba(247,244,238,0.6)
+  line-height 1.7 max-width 460px margin 20px auto 0
+  "Mid-May slots are filling up. If you want 
+  your site live before summer, now is the time."
+
+CTA button centred margin-top 36px:
+  Large cream pill button
+  background var(--cream)
+  color var(--charcoal)
+  border 1px solid rgba(201,169,97,0.4)
+  padding 18px 40px border-radius 999px
+  Inter Tight 500 14px letter-spacing 0.06em
+  WhatsApp Lucide icon in gold left of text
+  "Message on WhatsApp"
+  
+  Hover:
+    background var(--gold-tint)
+    border-color var(--gold)
+    scale 1.02
+  
+  links to: https://wa.me/447000000000
+
+Small note below button:
+  Inter Tight 300 11px rgba(247,244,238,0.4)
+  margin-top 14px
+  "Reply in under 2 hours, Mon–Sat."
+
+===============================================================
+SECTION 11 — FOOTER
+===============================================================
+
+background: var(--charcoal)
+border-top 1px solid rgba(201,169,97,0.15)
+padding: 48px 0 32px
+
+Four-column desktop grid
+Mobile: stacked gap 28px
+
+Col 1 — Brand:
+  Logo lockup (same as nav)
+  Instrument Serif italic 13px 
+  rgba(247,244,238,0.45) margin-top 10px
+  "We build the digital presence 
+  your clinic deserves."
+  "Birmingham, UK"
+  Inter Tight 300 11px rgba(247,244,238,0.3)
+  margin-top 6px
+
+Col 2 — Work:
+  "WORK" Inter Tight 400 9px uppercase gold
+    letter-spacing 0.15em margin-bottom 12px
+  FlawlessSkin / Hira Aesthetics / Permadoll
+  Inter Tight 300 12px rgba(247,244,238,0.5)
+  stacked gap 8px hover cream
+
+Col 3 — Services:
+  "SERVICES" label same style
+  Websites / Booking Systems / AI Assistant /
+  Monthly Hosting
+  Same style as Work links
+
+Col 4 — Contact:
+  "CONTACT" label
+  "Message on WhatsApp →" gold link
+  "@aesthetixsystems" instagram link
+  Both Inter Tight 300 12px
+  Hover: cream
+
+Gold hairline divider:
+  1px solid rgba(201,169,97,0.15)
+  margin-top 32px
+
+Bottom row:
+  display flex justify-content space-between
+  Inter Tight 300 10px rgba(247,244,238,0.25)
+  "Aesthetix Systems · Birmingham, UK · © 2026"
+  "Built by Aesthetix Systems"
+
+===============================================================
+CRITICAL IMPLEMENTATION NOTES
+===============================================================
+
+GROWTH PACKAGE MESSAGING — KEY PRIORITY:
+  The core message throughout the entire page 
+  is: with our Growth package you get YOUR OWN 
+  booking system. Not Fresha. Not Booksy. Not 
+  a third-party platform taking a cut and putting 
+  their branding on your client experience.
+  
+  Reinforce this at every touchpoint:
+  - Step 02 in How It Works
+  - Card 1 in the Bento grid
+  - The Growth pricing card (prominent callout)
+  - FAQ question 3
+  - The animated booking flow in the hero
+    (shows the client booking on the CLINIC's 
+    own branded site — not a Fresha page)
+
+PHONE ANIMATION:
+  This is the most important element on the page.
+  It must feel like a real product demo, not a 
+  screenshot. Use Framer Motion AnimatePresence 
+  with smooth transitions between each step.
+  The SMS notification at step 5 is the 
+  "I need this" moment — make it feel real.
+
+ALL CTAs:
+  Every single CTA on the page links to:
+  https://wa.me/447000000000
+  Never to an email or contact form.
+
+MOTION:
+  Every section fades + slides up on scroll
+  (whileInView, viewport once: true)
+  Stagger children with 0.15s delays
+  Hero animations are immediate on page load
+  Bento cards have hover lift effect
+  Portfolio cards have hover image scale + shadow
+
+NO LOREM IPSUM:
+  All copy is provided above — use it verbatim.
+
+MOBILE:
+  Test at 375px — every section must stack cleanly
+  Phone mockup scales to fit mobile width
+  Horizontal testimonial scroll becomes 
+  vertical stacked cards on mobile
+  Pricing cards stack vertically — Growth card 
+  stays visually prominent as the middle option
+  Nav collapses to hamburger with full overlay
+
+FONTS:
+  Import Instrument Serif from Google Fonts
+  Use Inter Tight or system-ui for body
+  Never use generic serif or Arial
+
+FINAL CHECK:
+  Run through as a clinic owner on mobile
+  Does the hero immediately explain what we do?
+  Does the phone animation make them think 
+  "this is exactly what my clients should see"?
+  Does the Growth card make it 100% clear they 
+  won't be using Fresha or Booksy anymore?
+  Does every CTA open WhatsApp?
+  If yes to all four → ship it.
