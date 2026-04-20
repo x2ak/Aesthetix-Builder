@@ -1328,7 +1328,7 @@ function Footer() {
           <div>
             <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Contact</p>
             <a href={WA} target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textDecoration: 'none', display: 'block', marginBottom: 10 }}>WhatsApp →</a>
-            <a href="https://instagram.com/aesthetixsystems" target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', textDecoration: 'none', display: 'block' }}>@aesthetixsystems</a>
+            <a href="https://instagram.com/aesthetix_systems" target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textDecoration: 'none', display: 'block' }}>@aesthetix_systems</a>
           </div>
         </div>
       </div>
