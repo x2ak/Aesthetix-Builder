@@ -920,8 +920,8 @@ const PRICING_PLANS = [
     name: 'Starter',
     build: '£749',
     monthly: '£29.99 p/m',
-    desc: 'Perfect for solo practitioners getting online for the first time.',
-    features: ['Premium one-page website', 'Mobile-optimised & fast loading', 'Calendly or Fresha booking embedded', 'Instagram & WhatsApp links', 'Basic SEO setup', 'Hosting, security & support'],
+    desc: 'For solo practitioners launching online.',
+    features: ['Premium one-page website', 'Mobile-optimised & lightning fast', 'Calendly or Fresha booking embedded', 'Instagram & WhatsApp direct links', 'Google-ready SEO setup', 'Hosting, SSL & ongoing support'],
     hero: false,
     light: false,
   },
@@ -929,8 +929,8 @@ const PRICING_PLANS = [
     name: 'Growth',
     build: '£1,499',
     monthly: '£49.99 p/m',
-    desc: 'The complete digital presence. Your own booking system — no Fresha, no Booksy, no third-party fees.',
-    features: ['Full multi-page bespoke website', 'YOUR OWN booking calendar', 'Clients book on YOUR site & brand', '50% deposit collection via Stripe', 'Automatic SMS + email confirmations', 'Admin portal — manage all bookings'],
+    desc: 'The complete clinic system. No Fresha. No Booksy. No commission — ever.',
+    features: ['Full bespoke multi-page website', 'YOUR OWN branded booking platform', 'Clients book directly on your site', '50% Stripe deposits (protects against no-shows)', 'Automated SMS + email confirmations & reminders', 'Private admin portal to manage every booking'],
     hero: true,
     light: true,
   },
@@ -939,7 +939,7 @@ const PRICING_PLANS = [
     build: '£2,499',
     monthly: '£79.99 p/m',
     desc: 'Everything in Growth, plus AI that books clients for you — 24/7, from first enquiry to confirmed appointment.',
-    features: ['Everything in Growth', 'AI assistant trained on your services', 'AI answers questions & books 24/7', 'Team management (multi-practitioner)', 'Analytics dashboard & reporting', 'No-show recovery automations'],
+    features: ['Everything in Growth', 'AI assistant trained on your treatments & pricing', 'Answers enquiries & books clients 24/7', 'Multi-practitioner team management', 'Analytics dashboard & booking insights', 'No-show recovery automations'],
     hero: false,
     light: false,
   },
@@ -1003,6 +1003,23 @@ function Pricing() {
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center' }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
+
+        {/* Price anchor */}
+        <FadeIn delay={0.15}>
+          <div style={{ textAlign: 'center', margin: isMobile ? '32px 0 0' : '40px 0 0' }}>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 15, color: inkSoft, margin: '0 0 4px' }}>
+              Builds start from{' '}
+              <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '1.25rem' : '1.4rem', color: gold }}>£749</em>
+            </p>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 13 : 14, color: charcoal, margin: '0 0 6px' }}>
+              Every clinic is different. Every quote is tailored to yours.
+            </p>
+            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? 12 : 13, color: inkMute, margin: '0 0 24px' }}>
+              Most clinics invest between £1,499–£2,499 for the complete system.
+            </p>
+            <WaBtn large label="Get your bespoke quote" />
+          </div>
+        </FadeIn>
 
         {isMobile ? (
           <>
