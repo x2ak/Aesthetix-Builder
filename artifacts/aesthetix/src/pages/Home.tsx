@@ -1370,9 +1370,39 @@ function FinalCTA() {
 function Footer() {
   const isMobile = useIsMobile();
   return (
-    <footer style={{ background: '#0D0D0F', borderTop: `1px solid rgba(201,169,97,0.18)` }}>
+    <footer style={{ background: cream, borderTop: `1px solid ${line}`, position: 'relative', overflow: 'hidden' }}>
+      {/* Floating circles — mirrors hero */}
+      {[
+        { size: 380, top: '-80px',  right: '-80px',  y: [0,-20,0], dur: 9,   delay: 0,   fill: false },
+        { size: 200, top: '30%',    right: '-20px',  y: [0,-13,0], dur: 12,  delay: 1.8, fill: false },
+        { size: 130, bottom: '10%', left: '6%',      y: [0,-16,0], dur: 10,  delay: 0.6, fill: true  },
+        { size: 80,  top: '12%',    left: '40%',     y: [0,-11,0], dur: 7.5, delay: 2.2, fill: false },
+        { size: 50,  top: '60%',    right: '30%',    y: [0,-9,0],  dur: 8.5, delay: 1.2, fill: true  },
+        { size: 30,  top: '22%',    left: '16%',     y: [0,-7,0],  dur: 6.5, delay: 3,   fill: true  },
+      ].map((c, i) => (
+        <motion.div
+          key={`ft-${i}`}
+          animate={{ y: c.y }}
+          transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            width: c.size,
+            height: c.size,
+            borderRadius: '50%',
+            border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.35)`,
+            background: c.fill ? `radial-gradient(circle, rgba(201,169,97,0.13) 0%, transparent 72%)` : 'transparent',
+            top: (c as any).top,
+            right: (c as any).right,
+            bottom: (c as any).bottom,
+            left: (c as any).left,
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+      ))}
+
       {/* Main footer body */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '48px 20px 40px' : '64px 32px 52px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '48px 20px 40px' : '64px 32px 52px', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '32px 24px' : 40 }}>
           {/* Col 1 Brand */}
           <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
@@ -1382,25 +1412,25 @@ function Footer() {
                 <path d="M14 7 L20.5 21 M14 7 L7.5 21 M10.5 16.5 L17.5 16.5" stroke={gold} strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               <div>
-                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, letterSpacing: '0.15em', margin: 0, lineHeight: 1 }}>AESTHETIX</p>
+                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: charcoal, letterSpacing: '0.15em', margin: 0, lineHeight: 1 }}>AESTHETIX</p>
                 <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: gold, letterSpacing: '0.22em', margin: 0, lineHeight: 1.6 }}>SYSTEMS</p>
               </div>
             </div>
             <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 14, color: gold, margin: '0 0 6px', lineHeight: 1.65 }}>We build the digital presence your clinic deserves.</p>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: gold, margin: 0, letterSpacing: '0.04em' }}>Mayfair, London · UK</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0, letterSpacing: '0.04em' }}>Mayfair, London · UK</p>
           </div>
           {/* Col 2 Work */}
           <div>
             <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Work</p>
             {['FlawlessSkin', 'Dermadoll', 'Starr Aesthetics'].map(n => (
-              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
+              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
             ))}
           </div>
           {/* Col 3 Services */}
           <div>
             <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Services</p>
             {['Bespoke Websites', 'Booking Systems', 'AI Assistant', 'Ongoing Support'].map(n => (
-              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
+              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
             ))}
           </div>
           {/* Col 4 Contact */}
@@ -1413,7 +1443,7 @@ function Footer() {
       </div>
 
       {/* Gold bottom bar */}
-      <div style={{ background: gold, padding: isMobile ? '14px 20px' : '14px 32px' }}>
+      <div style={{ background: gold, padding: isMobile ? '14px 20px' : '14px 32px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
           <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, letterSpacing: '0.02em' }}>Aesthetix Systems · London, UK · © 2026</span>
           <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, letterSpacing: '0.02em' }}>Built by Aesthetix Systems</span>
