@@ -894,8 +894,55 @@ function Bento() {
 }
 
 /* ─── Pricing ─── */
+const PRICING_PLANS = [
+  {
+    name: 'Starter',
+    build: '£749',
+    monthly: '£29.99 p/m',
+    desc: 'Perfect for solo practitioners getting online for the first time.',
+    features: ['Premium one-page website', 'Mobile-optimised & fast loading', 'Calendly or Fresha booking embedded', 'Instagram & WhatsApp links', 'Basic SEO setup', 'Hosting, security & support'],
+    hero: false,
+    light: false,
+  },
+  {
+    name: 'Growth',
+    build: '£1,499',
+    monthly: '£49.99 p/m',
+    desc: 'The complete digital presence. Your own booking system — no Fresha, no Booksy, no third-party fees.',
+    features: ['Full multi-page bespoke website', 'YOUR OWN booking calendar', 'Clients book on YOUR site & brand', '50% deposit collection via Stripe', 'Automatic SMS + email confirmations', 'Admin portal — manage all bookings'],
+    hero: true,
+    light: true,
+  },
+  {
+    name: 'Premium',
+    build: '£2,499',
+    monthly: '£79.99 p/m',
+    desc: 'Everything in Growth, plus AI that books clients for you — 24/7, from first enquiry to confirmed appointment.',
+    features: ['Everything in Growth', 'AI assistant trained on your services', 'AI answers questions & books 24/7', 'Team management (multi-practitioner)', 'Analytics dashboard & reporting', 'No-show recovery automations'],
+    hero: false,
+    light: false,
+  },
+];
+
 function Pricing() {
   const isMobile = useIsMobile();
+  const [activeIdx, setActiveIdx] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.scrollWidth / PRICING_PLANS.length;
+    setActiveIdx(Math.min(PRICING_PLANS.length - 1, Math.round(el.scrollLeft / cardWidth)));
+  };
+
+  const scrollTo = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.scrollWidth / PRICING_PLANS.length;
+    el.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
+  };
+
   const checkRow = (text: string, light = false) => (
     <div key={text} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10 }}>
       <Check size={14} color={gold} style={{ marginTop: 2, flexShrink: 0 }} />
@@ -903,35 +950,32 @@ function Pricing() {
     </div>
   );
 
-  const PLANS = [
-    {
-      name: 'Starter',
-      build: '£749',
-      monthly: '£29.99 p/m',
-      desc: 'Perfect for solo practitioners getting online for the first time.',
-      features: ['Premium one-page website', 'Mobile-optimised & fast loading', 'Calendly or Fresha booking embedded', 'Instagram & WhatsApp links', 'Basic SEO setup', 'Hosting, security & support'],
-      hero: false,
-      light: false,
-    },
-    {
-      name: 'Growth',
-      build: '£1,499',
-      monthly: '£49.99 p/m',
-      desc: 'The complete digital presence. Your own booking system — no Fresha, no Booksy, no third-party fees.',
-      features: ['Full multi-page bespoke website', 'YOUR OWN booking calendar', 'Clients book on YOUR site & brand', '50% deposit collection via Stripe', 'Automatic SMS + email confirmations', 'Admin portal — manage all bookings'],
-      hero: true,
-      light: true,
-    },
-    {
-      name: 'Premium',
-      build: '£2,499',
-      monthly: '£79.99 p/m',
-      desc: 'Everything in Growth, plus AI that books clients for you — 24/7, from first enquiry to confirmed appointment.',
-      features: ['Everything in Growth', 'AI assistant trained on your services', 'AI answers questions & books 24/7', 'Team management (multi-practitioner)', 'Analytics dashboard & reporting', 'No-show recovery automations'],
-      hero: false,
-      light: false,
-    },
-  ];
+  const renderCard = (plan: typeof PRICING_PLANS[0]) => (
+    <div className="pricing-card" style={{
+      background: plan.hero ? charcoal : surface,
+      border: plan.hero ? `2px solid ${gold}` : `1px solid ${line}`,
+      borderRadius: 14,
+      padding: 32,
+      position: 'relative',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+    }}>
+      {plan.hero && (
+        <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: gold, color: charcoal, fontFamily: BODY, fontWeight: 600, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '5px 14px', borderRadius: 999, whiteSpace: 'nowrap' }}>
+          Most Popular
+        </div>
+      )}
+      <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 14px' }}>{plan.name}</p>
+      <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '2.6rem', color: plan.hero ? cream : charcoal, lineHeight: 1, margin: '0 0 8px' }}>{plan.build}</p>
+      <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: gold, letterSpacing: '0.02em', margin: '0 0 20px' }}>then {plan.monthly} support</p>
+      <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
+      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? 'rgba(247,244,238,0.6)' : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
+      <div style={{ flex: 1 }}>
+        {plan.features.map(t => checkRow(t, plan.light))}
+      </div>
+    </div>
+  );
 
   return (
     <section id="pricing" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
@@ -939,41 +983,68 @@ function Pricing() {
         <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center' }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
 
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24, alignItems: 'stretch', marginTop: 48 }}>
-          {PLANS.map((plan, idx) => (
-            <FadeIn key={plan.name} delay={0.1 + idx * 0.08}>
-              <div className="pricing-card" style={{
-                background: plan.hero ? charcoal : surface,
-                border: plan.hero ? `2px solid ${gold}` : `1px solid ${line}`,
-                borderRadius: 14,
-                padding: 32,
-                position: 'relative',
-                marginTop: plan.hero && isMobile ? 28 : 0,
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-                {plan.hero && (
-                  <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: gold, color: charcoal, fontFamily: BODY, fontWeight: 600, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '5px 14px', borderRadius: 999, whiteSpace: 'nowrap' }}>
-                    Most Popular
+        {isMobile ? (
+          <>
+            {/* Scroll-snap carousel */}
+            <div style={{ margin: '40px -20px 0' }}>
+              <div
+                ref={scrollRef}
+                onScroll={handleScroll}
+                className="pricing-carousel"
+                style={{
+                  display: 'flex',
+                  overflowX: 'auto',
+                  scrollSnapType: 'x mandatory',
+                  scrollBehavior: 'smooth',
+                  gap: 16,
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                  paddingBottom: 4,
+                }}
+              >
+                {PRICING_PLANS.map(plan => (
+                  <div key={plan.name} style={{
+                    flexShrink: 0,
+                    width: 'calc(100vw - 56px)',
+                    scrollSnapAlign: 'center',
+                    paddingTop: plan.hero ? 20 : 0,
+                  }}>
+                    {renderCard(plan)}
                   </div>
-                )}
-                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 14px' }}>{plan.name}</p>
-                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '2.6rem', color: plan.hero ? cream : charcoal, lineHeight: 1, margin: '0 0 8px' }}>{plan.build}</p>
-                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: gold, letterSpacing: '0.02em', margin: '0 0 20px' }}>then {plan.monthly} support</p>
-                <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? 'rgba(247,244,238,0.6)' : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
-                <div style={{ flex: 1 }}>
-                  {plan.features.map(t => checkRow(t, plan.light))}
-                </div>
+                ))}
               </div>
-            </FadeIn>
-          ))}
-        </div>
+            </div>
+            {/* Dot indicators */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 20 }}>
+              {PRICING_PLANS.map((_, i) => (
+                <div
+                  key={i}
+                  onClick={() => scrollTo(i)}
+                  style={{
+                    width: i === activeIdx ? 22 : 6,
+                    height: 6,
+                    borderRadius: 3,
+                    background: i === activeIdx ? gold : line,
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                  }}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24, alignItems: 'stretch', marginTop: 48 }}>
+            {PRICING_PLANS.map((plan, idx) => (
+              <FadeIn key={plan.name} delay={0.1 + idx * 0.08}>
+                {renderCard(plan)}
+              </FadeIn>
+            ))}
+          </div>
+        )}
 
         <FadeIn delay={0.3}>
           <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, textAlign: 'center', marginTop: 28 }}>
-            All builds include hosting, ongoing support &amp; security. Every quote is bespoke — message us to discuss your clinic.
+            All builds include hosting, ongoing support &amp; security. Bespoke quote for every clinic.
           </p>
         </FadeIn>
       </div>
