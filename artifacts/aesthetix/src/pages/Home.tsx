@@ -1307,8 +1307,8 @@ function Footer() {
                 <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: gold, letterSpacing: '0.22em', margin: 0, lineHeight: 1.6 }}>SYSTEMS</p>
               </div>
             </div>
-            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 14, color: 'rgba(247,244,238,0.45)', margin: '0 0 6px', lineHeight: 1.65 }}>We build the digital presence your clinic deserves.</p>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.25)', margin: 0, letterSpacing: '0.04em' }}>Mayfair, London · UK</p>
+            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 14, color: gold, margin: '0 0 6px', lineHeight: 1.65 }}>We build the digital presence your clinic deserves.</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: gold, margin: 0, letterSpacing: '0.04em' }}>Mayfair, London · UK</p>
           </div>
           {/* Col 2 Work */}
           <div>
