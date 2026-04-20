@@ -627,8 +627,37 @@ function Nav() {
 function Hero() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: cream, padding: isMobile ? '40px 24px 48px' : '120px 0 80px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 40 : 80, alignItems: 'center' }}>
+    <section style={{ background: cream, padding: isMobile ? '40px 24px 48px' : '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
+      {/* Floating circle vectors */}
+      {[
+        { size: 420, top: '-100px', right: '-100px', y: [0, -22, 0], dur: 9, delay: 0, fill: false },
+        { size: 240, top: '30%', right: '-40px', y: [0, -14, 0], dur: 12, delay: 1.8, fill: false },
+        { size: 150, bottom: '8%', left: '5%', y: [0, -18, 0], dur: 10, delay: 0.6, fill: true },
+        { size: 90, top: '15%', left: '42%', y: [0, -12, 0], dur: 7.5, delay: 2.2, fill: false },
+        { size: 56, top: '55%', right: '28%', y: [0, -10, 0], dur: 8.5, delay: 1.2, fill: true },
+        { size: 32, top: '25%', left: '18%', y: [0, -8, 0], dur: 6.5, delay: 3, fill: true },
+      ].map((c, i) => (
+        <motion.div
+          key={i}
+          animate={{ y: c.y }}
+          transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            width: c.size,
+            height: c.size,
+            borderRadius: '50%',
+            border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.35)`,
+            background: c.fill ? `radial-gradient(circle, rgba(201,169,97,0.13) 0%, transparent 72%)` : 'transparent',
+            top: (c as any).top,
+            right: (c as any).right,
+            bottom: (c as any).bottom,
+            left: (c as any).left,
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+      ))}
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 40 : 80, alignItems: 'center', position: 'relative', zIndex: 1 }}>
         {/* Left — Copy */}
         <div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
