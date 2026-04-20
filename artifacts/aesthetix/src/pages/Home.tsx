@@ -173,7 +173,7 @@ function PhoneAnimation() {
                   <div style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     {/* Subtext */}
                     <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: inkMute, lineHeight: 1.4, margin: '0 0 10px' }}>
-                      Advanced aesthetics clinic<br />Hall Green, Birmingham
+                      Advanced aesthetics clinic<br />Mayfair, London
                     </p>
 
                     {/* BOOK NOW button */}
@@ -187,7 +187,7 @@ function PhoneAnimation() {
 
                     {/* Trust pills */}
                     <div style={{ display: 'flex', gap: 4, marginTop: 6 }}>
-                      {['★ 4.9 rated', 'Hall Green, B28'].map(label => (
+                      {['★ 4.9 rated', 'Mayfair, W1'].map(label => (
                         <div key={label} style={{ background: 'rgba(201,169,97,0.1)', border: '1px solid rgba(201,169,97,0.2)', borderRadius: 999, padding: '2px 7px' }}>
                           <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 7, color: inkMute }}>{label}</span>
                         </div>
@@ -330,7 +330,7 @@ function PhoneAnimation() {
                       { t: 'Sarah M', w: 500, s: 11, c: charcoal, mb: 4 },
                       { t: 'Russian Lips', w: 300, s: 10, c: gold, mb: 6 },
                       { t: 'Friday 16 May · 1:00 PM', w: 300, s: 9, c: inkMute, mb: 3 },
-                      { t: 'Lumina Aesthetics · Hall Green', w: 300, s: 8.5, c: inkMute, mb: 0 },
+                      { t: 'Lumina Aesthetics · London', w: 300, s: 8.5, c: inkMute, mb: 0 },
                     ].map((row, i) => (
                       <motion.p key={i} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 + i * 0.1 }}
                         style={{ fontFamily: BODY, fontWeight: row.w, fontSize: row.s, color: row.c, marginBottom: row.mb, margin: `0 0 ${row.mb}px` }}>
@@ -643,7 +643,7 @@ function Hero() {
               <span key={n} style={{ background: goldTint, padding: '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: 11, color: goldHover }}>{n}</span>
             ))}
             <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in Birmingham, UK</span>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>
           </motion.div>
         </div>
         {/* Right — Phone */}
@@ -1086,7 +1086,7 @@ function Footer() {
               </div>
             </div>
             <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 13, color: 'rgba(247,244,238,0.42)', margin: '12px 0 4px', lineHeight: 1.6 }}>We build the digital presence your clinic deserves.</p>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.28)', margin: 0 }}>Birmingham, UK</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.28)', margin: 0 }}>London, UK</p>
           </div>
           {/* Col 2 Work */}
           <div>
@@ -1111,7 +1111,7 @@ function Footer() {
         </div>
         <div style={{ height: 1, background: 'rgba(201,169,97,0.14)', margin: '32px 0 24px' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.22)' }}>Aesthetix Systems · Birmingham, UK · © 2026</span>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.22)' }}>Aesthetix Systems · London, UK · © 2026</span>
           <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.22)' }}>Built by Aesthetix Systems</span>
         </div>
       </div>

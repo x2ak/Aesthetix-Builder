@@ -1,0 +1,256 @@
+The mobile view of the hero section is broken.
+Fix all mobile layout issues in one pass.
+Do not change any desktop styles.
+
+PROBLEMS VISIBLE:
+
+1. Hero heading "Turn followers into bookings" is 
+   too large on mobile — takes up too much space
+
+2. The phone mockup is pushed way below the fold 
+   and getting cut off — not visible on first screen
+
+3. All content is one long vertical column with 
+   too much spacing between elements
+
+4. The subtext paragraph is too large on mobile
+
+5. The trust signal row ("Trusted by...") is 
+   taking up too much vertical space
+
+FIX ALL OF THESE with mobile-only CSS:
+
+===============================================================
+MOBILE FIXES (max-width: 768px only)
+===============================================================
+
+Add or update the @media (max-width: 768px) block:
+
+/* HERO SECTION */
+#hero, section:first-of-type {
+  padding-top: 80px !important;
+  padding-bottom: 32px !important;
+  min-height: 100dvh !important;
+}
+
+/* HERO LAYOUT — stack text above phone */
+.hero-grid,
+.hero-container,
+[class*="hero"] > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 28px !important;
+  align-items: center !important;
+}
+
+/* HEADING SIZE */
+.hero-heading,
+h1 {
+  font-size: clamp(2.2rem, 8vw, 2.8rem) !important;
+  line-height: 1.05 !important;
+  margin-bottom: 12px !important;
+}
+
+/* GOLD ITALIC WORD "bookings" */
+h1 em, h1 i, 
+h1 [class*="gold"],
+h1 [class*="italic"] {
+  font-size: clamp(2.2rem, 8vw, 2.8rem) !important;
+  display: inline !important;
+}
+
+/* SUBTEXT */
+.hero-sub,
+h1 + p,
+[class*="hero"] p {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  margin-bottom: 16px !important;
+}
+
+/* CTA BUTTONS */
+.hero-ctas,
+[class*="cta"] {
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+[class*="cta"] a,
+[class*="cta"] button {
+  font-size: 12px !important;
+  padding: 11px 20px !important;
+}
+
+/* TRUST SIGNAL ROW */
+[class*="trust"],
+[class*="trusted"] {
+  margin-top: 16px !important;
+  padding-top: 14px !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  font-size: 10px !important;
+}
+
+/* PHONE MOCKUP CONTAINER */
+[class*="phone"],
+[class*="mockup"],
+[class*="Phone"],
+[class*="Mockup"] {
+  width: 200px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+
+/* PHONE FRAME itself */
+[class*="phone"] > div,
+[class*="mockup"] > div {
+  width: 200px !important;
+  height: 400px !important;
+}
+
+/* INNER SCREEN */
+[class*="phone"] [class*="screen"],
+[class*="mockup"] [class*="screen"] {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* RADIAL GLOW behind phone */
+[class*="glow"],
+[class*="radial"] {
+  width: 250px !important;
+  height: 250px !important;
+}
+
+/* EYEBROW PILL */
+[class*="eyebrow"],
+[class*="pill"]:first-child {
+  font-size: 8px !important;
+  padding: 5px 10px !important;
+  margin-bottom: 12px !important;
+}
+
+/* OVERALL HERO VERTICAL SPACING */
+[class*="hero"] {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* HERO TEXT SIDE max-width */
+[class*="hero"] > div:first-child,
+[class*="hero-left"],
+[class*="hero-text"] {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* PHONE SIDE */
+[class*="hero"] > div:last-child,
+[class*="hero-right"],
+[class*="hero-phone"] {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+===============================================================
+ALSO FIX — ALL SECTIONS BELOW HERO ON MOBILE
+===============================================================
+
+Global mobile spacing fixes for all sections:
+
+@media (max-width: 768px) {
+
+  /* Section padding */
+  section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* All grid → single column */
+  [class*="grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* All section headings */
+  h2 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Section overlines */
+  [class*="overline"],
+  [class*="eyebrow"] {
+    font-size: 9px !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  /* Bento grid cards full width */
+  [class*="bento"] > * {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+  }
+
+  /* Pricing cards full width stacked */
+  [class*="pricing"] > * {
+    width: 100% !important;
+  }
+
+  /* Problem strip — stack vertically */
+  [class*="problem"],
+  [class*="strip"] {
+    flex-direction: column !important;
+    gap: 24px !important;
+    padding: 40px 20px !important;
+  }
+
+  [class*="problem"] > *,
+  [class*="strip"] > * {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(201,169,97,0.15) !important;
+    padding-bottom: 24px !important;
+  }
+
+  [class*="problem"] > *:last-child,
+  [class*="strip"] > *:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* How it works cards */
+  [class*="steps"],
+  [class*="how"] {
+    flex-direction: column !important;
+  }
+
+  /* Testimonial scroll → stacked */
+  [class*="testimonial"],
+  [class*="results"] [class*="scroll"] {
+    flex-direction: column !important;
+    overflow-x: visible !important;
+  }
+
+  /* FAQ max-width */
+  [class*="faq"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* CTA section */
+  [class*="final-cta"],
+  [class*="cta-section"] {
+    padding: 80px 20px !important;
+  }
+
+  /* Nav */
+  nav {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
