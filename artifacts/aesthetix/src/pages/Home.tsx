@@ -864,90 +864,85 @@ function Pricing() {
       <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: light ? 'rgba(247,244,238,0.8)' : inkSoft, lineHeight: 1.55 }}>{text}</span>
     </div>
   );
+
+  const PLANS = [
+    {
+      name: 'Starter',
+      price: '£29.99',
+      sub: 'per month · all-in',
+      desc: 'Perfect for solo practitioners getting online for the first time.',
+      features: ['Premium one-page website', 'Mobile-optimised & fast loading', 'Calendly or Fresha booking embedded', 'Instagram & WhatsApp links', 'Basic SEO setup', 'Hosting, security & support'],
+      hero: false,
+      light: false,
+    },
+    {
+      name: 'Growth',
+      price: '£49.99',
+      sub: 'per month · all-in',
+      desc: 'The complete digital presence. Your own booking system — no Fresha, no Booksy, no third-party fees.',
+      features: ['Full multi-page bespoke website', 'YOUR OWN booking calendar', 'Clients book on YOUR site & brand', '50% deposit collection via Stripe', 'Automatic SMS + email confirmations', 'Admin portal — manage all bookings'],
+      hero: true,
+      light: true,
+    },
+    {
+      name: 'Premium',
+      price: '£79.99',
+      sub: 'per month · all-in',
+      desc: 'Everything in Growth, plus AI that books clients for you — 24/7, from first enquiry to confirmed appointment.',
+      features: ['Everything in Growth', 'AI assistant trained on your services', 'AI answers questions & books 24/7', 'Team management (multi-practitioner)', 'Analytics dashboard & reporting', 'No-show recovery automations'],
+      hero: false,
+      light: false,
+    },
+  ];
+
   return (
     <section id="pricing" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: 56 }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24, alignItems: 'start' }}>
-          {/* Starter */}
-          <FadeIn delay={0.1}>
-            <div className="pricing-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 32, height: '100%' }}>
-              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 16px' }}>Starter</p>
-              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: charcoal, lineHeight: 1, margin: 0 }}>£750</p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, margin: '4px 0 20px' }}>one-time build fee</p>
-              <div style={{ height: 1, background: line, margin: '0 0 20px' }} />
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>Perfect for solo practitioners and those starting online for the first time.</p>
-              {['Premium one-page website', 'Mobile-optimised & fast loading', 'Your existing Calendly or Fresha embedded', 'Instagram & WhatsApp links', 'Basic SEO setup', 'Delivered in 5–7 days'].map(t => checkRow(t))}
-              <div style={{ marginTop: 24 }}><WaBtn large label="Message on WhatsApp" /></div>
-            </div>
-          </FadeIn>
-          {/* Growth — Hero Card */}
-          <FadeIn delay={0.18}>
-            <div className="pricing-card" style={{ background: charcoal, border: `2px solid ${gold}`, borderRadius: 14, padding: 32, position: 'relative', marginTop: isMobile ? 28 : 0 }}>
-              <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: gold, color: charcoal, fontFamily: BODY, fontWeight: 600, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '5px 14px', borderRadius: 999 }}>
-                Most Popular
-              </div>
-              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(247,244,238,0.55)', margin: '0 0 16px' }}>Growth</p>
-              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: cream, lineHeight: 1, margin: 0 }}>£1,499</p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', margin: '4px 0 20px' }}>one-time build fee</p>
-              <div style={{ height: 1, background: 'rgba(201,169,97,0.2)', margin: '0 0 20px' }} />
-              {/* Ownership statement */}
-              <div style={{ background: 'rgba(201,169,97,0.08)', borderLeft: `2px solid ${gold}`, borderRadius: '0 8px 8px 0', padding: '12px 16px', marginBottom: 20 }}>
-                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: cream, lineHeight: 1.6, margin: '0 0 6px' }}>Your own booking system — built into your website. No Fresha. No Booksy. No third-party fees. Ever.</p>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: gold, margin: 0 }}>This is YOUR calendar. YOUR brand. YOUR clients. Nobody else's platform.</p>
-              </div>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.6)', lineHeight: 1.7, margin: '0 0 20px' }}>The complete digital presence for your clinic. A bespoke website with a fully custom booking system — no third-party platforms, no monthly subscriptions, no redirecting clients elsewhere to book.</p>
-              {['Full multi-page bespoke website', 'YOUR OWN booking calendar (not Fresha/Booksy)', 'Clients book on YOUR site, in YOUR brand', '50% deposit collection via Stripe', 'Automatic SMS + email confirmations', 'Admin portal — manage bookings & clients', 'Block dates, set hours, manage availability', 'Before & after gallery', 'Delivered in 7–10 days'].map(t => checkRow(t, true))}
-              {/* Comparison */}
-              <div style={{ background: 'rgba(201,169,97,0.08)', border: `1px solid rgba(201,169,97,0.22)`, borderRadius: 8, padding: '14px 16px', marginTop: 20 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, marginBottom: 8 }}>
-                  <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, color: gold, letterSpacing: '0.1em' }}>WITH US</span>
-                  <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, color: inkMute, letterSpacing: '0.1em' }}>FRESHA / BOOKSY</span>
-                </div>
-                {[['Your brand', 'Their brand'], ['Your URL', 'Their URL'], ['One-time fee', 'Monthly forever'], ['You own it', 'They own it']].map(([l, r], i) => (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingTop: 6, paddingBottom: 6, borderTop: '1px solid rgba(201,169,97,0.1)' }}>
-                    <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: sage }}>✓ {l}</span>
-                    <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute }}>✗ {r}</span>
+
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24, alignItems: 'stretch' }}>
+          {PLANS.map((plan, idx) => (
+            <FadeIn key={plan.name} delay={0.1 + idx * 0.08}>
+              <div className="pricing-card" style={{
+                background: plan.hero ? charcoal : surface,
+                border: plan.hero ? `2px solid ${gold}` : `1px solid ${line}`,
+                borderRadius: 14,
+                padding: 32,
+                position: 'relative',
+                marginTop: plan.hero && isMobile ? 28 : 0,
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}>
+                {plan.hero && (
+                  <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: gold, color: charcoal, fontFamily: BODY, fontWeight: 600, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '5px 14px', borderRadius: 999, whiteSpace: 'nowrap' }}>
+                    Most Popular
                   </div>
-                ))}
+                )}
+                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 16px' }}>{plan.name}</p>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, flexWrap: 'wrap' }}>
+                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.2rem', color: plan.hero ? cream : charcoal, lineHeight: 1, margin: 0 }}>{plan.price}</p>
+                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: plan.hero ? 'rgba(247,244,238,0.45)' : inkMute }}>/mo</span>
+                </div>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: plan.hero ? 'rgba(247,244,238,0.38)' : inkMute, margin: '3px 0 20px', letterSpacing: '0.02em' }}>{plan.sub}</p>
+                <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? 'rgba(247,244,238,0.6)' : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
+                <div style={{ flex: 1 }}>
+                  {plan.features.map(t => checkRow(t, plan.light))}
+                </div>
+                <div style={{ marginTop: 24 }}>
+                  <WaBtn large={true} outlined={plan.hero} label="Message on WhatsApp" />
+                </div>
               </div>
-              <div style={{ marginTop: 24 }}><WaBtn large outlined label="Message on WhatsApp" /></div>
-            </div>
-          </FadeIn>
-          {/* Premium */}
-          <FadeIn delay={0.26}>
-            <div className="pricing-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 32, height: '100%' }}>
-              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 16px' }}>Premium</p>
-              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: charcoal, lineHeight: 1, margin: 0 }}>£2,499+</p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, margin: '4px 0 20px' }}>starting price · fully bespoke</p>
-              <div style={{ height: 1, background: line, margin: '0 0 20px' }} />
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>Everything in Growth, plus AI that books clients for you. 24/7 automation from first enquiry to confirmed booking.</p>
-              {['Everything in Growth', 'YOUR OWN booking calendar (no third parties)', 'AI assistant trained on your treatments', 'AI answers questions & books clients 24/7', 'Team management for multi-practitioner clinics', 'Analytics dashboard', 'Automated rebooking SMS campaigns', 'No-show recovery automations', 'Priority support & monthly retainer option'].map(t => checkRow(t))}
-              <div style={{ marginTop: 24 }}><WaBtn large label="Message on WhatsApp" /></div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          ))}
         </div>
-        {/* Note */}
+
         <FadeIn delay={0.3}>
           <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, textAlign: 'center', marginTop: 28 }}>
-            Currently booking mid-May slots. April calendar is full. Message now to secure your build date.
+            All plans include hosting, security updates and priority support. No setup fees. Cancel anytime.
           </p>
-        </FadeIn>
-        {/* Hosting tiers */}
-        <FadeIn delay={0.35} style={{ marginTop: 36 }}>
-          <div style={{ background: goldTint, border: `1px solid rgba(201,169,97,0.2)`, borderRadius: 12, padding: '20px 28px' }}>
-            <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: charcoal, margin: '0 0 14px' }}>Monthly hosting & support included:</p>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 10 : 20 }}>
-              {[{ plan: 'Starter', price: '£25/mo' }, { plan: 'Growth', price: '£35/mo' }, { plan: 'Premium', price: '£45/mo' }].map(h => (
-                <div key={h.plan} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: surface, borderRadius: 8, border: `1px solid ${line}` }}>
-                  <span style={{ fontFamily: BODY, fontSize: 13, color: charcoal, fontWeight: 400 }}>{h.plan}</span>
-                  <span style={{ fontFamily: BODY, fontSize: 13, color: gold, fontWeight: 500 }}>{h.price}</span>
-                </div>
-              ))}
-            </div>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, margin: '12px 0 0' }}>Includes hosting, security, updates and priority support.</p>
-          </div>
         </FadeIn>
       </div>
     </section>
