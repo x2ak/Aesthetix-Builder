@@ -675,7 +675,7 @@ function ProblemStrip() {
         {stats.map((st, i) => (
           <FadeIn key={i} delay={i * 0.12}>
             <div style={{
-              textAlign: 'center',
+              textAlign: 'left',
               padding: isMobile ? '0 10px' : '0 40px',
               borderRight: i < 2 ? `1px solid rgba(201,169,97,0.18)` : 'none',
             }}>
