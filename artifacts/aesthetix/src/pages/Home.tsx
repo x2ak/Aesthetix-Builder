@@ -721,7 +721,7 @@ function HowItWorks() {
                 <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: gold, opacity: 0.38, lineHeight: 1, margin: 0 }}>{c.n}</p>
                 <div style={{ margin: '16px 0' }}><c.Illust /></div>
                 <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 17, color: charcoal, margin: '0 0 10px' }}>{c.title}</h3>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.72, margin: 0 }}>{c.body}</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: gold, lineHeight: 1.72, margin: 0 }}>{c.body}</p>
               </div>
             </FadeIn>
           ))}
