@@ -823,7 +823,7 @@ function Bento() {
                   <Smartphone size={isMobile ? 14 : 20} color={gold} />
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 15 : 16, color: charcoal, margin: isMobile ? '0 0 4px' : '0 0 8px', lineHeight: 1.3 }}>Instagram &amp;<br />TikTok<br />Ready</h3>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 15 : 16, color: charcoal, margin: isMobile ? '0 0 4px' : '0 0 8px', lineHeight: 1.3 }}>Instagram<br />&amp; TikTok<br />Ready</h3>
                   {!isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Optimised for mobile where your clients actually find you. Loads in under 2 seconds.</p>}
                   
                 </div>
