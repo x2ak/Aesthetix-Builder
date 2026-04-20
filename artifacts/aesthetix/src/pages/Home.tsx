@@ -790,7 +790,7 @@ function Bento() {
         ))}
       </div>
       <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '0 0 6px' }}>AI assistant that actually books</h3>
-      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Answers treatment questions and converts enquiries into bookings. 24/7. Automatically.</p>
+      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, lineHeight: 1.68, margin: 0 }}>Answers treatment questions and converts enquiries into bookings. 24/7. Automatically.</p>
     </div>
   );
 
@@ -847,7 +847,7 @@ function Bento() {
                     <span style={{ marginLeft: 'auto', background: sage, color: surface, borderRadius: 4, padding: '2px 6px', fontFamily: BODY, fontSize: 8, fontWeight: 500 }}>Delivered</span>
                   </div>
                 )}
-                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 12 : 15, color: charcoal, margin: isMobile ? '8px 0 0' : '14px 0 6px', lineHeight: 1.3 }}>
+                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 12 : 15, color: gold, margin: isMobile ? '8px 0 0' : '14px 0 6px', lineHeight: 1.3 }}>
                   {isMobile ? 'Auto SMS + email' : 'Automatic SMS + email confirmations'}
                 </h3>
                 {!isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Every booking triggers instant confirmations. Zero admin. Zero no-shows chasing.</p>}
@@ -870,7 +870,7 @@ function Bento() {
               <div style={{ background: charcoal, borderRadius: 14, padding: '16px 14px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, margin: '0 0 8px', lineHeight: 1.35 }}>Deposits &amp; no-show protection</h3>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.55)', lineHeight: 1.6, margin: 0 }}>50% deposit collected automatically. No more no-shows.</p>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: gold, lineHeight: 1.6, margin: 0 }}>50% deposit collected automatically. No more no-shows.</p>
                 </div>
                 <div style={{ background: charcoalSoft, borderRadius: 10, padding: '12px 10px', marginTop: 12, position: 'relative' }}>
                   <div style={{ position: 'absolute', top: 8, right: 8 }}>
