@@ -988,12 +988,13 @@ function Pricing() {
         </div>
       )}
       <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 14px' }}>{plan.name}</p>
-      <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '2.6rem', color: plan.hero ? cream : charcoal, lineHeight: 1, margin: '0 0 8px' }}>{plan.build}</p>
-      <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: gold, letterSpacing: '0.02em', margin: '0 0 20px' }}>then {plan.monthly} support</p>
       <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
       <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? 'rgba(247,244,238,0.6)' : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
       <div style={{ flex: 1 }}>
         {plan.features.map(t => checkRow(t, plan.light))}
+      </div>
+      <div style={{ marginTop: 24 }}>
+        <WaBtn large={false} light={plan.hero} label="Get your bespoke quote" />
       </div>
     </div>
   );
