@@ -983,23 +983,32 @@ function Testimonials() {
         <FadeIn delay={0.1} style={{ marginBottom: 48 }}>
           <SectionHead regular="What happens when your site" italic="actually works" size="clamp(2rem,4vw,3rem)" />
         </FadeIn>
-        <div className={isMobile ? '' : 'testimonial-scroll'} style={isMobile ? { display: 'flex', flexDirection: 'column', gap: 20 } : {}}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 16 : 24, alignItems: 'stretch' }}>
           {reviews.map((r, i) => (
-            <FadeIn key={i} delay={i * 0.1} style={{ minWidth: isMobile ? undefined : 340, flexShrink: 0 }}>
-              <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 28, boxShadow: '0 4px 20px rgba(26,26,28,0.06)', height: '100%' }}>
-                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '4rem', color: gold, opacity: 0.28, lineHeight: 0, display: 'block', marginBottom: 18 }}>"</span>
-                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '1.12rem', color: charcoal, lineHeight: 1.67, margin: '0 0 20px' }}>{r.q}</p>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{ width: 32, height: 32, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: charcoal }}>{r.init}</span>
-                    </div>
-                    <div>
-                      <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 12, color: charcoal, margin: 0 }}>{r.name}</p>
-                      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0 }}>{r.biz}</p>
-                    </div>
+            <FadeIn key={i} delay={i * 0.08}>
+              <div style={{
+                background: i === 1 ? charcoal : surface,
+                border: i === 1 ? `1px solid rgba(201,169,97,0.3)` : `1px solid ${line}`,
+                borderRadius: 16,
+                padding: isMobile ? '24px 22px' : '32px 32px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                gap: 20,
+                height: '100%',
+              }}>
+                <div>
+                  <span style={{ fontFamily: BODY, fontSize: isMobile ? 13 : 14, color: gold, letterSpacing: '0.04em', display: 'block', marginBottom: 16 }}>★★★★★</span>
+                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '1.05rem' : '1.15rem', color: i === 1 ? cream : charcoal, lineHeight: 1.7, margin: 0 }}>{r.q}</p>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 20, borderTop: `1px solid ${i === 1 ? 'rgba(201,169,97,0.18)' : line}` }}>
+                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: i === 1 ? 'rgba(201,169,97,0.18)' : goldTint, border: `1px solid ${i === 1 ? 'rgba(201,169,97,0.4)' : 'rgba(201,169,97,0.25)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: gold }}>{r.init}</span>
                   </div>
-                  <span style={{ fontFamily: BODY, fontSize: 12, color: gold }}>★★★★★</span>
+                  <div>
+                    <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: i === 1 ? cream : charcoal, margin: 0 }}>{r.name}</p>
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: i === 1 ? 'rgba(247,244,238,0.45)' : inkMute, margin: 0 }}>{r.biz}</p>
+                  </div>
                 </div>
               </div>
             </FadeIn>
