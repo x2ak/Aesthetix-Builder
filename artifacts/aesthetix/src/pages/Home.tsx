@@ -1097,49 +1097,53 @@ function FinalCTA() {
 function Footer() {
   const isMobile = useIsMobile();
   return (
-    <footer style={{ background: charcoal, borderTop: `1px solid rgba(201,169,97,0.14)`, padding: '48px 0 32px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 32px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '1fr 1fr 1fr 1fr', gap: isMobile ? '28px 20px' : 32 }}>
+    <footer style={{ background: charcoal, borderTop: `1px solid rgba(201,169,97,0.14)` }}>
+      {/* Main footer body */}
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '48px 20px 40px' : '64px 32px 52px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '32px 24px' : 40 }}>
           {/* Col 1 Brand */}
           <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
                 <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.5" />
                 <path d="M14 7 L20.5 21 M14 7 L7.5 21 M10.5 16.5 L17.5 16.5" stroke={gold} strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               <div>
                 <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, letterSpacing: '0.15em', margin: 0, lineHeight: 1 }}>AESTHETIX</p>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: gold, letterSpacing: '0.22em', margin: 0, lineHeight: 1.5 }}>SYSTEMS</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: gold, letterSpacing: '0.22em', margin: 0, lineHeight: 1.6 }}>SYSTEMS</p>
               </div>
             </div>
-            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 13, color: 'rgba(247,244,238,0.42)', margin: '12px 0 4px', lineHeight: 1.6 }}>We build the digital presence your clinic deserves.</p>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.28)', margin: 0 }}>London, UK</p>
+            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 14, color: 'rgba(247,244,238,0.45)', margin: '0 0 6px', lineHeight: 1.65 }}>We build the digital presence your clinic deserves.</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.25)', margin: 0, letterSpacing: '0.04em' }}>Mayfair, London · UK</p>
           </div>
           {/* Col 2 Work */}
           <div>
-            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>Work</p>
-            {['FlawlessSkin', 'Hira Aesthetics', 'Permadoll'].map(n => (
-              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', margin: '0 0 9px', cursor: 'pointer' }}>{n}</p>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Work</p>
+            {['FlawlessSkin', 'Permadoll', 'Starr Aesthetics'].map(n => (
+              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
             ))}
           </div>
           {/* Col 3 Services */}
           <div>
-            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>Services</p>
-            {['Websites', 'Booking Systems', 'AI Assistant', 'Monthly Hosting'].map(n => (
-              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', margin: '0 0 9px' }}>{n}</p>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Services</p>
+            {['Bespoke Websites', 'Booking Systems', 'AI Assistant', 'Ongoing Support'].map(n => (
+              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
             ))}
           </div>
           {/* Col 4 Contact */}
           <div>
-            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>Contact</p>
-            <a href={WA} target="_blank" rel="noopener noreferrer" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textDecoration: 'none', display: 'block', marginBottom: 9 }}>Message on WhatsApp →</a>
-            <a href="https://instagram.com/aesthetixsystems" target="_blank" rel="noopener noreferrer" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.45)', textDecoration: 'none', display: 'block' }}>@aesthetixsystems</a>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Contact</p>
+            <a href={WA} target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textDecoration: 'none', display: 'block', marginBottom: 10 }}>WhatsApp →</a>
+            <a href="https://instagram.com/aesthetixsystems" target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', textDecoration: 'none', display: 'block' }}>@aesthetixsystems</a>
           </div>
         </div>
-        <div style={{ height: 1, background: 'rgba(201,169,97,0.14)', margin: '32px 0 24px' }} />
-        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.22)' }}>Aesthetix Systems · London, UK · © 2026</span>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.22)' }}>Built by Aesthetix Systems</span>
+      </div>
+
+      {/* Gold bottom bar */}
+      <div style={{ background: gold, padding: isMobile ? '14px 20px' : '14px 32px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
+          <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, letterSpacing: '0.02em' }}>Aesthetix Systems · London, UK · © 2026</span>
+          <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, letterSpacing: '0.02em' }}>Built by Aesthetix Systems</span>
         </div>
       </div>
     </footer>
