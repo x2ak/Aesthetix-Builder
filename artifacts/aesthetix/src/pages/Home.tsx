@@ -615,37 +615,37 @@ function Nav() {
 function Hero() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: cream, padding: isMobile ? '88px 20px 48px' : '120px 0 80px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 80, alignItems: 'center' }}>
+    <section style={{ background: cream, padding: isMobile ? '40px 24px 48px' : '120px 0 80px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 40 : 80, alignItems: 'center' }}>
         {/* Left — Copy */}
         <div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: isMobile ? '5px 10px' : '6px 14px', marginBottom: isMobile ? 16 : 28 }}>
-            <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 8 : 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold }}>
-              Websites & Booking Systems · For UK Aesthetics Clinics
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: isMobile ? '5px 12px' : '6px 14px', marginBottom: isMobile ? 22 : 28 }}>
+            <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: isMobile ? '0.12em' : '0.18em', color: gold }}>
+              {isMobile ? 'Websites & Booking Systems · UK' : 'Websites & Booking Systems · For UK Aesthetics Clinics'}
             </span>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 'clamp(2.2rem, 8vw, 2.8rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, margin: isMobile ? '0 0 14px' : '0 0 20px' }}>
+            style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 'clamp(2.2rem, 8vw, 2.8rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.08, color: charcoal, margin: isMobile ? '0 0 20px' : '0 0 20px' }}>
             Turn followers into{' '}
             <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: isMobile ? 'inline' : 'block', lineHeight: 1.1 }}>bookings</em>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.55 }}
-            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 17, color: inkSoft, lineHeight: 1.7, maxWidth: 480, margin: isMobile ? '0 0 20px' : '0 0 32px' }}>
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 28px' : '0 0 32px' }}>
             We build premium websites with built-in booking systems for aesthetics clinics, lash techs, and beauty specialists. Look luxury. Book clients 24/7. Stop chasing DMs.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.72 }}
-            style={{ display: 'flex', gap: isMobile ? 10 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 16 : 28 }}>
+            style={{ display: 'flex', gap: isMobile ? 12 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 24 : 28 }}>
             <WaBtn large />
-            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 12 : 13, color: charcoal, textDecoration: 'none', letterSpacing: '0.02em' }}>
+            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 13, color: charcoal, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-            style={{ paddingTop: isMobile ? 14 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 10 : 11, color: inkMute }}>Trusted by</span>
+            style={{ paddingTop: isMobile ? 20 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 10, flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 11, color: inkMute }}>Trusted by</span>
             {['FlawlessSkin', 'Hira Aesthetics', 'Permadoll'].map(n => (
-              <span key={n} style={{ background: goldTint, padding: isMobile ? '2px 8px' : '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 10 : 11, color: goldHover }}>{n}</span>
+              <span key={n} style={{ background: goldTint, padding: isMobile ? '3px 10px' : '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 11, color: goldHover }}>{n}</span>
             ))}
             {!isMobile && <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />}
             {!isMobile && <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>}
