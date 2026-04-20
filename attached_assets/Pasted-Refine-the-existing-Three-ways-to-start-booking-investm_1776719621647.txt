@@ -1,0 +1,54 @@
+Refine the existing “Three ways to start booking” investment/packages section on the Aesthetix Systems site. Keep the current layout, typography, and colour scheme (cream background, serif italic accents, dark navy “Most Popular” Growth card, gold/tan accents). Only update the copy and make the small improvements below. Do not rebuild the section from scratch — surgical edits only.
+Section heading (keep as-is):
+	•	Eyebrow: “INVESTMENT”
+	•	H1: “Three ways to start booking” (italic serif on “booking”)
+Price anchor (update copy):
+	•	Keep “Builds start from £749” (serif, gold £749)
+	•	Subheading line 1: “Every clinic is different. Every quote is tailored to yours.”
+	•	Subheading line 2 (smaller, italic, slightly muted tone): “Most clinics invest between £1,499–£2,499 for the complete system.”
+	•	CTA button: “Get your bespoke quote” (WhatsApp icon, dark button)
+TIER 1 — STARTER card (cream):
+	•	Label: STARTER
+	•	Tagline: “For solo practitioners launching online.”
+	•	Bullets (keep checkmarks):
+	•	Premium one-page website
+	•	Mobile-optimised & lightning fast
+	•	Calendly or Fresha booking embedded
+	•	Instagram & WhatsApp direct links
+	•	Google-ready SEO setup
+	•	Hosting, SSL & ongoing support
+TIER 2 — GROWTH card (dark navy, “MOST POPULAR” gold badge on top):
+	•	Label: GROWTH
+	•	Tagline: “The complete clinic system. No Fresha. No Booksy. No commission — ever.”
+	•	Bullets (gold checkmarks on dark):
+	•	Full bespoke multi-page website
+	•	YOUR OWN branded booking platform
+	•	Clients book directly on your site
+	•	50% Stripe deposits (protects against no-shows)
+	•	Automated SMS + email confirmations & reminders
+	•	Private admin portal to manage every booking
+TIER 3 — PREMIUM card (cream):
+	•	Label: PREMIUM
+	•	Tagline: “Everything in Growth, plus AI that books clients for you — 24/7, from first enquiry to confirmed appointment.”
+	•	Bullets:
+	•	Everything in Growth
+	•	AI assistant trained on your treatments & pricing
+	•	Answers enquiries & books clients 24/7
+	•	Multi-practitioner team management
+	•	Analytics dashboard & booking insights
+	•	No-show recovery automations
+Footer note under all three cards (centred, small italic grey):
+“All builds include hosting, ongoing support & security. Every quote is bespoke — message us to discuss your clinic.”
+Design refinements to make:
+	1.	Ensure Growth card has subtle gold border glow to visually anchor it as the popular choice
+	2.	Make the “MOST POPULAR” badge sit cleanly on the top centre of the Growth card, overlapping the top edge
+	3.	On mobile, stack cards vertically with 24px spacing between
+	4.	Ensure all checkmarks align vertically (not indented inconsistently)
+	5.	Each card should have equal height on desktop for visual balance — use CSS grid, not flex column
+	6.	Add subtle hover lift effect (translateY(-4px) + shadow) on each card
+	7.	Keep the bespoke quote CTA above the cards sticky/prominent — this is the primary conversion action
+Do NOT add:
+	•	Specific prices on individual tiers (keep the “from £749” + investment range anchor only)
+	•	“Book a call” — use “Get your bespoke quote” WhatsApp CTA only
+	•	Any currency-switcher or region selector
+Build it responsive, accessible (proper heading hierarchy, aria-labels on CTA), and pixel-perfect on both mobile and desktop.

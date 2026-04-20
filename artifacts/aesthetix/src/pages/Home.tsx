@@ -71,6 +71,18 @@ function SectionHead({ regular, italic, size = 'clamp(2.5rem,5vw,4rem)', light =
   );
 }
 
+function SectionDivider() {
+  return (
+    <div style={{ background: cream, padding: '0 32px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 14 }}>
+        <div style={{ flex: 1, height: 1, background: line }} />
+        <span style={{ fontFamily: BODY, fontSize: 7, color: gold, opacity: 0.55, letterSpacing: '0.3em' }}>◆</span>
+        <div style={{ flex: 1, height: 1, background: line }} />
+      </div>
+    </div>
+  );
+}
+
 /* ─── Phone Booking Animation ─── */
 const STEP_DUR = [2200, 2000, 2600, 2000, 1600];
 
@@ -1171,11 +1183,17 @@ export default function Home() {
       <Hero />
       <ProblemStrip />
       <HowItWorks />
+      <SectionDivider />
       <Portfolio />
+      <SectionDivider />
       <Bento />
+      <SectionDivider />
       <Pricing />
+      <SectionDivider />
       <Testimonials />
+      <SectionDivider />
       <FAQ />
+      <SectionDivider />
       <FinalCTA />
       <Footer />
     </div>
