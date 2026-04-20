@@ -825,7 +825,7 @@ function Bento() {
                 <div>
                   <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 12 : 16, color: charcoal, margin: isMobile ? '0 0 4px' : '0 0 8px', lineHeight: 1.3 }}>Instagram & TikTok ready</h3>
                   {!isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Optimised for mobile where your clients actually find you. Loads in under 2 seconds.</p>}
-                  {isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkSoft, lineHeight: 1.5, margin: 0 }}>Loads under 2 seconds.</p>}
+                  
                 </div>
               </div>
             </FadeIn>
