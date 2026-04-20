@@ -795,7 +795,7 @@ function Portfolio() {
   const clients = [
     { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', preview: '/flawlessskin-preview.png', grad: `linear-gradient(135deg, ${goldTint}, ${blush})` },
     { name: 'Dermadoll Aesthetics', loc: 'Birmingham', url: 'https://dermadoll-aesthetics.co.uk', preview: '/dermadoll-preview.png', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
-    { name: 'Starr Aesthetics', loc: 'London', url: 'https://starraesthetics.co.uk', preview: '/starraesthetics-preview.png', grad: `linear-gradient(135deg, ${blush}, ${goldTint})`, demo: false },
+    { name: 'Starr Aesthetics', loc: 'London', url: 'https://starraesthetics.co.uk', preview: '/starraesthetics-preview.png', grad: `linear-gradient(135deg, ${blush}, ${goldTint})`, demo: true },
   ];
   return (
     <section id="work" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
@@ -837,7 +837,7 @@ function Portfolio() {
                     </a>
                   )}
                   {c.demo && (
-                    <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, fontStyle: 'italic' }}>Demo build</span>
+                    <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: gold, letterSpacing: '0.02em' }}>Demo site</span>
                   )}
                 </div>
               </div>
