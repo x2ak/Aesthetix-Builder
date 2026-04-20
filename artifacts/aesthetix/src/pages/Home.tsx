@@ -761,75 +761,97 @@ function Portfolio() {
 /* ─── Bento Grid ─── */
 function Bento() {
   const isMobile = useIsMobile();
+
+  const card4 = (
+    <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: isMobile ? 20 : 28, height: '100%' }}>
+      <div style={{ marginBottom: 14 }}>
+        {[
+          { t: 'Hi! How much is Russian Lips?', from: 'client' },
+          { t: 'Hi! Russian Lips is £95 for 1ml 💋 Want to book?', from: 'clinic' },
+          { t: 'Yes please!', from: 'client' },
+        ].map((msg, i) => (
+          <div key={i} style={{ display: 'flex', justifyContent: msg.from === 'clinic' ? 'flex-end' : 'flex-start', marginBottom: 5 }}>
+            <div style={{ background: msg.from === 'clinic' ? gold : goldTint, borderRadius: msg.from === 'clinic' ? '12px 12px 4px 12px' : '12px 12px 12px 4px', padding: '7px 10px', maxWidth: '80%' }}>
+              <p style={{ fontFamily: BODY, fontSize: 10, color: msg.from === 'clinic' ? charcoal : inkSoft, margin: 0, fontWeight: 300 }}>{msg.t}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '0 0 6px' }}>AI assistant that actually books</h3>
+      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Answers treatment questions and converts enquiries into bookings. 24/7. Automatically.</p>
+    </div>
+  );
+
   return (
-    <section style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+    <section style={{ background: cream, padding: isMobile ? '48px 16px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn><Overline>What's Included</Overline></FadeIn>
-        <FadeIn delay={0.1} style={{ marginBottom: 48 }}><SectionHead regular="Everything your clinic" italic="actually needs" /></FadeIn>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.4fr 1fr', gap: 16 }}>
-          {/* Card 1 — Large, spans 2 rows */}
+        <FadeIn delay={0.1} style={{ marginBottom: 36 }}><SectionHead regular="Everything your clinic" italic="actually needs" /></FadeIn>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '1.4fr 1fr', gap: isMobile ? 10 : 16 }}>
+          {/* Card 1 — Calendar */}
           <FadeIn delay={0.1}>
-            <div style={{ background: cream, border: `1px solid rgba(201,169,97,0.28)`, borderLeft: `3px solid ${gold}`, borderRadius: 14, padding: 36, gridRow: isMobile ? 'auto' : 'span 2', height: '100%' }}>
-              <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 20, color: charcoal, lineHeight: 1.35, margin: '0 0 14px' }}>Your own booking system.<br />Your brand. Zero middlemen.</h3>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.78, margin: 0 }}>
-                No Fresha. No Booksy. No monthly fees to third-party platforms eating into your revenue. Your clients book directly on your site — your calendar, your rules.
-              </p>
+            <div style={{ background: cream, border: `1px solid rgba(201,169,97,0.28)`, borderLeft: `3px solid ${gold}`, borderRadius: 14, padding: isMobile ? 16 : 36, height: '100%' }}>
+              <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 13 : 20, color: charcoal, lineHeight: 1.3, margin: isMobile ? '0 0 6px' : '0 0 14px' }}>
+                {isMobile ? 'Your own booking system.' : <>Your own booking system.<br />Your brand. Zero middlemen.</>}
+              </h3>
+              {!isMobile && (
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.78, margin: 0 }}>
+                  No Fresha. No Booksy. No monthly fees to third-party platforms eating into your revenue. Your clients book directly on your site — your calendar, your rules.
+                </p>
+              )}
               <CalBento />
             </div>
           </FadeIn>
-          {/* Right column */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {/* Card 2 */}
+          {/* Right column — Cards 2 + 3 (+ Card 4 on desktop) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 10 : 16 }}>
+            {/* Card 2 — Instagram & TikTok */}
             <FadeIn delay={0.15}>
-              <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 28, display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <div style={{ width: 48, height: 80, background: charcoal, borderRadius: 8, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Smartphone size={20} color={gold} />
+              <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: isMobile ? 14 : 28, display: 'flex', gap: isMobile ? 10 : 16, alignItems: 'flex-start' }}>
+                <div style={{ width: isMobile ? 32 : 48, height: isMobile ? 52 : 80, background: charcoal, borderRadius: 6, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Smartphone size={isMobile ? 14 : 20} color={gold} />
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 16, color: charcoal, margin: '0 0 8px' }}>Instagram & TikTok ready</h3>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Optimised for mobile where your clients actually find you. Loads in under 2 seconds.</p>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 12 : 16, color: charcoal, margin: isMobile ? '0 0 4px' : '0 0 8px', lineHeight: 1.3 }}>Instagram & TikTok ready</h3>
+                  {!isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Optimised for mobile where your clients actually find you. Loads in under 2 seconds.</p>}
+                  {isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkSoft, lineHeight: 1.5, margin: 0 }}>Loads under 2 seconds.</p>}
                 </div>
               </div>
             </FadeIn>
-            {/* Card 3 */}
+            {/* Card 3 — SMS */}
             <FadeIn delay={0.2}>
-              <div style={{ background: blush, borderRadius: 14, padding: 28 }}>
-                <div style={{ background: charcoal, borderRadius: '12px 12px 12px 4px', padding: '12px 14px', marginBottom: 10 }}>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: cream, margin: 0, lineHeight: 1.6 }}>Hi Sarah 💋 Your Russian Lips appointment is confirmed for Fri 16 May at 2pm. See you then! — FlawlessSkin</p>
+              <div style={{ background: blush, borderRadius: 14, padding: isMobile ? 14 : 28 }}>
+                <div style={{ background: charcoal, borderRadius: '10px 10px 10px 3px', padding: isMobile ? '8px 10px' : '12px 14px', marginBottom: 8 }}>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 9 : 11, color: cream, margin: 0, lineHeight: 1.55 }}>
+                    {isMobile ? 'Hi Sarah 💋 Confirmed for Fri 16 May at 2pm! — FlawlessSkin' : 'Hi Sarah 💋 Your Russian Lips appointment is confirmed for Fri 16 May at 2pm. See you then! — FlawlessSkin'}
+                  </p>
                 </div>
-                <div style={{ background: surface, borderRadius: 8, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Mail size={12} color={inkMute} />
-                  <div>
-                    <p style={{ fontFamily: BODY, fontSize: 10, fontWeight: 500, color: charcoal, margin: 0 }}>Your booking — confirmed ✓</p>
-                    <p style={{ fontFamily: BODY, fontSize: 9, fontWeight: 300, color: inkMute, margin: 0 }}>Hi Sarah, we look forward to...</p>
-                  </div>
-                  <span style={{ marginLeft: 'auto', background: sage, color: surface, borderRadius: 4, padding: '2px 6px', fontFamily: BODY, fontSize: 8, fontWeight: 500 }}>Delivered</span>
-                </div>
-                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '14px 0 6px' }}>Automatic SMS + email confirmations</h3>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Every booking triggers instant confirmations. Zero admin. Zero no-shows chasing.</p>
-              </div>
-            </FadeIn>
-            {/* Card 4 */}
-            <FadeIn delay={0.25}>
-              <div style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 28 }}>
-                <div style={{ marginBottom: 14 }}>
-                  {[
-                    { t: 'Hi! How much is Russian Lips?', from: 'client' },
-                    { t: 'Hi! Russian Lips is £95 for 1ml 💋 Want to book?', from: 'clinic' },
-                    { t: 'Yes please!', from: 'client' },
-                  ].map((msg, i) => (
-                    <div key={i} style={{ display: 'flex', justifyContent: msg.from === 'clinic' ? 'flex-end' : 'flex-start', marginBottom: 5 }}>
-                      <div style={{ background: msg.from === 'clinic' ? gold : goldTint, borderRadius: msg.from === 'clinic' ? '12px 12px 4px 12px' : '12px 12px 12px 4px', padding: '7px 10px', maxWidth: '80%' }}>
-                        <p style={{ fontFamily: BODY, fontSize: 10, color: msg.from === 'clinic' ? charcoal : inkSoft, margin: 0, fontWeight: 300 }}>{msg.t}</p>
-                      </div>
+                {!isMobile && (
+                  <div style={{ background: surface, borderRadius: 8, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8, marginBottom: 0 }}>
+                    <Mail size={12} color={inkMute} />
+                    <div>
+                      <p style={{ fontFamily: BODY, fontSize: 10, fontWeight: 500, color: charcoal, margin: 0 }}>Your booking — confirmed ✓</p>
+                      <p style={{ fontFamily: BODY, fontSize: 9, fontWeight: 300, color: inkMute, margin: 0 }}>Hi Sarah, we look forward to...</p>
                     </div>
-                  ))}
-                </div>
-                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '0 0 6px' }}>AI assistant that actually books</h3>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Answers treatment questions and converts enquiries into bookings. 24/7. Automatically.</p>
+                    <span style={{ marginLeft: 'auto', background: sage, color: surface, borderRadius: 4, padding: '2px 6px', fontFamily: BODY, fontSize: 8, fontWeight: 500 }}>Delivered</span>
+                  </div>
+                )}
+                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 12 : 15, color: charcoal, margin: isMobile ? '8px 0 0' : '14px 0 6px', lineHeight: 1.3 }}>
+                  {isMobile ? 'Auto SMS + email' : 'Automatic SMS + email confirmations'}
+                </h3>
+                {!isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.68, margin: 0 }}>Every booking triggers instant confirmations. Zero admin. Zero no-shows chasing.</p>}
               </div>
             </FadeIn>
+            {/* Card 4 — desktop only in right column */}
+            {!isMobile && (
+              <FadeIn delay={0.25}>{card4}</FadeIn>
+            )}
           </div>
+          {/* Card 4 — mobile only, full width below the 2-col block */}
+          {isMobile && (
+            <FadeIn delay={0.25} style={{ gridColumn: '1 / -1' }}>
+              {card4}
+            </FadeIn>
+          )}
           {/* Card 5 — Full width */}
           <FadeIn delay={0.3} style={{ gridColumn: isMobile ? '1' : '1 / -1' }}>
             <div style={{ background: charcoal, borderRadius: 14, padding: 36, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 32, alignItems: 'center' }}>
