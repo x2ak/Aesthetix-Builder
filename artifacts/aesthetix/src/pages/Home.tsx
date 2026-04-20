@@ -858,35 +858,56 @@ function Bento() {
               <FadeIn delay={0.25}>{card4}</FadeIn>
             )}
           </div>
-          {/* Card 4 — mobile only, full width below the 2-col block */}
+          {/* Card 4 — mobile: left col | desktop: in right flex column above */}
           {isMobile && (
-            <FadeIn delay={0.25} style={{ gridColumn: '1 / -1' }}>
+            <FadeIn delay={0.25}>
               {card4}
             </FadeIn>
           )}
-          {/* Card 5 — Full width */}
-          <FadeIn delay={0.3} style={{ gridColumn: isMobile ? '1' : '1 / -1' }}>
-            <div style={{ background: charcoal, borderRadius: 14, padding: 36, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 32, alignItems: 'center' }}>
-              <div>
-                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 20, color: cream, margin: '0 0 14px', lineHeight: 1.35 }}>Deposits & no-show protection</h3>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: 'rgba(247,244,238,0.6)', lineHeight: 1.78, margin: 0, maxWidth: 380 }}>
-                  Collect a 50% deposit at booking, automatically. No more last-minute cancellations. No more lost revenue. Stripe-powered, bank-grade secure.
-                </p>
-              </div>
-              <div style={{ display: 'flex', justifyContent: isMobile ? 'flex-start' : 'flex-end' }}>
-                <div style={{ background: charcoalSoft, borderRadius: 14, padding: '20px 28px', minWidth: 200, position: 'relative' }}>
-                  <div style={{ position: 'absolute', top: 12, right: 14, display: 'flex', gap: 4, alignItems: 'center' }}>
-                    <span style={{ background: sage, color: surface, fontFamily: BODY, fontSize: 8, fontWeight: 500, borderRadius: 4, padding: '2px 7px' }}>DEPOSIT SECURED</span>
+          {/* Card 5 — desktop: full width | mobile: right col next to Card 4 */}
+          {isMobile ? (
+            <FadeIn delay={0.3}>
+              <div style={{ background: charcoal, borderRadius: 14, padding: '16px 14px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, margin: '0 0 8px', lineHeight: 1.35 }}>Deposits &amp; no-show protection</h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.55)', lineHeight: 1.6, margin: 0 }}>50% deposit collected automatically. No more no-shows.</p>
+                </div>
+                <div style={{ background: charcoalSoft, borderRadius: 10, padding: '12px 10px', marginTop: 12, position: 'relative' }}>
+                  <div style={{ position: 'absolute', top: 8, right: 8 }}>
+                    <span style={{ background: sage, color: surface, fontFamily: BODY, fontSize: 7, fontWeight: 500, borderRadius: 3, padding: '2px 5px' }}>SECURED</span>
                   </div>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.5)', letterSpacing: '0.15em', margin: '24px 0 6px' }}>•••• •••• •••• 4242</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={gold} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    <span style={{ fontFamily: BODY, fontSize: 11, color: gold }}>Stripe-secured</span>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.45)', letterSpacing: '0.12em', margin: '14px 0 4px' }}>•••• •••• 4242</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={gold} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span style={{ fontFamily: BODY, fontSize: 9, color: gold }}>Stripe-secured</span>
                   </div>
                 </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          ) : (
+            <FadeIn delay={0.3} style={{ gridColumn: '1 / -1' }}>
+              <div style={{ background: charcoal, borderRadius: 14, padding: 36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'center' }}>
+                <div>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 20, color: cream, margin: '0 0 14px', lineHeight: 1.35 }}>Deposits & no-show protection</h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: 'rgba(247,244,238,0.6)', lineHeight: 1.78, margin: 0, maxWidth: 380 }}>
+                    Collect a 50% deposit at booking, automatically. No more last-minute cancellations. No more lost revenue. Stripe-powered, bank-grade secure.
+                  </p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <div style={{ background: charcoalSoft, borderRadius: 14, padding: '20px 28px', minWidth: 200, position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: 12, right: 14, display: 'flex', gap: 4, alignItems: 'center' }}>
+                      <span style={{ background: sage, color: surface, fontFamily: BODY, fontSize: 8, fontWeight: 500, borderRadius: 4, padding: '2px 7px' }}>DEPOSIT SECURED</span>
+                    </div>
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.5)', letterSpacing: '0.15em', margin: '24px 0 6px' }}>•••• •••• •••• 4242</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={gold} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                      <span style={{ fontFamily: BODY, fontSize: 11, color: gold }}>Stripe-secured</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          )}
         </div>
       </div>
     </section>
