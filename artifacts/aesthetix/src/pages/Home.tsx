@@ -766,7 +766,7 @@ function Portfolio() {
   const clients = [
     { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', preview: '/flawlessskin-preview.png', grad: `linear-gradient(135deg, ${goldTint}, ${blush})` },
     { name: 'Dermadoll Aesthetics', loc: 'Birmingham', url: 'https://dermadoll-aesthetics.co.uk', preview: '/dermadoll-preview.png', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
-    { name: 'Starr Aesthetics', loc: 'London', url: 'https://starraesthetics.co.uk', preview: null, grad: `linear-gradient(135deg, ${blush}, ${goldTint})`, demo: true },
+    { name: 'Starr Aesthetics', loc: 'London', url: 'https://starraesthetics.co.uk', preview: '/starraesthetics-preview.png', grad: `linear-gradient(135deg, ${blush}, ${goldTint})`, demo: false },
   ];
   return (
     <section id="work" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
