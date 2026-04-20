@@ -1370,7 +1370,7 @@ function FinalCTA() {
 function Footer() {
   const isMobile = useIsMobile();
   return (
-    <footer style={{ background: charcoal, borderTop: `1px solid rgba(201,169,97,0.14)` }}>
+    <footer style={{ background: '#0D0D0F', borderTop: `1px solid rgba(201,169,97,0.18)` }}>
       {/* Main footer body */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '48px 20px 40px' : '64px 32px 52px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '32px 24px' : 40 }}>
