@@ -816,7 +816,7 @@ function Bento() {
   );
 
   return (
-    <section style={{ background: cream, padding: isMobile ? '48px 16px' : '100px 0' }}>
+    <section style={{ background: goldTint, padding: isMobile ? '48px 16px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn><Overline>What's Included</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ marginBottom: 36 }}><SectionHead regular="Everything your clinic" italic="actually needs" /></FadeIn>
@@ -1021,7 +1021,7 @@ function Pricing() {
   );
 
   return (
-    <section id="pricing" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+    <section id="pricing" style={{ background: goldTint, padding: isMobile ? '64px 20px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center' }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
@@ -1246,7 +1246,7 @@ function FAQ() {
     { q: 'Do you offer ongoing support?', a: 'Yes — monthly support plans start at £25/mo and include hosting, security updates, minor content changes and priority support. No long-term contracts. Cancel anytime.' },
   ];
   return (
-    <section style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
+    <section style={{ background: goldTint, padding: isMobile ? '64px 20px' : '100px 0' }}>
       <div style={{ maxWidth: 720, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn><Overline centered>FAQ</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: 56 }}>
@@ -1384,17 +1384,11 @@ export default function Home() {
       <Hero />
       <ProblemStrip />
       <HowItWorks />
-      <SectionDivider />
-      <Portfolio />
-      <SectionDivider />
       <Bento />
-      <SectionDivider />
+      <Portfolio />
       <Pricing />
-      <SectionDivider />
       <Testimonials />
-      <SectionDivider />
       <FAQ />
-      <SectionDivider />
       <FinalCTA />
       <Footer />
     </div>
