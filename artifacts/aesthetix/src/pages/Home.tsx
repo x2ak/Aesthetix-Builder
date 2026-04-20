@@ -1094,7 +1094,7 @@ function Pricing() {
             <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 13 : 14, color: charcoal, margin: '0 0 6px' }}>
               Every clinic is different. Every quote is tailored to yours.
             </p>
-            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? 12 : 13, color: inkMute, margin: '0 0 24px' }}>
+            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? 12 : 13, color: gold, margin: '0 0 24px' }}>
               Most clinics invest between £1,499–£2,499 for the complete system.
             </p>
             <WaBtn large label="Get your bespoke quote" />
