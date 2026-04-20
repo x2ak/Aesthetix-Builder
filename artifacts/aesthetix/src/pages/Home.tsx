@@ -1064,8 +1064,8 @@ function Pricing() {
         )}
 
         <FadeIn delay={0.3}>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, textAlign: 'center', marginTop: 28 }}>
-            All builds include hosting, ongoing support &amp; security. Bespoke quote for every clinic.
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textAlign: 'center', marginTop: 28 }}>
+            All builds include hosting, ongoing support &amp; security. Every quote is bespoke — message us to discuss your clinic.
           </p>
         </FadeIn>
       </div>
