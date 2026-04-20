@@ -919,7 +919,13 @@ function Pricing() {
     <section id="pricing" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
-        <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: 56 }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
+        <FadeIn delay={0.1} style={{ textAlign: 'center' }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
+
+        <FadeIn delay={0.18} style={{ textAlign: 'center', margin: '28px 0 52px' }}>
+          <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '2.2rem' : '2.8rem', color: charcoal, lineHeight: 1.2, margin: '0 0 6px' }}>Builds start from <span style={{ color: gold }}>£749</span></p>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute, margin: '0 0 20px' }}>Every quote is bespoke — tell us about your clinic</p>
+          <WaBtn large label="Get a quote" />
+        </FadeIn>
 
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24, alignItems: 'stretch' }}>
           {PLANS.map((plan, idx) => (
@@ -940,12 +946,7 @@ function Pricing() {
                     Most Popular
                   </div>
                 )}
-                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 14px' }}>{plan.name}</p>
-                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '1.9rem', color: plan.hero ? cream : charcoal, lineHeight: 1.25, margin: '0 0 4px' }}>Builds start from £749</p>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: plan.hero ? 'rgba(247,244,238,0.4)' : inkMute, margin: '0 0 18px', letterSpacing: '0.02em' }}>bespoke quote for your clinic</p>
-                <div style={{ marginBottom: 20 }}>
-                  <WaBtn large={false} outlined={plan.hero} label="Get a quote" />
-                </div>
+                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 16px' }}>{plan.name}</p>
                 <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
                 <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? 'rgba(247,244,238,0.6)' : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
                 <div style={{ flex: 1 }}>
