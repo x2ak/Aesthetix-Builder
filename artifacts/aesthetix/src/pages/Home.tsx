@@ -656,7 +656,7 @@ function Hero() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
             style={{ paddingTop: isMobile ? 20 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 10, flexWrap: 'wrap' }}>
             <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 11, color: inkMute }}>Trusted by</span>
-            {['FlawlessSkin', 'Hira Aesthetics', 'Permadoll'].map(n => (
+            {['FlawlessSkin', 'Dermadoll', 'Starr Aesthetics'].map(n => (
               <span key={n} style={{ background: goldTint, padding: isMobile ? '3px 10px' : '3px 10px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 11, color: goldHover }}>{n}</span>
             ))}
             {!isMobile && <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />}
@@ -736,8 +736,8 @@ function Portfolio() {
   const isMobile = useIsMobile();
   const clients = [
     { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', grad: `linear-gradient(135deg, ${goldTint}, ${blush})` },
-    { name: 'Hira Aesthetics', loc: 'Bury, Manchester', url: 'https://hiraaesthetics.com', grad: `linear-gradient(135deg, ${blush}, ${goldTint})` },
-    { name: 'Permadoll Aesthetics', loc: 'Birmingham', url: 'https://permadoll-aesthetics.co.uk', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
+    { name: 'Dermadoll Aesthetics', loc: 'Birmingham', url: 'https://dermadoll-aesthetics.co.uk', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
+    { name: 'Starr Aesthetics', loc: 'London', url: 'https://starraesthetics.co.uk', grad: `linear-gradient(135deg, ${blush}, ${goldTint})` },
   ];
   return (
     <section id="work" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
@@ -1094,7 +1094,7 @@ function Pricing() {
 /* ─── Testimonials ─── */
 const REVIEWS = [
   { q: 'Booking enquiries doubled in the first month. Clients actually book now instead of just following.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F', dark: false },
-  { q: 'The site looks more premium than clinics charging double what I do. Clients comment on it every single week.', name: 'Permadoll', biz: 'Birmingham', init: 'P', dark: true },
+  { q: 'The site looks more premium than clinics charging double what I do. Clients comment on it every single week.', name: 'Dermadoll', biz: 'Birmingham', init: 'D', dark: true },
   { q: 'From enquiry to deposit — fully automated. I woke up to three confirmed bookings on the first night it went live.', name: 'Starr Aesthetics', biz: 'London', init: 'S', dark: false },
 ];
 
@@ -1313,7 +1313,7 @@ function Footer() {
           {/* Col 2 Work */}
           <div>
             <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Work</p>
-            {['FlawlessSkin', 'Permadoll', 'Starr Aesthetics'].map(n => (
+            {['FlawlessSkin', 'Dermadoll', 'Starr Aesthetics'].map(n => (
               <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
             ))}
           </div>
