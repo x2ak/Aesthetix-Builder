@@ -81,6 +81,10 @@
 }
 .testimonial-scroll::-webkit-scrollbar { display: none; }
 
+/* Pricing carousel */
+.pricing-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+.pricing-carousel::-webkit-scrollbar { display: none; }
+
 /* Pricing card hover */
 .pricing-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,26,28,0.10); }

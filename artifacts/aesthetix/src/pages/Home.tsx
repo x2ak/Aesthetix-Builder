@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Mail, MessageCircle, Menu, X, ChevronDown, Smartphone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
