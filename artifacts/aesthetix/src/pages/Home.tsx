@@ -649,7 +649,7 @@ function Hero() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.72 }}
             style={{ display: 'flex', gap: isMobile ? 12 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 24 : 28 }}>
             <WaBtn large />
-            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 13, color: charcoal, textDecoration: 'none', letterSpacing: '0.02em' }}>
+            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </motion.div>
