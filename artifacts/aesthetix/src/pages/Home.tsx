@@ -1074,51 +1074,121 @@ function Pricing() {
 }
 
 /* ─── Testimonials ─── */
+const REVIEWS = [
+  { q: 'Booking enquiries doubled in the first month. Clients actually book now instead of just following.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F', dark: false },
+  { q: 'The site looks more premium than clinics charging double what I do. Clients comment on it every single week.', name: 'Permadoll', biz: 'Birmingham', init: 'P', dark: true },
+  { q: 'From enquiry to deposit — fully automated. I woke up to three confirmed bookings on the first night it went live.', name: 'Starr Aesthetics', biz: 'London', init: 'S', dark: false },
+];
+
 function Testimonials() {
   const isMobile = useIsMobile();
-  const reviews = [
-    { q: 'Booking enquiries doubled in the first month. Clients actually book now instead of just following.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F' },
-    { q: 'The site looks more premium than clinics charging double what I do. Clients comment on it every single week.', name: 'Permadoll', biz: 'Birmingham', init: 'P' },
-    { q: 'From enquiry to deposit — fully automated. I woke up to three confirmed bookings on the first night it went live.', name: 'Starr Aesthetics', biz: 'London', init: 'S' },
-  ];
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const kids = Array.from(el.children) as HTMLElement[];
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let closest = 0, minDist = Infinity;
+      kids.forEach((child, i) => {
+        const dist = Math.abs(child.offsetLeft + child.offsetWidth / 2 - center);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      setActiveIdx(closest);
+    };
+    el.addEventListener('scroll', handleScroll, { passive: true });
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const goTo = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.children[i] as HTMLElement;
+    el.scrollTo({ left: card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2, behavior: 'smooth' });
+  };
+
+  const cardW = isMobile ? 'calc(100vw - 56px)' : 520;
+  const sidePad = isMobile ? 28 : `calc(50% - 260px)`;
+
   return (
-    <section id="results" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
-        <FadeIn><Overline>Results</Overline></FadeIn>
-        <FadeIn delay={0.1} style={{ marginBottom: 48 }}>
-          <SectionHead regular="What happens when your site" italic="actually works" size="clamp(2rem,4vw,3rem)" />
-        </FadeIn>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 16 : 24, alignItems: 'stretch' }}>
-          {reviews.map((r, i) => (
-            <FadeIn key={i} delay={i * 0.08}>
-              <div style={{
-                background: i === 1 ? charcoal : surface,
-                border: i === 1 ? `1px solid rgba(201,169,97,0.3)` : `1px solid ${line}`,
-                borderRadius: 16,
-                padding: isMobile ? '24px 22px' : '32px 32px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                gap: 20,
-                height: '100%',
-              }}>
-                <div>
-                  <span style={{ fontFamily: BODY, fontSize: isMobile ? 13 : 14, color: gold, letterSpacing: '0.04em', display: 'block', marginBottom: 16 }}>★★★★★</span>
-                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '1.05rem' : '1.15rem', color: i === 1 ? cream : charcoal, lineHeight: 1.7, margin: 0 }}>{r.q}</p>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 20, borderTop: `1px solid ${i === 1 ? 'rgba(201,169,97,0.18)' : line}` }}>
-                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: i === 1 ? 'rgba(201,169,97,0.18)' : goldTint, border: `1px solid ${i === 1 ? 'rgba(201,169,97,0.4)' : 'rgba(201,169,97,0.25)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: gold }}>{r.init}</span>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: i === 1 ? cream : charcoal, margin: 0 }}>{r.name}</p>
-                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: i === 1 ? 'rgba(247,244,238,0.45)' : inkMute, margin: 0 }}>{r.biz}</p>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
+    <section id="results" style={{ background: cream, padding: isMobile ? '64px 0' : '100px 0', overflow: 'hidden' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0' : '0 32px' }}>
+        <div style={{ padding: isMobile ? '0 28px' : 0 }}>
+          <FadeIn><Overline>Results</Overline></FadeIn>
+          <FadeIn delay={0.1} style={{ marginBottom: 48 }}>
+            <SectionHead regular="What happens when your site" italic="actually works" size="clamp(2rem,4vw,3rem)" />
+          </FadeIn>
         </div>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="reviews-carousel"
+        style={{
+          display: 'flex',
+          overflowX: 'auto',
+          scrollSnapType: 'x mandatory',
+          gap: isMobile ? 16 : 24,
+          paddingLeft: sidePad,
+          paddingRight: sidePad,
+          paddingBottom: 4,
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        {REVIEWS.map((r, i) => (
+          <div
+            key={i}
+            style={{
+              flexShrink: 0,
+              width: cardW,
+              scrollSnapAlign: 'center',
+              background: r.dark ? charcoal : surface,
+              border: r.dark ? `1px solid rgba(201,169,97,0.3)` : `1px solid ${line}`,
+              borderRadius: 16,
+              padding: isMobile ? '28px 24px' : '36px 36px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              gap: 24,
+              boxSizing: 'border-box',
+            }}
+          >
+            <div>
+              <span style={{ fontFamily: BODY, fontSize: 14, color: gold, letterSpacing: '0.04em', display: 'block', marginBottom: 18 }}>★★★★★</span>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '1.1rem' : '1.2rem', color: r.dark ? cream : charcoal, lineHeight: 1.72, margin: 0 }}>{r.q}</p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 22, borderTop: `1px solid ${r.dark ? 'rgba(201,169,97,0.18)' : line}` }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: r.dark ? 'rgba(201,169,97,0.18)' : goldTint, border: `1px solid ${r.dark ? 'rgba(201,169,97,0.4)' : 'rgba(201,169,97,0.25)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: gold }}>{r.init}</span>
+              </div>
+              <div>
+                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: r.dark ? cream : charcoal, margin: 0 }}>{r.name}</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: r.dark ? 'rgba(247,244,238,0.45)' : inkMute, margin: 0 }}>{r.biz}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 28 }}>
+        {REVIEWS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            style={{
+              width: activeIdx === i ? 22 : 8,
+              height: 8,
+              borderRadius: 4,
+              background: activeIdx === i ? gold : line,
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              transition: 'width 0.3s ease, background 0.3s ease',
+            }}
+          />
+        ))}
       </div>
     </section>
   );

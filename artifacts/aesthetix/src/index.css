@@ -84,6 +84,8 @@
 /* Pricing carousel */
 .pricing-carousel { -ms-overflow-style: none; scrollbar-width: none; }
 .pricing-carousel::-webkit-scrollbar { display: none; }
+.reviews-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+.reviews-carousel::-webkit-scrollbar { display: none; }
 
 /* Pricing card hover */
 .pricing-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
