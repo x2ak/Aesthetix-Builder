@@ -72,7 +72,30 @@ function SectionHead({ regular, italic, size = 'clamp(2.5rem,5vw,4rem)', light =
 }
 
 /* ─── Phone Booking Animation ─── */
-const STEP_DUR = [1900, 1900, 2400, 1900, 1900];
+const STEP_DUR = [2200, 2000, 2600, 2000, 1600];
+
+const PHONE_URLS: Record<number, string> = {
+  0: 'lumina-aesthetics.co.uk',
+  1: 'lumina-aesthetics.co.uk/book',
+  2: 'lumina-aesthetics.co.uk/book',
+  3: 'lumina-aesthetics.co.uk/confirmed',
+  4: 'lumina-aesthetics.co.uk/confirmed',
+};
+
+function PhoneBrowserBar({ url }: { url: string }) {
+  return (
+    <div style={{ background: '#EFEBE3', padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 5, borderBottom: `1px solid ${line}` }}>
+      <svg width="7" height="9" viewBox="0 0 7 9" fill="none" style={{ flexShrink: 0 }}>
+        <rect x="0.5" y="2.5" width="6" height="6" rx="1.2" stroke={inkMute} strokeWidth="0.8" fill="none" />
+        <path d="M1.8 2.5V1.8a1.7 1.7 0 0 1 3.4 0v.7" stroke={inkMute} strokeWidth="0.8" fill="none" strokeLinecap="round" />
+      </svg>
+      <div style={{ flex: 1, background: '#F7F4EE', borderRadius: 50, padding: '2.5px 8px', border: `1px solid ${line}` }}>
+        <span style={{ fontFamily: BODY, fontSize: 7, color: inkMute, letterSpacing: 0 }}>{url}</span>
+      </div>
+    </div>
+  );
+}
+
 function PhoneAnimation() {
   const [step, setStep] = useState(0);
   const [svcSel, setSvcSel] = useState(false);
@@ -82,8 +105,8 @@ function PhoneAnimation() {
   useEffect(() => {
     let t: ReturnType<typeof setTimeout>;
     const advance = (cur: number) => {
-      if (cur === 1) { setSvcSel(false); setTimeout(() => setSvcSel(true), 900); }
-      if (cur === 2) { setCalDate(-1); setCalTime(-1); setTimeout(() => setCalDate(16), 900); setTimeout(() => setCalTime(2), 1800); }
+      if (cur === 1) { setSvcSel(false); setTimeout(() => setSvcSel(true), 1000); }
+      if (cur === 2) { setCalDate(-1); setCalTime(-1); setTimeout(() => setCalDate(16), 900); setTimeout(() => setCalTime(1), 1900); }
       t = setTimeout(() => { const nx = (cur + 1) % 5; setStep(nx); advance(nx); }, STEP_DUR[cur]);
     };
     advance(0);
@@ -95,153 +118,224 @@ function PhoneAnimation() {
 
   return (
     <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ position: 'absolute', width: 320, height: 320, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.13) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
+      {/* Gold glow */}
+      <div style={{ position: 'absolute', width: 340, height: 340, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.13) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
       <motion.div
         animate={{ y: [0, -9, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         style={{ width: 264, height: 530, background: charcoal, borderRadius: 40, padding: 12, boxShadow: `0 0 0 1.5px rgba(201,169,97,0.28), 0 36px 72px rgba(26,26,28,0.28)`, position: 'relative' }}
       >
+        {/* Notch */}
         <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 80, height: 26, background: charcoal, borderRadius: '0 0 14px 14px', zIndex: 10 }} />
-        <div style={{ width: '100%', height: '100%', background: cream, borderRadius: 30, overflow: 'hidden', position: 'relative' }}>
-          <AnimatePresence mode="wait">
 
-            {/* Step 0 — Clinic Website */}
-            {step === 0 && (
-              <motion.div key="s0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.4 }}
-                style={{ width: '100%', height: '100%', background: '#1A1A1C', position: 'relative' }}>
-                <div style={{ padding: '28px 18px 0' }}>
-                  <p style={{ fontFamily: BODY, fontSize: 7, letterSpacing: '0.2em', color: gold, textTransform: 'uppercase', margin: 0 }}>Lumina Aesthetics</p>
-                  <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 21, color: cream, margin: '6px 0 0', lineHeight: 1.2 }}>Book your next treatment</h3>
-                </div>
-                <div style={{ height: 110, margin: '14px 18px 0', background: 'linear-gradient(135deg,#2E2E32,#1A1A1C)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 12, color: 'rgba(247,244,238,0.25)' }}>treatment image</span>
-                </div>
-                <div style={{ padding: '14px 18px 0' }}>
-                  <p style={{ fontFamily: BODY, fontSize: 8, color: 'rgba(247,244,238,0.45)', margin: 0, lineHeight: 1.7 }}>Russian Lips · Lip Filler · Microneedling</p>
-                  <motion.button
-                    animate={{ scale: [1, 1, 0.93, 1] }}
-                    transition={{ delay: 1.2, duration: 0.3, times: [0, 0.5, 0.7, 1] }}
-                    style={{ marginTop: 14, width: '100%', padding: '10px', background: gold, color: charcoal, border: 'none', borderRadius: 8, fontFamily: BODY, fontWeight: 600, fontSize: 10, letterSpacing: '0.12em', cursor: 'pointer' }}
+        {/* Screen */}
+        <div style={{ width: '100%', height: '100%', background: cream, borderRadius: 30, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+
+          {/* Browser URL bar — always visible, URL changes per step */}
+          <PhoneBrowserBar url={PHONE_URLS[step]} />
+
+          {/* Page content */}
+          <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+            <AnimatePresence mode="wait">
+
+              {/* ── Step 0: Clinic website hero ── */}
+              {step === 0 && (
+                <motion.div key="s0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.4 }}
+                  style={{ position: 'absolute', inset: 0, background: cream, display: 'flex', flexDirection: 'column' }}>
+
+                  {/* Mini site nav */}
+                  <div style={{ padding: '10px 16px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 9, color: gold, letterSpacing: '0.05em' }}>Lumina Aesthetics</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      {[0, 1, 2].map(i => <div key={i} style={{ width: 12, height: 1.2, background: charcoal, borderRadius: 1 }} />)}
+                    </div>
+                  </div>
+
+                  {/* Hero content */}
+                  <div style={{ padding: '16px 16px 0', flex: 1 }}>
+                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 28, color: charcoal, margin: 0, lineHeight: 1.1 }}>Your Skin.</p>
+                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 28, color: gold, margin: '0 0 10px', lineHeight: 1.1 }}>Flawless.</p>
+                    <p style={{ fontFamily: BODY, fontSize: 8, color: inkMute, margin: '0 0 18px', lineHeight: 1.6 }}>Advanced aesthetics clinic{'\n'}Hall Green, Birmingham</p>
+
+                    {/* BOOK NOW button */}
+                    <motion.div
+                      animate={{ scale: [1, 1, 0.94, 1] }}
+                      transition={{ delay: 1.4, duration: 0.28, times: [0, 0.55, 0.75, 1] }}
+                      style={{ width: '100%', background: gold, borderRadius: 8, padding: '11px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 10, color: charcoal, letterSpacing: '0.14em' }}>BOOK NOW</span>
+                    </motion.div>
+
+                    {/* Faint botanical circle decoration */}
+                    <div style={{ position: 'absolute', bottom: -30, right: -30, width: 130, height: 130, borderRadius: '50%', border: `1px solid rgba(201,169,97,0.12)`, pointerEvents: 'none' }} />
+                    <div style={{ position: 'absolute', bottom: -10, right: -10, width: 80, height: 80, borderRadius: '50%', border: `1px solid rgba(201,169,97,0.1)`, pointerEvents: 'none' }} />
+                  </div>
+
+                  {/* Animated cursor */}
+                  <motion.div
+                    initial={{ x: 180, y: 300, opacity: 0 }}
+                    animate={{ x: [180, 110, 110], y: [300, 220, 220], opacity: [0, 1, 1, 0] }}
+                    transition={{ delay: 0.8, duration: 0.9, times: [0, 0.45, 0.85, 1] }}
+                    style={{ position: 'absolute', width: 12, height: 12, pointerEvents: 'none', zIndex: 20 }}
                   >
-                    BOOK NOW
-                  </motion.button>
-                </div>
-                <motion.div
-                  initial={{ x: 180, y: 220, opacity: 0 }}
-                  animate={{ x: 120, y: 220, opacity: [0, 1, 1, 0] }}
-                  transition={{ delay: 0.7, duration: 0.7, times: [0, 0.2, 0.7, 1] }}
-                  style={{ position: 'absolute', width: 10, height: 10, background: cream, borderRadius: '50%', boxShadow: '0 0 8px rgba(255,255,255,0.6)', pointerEvents: 'none', zIndex: 20 }}
-                />
-              </motion.div>
-            )}
-
-            {/* Step 1 — Service Picker */}
-            {step === 1 && (
-              <motion.div key="s1" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -40, opacity: 0 }} transition={{ duration: 0.35 }}
-                style={{ width: '100%', height: '100%', padding: '28px 16px 16px' }}>
-                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: charcoal, margin: '0 0 2px' }}>Choose a service</p>
-                <p style={{ fontFamily: BODY, fontSize: 9, color: inkMute, margin: '0 0 14px' }}>Select your treatment</p>
-                {['Russian Lips', 'Lip Filler', 'Microneedling', 'Tear Trough'].map((s, i) => (
-                  <motion.div key={s} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
-                    style={{ padding: '10px 12px', marginBottom: 6, borderRadius: 8, border: `1px solid ${i === 0 && svcSel ? gold : line}`, background: i === 0 && svcSel ? goldTint : surface, display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.3s' }}>
-                    <span style={{ fontFamily: BODY, fontSize: 10, color: i === 0 && svcSel ? goldHover : inkSoft, fontWeight: i === 0 ? 500 : 300 }}>{s}</span>
-                    {i === 0 && svcSel && (
-                      <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
-                        style={{ width: 14, height: 14, background: gold, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Check size={8} color={charcoal} />
-                      </motion.div>
-                    )}
+                    {/* Cursor SVG arrow */}
+                    <svg width="12" height="12" viewBox="0 0 12 12">
+                      <polygon points="1,1 1,10 4,7.5 6,11 7.5,10.3 5.5,6.8 9,6.5" fill={charcoal} stroke={surface} strokeWidth="0.5" />
+                    </svg>
                   </motion.div>
-                ))}
-              </motion.div>
-            )}
+                </motion.div>
+              )}
 
-            {/* Step 2 — Calendar */}
-            {step === 2 && (
-              <motion.div key="s2" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: -40, opacity: 0 }} transition={{ duration: 0.35 }}
-                style={{ width: '100%', height: '100%', padding: '28px 14px 14px' }}>
-                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: charcoal, margin: '0 0 2px' }}>Pick a date</p>
-                <p style={{ fontFamily: BODY, fontSize: 9, color: inkMute, margin: '0 0 10px' }}>May 2025</p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2, marginBottom: 4 }}>
-                  {DAYS.map((d, i) => <div key={i} style={{ textAlign: 'center', fontFamily: BODY, fontSize: 7, color: inkMute }}>{d}</div>)}
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2 }}>
-                  {[null, null].map((_, i) => <div key={`e${i}`} />)}
-                  {Array.from({ length: 25 }, (_, i) => i + 1).map(d => {
-                    const isSel = calDate === d;
-                    const isAv = avail.includes(d);
-                    return (
-                      <motion.div key={d} animate={isSel ? { scale: [1, 0.85, 1] } : {}} transition={{ duration: 0.25 }}
-                        style={{ width: '100%', aspectRatio: '1', borderRadius: '50%', background: isSel ? gold : isAv ? goldTint : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontFamily: BODY, fontSize: 7, color: isSel ? charcoal : isAv ? goldHover : inkMute, fontWeight: isSel ? 600 : 300 }}>{d}</span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-                <AnimatePresence>
-                  {calDate > 0 && (
-                    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 10 }}>
-                      <p style={{ fontFamily: BODY, fontSize: 8, color: inkMute, margin: '0 0 6px' }}>Available times</p>
-                      <div style={{ display: 'flex', gap: 6 }}>
-                        {['10:00', '11:00', '14:00'].map((t, i) => (
-                          <motion.div key={t} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
-                            style={{ padding: '5px 8px', borderRadius: 6, border: `1px solid ${calTime === 2 && i === 2 ? gold : line}`, background: calTime === 2 && i === 2 ? gold : surface, fontFamily: BODY, fontSize: 9, color: calTime === 2 && i === 2 ? charcoal : inkSoft, fontWeight: calTime === 2 && i === 2 ? 600 : 300, transition: 'all 0.3s' }}>
-                            {t}
+              {/* ── Step 1: Treatment picker ── */}
+              {step === 1 && (
+                <motion.div key="s1" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -40, opacity: 0 }} transition={{ duration: 0.35 }}
+                  style={{ position: 'absolute', inset: 0, background: cream, padding: '14px 14px 14px' }}>
+
+                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 16, color: charcoal, margin: '0 0 12px', lineHeight: 1.2 }}>Choose Your Treatment</p>
+
+                  {[
+                    { name: 'Russian Lips', price: '£95' },
+                    { name: 'Lip Filler', price: '£75' },
+                    { name: 'Microneedling', price: '£110' },
+                    { name: 'Tear Trough', price: '£130' },
+                  ].map((s, i) => (
+                    <motion.div key={s.name} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
+                      style={{ padding: '9px 10px', marginBottom: 6, borderRadius: 7, border: `1px solid ${i === 0 && svcSel ? gold : line}`, background: i === 0 && svcSel ? goldTint : surface, display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.3s' }}>
+                      <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 10.5, color: i === 0 && svcSel ? goldHover : inkSoft, fontWeight: 400 }}>{s.name}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <span style={{ fontFamily: BODY, fontSize: 9, color: gold, fontWeight: 500 }}>{s.price}</span>
+                        {i === 0 && svcSel && (
+                          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
+                            style={{ width: 13, height: 13, background: gold, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Check size={7} color={charcoal} />
                           </motion.div>
-                        ))}
+                        )}
                       </div>
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            )}
-
-            {/* Step 3 — Confirmation */}
-            {step === 3 && (
-              <motion.div key="s3" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
-                style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.2 }}
-                  style={{ width: 54, height: 54, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
-                  <Check size={26} color={surface} strokeWidth={2.5} />
+                  ))}
                 </motion.div>
-                {[
-                  { t: 'Booking Confirmed ✓', w: 500, s: 14, c: charcoal, mb: 14 },
-                  { t: 'Sarah M · Russian Lips', w: 300, s: 11, c: inkSoft, mb: 5 },
-                  { t: 'Friday 16 May · 2:00 PM', w: 300, s: 11, c: inkSoft, mb: 5 },
-                  { t: 'FlawlessSkin · Hall Green', w: 300, s: 10, c: inkMute, mb: 0 },
-                ].map((row, i) => (
-                  <motion.p key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1 }}
-                    style={{ fontFamily: BODY, fontWeight: row.w, fontSize: row.s, color: row.c, marginBottom: row.mb, textAlign: 'center' }}>
-                    {row.t}
+              )}
+
+              {/* ── Step 2: Calendar ── */}
+              {step === 2 && (
+                <motion.div key="s2" initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: -40, opacity: 0 }} transition={{ duration: 0.35 }}
+                  style={{ position: 'absolute', inset: 0, background: cream, padding: '14px 14px 14px' }}>
+
+                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 16, color: charcoal, margin: '0 0 2px', lineHeight: 1.2 }}>Pick a Date</p>
+
+                  {/* Month header */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                    <span style={{ fontFamily: BODY, fontSize: 8, color: inkMute }}>‹</span>
+                    <span style={{ fontFamily: BODY, fontSize: 9, color: charcoal, fontWeight: 500 }}>May 2025</span>
+                    <span style={{ fontFamily: BODY, fontSize: 8, color: inkMute }}>›</span>
+                  </div>
+
+                  {/* Day headers */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2, marginBottom: 3 }}>
+                    {DAYS.map((d, i) => <div key={i} style={{ textAlign: 'center', fontFamily: BODY, fontSize: 7, color: gold, fontWeight: 500 }}>{d}</div>)}
+                  </div>
+
+                  {/* Date grid */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2 }}>
+                    {[null, null].map((_, i) => <div key={`e${i}`} />)}
+                    {Array.from({ length: 25 }, (_, i) => i + 1).map(d => {
+                      const isSel = calDate === d;
+                      const isAv = avail.includes(d);
+                      return (
+                        <motion.div key={d} animate={isSel ? { scale: [1, 0.82, 1] } : {}} transition={{ duration: 0.22 }}
+                          style={{ width: '100%', aspectRatio: '1', borderRadius: '50%', background: isSel ? gold : isAv ? goldTint : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <span style={{ fontFamily: BODY, fontSize: 7, color: isSel ? charcoal : isAv ? goldHover : inkMute, fontWeight: isSel ? 600 : 300 }}>{d}</span>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Time slots */}
+                  <AnimatePresence>
+                    {calDate > 0 && (
+                      <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 10 }}>
+                        <p style={{ fontFamily: BODY, fontSize: 8, color: inkMute, margin: '0 0 5px' }}>Available times</p>
+                        <div style={{ display: 'flex', gap: 5 }}>
+                          {['10:00', '13:00', '15:30'].map((t, i) => {
+                            const sel = calTime === 1 && i === 1;
+                            return (
+                              <motion.div key={t} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
+                                style={{ padding: '5px 8px', borderRadius: 6, border: `1px solid ${sel ? gold : line}`, background: sel ? gold : surface, fontFamily: BODY, fontSize: 9, color: sel ? charcoal : inkSoft, fontWeight: sel ? 600 : 300, transition: 'all 0.3s' }}>
+                                {t}
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              )}
+
+              {/* ── Step 3: Confirmation page ── */}
+              {step === 3 && (
+                <motion.div key="s3" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
+                  style={{ position: 'absolute', inset: 0, background: cream, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.15, stiffness: 260, damping: 20 }}
+                    style={{ width: 48, height: 48, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                    <Check size={22} color={surface} strokeWidth={2.5} />
+                  </motion.div>
+
+                  <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+                    style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 16, color: charcoal, textAlign: 'center', margin: '0 0 14px', lineHeight: 1.2 }}>
+                    Booking Confirmed!
                   </motion.p>
-                ))}
-              </motion.div>
-            )}
 
-            {/* Step 4 — SMS Toast */}
-            {step === 4 && (
-              <motion.div key="s4" style={{ width: '100%', height: '100%', position: 'relative', background: cream }}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, opacity: 0.25 }}>
-                  <div style={{ width: 54, height: 54, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
-                    <Check size={26} color={surface} strokeWidth={2.5} />
-                  </div>
-                  <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 14, color: charcoal, textAlign: 'center' }}>Booking Confirmed ✓</p>
-                </div>
-                <motion.div initial={{ y: -90, opacity: 0 }} animate={{ y: 14, opacity: 1 }} transition={{ duration: 0.45, ease: 'easeOut' }}
-                  style={{ position: 'absolute', top: 0, left: 12, right: 12, background: surface, borderRadius: 14, padding: '12px 14px', boxShadow: '0 8px 32px rgba(26,26,28,0.16)', display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <div style={{ display: 'flex', gap: 4 }}>
-                    <MessageCircle size={14} color={gold} />
-                    <Mail size={14} color={gold} />
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, color: charcoal, margin: 0 }}>Confirmation sent ✓</p>
-                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: inkMute, margin: 0 }}>SMS + Email sent to Sarah</p>
-                  </div>
+                  {/* Details card */}
+                  <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}
+                    style={{ width: '100%', background: surface, borderRadius: 10, padding: '12px 14px', border: `1px solid ${line}` }}>
+                    {[
+                      { t: 'Sarah M', w: 500, s: 11, c: charcoal, mb: 4 },
+                      { t: 'Russian Lips', w: 300, s: 10, c: gold, mb: 6 },
+                      { t: 'Friday 16 May · 1:00 PM', w: 300, s: 9, c: inkMute, mb: 3 },
+                      { t: 'Lumina Aesthetics · Hall Green', w: 300, s: 8.5, c: inkMute, mb: 0 },
+                    ].map((row, i) => (
+                      <motion.p key={i} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 + i * 0.1 }}
+                        style={{ fontFamily: BODY, fontWeight: row.w, fontSize: row.s, color: row.c, marginBottom: row.mb, margin: `0 0 ${row.mb}px` }}>
+                        {row.t}
+                      </motion.p>
+                    ))}
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            )}
+              )}
 
-          </AnimatePresence>
+              {/* ── Step 4: Notification toast ── */}
+              {step === 4 && (
+                <motion.div key="s4" style={{ position: 'absolute', inset: 0, background: cream }}>
+                  {/* Faded confirmation behind */}
+                  <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 20, opacity: 0.22 }}>
+                    <div style={{ width: 48, height: 48, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                      <Check size={22} color={surface} strokeWidth={2.5} />
+                    </div>
+                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 16, color: charcoal, textAlign: 'center', margin: 0 }}>Booking Confirmed!</p>
+                  </div>
+
+                  {/* Toast sliding down */}
+                  <motion.div
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={{ y: 12, opacity: 1 }}
+                    transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ position: 'absolute', top: 0, left: 10, right: 10, background: surface, borderRadius: 14, padding: '11px 14px', boxShadow: '0 6px 28px rgba(26,26,28,0.15)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <div style={{ display: 'flex', gap: 5, flexShrink: 0 }}>
+                      <MessageCircle size={13} color={gold} />
+                      <Mail size={13} color={gold} />
+                    </div>
+                    <div>
+                      <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, color: charcoal, margin: '0 0 1px' }}>Booking confirmed ✓</p>
+                      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: inkMute, margin: 0 }}>SMS + Email sent to Sarah</p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+
+            </AnimatePresence>
+          </div>
         </div>
       </motion.div>
     </div>

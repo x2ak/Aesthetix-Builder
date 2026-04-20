@@ -1,0 +1,197 @@
+The phone mockup in the hero section is showing what 
+looks like an in-app booking system (like Fresha or 
+Booksy). This is completely wrong for our brand — we 
+build WEBSITES, not apps. Fix the phone mockup so it 
+looks like a real aesthetics clinic WEBSITE being 
+viewed on a phone browser, not an app.
+
+===============================================================
+THE PROBLEM
+===============================================================
+
+Currently the phone shows:
+- A dark app-style UI with "Book your next treatment"
+- Looks like a booking app (Fresha/Booksy vibe)
+- This is the OPPOSITE of what we sell
+
+What it SHOULD show:
+- A premium aesthetics clinic WEBSITE 
+  viewed in a mobile browser
+- The website has the clinic's own branding
+- It feels like a real website — not an app
+- The booking flow happens ON the website
+
+===============================================================
+FIX THE PHONE MOCKUP CONTENT
+===============================================================
+
+The phone frame stays the same (charcoal, gold bezel).
+Replace ALL the inner content of the phone with this:
+
+STEP 1 — Clinic Website Hero (1.5 seconds):
+
+  The phone shows a mobile website in a browser:
+  
+  Browser chrome at top of phone:
+    Tiny address bar showing: "lumina-aesthetics.co.uk"
+    background: white pill shape
+    lock icon + URL text in small grey sans font
+  
+  Below browser bar — website hero section:
+    background: warm cream #F7F4EE (not dark/charcoal)
+    
+    Top of website (very small — mobile nav):
+      Logo text "LUMINA AESTHETICS" small gold serif
+      Hamburger icon right side
+    
+    Hero content:
+      Heading: "Your Skin." in Cormorant italic
+        charcoal, large
+      Second line: "Flawless." in gold italic
+      
+      Small body text below:
+        "Advanced aesthetics clinic · Hall Green"
+        grey, tiny, 2 lines
+      
+      CTA BUTTON below text:
+        Warm gold background button
+        "BOOK NOW" white text uppercase
+        Full width, rounded corners
+        This is what the cursor taps
+    
+    Background: soft cream gradient
+    Maybe a faint botanical/floral CSS element
+    
+    Animated cursor appears from bottom right
+    Moves smoothly to the BOOK NOW button
+    Cursor taps — button slightly scales down
+    Transition: smooth fade to Step 2
+
+STEP 2 — Treatment Picker (1.5 seconds):
+
+  Still looks like a WEBSITE page (cream background)
+  
+  Browser bar still shows: "lumina-aesthetics.co.uk/book"
+  
+  Page heading: "Choose Your Treatment"
+    Cormorant italic charcoal, left aligned
+  
+  Treatment list — 4 items as clean cards:
+    Each: white card, warm border, treatment name
+    left in serif, price right in gold
+    
+    "Russian Lips ·········· £95"
+    "Lip Filler ············ £75"  
+    "Microneedling ········· £110"
+    "Tear Trough ··········· £130"
+    
+    Cursor moves to "Russian Lips"
+    That card gets: gold border glow, 
+    gold tick appears right side
+    Selected state — card fills cream-gold tint
+    
+  Transition: slide left to Step 3
+
+STEP 3 — Calendar (2 seconds):
+
+  Still website feel — cream background
+  Browser bar: "lumina-aesthetics.co.uk/book"
+  
+  Page heading: "Pick a Date"
+    Cormorant italic charcoal
+  
+  Month: "May 2025" with prev/next chevrons
+  
+  7-column calendar grid:
+    Day headers: M T W T F S S — small gold
+    Dates as small circles
+    Most: cream/white with charcoal number
+    Available ones: slightly warm tint
+    
+    Cursor moves to date "16"
+    That date fills solid gold, number turns white
+    Selected!
+    
+  Time slots appear below calendar:
+    Three pills: "10:00" "13:00" "15:30"
+    Cursor moves to "13:00"
+    That pill fills gold
+    
+  All still on cream website background
+  Transition: slide up to Step 4
+
+STEP 4 — Confirmation (1.5 seconds):
+
+  Website confirmation page
+  Browser bar: "lumina-aesthetics.co.uk/confirmed"
+  cream background
+  
+  Sage green circle check icon animates in (scales up)
+  
+  "Booking Confirmed!" 
+    Cormorant italic charcoal, centred
+  
+  Below — clean details card (white surface):
+    "Sarah M" — Inter Tight 500 charcoal
+    "Russian Lips" — Inter Tight 300 gold
+    "Friday 16 May · 1:00 PM" — small grey
+    "Lumina Aesthetics · Hall Green" — small grey
+  
+  Everything staggers in with 0.1s delays
+  
+  Transition: Step 5 overlays from top
+
+STEP 5 — Notification Toast (1 second):
+
+  Toast slides DOWN from top of phone
+  (outside the website — system notification style)
+  
+  White card, warm shadow, rounded:
+    Left: two icons side by side
+      SMS icon (gold) + Mail icon (gold)
+    Right text:
+      "Booking confirmed ✓" — Inter Tight 500 12px
+      "SMS + Email sent to Sarah" — 300 11px grey
+  
+  Toast holds 0.8 seconds
+  Slides back UP out of frame
+  
+  Loop back to Step 1 — crossfade
+
+===============================================================
+KEY DESIGN PRINCIPLES FOR INNER CONTENT
+===============================================================
+
+The website shown inside the phone must feel like:
+  A real luxury aesthetics website — cream, gold,
+  serif typography, warm palette
+  NOT a dark app
+  NOT Fresha or Booksy
+  NOT a generic blue SaaS UI
+
+The URL in the browser bar changes each step:
+  Step 1: lumina-aesthetics.co.uk
+  Step 2: lumina-aesthetics.co.uk/book
+  Step 3: lumina-aesthetics.co.uk/book
+  Step 4: lumina-aesthetics.co.uk/confirmed
+
+This subtly tells the story: the client is booking 
+on the CLINIC'S OWN WEBSITE — not a third party app.
+
+The contrast between the dark phone FRAME and the 
+warm cream website CONTENT makes the website pop.
+
+===============================================================
+WHAT STAYS THE SAME
+===============================================================
+
+Keep everything else exactly as it is:
+- Phone frame shape, charcoal + gold bezel
+- Floating animation on the phone
+- Radial gold glow behind the phone
+- All other sections on the page unchanged
+- All copy unchanged
+- Framer Motion AnimatePresence loop timing
+
+Only change: the inner screen content of the phone
+to look like a website being browsed, not an app.
