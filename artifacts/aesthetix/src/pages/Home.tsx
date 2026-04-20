@@ -670,13 +670,17 @@ function ProblemStrip() {
     { n: 'Gone.', s: 'Clients who can\'t book instantly go to a competitor who lets them.' },
   ];
   return (
-    <section style={{ background: charcoal, padding: '52px 0' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 0 : 0 }}>
+    <section style={{ background: charcoal, padding: isMobile ? '40px 0' : '52px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 16px' : '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0 }}>
         {stats.map((st, i) => (
           <FadeIn key={i} delay={i * 0.12}>
-            <div style={{ textAlign: 'center', padding: isMobile ? '28px 0' : '0 40px', borderBottom: isMobile && i < 2 ? `1px solid rgba(201,169,97,0.15)` : 'none', borderRight: !isMobile && i < 2 ? `1px solid rgba(201,169,97,0.18)` : 'none' }}>
-              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '2.8rem', color: gold, lineHeight: 1, margin: 0 }}>{st.n}</p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: 'rgba(247,244,238,0.65)', lineHeight: 1.65, marginTop: 10, maxWidth: 220, marginLeft: 'auto', marginRight: 'auto' }}>{st.s}</p>
+            <div style={{
+              textAlign: 'center',
+              padding: isMobile ? '0 10px' : '0 40px',
+              borderRight: i < 2 ? `1px solid rgba(201,169,97,0.18)` : 'none',
+            }}>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '1.8rem' : '2.8rem', color: gold, lineHeight: 1, margin: 0 }}>{st.n}</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 14, color: 'rgba(247,244,238,0.65)', lineHeight: 1.6, marginTop: isMobile ? 8 : 10 }}>{st.s}</p>
             </div>
           </FadeIn>
         ))}
