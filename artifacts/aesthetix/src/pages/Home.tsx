@@ -190,7 +190,7 @@ function PhoneAnimation() {
                   <div style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     {/* Subtext */}
                     <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: inkMute, lineHeight: 1.4, margin: '0 0 10px' }}>
-                      Advanced aesthetics clinic<br />Mayfair, London
+                      Advanced aesthetics clinic<br />London
                     </p>
 
                     {/* BOOK NOW button */}
@@ -204,7 +204,7 @@ function PhoneAnimation() {
 
                     {/* Trust pills */}
                     <div style={{ display: 'flex', gap: 4, marginTop: 6 }}>
-                      {['★ 4.9 rated', 'Mayfair, W1'].map(label => (
+                      {['★ 4.9 rated', 'London, UK'].map(label => (
                         <div key={label} style={{ background: 'rgba(201,169,97,0.1)', border: '1px solid rgba(201,169,97,0.2)', borderRadius: 999, padding: '2px 7px' }}>
                           <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 7, color: inkMute }}>{label}</span>
                         </div>
@@ -1417,7 +1417,7 @@ function Footer() {
               </div>
             </div>
             <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 14, color: gold, margin: '0 0 6px', lineHeight: 1.65 }}>We build the digital presence your clinic deserves.</p>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0, letterSpacing: '0.04em' }}>Mayfair, London · UK</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0, letterSpacing: '0.04em' }}>London, UK</p>
           </div>
           {/* Col 2 Work */}
           <div>
