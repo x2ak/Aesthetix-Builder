@@ -987,9 +987,9 @@ function Pricing() {
           Most Popular
         </div>
       )}
-      <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: plan.hero ? 'rgba(247,244,238,0.55)' : gold, margin: '0 0 14px' }}>{plan.name}</p>
+      <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>{plan.name}</p>
       <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
-      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? 'rgba(247,244,238,0.6)' : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
+      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? gold : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
       <div style={{ flex: 1 }}>
         {plan.features.map(t => checkRow(t, plan.light))}
       </div>
