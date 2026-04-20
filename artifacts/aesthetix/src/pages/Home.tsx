@@ -1275,7 +1275,7 @@ function FAQ() {
     { q: 'Do you offer ongoing support?', a: 'Yes — monthly support plans start at £25/mo and include hosting, security updates, minor content changes and priority support. No long-term contracts. Cancel anytime.' },
   ];
   return (
-    <section style={{ background: goldTint, padding: isMobile ? '64px 20px' : '100px 0' }}>
+    <section style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 20px' : '100px 0' }}>
       <div style={{ maxWidth: 720, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn><Overline centered>FAQ</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: 56 }}>
