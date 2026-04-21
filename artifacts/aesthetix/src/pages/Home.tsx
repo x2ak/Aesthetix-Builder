@@ -1445,7 +1445,13 @@ function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop: `1px solid ${line}`, padding: isMobile ? '14px 20px' : '14px 32px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.02em' }}>Aesthetix Systems · London, UK · © 2026</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.02em' }}>Aesthetix Systems · London, UK · © 2026</span>
+            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
+              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textDecoration: 'underline', textUnderlineOffset: 3, letterSpacing: '0.02em' }}>
+              Privacy Policy
+            </a>
+          </div>
           <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.02em' }}>Built by Aesthetix Systems</span>
         </div>
       </div>

@@ -1,0 +1,47 @@
+Create a new page:Path: /privacy-policyStyling must match the existing Aesthetix Systems brand exactly (same fonts, colours, spacing, headers, footer). Use the existing design tokens and components — do not create new styles.Structure:
+
+Page header with "Privacy Policy" as the main heading and "Last updated: 21 April 2026" as a subheading
+Clean, readable body content (max-width ~800px, centred, generous line-height)
+Use proper semantic HTML (h1, h2, h3, p, ul)
+Same header/nav and footer as the rest of the site
+Fully mobile-responsive
+Footer link:Add a "Privacy Policy" text link to the site footer. Place it alongside any existing footer items or as a standalone small link at the bottom.When clicked, the link should open the /privacy-policy page in a new browser tab using target="_blank" and rel="noopener noreferrer".Styling of the footer link: small, subtle, muted colour, underline on hover — matches existing footer typography.Privacy policy content to paste into the new page:Privacy PolicyLast updated: 21 April 20261. Who we areAesthetix Systems ("we", "us", "our") is a website design and booking system provider based in Birmingham, United Kingdom. We build bespoke websites and booking platforms for aesthetic clinics across the UK.If you have any questions about this policy, you can contact us at info@aesthetix-systems.co.uk.2. What information we collectWe may collect the following personal information when you interact with us:
+Contact details — your name, email address, phone number, business name, and business address
+Enquiry information — details you share when requesting a quote or booking a consultation (e.g. via WhatsApp, Instagram DMs, or our contact form)
+Technical data — your IP address, browser type, device type, and pages visited on our website (via cookies and analytics tools)
+Marketing data — if you engage with our social media ads (Meta, TikTok), we may receive engagement data from those platforms
+3. How we use your informationWe use your personal information to:
+Respond to your enquiries and provide quotes
+Deliver our website design and booking system services
+Send project updates and communications relating to work we're doing for you
+Improve our website and marketing
+Comply with our legal obligations
+4. Legal basis for processingUnder UK GDPR, we process your data based on:
+Your consent — when you submit an enquiry or message us
+Contract — when we're delivering services to you
+Legitimate interests — to improve our business and respond to enquiries
+Legal obligation — when required by law
+5. Who we share your information withWe do not sell your personal data. We may share it only with:
+Service providers we use to run our business (e.g. Supabase, Stripe, hosting providers, email tools) — all bound by data protection agreements
+Meta, TikTok, and Google — if you interact with our advertising or analytics tools
+Legal authorities — if required by law
+6. How long we keep your informationWe keep your personal data only as long as necessary:
+Enquiries that don't become clients — up to 12 months
+Active client data — for the duration of our work plus 7 years (for tax and legal purposes)
+Marketing data — until you unsubscribe or withdraw consent
+7. Your rightsUnder UK GDPR, you have the right to:
+Access the personal data we hold about you
+Request correction of inaccurate data
+Request deletion of your data ("right to be forgotten")
+Object to or restrict our processing
+Request data portability
+Withdraw consent at any time
+Lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk
+To exercise any of these rights, email us at info@aesthetix-systems.co.uk.8. CookiesOur website uses cookies to improve user experience and for analytics. By using our site, you consent to our use of cookies. You can manage cookies through your browser settings.9. Third-party linksOur website may link to external sites (e.g. client websites, social media). We're not responsible for the privacy practices of those sites.10. SecurityWe take reasonable steps to protect your personal data using encryption, access controls, and secure hosting. However, no system is 100% secure, and we cannot guarantee absolute security.11. Changes to this policyWe may update this policy from time to time. The "Last updated" date at the top reflects the latest version. Material changes will be communicated via our website.12. Contact usFor any questions about this Privacy Policy or your personal data, contact:Aesthetix Systems
+Email: info@aesthetix-systems.co.uk
+Location: Birmingham, United KingdomBuild it:
+
+Mobile-first, fully responsive
+Accessible (proper heading hierarchy, readable contrast)
+SEO-friendly (meta title: "Privacy Policy | Aesthetix Systems", meta description: "How Aesthetix Systems collects, uses, and protects your personal data.")
+Match existing Aesthetix Systems design system exactly
