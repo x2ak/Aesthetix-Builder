@@ -1451,6 +1451,10 @@ function Footer() {
               style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textDecoration: 'underline', textUnderlineOffset: 3, letterSpacing: '0.02em' }}>
               Privacy Policy
             </a>
+            <a href="/terms-of-service" target="_blank" rel="noopener noreferrer"
+              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textDecoration: 'underline', textUnderlineOffset: 3, letterSpacing: '0.02em' }}>
+              Terms of Service
+            </a>
           </div>
           <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.02em' }}>Built by Aesthetix Systems</span>
         </div>

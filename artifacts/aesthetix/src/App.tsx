@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfService from "@/pages/TermsOfService";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ function Router() {
   }, []);
 
   if (path === "/privacy-policy") return <PrivacyPolicy />;
+  if (path === "/terms-of-service") return <TermsOfService />;
   return <Home />;
 }
 

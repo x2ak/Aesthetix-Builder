@@ -1,0 +1,245 @@
+Add two new legal pages to the Aesthetix Systems website: a Privacy Policy and a Terms of Service.
+
+Both pages must match the existing Aesthetix Systems brand exactly — same fonts, colours, spacing, headers, footer, and overall design system. Use existing design tokens and components. Do not create new styles or diverge from the site's current look.
+
+PAGE 1: PRIVACY POLICY
+
+Path: /privacy-policy
+
+Meta title: Privacy Policy | Aesthetix Systems
+Meta description: How Aesthetix Systems collects, uses, and protects your personal data.
+
+Content (paste exactly as written, preserving headings and structure):
+
+# Privacy Policy
+
+**Last updated: 23 April 2026**
+
+## 1. Who we are
+
+Aesthetix Systems ("we", "us", "our") is a website design and booking system provider based in London, United Kingdom. We build bespoke websites and booking platforms for aesthetic clinics across the UK.
+
+If you have any questions about this policy, contact us at **info@aesthetix-systems.co.uk**.
+
+## 2. What information we collect
+
+We may collect the following when you interact with us:
+
+- **Contact details** — your name, email, phone, business name, address
+- **Enquiry information** — details you share via WhatsApp, Instagram DMs, or our contact form
+- **Technical data** — IP address, browser type, device type, pages visited (via cookies and analytics tools)
+- **Marketing data** — engagement data from Meta, TikTok, or other ad platforms
+
+## 3. How we use your information
+
+We use your data to:
+
+- Respond to enquiries and provide quotes
+- Deliver our website design and booking system services
+- Send project updates
+- Improve our website and marketing
+- Comply with legal obligations
+
+## 4. Legal basis for processing
+
+Under UK GDPR, we process your data based on:
+
+- **Your consent** — when you submit an enquiry
+- **Contract** — when delivering services
+- **Legitimate interests** — improving our business
+- **Legal obligation** — when required by law
+
+## 5. Who we share your information with
+
+We do not sell your personal data. We may share with:
+
+- **Service providers** (Supabase, Stripe, hosting, email tools) — bound by data protection agreements
+- **Meta, TikTok, Google** — if you engage with our ads or analytics
+- **Legal authorities** — if required by law
+
+## 6. How long we keep your information
+
+- **Enquiries that don't become clients** — up to 12 months
+- **Active client data** — duration of services plus 7 years (tax/legal)
+- **Marketing data** — until you unsubscribe or withdraw consent
+
+## 7. Your rights
+
+Under UK GDPR you have the right to:
+
+- Access your personal data
+- Request correction
+- Request deletion
+- Object to or restrict processing
+- Data portability
+- Withdraw consent
+- Lodge a complaint with the ICO at **ico.org.uk**
+
+To exercise these rights, email **info@aesthetix-systems.co.uk**.
+
+## 8. Cookies
+
+Our website uses cookies to improve user experience and for analytics. Manage cookies through your browser settings.
+
+## 9. Third-party links
+
+Our website may link to external sites. We're not responsible for their privacy practices.
+
+## 10. Security
+
+We protect your data with encryption, access controls, and secure hosting. No system is 100% secure — we cannot guarantee absolute security.
+
+## 11. Changes to this policy
+
+We may update this policy. The "Last updated" date reflects the latest version. Material changes will be communicated via our website.
+
+## 12. Contact us
+
+**Aesthetix Systems**
+Email: **info@aesthetix-systems.co.uk**
+Location: London, United Kingdom
+
+
+PAGE 2: TERMS OF SERVICE
+
+Path: /terms-of-service
+
+Meta title: Terms of Service | Aesthetix Systems
+Meta description: The Terms of Service governing Aesthetix Systems' website and bespoke build services.
+
+Content (paste exactly as written, preserving headings and structure):
+
+# Terms of Service
+
+**Last updated: 23 April 2026**
+
+## 1. Introduction
+
+Welcome to Aesthetix Systems ("we", "us", "our"). These Terms of Service ("Terms") govern your use of our website (aesthetix-systems.co.uk) and our services, including bespoke website design, booking systems, and related development work for aesthetic clinics.
+
+By engaging our services or using our website, you agree to these Terms. If you don't agree, please don't use our services.
+
+## 2. Who we are
+
+Aesthetix Systems is a trading name operating from London, United Kingdom. Contact: **info@aesthetix-systems.co.uk**.
+
+## 3. Our services
+
+We offer:
+
+- **Starter tier** — basic bespoke website build
+- **Core tier** — full website + booking system + admin portal
+- **Premium tier** — Core plus advanced features (AI assistant, multi-location, advanced analytics)
+- **Retainer** — ongoing hosting, maintenance, and support
+
+Specific deliverables are outlined in an individual project proposal for each client.
+
+## 4. Engagement and payment
+
+**4.1 Project agreement**
+By paying a deposit (or first Klarna instalment) after receiving a proposal, you agree to these Terms and the project scope in that proposal.
+
+**4.2 Payment structure**
+
+- Standard: 50% deposit upfront, 50% on launch
+- Alternative: Klarna Pay in 3 or equivalent instalment plans (where offered)
+- Retainers: monthly in advance
+
+**4.3 Late or non-payment**
+We reserve the right to pause work or withhold website launch if invoices remain unpaid beyond 7 days after due date.
+
+**4.4 Refunds**
+Deposits are non-refundable once design or development work has begun, as they reserve our time and resources. If you cancel before work has started, we may provide a partial refund at our discretion.
+
+## 5. Delivery timelines
+
+Project timelines are estimates provided in the proposal. Typical Core builds take 2–3 weeks from project kickoff. Delays caused by late client feedback, missing assets, or scope changes may extend timelines.
+
+## 6. Client responsibilities
+
+You agree to:
+
+- Provide timely feedback during the project
+- Supply accurate brand assets, content, and information
+- Review work at each stage and raise concerns promptly
+- Pay invoices on time
+- Not use our services for any unlawful or harmful purpose
+
+## 7. Revisions and scope
+
+Each tier includes a reasonable number of revisions during the design and development phase. Major scope changes after project kickoff may incur additional fees, which will be communicated and agreed in writing before work proceeds.
+
+## 8. Intellectual property
+
+**8.1 Your content**
+You retain full ownership of all content you provide (logos, images, text, branding). You grant us permission to use this content solely to deliver your project.
+
+**8.2 Our work**
+Upon full payment, ownership of the final website code, design assets, and booking system transfers to you. You may use, modify, and host the website as you wish.
+
+**8.3 Our tools and methodologies**
+We retain ownership of any reusable templates, frameworks, code libraries, and methodologies we use across clients. You receive a perpetual licence to use these as integrated into your website.
+
+**8.4 Portfolio rights**
+We reserve the right to display your completed project in our portfolio, case studies, and marketing materials unless you request otherwise in writing.
+
+## 9. Third-party services
+
+Our builds integrate with third-party services (such as Stripe, Supabase, Resend, Google Calendar). You are responsible for maintaining your own accounts and complying with those providers' terms. We are not liable for outages, pricing changes, or policy changes made by third parties.
+
+## 10. Liability
+
+To the fullest extent permitted by law, we are not liable for:
+
+- Loss of profits, revenue, or business opportunities
+- Loss of data (though we take reasonable steps to protect it)
+- Indirect, incidental, or consequential damages
+- Issues caused by third-party services or your own hosting decisions
+
+Our total liability for any claim relating to the services is limited to the amount you paid us in the 12 months preceding the claim.
+
+## 11. Data protection
+
+Our handling of personal data is governed by our Privacy Policy, available at aesthetix-systems.co.uk/privacy-policy.
+
+## 12. Termination
+
+Either party may terminate the engagement in writing. If you terminate after work has begun, deposits are non-refundable and any additional work completed up to that point will be invoiced.
+
+We may terminate immediately if you breach these Terms, fail to pay, or behave abusively towards our team.
+
+## 13. Governing law
+
+These Terms are governed by the laws of England and Wales. Any disputes shall be resolved in the courts of England and Wales.
+
+## 14. Changes to these Terms
+
+We may update these Terms from time to time. The "Last updated" date reflects the latest version. Material changes will be communicated via our website.
+
+## 15. Contact us
+
+**Aesthetix Systems**
+Email: **info@aesthetix-systems.co.uk**
+Location: London, United Kingdom
+
+
+FOOTER LINKS
+
+Add two new text links to the site footer alongside any existing items (contact, socials, etc.):
+
+- "Privacy Policy" linking to /privacy-policy
+- "Terms of Service" linking to /terms-of-service
+
+Both links must open in a new browser tab using target="_blank" and rel="noopener noreferrer".
+
+Styling: small, muted colour, underline on hover — matching existing footer typography.
+
+
+TECHNICAL REQUIREMENTS FOR BOTH PAGES
+
+- Mobile-first and fully responsive (works perfectly 320px and up)
+- Accessible: proper heading hierarchy (h1 → h2 → h3), readable contrast, focus states on links
+- Semantic HTML throughout
+- Same header/nav and footer as the rest of the site
+- Max content width ~800px, centred, generous line-height for readability
+- Use existing design tokens (fonts, colours, spacing) — do not introduce new styles
