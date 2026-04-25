@@ -815,9 +815,9 @@ function Portfolio() {
                     <span style={{ fontFamily: BODY, fontSize: 8, color: inkMute, letterSpacing: '0.02em' }}>{c.url.replace('https://', '')}</span>
                   </span>
                 </div>
-                <div style={{ aspectRatio: '16/10', background: c.grad, overflow: 'hidden', position: 'relative' }}>
+                <div style={{ aspectRatio: '16/9', background: c.grad, overflow: 'hidden', position: 'relative' }}>
                   {c.preview ? (
-                    <img src={c.preview} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block', transition: 'transform 0.5s ease' }}
+                    <img src={c.preview} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'top', display: 'block', transition: 'transform 0.5s ease' }}
                       onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
                       onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
                     />

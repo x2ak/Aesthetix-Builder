@@ -169,10 +169,12 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
             style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.2em', color: gold, margin: '0 0 16px' }}>
             The Brief
           </motion.p>
-          <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.9, margin: 0 }}>
-            {data.brief}
-          </motion.p>
+          {data.brief.split('\n\n').map((para, i) => (
+            <motion.p key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.07 }}
+              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.9, margin: i === 0 ? 0 : '20px 0 0' }}>
+              {para}
+            </motion.p>
+          ))}
         </div>
       </section>
 
