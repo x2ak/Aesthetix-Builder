@@ -793,9 +793,9 @@ function HowItWorks() {
 function Portfolio() {
   const isMobile = useIsMobile();
   const clients = [
-    { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', preview: '/flawlessskin-preview.png', grad: `linear-gradient(135deg, ${goldTint}, ${blush})` },
-    { name: 'Dermadoll Aesthetics', loc: 'Birmingham', url: 'https://dermadoll-aesthetics.co.uk', preview: '/dermadoll-preview.png', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)` },
-    { name: 'Starr Beautyy', loc: 'London', url: 'https://starrbeautyy.co.uk', preview: '/starraesthetics-preview.png', grad: `linear-gradient(135deg, ${blush}, ${goldTint})`, tags: ['2 Locations', 'Google Calendar Sync'] },
+    { name: 'FlawlessSkin', loc: 'Hall Green, Birmingham', url: 'https://flawless-skin.co.uk', preview: '/flawlessskin-preview.png', grad: `linear-gradient(135deg, ${goldTint}, ${blush})`, caseStudy: '/portfolio/flawlessskin' },
+    { name: 'Dermadoll Aesthetics', loc: 'Birmingham', url: 'https://dermadoll-aesthetics.co.uk', preview: '/dermadoll-preview.png', grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)`, caseStudy: '/portfolio/dermadoll' },
+    { name: 'Starr Beautyy', loc: 'London', url: 'https://starrbeautyy.co.uk', preview: '/starraesthetics-preview.png', grad: `linear-gradient(135deg, ${blush}, ${goldTint})`, tags: ['2 Locations', 'Google Calendar Sync'], caseStudy: '/portfolio/starr' },
   ];
   return (
     <section id="work" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
@@ -830,10 +830,19 @@ function Portfolio() {
                 <div style={{ padding: '20px 22px' }}>
                   <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 21, color: charcoal, margin: '0 0 5px' }}>{c.name}</h3>
                   <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: gold, margin: '0 0 14px' }}>{c.loc}</p>
-                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="gold-underline portfolio-arrow"
-                    style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: charcoal, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                    View site →
-                  </a>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+                    <a href={c.url} target="_blank" rel="noopener noreferrer" className="gold-underline portfolio-arrow"
+                      style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: charcoal, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                      View site →
+                    </a>
+                    {(c as any).caseStudy && (
+                      <a href={(c as any).caseStudy}
+                        onClick={e => { e.preventDefault(); window.history.pushState({}, '', (c as any).caseStudy); window.dispatchEvent(new PopStateEvent('popstate')); }}
+                        style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: gold, textDecoration: 'none', letterSpacing: '0.04em', textUnderlineOffset: 3, borderBottom: `1px solid rgba(196,168,130,0.5)`, paddingBottom: 1 }}>
+                        Case study →
+                      </a>
+                    )}
+                  </div>
                   {(c as any).tags && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 14 }}>
                       {((c as any).tags as string[]).map((tag: string) => (

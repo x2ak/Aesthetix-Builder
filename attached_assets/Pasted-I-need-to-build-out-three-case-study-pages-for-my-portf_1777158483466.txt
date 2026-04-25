@@ -1,0 +1,161 @@
+I need to build out three case study pages for my portfolio on aesthetix-systems.co.uk. I'll provide login credentials for each client's admin portal so you can take real screenshots of both the public sites AND the admin portals.
+
+GOAL:
+Create three dedicated case study pages and populate them with real screenshots taken from the live sites and admin portals.
+
+ROUTES TO CREATE:
+1. /portfolio/flawlessskin
+2. /portfolio/dermadoll
+3. /portfolio/starr
+
+CASE STUDY PAGE TEMPLATE:
+Each page should follow this structure:
+
+Section 1 - Hero
+- Full-width hero showing main site screenshot or video
+- H1: Client name
+- Subtitle: Short tagline
+- CTA: "Visit Live Site" (opens in new tab)
+
+Section 2 - Project overview (3-column grid)
+- Client / Industry / Location(s) / Build Time / Tech Stack
+
+Section 3 - The brief
+2-3 paragraph project overview
+
+Section 4 - Features built
+Bullet grid of features delivered
+
+Section 5 - Screenshots gallery
+6-8 screenshots showing both public site AND admin portal
+
+Section 6 - Tech stack
+Badges showing tech used (React, Vite, Supabase, Stripe, Resend, etc.)
+
+Section 7 - CTA
+"Want a build like this for your clinic? Book a 15-min call →"
+
+SCREENSHOT REQUIREMENTS:
+
+For each client, take the following screenshots using a headless browser (Puppeteer or Playwright). Capture at 1440x900 resolution for desktop and 390x844 for mobile.
+
+PUBLIC SITE SCREENSHOTS (3 per client):
+- Homepage hero
+- Booking flow / treatment selection
+- Mobile view of homepage
+
+ADMIN PORTAL SCREENSHOTS (3 per client):
+- Dashboard / overview
+- Booking management view
+- Settings or treatment management page
+
+Total: 6 screenshots per client x 3 clients = 18 screenshots
+
+CREDENTIALS WILL BE PROVIDED:
+
+I'll give you the login email and password for each admin portal in a follow-up message. For each client:
+
+1. FlawlessSkin
+   - Public URL: https://flawless-skin.co.uk
+   - Admin URL: [provide]
+   - Login: [provide]
+
+2. Dermadoll Aesthetics
+   - Public URL: https://dermadoll-aesthetics.co.uk
+   - Admin URL: [provide]
+   - Login: [provide]
+
+3. Starr Beautyy
+   - Public URL: https://starrbeautyy.co.uk
+   - Admin URL: [provide]
+   - Login: [provide]
+
+SCREENSHOT WORKFLOW:
+
+For each client:
+1. Navigate to public URL, take 3 public-side screenshots
+2. Navigate to admin URL, log in with credentials
+3. Take 3 admin-side screenshots
+4. Save all screenshots to /public/portfolio/[client-name]/ folder
+5. Naming convention: 01-homepage.png, 02-booking.png, 03-mobile.png, 04-admin-dashboard.png, 05-admin-bookings.png, 06-admin-settings.png
+
+PRIVACY HANDLING:
+Before taking admin portal screenshots, blur or mask:
+- Real client names
+- Phone numbers
+- Email addresses
+- Any personally identifiable information
+
+Use a blur filter or replace with placeholder data like "Client A", "07XXX XXX XXX", "client@example.com" before capturing the screenshot. Do NOT publish unmasked customer data.
+
+PAGE STYLING:
+Use the existing Aesthetix Systems brand:
+- Cream background
+- Gold accent color
+- Serif headers
+- Mobile-first responsive
+- Smooth scroll behavior
+
+Match the visual style of the existing /portfolio section so the case study pages feel like a natural extension of the site.
+
+CONTENT TO ADD:
+
+For each case study, use this content:
+
+FLAWLESSSKIN:
+- Client: FlawlessSkin
+- Industry: Aesthetic Clinic
+- Location: Hall Green, Birmingham
+- Build Time: 3 weeks
+- Brief: "FlawlessSkin needed a custom branded online presence with a built-in booking system. The first Aesthetix build, focused on getting clients booked seamlessly without using third-party platforms."
+- Features:
+  • Custom branded website
+  • Online booking system
+  • Stripe payment integration
+  • Admin portal for booking management
+  • Mobile-first responsive design
+  • Treatment menu with pricing
+
+DERMADOLL AESTHETICS:
+- Client: Dermadoll Aesthetics
+- Industry: Aesthetic Clinic
+- Location: Birmingham
+- Build Time: 4 weeks
+- Brief: "Dermadoll needed a premium booking platform that matched the quality of their in-clinic experience. We built a refined system with deposit collection and a self-service admin portal so the team could manage everything in-house."
+- Features:
+  • Custom branded website with premium design
+  • Booking system with deposit collection
+  • Stripe payment integration
+  • Admin portal with treatment and pricing management
+  • Mobile-first responsive design
+  • Automated booking confirmation emails
+  • Client database with full booking history
+
+STARR BEAUTYY:
+- Client: Starr Aesthetics
+- Industry: Aesthetic Clinic
+- Locations: Hornchurch + Marylebone
+- Build Time: 4 weeks
+- Brief: "Starr Aesthetics needed a multi-location booking platform with two-way Google Calendar sync, location-specific treatment menus, and a self-service admin portal. Our most advanced build to date, designed for a growing clinic operating across two London sites."
+- Features:
+  • Multi-location custom branded website
+  • Location-specific treatment menus and pricing
+  • Booking system with deposit collection
+  • Two-way Google Calendar sync (no double bookings)
+  • Stripe payment integration
+  • Klarna integration
+  • Self-service admin portal (manage prices, hours, bookings, blocked dates)
+  • Automated booking confirmation emails via Resend
+  • Mobile-first responsive design
+  • Full client database with booking history
+
+DELIVERY:
+
+When complete:
+1. Confirm all 3 case study pages are live at their routes
+2. Confirm 18 screenshots are captured and properly placed
+3. Confirm sensitive client data has been blurred/masked
+4. Provide me a quick checklist confirming each item is done
+5. Send me preview links for all three case study pages
+
+Build this systematically. Don't skip the privacy masking step. I'll provide credentials in the next message.
