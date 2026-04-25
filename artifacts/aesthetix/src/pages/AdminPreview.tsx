@@ -69,14 +69,20 @@ const CONFIGS = {
     accentLight: '#EAF1E8',
     textLight: '#F7F4EE',
     stats: [
-      { label: 'Total Revenue (This Month)', value: '£—', sub: 'Portal access pending' },
-      { label: 'Deposits Collected', value: '£—', sub: '—' },
-      { label: 'Balance Outstanding', value: '£—', sub: '—' },
-      { label: 'Total Clients', value: '—', sub: '—' },
+      { label: 'Active Revenue', value: '£90', sub: '2 active bookings' },
+      { label: 'Deposits Collected', value: '£175', sub: 'via Stripe' },
+      { label: 'Balance Outstanding', value: '£40', sub: 'awaiting payment' },
+      { label: 'Total Bookings', value: '22', sub: 'all time' },
     ],
-    clients: [],
-    bookings: [],
-    nav: ['Dashboard', 'Bookings', 'Clients', 'Treatments', 'Finance', 'Settings'],
+    clients: [
+      { name: 'Client A', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 1, spent: '£65', location: 'Hall Green' },
+      { name: 'Client B', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 1, spent: '£25', location: 'Hall Green' },
+    ],
+    bookings: [
+      { client: 'Client A', treat: 'PRP Lips', date: '14 Apr', dep: '£25', status: 'Completed' },
+      { client: 'Client B', treat: 'Consultation', date: '01 May', dep: '£25', status: 'Confirmed' },
+    ],
+    nav: ['Dashboard', 'Bookings', 'Treatments', 'Availability', 'Settings'],
     weekLabel: 'Hall Green',
   },
 };
