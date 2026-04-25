@@ -209,13 +209,16 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
               style={{ fontFamily: BODY, fontWeight: 600, fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', color: charcoal, margin: '0 0 40px', lineHeight: 1.15 }}>
               The finished <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>product</em>
             </motion.h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 24 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 28 }}>
               {data.screenshots.map((s, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.08 }}
-                  style={{ background: surface, border: `1px solid ${line}`, borderRadius: 12, overflow: 'hidden' }}>
-                  <img src={s.src} alt={s.caption} style={{ width: '100%', display: 'block', height: 240, objectFit: 'cover', objectPosition: 'top' }} />
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0, padding: '12px 16px' }}>{s.caption}</p>
+                  style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, overflow: 'hidden', boxShadow: '0 4px 24px rgba(26,26,28,0.07)' }}>
+                  <div style={{ background: '#EDEBE5', padding: '16px 16px 0' }}>
+                    <img src={s.src} alt={s.caption}
+                      style={{ width: '100%', display: 'block', borderRadius: '8px 8px 0 0', objectFit: 'contain' }} />
+                  </div>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0, padding: '14px 18px' }}>{s.caption}</p>
                 </motion.div>
               ))}
             </div>
