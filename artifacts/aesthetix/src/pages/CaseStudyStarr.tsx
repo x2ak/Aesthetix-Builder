@@ -6,7 +6,7 @@ const data: CaseStudyData = {
   tagline: 'Two locations. One seamless booking experience.',
   industry: 'Aesthetic Clinic',
   location: 'Hornchurch, Essex & Marylebone, London',
-  buildTime: '4 weeks',
+  buildTime: '3 weeks',
   liveUrl: 'https://starrbeautyy.co.uk',
   metaTitle: 'Starr Beautyy Case Study | Aesthetix Systems',
   metaDesc: 'How Aesthetix Systems built a multi-location booking platform with two-way Google Calendar sync for Starr Beautyy across Hornchurch and Marylebone.',

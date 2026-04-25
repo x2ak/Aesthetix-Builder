@@ -9,11 +9,11 @@ const CONFIGS = {
   starr: {
     name: 'Starr Beauty',
     sub: 'BEAUTY',
-    bg: '#FAF6F0',
-    sidebar: '#1A1A1C',
-    accent: '#8B6C42',
-    accentLight: '#F5EDD9',
-    textLight: '#F7F4EE',
+    bg: '#FAF4F6',
+    sidebar: '#5C1325',
+    accent: '#C4A44A',
+    accentLight: '#F9EFD4',
+    textLight: '#FAF4F6',
     stats: [
       { label: 'Total Revenue (This Month)', value: '£3,240', sub: '22 bookings' },
       { label: 'Deposits Collected', value: '£780', sub: 'confirmed' },
