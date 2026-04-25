@@ -29,6 +29,8 @@ The result is a platform that's as elevated as the treatments themselves, and on
   ],
   screenshots: [
     { src: '/portfolio/dermadoll/01-homepage.png', caption: 'Homepage — desktop view' },
+    { src: '/portfolio/dermadoll/04-admin-login.png', caption: 'Admin Portal — login screen' },
+    { src: '/portfolio/dermadoll/05-admin-dashboard.jpg', caption: 'Admin Portal — dashboard' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Supabase', 'Stripe', 'Resend', 'PostgreSQL', 'Vercel'],
 };

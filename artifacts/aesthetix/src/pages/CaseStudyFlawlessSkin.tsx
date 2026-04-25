@@ -6,7 +6,7 @@ const data: CaseStudyData = {
   tagline: 'Your skin. Flawless. Now bookable 24/7.',
   industry: 'Aesthetic Clinic',
   location: 'Hall Green, Birmingham',
-  buildTime: '3 weeks',
+  buildTime: '7 days',
   liveUrl: 'https://flawless-skin.co.uk',
   metaTitle: 'FlawlessSkin Case Study | Aesthetix Systems',
   metaDesc: 'How Aesthetix Systems built a custom branded website and booking system for FlawlessSkin in Hall Green, Birmingham.',
@@ -28,6 +28,7 @@ As the first Aesthetix build, FlawlessSkin set the standard: clean branding, fas
   ],
   screenshots: [
     { src: '/portfolio/flawlessskin/01-homepage.png', caption: 'Homepage — desktop view' },
+    { src: '/portfolio/flawlessskin/05-admin-dashboard.jpg', caption: 'Admin Portal — dashboard layout' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Supabase', 'Stripe', 'Resend', 'Tailwind CSS', 'Vercel'],
 };

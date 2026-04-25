@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
+import AdminPreview from "@/pages/AdminPreview";
 import CaseStudyFlawlessSkin from "@/pages/CaseStudyFlawlessSkin";
 import CaseStudyDermadoll from "@/pages/CaseStudyDermadoll";
 import CaseStudyStarr from "@/pages/CaseStudyStarr";
@@ -22,6 +23,9 @@ function Router() {
 
   if (path === "/privacy-policy") return <PrivacyPolicy />;
   if (path === "/terms-of-service") return <TermsOfService />;
+  if (path === "/_admin-preview/starr") return <AdminPreview client="starr" />;
+  if (path === "/_admin-preview/dermadoll") return <AdminPreview client="dermadoll" />;
+  if (path === "/_admin-preview/flawlessskin") return <AdminPreview client="flawlessskin" />;
   if (path === "/portfolio/flawlessskin") return <CaseStudyFlawlessSkin />;
   if (path === "/portfolio/dermadoll") return <CaseStudyDermadoll />;
   if (path === "/portfolio/starr") return <CaseStudyStarr />;
