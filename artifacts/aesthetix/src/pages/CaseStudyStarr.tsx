@@ -11,6 +11,18 @@ const data: CaseStudyData = {
   metaTitle: 'Starr Beautyy Case Study | Aesthetix Systems',
   metaDesc: 'How Aesthetix Systems built a multi-location booking platform with two-way Google Calendar sync for Starr Beautyy across Hornchurch and Marylebone.',
   heroImg: '/portfolio/starr/01-homepage.png',
+  theme: {
+    heroBg: '#2A0812',
+    accent: '#C4A44A',
+    accentRgb: '196,164,74',
+  },
+  metrics: [
+    { value: '£3.2k', label: 'Monthly revenue tracked' },
+    { value: '47', label: 'Active clients' },
+    { value: '2', label: 'Locations, one system' },
+    { value: '3 weeks', label: 'Brief to launch' },
+  ],
+  quote: 'Managing two locations used to be chaos. Now every booking, both sites, syncs to my calendar instantly. I actually have time to focus on clients.',
   brief: `Starr Beautyy is one of Essex and London's most sought-after aesthetic clinics, operating from two distinct locations — Hornchurch and Marylebone. Managing bookings across two sites manually had become unworkable: double-bookings, missed enquiries, and hours spent on admin every week.
 
 We built their most advanced platform to date: a multi-location booking system with location-specific treatment menus, two-way Google Calendar sync so bookings appear instantly in the practitioner's calendar with no manual input, and a fully self-managed admin portal.
@@ -30,8 +42,8 @@ Klarna Pay in 3 was integrated alongside Stripe to make higher-ticket treatments
   ],
   screenshots: [
     { src: '/portfolio/starr/01-homepage.png', caption: 'Homepage — desktop view' },
-    { src: '/portfolio/starr/04-admin-login.png', caption: 'Admin Portal — login screen' },
-    { src: '/portfolio/starr/05-admin-dashboard.jpg', caption: 'Admin Portal — dashboard overview' },
+    { src: '/portfolio/starr/04-admin-login.png', caption: 'Admin portal — login screen' },
+    { src: '/portfolio/starr/05-admin-dashboard.jpg', caption: 'Admin portal — dashboard overview' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Supabase', 'Stripe', 'Klarna', 'Google Calendar API', 'Resend', 'PostgreSQL', 'Vercel'],
 };

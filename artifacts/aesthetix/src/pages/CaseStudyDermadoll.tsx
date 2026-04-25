@@ -11,6 +11,18 @@ const data: CaseStudyData = {
   metaTitle: 'Dermadoll Aesthetics Case Study | Aesthetix Systems',
   metaDesc: 'How Aesthetix Systems built a premium booking platform for Dermadoll Aesthetics in Birmingham — with deposit collection and a full admin portal.',
   heroImg: '/portfolio/dermadoll/01-homepage.png',
+  theme: {
+    heroBg: '#0E0C0A',
+    accent: '#C4A882',
+    accentRgb: '196,168,130',
+  },
+  metrics: [
+    { value: '2 weeks', label: 'Brief to launch' },
+    { value: '100%', label: 'Bookings automated' },
+    { value: '2 cities', label: 'Birmingham & Solihull' },
+    { value: '£0', label: 'Admin time per booking' },
+  ],
+  quote: 'The site looks exactly like the experience we deliver in clinic. Premium from the first click to the final treatment.',
   brief: `Dermadoll Aesthetics came to us with a clear brief: build something that matches the premium quality of the in-clinic experience. Their clients expect perfection from the moment they walk through the door — the website had to deliver the same standard before they even book.
 
 We built a cinematic, dark-themed site with a full booking system that handles deposit collection via Stripe, automated confirmation emails, and a self-service admin portal so the Dermadoll team can manage everything in-house — treatments, pricing, availability, and client records.
@@ -29,8 +41,8 @@ The result is a platform that's as elevated as the treatments themselves, and on
   ],
   screenshots: [
     { src: '/portfolio/dermadoll/01-homepage.png', caption: 'Homepage — desktop view' },
-    { src: '/portfolio/dermadoll/04-admin-login.png', caption: 'Admin Portal — login screen' },
-    { src: '/portfolio/dermadoll/05-admin-dashboard.jpg', caption: 'Admin Portal — dashboard (real data, contacts blurred)' },
+    { src: '/portfolio/dermadoll/04-admin-login.png', caption: 'Admin portal — login screen' },
+    { src: '/portfolio/dermadoll/05-admin-dashboard.jpg', caption: 'Admin portal — dashboard overview' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Supabase', 'Stripe', 'Resend', 'PostgreSQL', 'Vercel'],
 };
