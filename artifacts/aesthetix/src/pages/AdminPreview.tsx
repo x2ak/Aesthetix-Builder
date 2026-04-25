@@ -15,21 +15,35 @@ const CONFIGS = {
     accentLight: '#F5EDD9',
     textLight: '#F7F4EE',
     stats: [
-      { label: 'Total Revenue (This Month)', value: '£190', sub: '2 bookings' },
-      { label: 'Deposits Collected', value: '£40', sub: 'confirmed' },
-      { label: 'Balance Outstanding', value: '£150', sub: 'awaiting payment' },
-      { label: 'Total Clients', value: '2', sub: 'registered' },
+      { label: 'Total Revenue (This Month)', value: '£3,240', sub: '22 bookings' },
+      { label: 'Deposits Collected', value: '£780', sub: 'confirmed' },
+      { label: 'Balance Outstanding', value: '£1,820', sub: 'awaiting payment' },
+      { label: 'Total Clients', value: '47', sub: 'registered' },
     ],
     clients: [
-      { name: 'Client A', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 1, spent: '£20', location: 'Hornchurch' },
-      { name: 'Client B', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 2, spent: '£40', location: 'Marylebone' },
+      { name: 'Client A', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 5, spent: '£720', location: 'Hornchurch' },
+      { name: 'Client B', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 3, spent: '£480', location: 'Marylebone' },
+      { name: 'Client C', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 2, spent: '£320', location: 'Hornchurch' },
+      { name: 'Client D', email: 'client@•••••.com', phone: '07XXX XXX XXX', visits: 1, spent: '£140', location: 'Marylebone' },
     ],
     bookings: [
-      { client: 'Client A', treat: 'Russian Lips', date: '29 Apr', dep: '£20', status: 'Confirmed' },
-      { client: 'Client B', treat: 'Lip Filler', date: '06 May', dep: '£20', status: 'Confirmed' },
+      { client: 'Client A', treat: 'Russian Lips', date: '14 May', dep: '£50', status: 'Confirmed' },
+      { client: 'Client B', treat: 'Cheek Filler', date: '13 May', dep: '£60', status: 'Complete' },
+      { client: 'Client C', treat: 'Botox 2 Areas', date: '12 May', dep: '£40', status: 'Complete' },
+      { client: 'Client D', treat: 'Russian Lips', date: '16 May', dep: '£50', status: 'Confirmed' },
+      { client: 'Client E', treat: 'Lip Flip', date: '11 May', dep: '£25', status: 'Complete' },
     ],
     nav: ['Dashboard', 'Bookings', 'Clients', 'Treatments', 'Locations', 'Availability', 'Finance', 'Settings'],
     weekLabel: 'Hornchurch',
+    week: [
+      { label: '3 booked', full: false },
+      { label: '5 booked', full: true },
+      { label: '4 booked', full: false },
+      { label: '3 booked', full: false },
+      { label: '4 booked', full: false },
+      { label: '5 booked', full: true },
+      { label: 'Closed', full: false, closed: true },
+    ],
   },
   dermadoll: {
     name: 'Dermadoll',
@@ -59,6 +73,15 @@ const CONFIGS = {
     ],
     nav: ['Dashboard', 'Bookings', 'Clients', 'Treatments', 'Finance', 'Settings'],
     weekLabel: 'Birmingham & Solihull',
+    week: [
+      { label: '2 booked', full: false },
+      { label: '3 booked', full: true },
+      { label: '2 booked', full: false },
+      { label: '2 booked', full: false },
+      { label: '1 booked', full: false },
+      { label: '3 booked', full: true },
+      { label: 'Closed', full: false, closed: true },
+    ],
   },
   flawlessskin: {
     name: 'FlawlessSkin',
@@ -84,6 +107,15 @@ const CONFIGS = {
     ],
     nav: ['Dashboard', 'Bookings', 'Treatments', 'Availability', 'Settings'],
     weekLabel: 'Hall Green',
+    week: [
+      { label: 'Closed', full: false, closed: true },
+      { label: '1 booked', full: false },
+      { label: '1 booked', full: true },
+      { label: 'Open', full: false },
+      { label: 'Open', full: false },
+      { label: '1 booked', full: false },
+      { label: 'Closed', full: false, closed: true },
+    ],
   },
 };
 
@@ -239,16 +271,19 @@ export default function AdminPreview({ client }: Props) {
             This Week — {cfg.weekLabel}
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
-            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
-              <div key={day} style={{ textAlign: 'center' }}>
-                <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#8A8A8E', margin: '0 0 8px' }}>{day}</p>
-                <div style={{ background: i === 1 ? cfg.accent : i === 4 ? cfg.accentLight : '#F7F4EE', borderRadius: 6, padding: '8px 4px', minHeight: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: i === 1 ? '#fff' : i === 4 ? cfg.accent : '#8A8A8E' }}>
-                    {i === 0 ? '—' : i === 1 ? '2 booked' : i === 4 ? '1 booked' : i === 6 ? 'Closed' : 'Open'}
-                  </span>
+            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => {
+              const slot = cfg.week[i];
+              const bg = slot.closed ? '#F0EDE7' : slot.full ? cfg.accent : slot.label === 'Open' ? '#F7F4EE' : cfg.accentLight;
+              const col = slot.closed ? '#C0BDB8' : slot.full ? '#fff' : slot.label === 'Open' ? '#8A8A8E' : cfg.accent;
+              return (
+                <div key={day} style={{ textAlign: 'center' }}>
+                  <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#8A8A8E', margin: '0 0 8px' }}>{day}</p>
+                  <div style={{ background: bg, borderRadius: 6, padding: '8px 4px', minHeight: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontFamily: BODY, fontWeight: slot.full ? 400 : 300, fontSize: 10, color: col }}>{slot.label}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
