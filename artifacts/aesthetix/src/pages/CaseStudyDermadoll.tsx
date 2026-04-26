@@ -19,7 +19,7 @@ const data: CaseStudyData = {
   metrics: [
     { value: '2 weeks', label: 'Brief to launch' },
     { value: '100%', label: 'Bookings automated' },
-    { value: '2 cities', label: 'Birmingham & Solihull' },
+    { value: '23', label: 'Clients registered' },
     { value: '£0', label: 'Admin time per booking' },
   ],
   quote: 'The site looks exactly like the experience we deliver in clinic. Premium from the first click to the final treatment.',

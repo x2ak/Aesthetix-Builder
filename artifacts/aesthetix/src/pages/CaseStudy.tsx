@@ -100,7 +100,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.34 }}
-            style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 72 }}>
+            style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 40 }}>
             <a href={data.liveUrl} target="_blank" rel="noopener noreferrer"
               style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, letterSpacing: '0.06em', color: charcoal, background: accent, borderRadius: 999, padding: '13px 30px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               Visit live site →
@@ -130,15 +130,19 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       </section>
 
       {/* ─── METRICS STRIP ─── */}
-      <section style={{ background: charcoal, padding: '0 28px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${data.metrics.length}, 1fr)`, borderLeft: '1px solid rgba(255,255,255,0.06)' }}>
+      <section style={{ background: charcoal, borderTop: '1px solid rgba(255,255,255,0.07)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 28px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
             {data.metrics.map((m, i) => (
               <motion.div key={i}
-                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
-                style={{ padding: '40px 32px', borderRight: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: accent, margin: '0 0 6px', lineHeight: 1 }}>{m.value}</p>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(247,244,238,0.45)', margin: 0 }}>{m.label}</p>
+                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
+                style={{
+                  padding: '36px 28px',
+                  borderRight: i < data.metrics.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                  display: 'flex', flexDirection: 'column', gap: 8,
+                }}>
+                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: accent, margin: 0, lineHeight: 1 }}>{m.value}</p>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.16em', color: 'rgba(247,244,238,0.4)', margin: 0, lineHeight: 1.4 }}>{m.label}</p>
               </motion.div>
             ))}
           </div>
@@ -146,7 +150,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       </section>
 
       {/* ─── THE STORY ─── */}
-      <section style={{ background: cream, padding: 'clamp(64px, 8vw, 120px) 28px' }}>
+      <section style={{ background: cream, padding: 'clamp(56px, 6vw, 88px) 28px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'clamp(40px, 6vw, 100px)', alignItems: 'start' }}>
           {/* Left: The Problem */}
           <div>
@@ -200,7 +204,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       </section>
 
       {/* ─── FEATURES ─── */}
-      <section style={{ background: surface, padding: 'clamp(64px, 8vw, 112px) 28px' }}>
+      <section style={{ background: surface, padding: 'clamp(56px, 6vw, 88px) 28px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20, marginBottom: 56 }}>
             <div>
@@ -235,7 +239,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
 
       {/* ─── GALLERY ─── */}
       {data.screenshots.length > 0 && (
-        <section style={{ background: charcoal, padding: 'clamp(64px, 8vw, 112px) 28px' }}>
+        <section style={{ background: charcoal, padding: 'clamp(56px, 6vw, 88px) 28px' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: accent, margin: '0 0 12px' }}>
