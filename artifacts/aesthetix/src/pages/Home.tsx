@@ -1469,7 +1469,7 @@ function Footer() {
               Terms of Service
             </a>
           </div>
-          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: '#00FFFF', letterSpacing: '0.02em' }}>Built with Intent.</span>
+          <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 11, color: '#00FFFF', letterSpacing: '0.02em' }}>Built with Intent.</span>
         </div>
       </div>
     </footer>
