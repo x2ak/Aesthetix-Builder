@@ -13,7 +13,7 @@ function getCredentials(): { publishableKey: string; secretKey: string } {
 
 export function getUncachableStripeClient(): Stripe {
   const { secretKey } = getCredentials();
-  return new Stripe(secretKey, { apiVersion: '2025-08-27.basil' as any });
+  return new Stripe(secretKey);
 }
 
 export function getStripePublishableKey(): string {
