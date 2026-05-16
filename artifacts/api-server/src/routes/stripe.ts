@@ -19,6 +19,9 @@ router.post('/stripe/checkout', async (req, res) => {
     const origin = req.headers.origin || `https://${req.headers.host}`;
 
     const session = await stripe.checkout.sessions.create({
+      locale: 'en-GB',
+      billing_address_collection: 'required',
+      payment_method_types: ['card', 'klarna', 'paypal'],
       line_items: [
         {
           price_data: {
