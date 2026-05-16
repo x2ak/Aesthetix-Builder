@@ -20,8 +20,7 @@ router.post('/stripe/checkout', async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
       locale: 'en-GB',
-      billing_address_collection: 'required',
-      payment_method_types: ['card', 'klarna', 'paypal'],
+      billing_address_collection: 'auto',
       line_items: [
         {
           price_data: {
