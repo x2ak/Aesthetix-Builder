@@ -1430,10 +1430,11 @@ function Footer() {
               </div>
             </div>
             <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 14, color: gold, margin: '0 0 6px', lineHeight: 1.65 }}>We build the digital presence your clinic deserves.</p>
-            <button
-              onClick={() => { window.history.pushState({}, '', '/pay'); window.dispatchEvent(new PopStateEvent('popstate')); }}
-              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0, letterSpacing: '0.04em', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-            >London, UK</button>
+            <a
+              href="/pay"
+              onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/pay'); window.dispatchEvent(new PopStateEvent('popstate')); }}
+              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0, letterSpacing: '0.04em', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textDecoration: 'none', display: 'block' }}
+            >London, UK</a>
           </div>
           {/* Col 2 Work */}
           <div>
