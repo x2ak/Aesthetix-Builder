@@ -1833,7 +1833,7 @@ function TreatmentsWeServe() {
               <a
                 href={t.href}
                 onClick={e => { e.preventDefault(); window.history.pushState({}, '', t.href); window.dispatchEvent(new PopStateEvent('popstate')); }}
-                style={{ fontFamily: BODY, fontSize: 13, fontWeight: 400, color: inkSoft, background: goldTint, border: `1px solid ${line}`, borderRadius: 2, padding: '9px 18px', textDecoration: 'none', display: 'inline-block', transition: 'border-color 0.2s' }}
+                style={{ fontFamily: BODY, fontSize: 13, fontWeight: 600, color: gold, background: goldTint, border: `1px solid rgba(196,168,130,0.4)`, borderRadius: 2, padding: '9px 18px', textDecoration: 'none', display: 'inline-block', transition: 'opacity 0.2s', letterSpacing: '0.01em' }}
               >
                 {t.label}
               </a>
