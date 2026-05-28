@@ -51,9 +51,9 @@ function WaBtn({ large = false, outlined = false, light = false, label = "Messag
 }
 
 /* ─── Overline Label ─── */
-function Overline({ children, centered = false }: { children: React.ReactNode; centered?: boolean }) {
+function Overline({ children, centered = false, glow = false }: { children: React.ReactNode; centered?: boolean; glow?: boolean }) {
   return (
-    <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: gold, marginBottom: 16, textAlign: centered ? 'center' : 'left' }}>
+    <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: gold, marginBottom: 16, textAlign: centered ? 'center' : 'left', textShadow: glow ? `0 0 12px rgba(196,168,130,0.9), 0 0 28px rgba(196,168,130,0.55), 0 0 54px rgba(196,168,130,0.3)` : 'none' }}>
       {children}
     </p>
   );
@@ -1280,7 +1280,7 @@ function Pricing() {
   return (
     <section id="pricing" style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 16px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
-        <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
+        <FadeIn style={{ textAlign: 'center' }}><Overline centered glow>Investment</Overline></FadeIn>
         <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: isMobile ? 28 : 48 }}>
           <SectionHead regular="Choose your" italic="package" centered />
         </FadeIn>
