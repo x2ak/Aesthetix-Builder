@@ -618,7 +618,7 @@ function Hero() {
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 'clamp(2.2rem, 8vw, 2.8rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.08, color: charcoal, margin: isMobile ? '0 0 14px' : '0 0 24px' }}>
             Turn followers into{' '}
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: isMobile ? 'inline' : 'block', lineHeight: 1.1 }}>bookings</em>
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 700, color: gold, display: isMobile ? 'inline' : 'block', lineHeight: 1.1 }}>bookings</em>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.55 }}
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 18px' : '0 0 36px' }}>
