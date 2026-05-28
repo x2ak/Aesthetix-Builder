@@ -1013,7 +1013,8 @@ function Portfolio() {
         <FadeIn delay={0.1}><SectionHead regular="Websites that" italic="book themselves" /></FadeIn>
       </div>
 
-      {/* Drag carousel */}
+      {/* Desktop: 3-col grid | Mobile: drag carousel */}
+      {isMobile ? (
       <div
         ref={scrollRef}
         onMouseDown={onMouseDown}
@@ -1099,16 +1100,76 @@ function Portfolio() {
           </div>
         ))}
       </div>
-
-      {/* Drag hint */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 28 }}>
-        <motion.div animate={{ x: [0, 7, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}>
-          <svg width="22" height="12" viewBox="0 0 22 12" fill="none">
-            <path d="M0 6h19M14 1l6 5-6 5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </motion.div>
-        <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: inkMute }}>Drag to explore</span>
+      ) : (
+      /* Desktop 3-column grid */
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24 }}>
+          {clients.map((c, i) => (
+            <FadeIn key={i} delay={i * 0.1}>
+              <div
+                onClick={() => navigate(c.caseStudy)}
+                style={{
+                  background: surface,
+                  border: `1px solid ${line}`,
+                  borderRadius: 18,
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'box-shadow 0.25s, transform 0.25s',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(196,168,130,0.2)';
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                }}
+              >
+                {/* Browser chrome */}
+                <div style={{ background: '#F0EDE7', borderBottom: `1px solid ${line}`, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#E5816A', display: 'inline-block' }} />
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#F0C05A', display: 'inline-block' }} />
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#72B87A', display: 'inline-block' }} />
+                  <span style={{ flex: 1, background: 'rgba(26,26,28,0.06)', borderRadius: 4, height: 18, marginLeft: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontFamily: BODY, fontSize: 8, color: inkMute, letterSpacing: '0.02em' }}>{c.url.replace('https://', '')}</span>
+                  </span>
+                </div>
+                {/* Screenshot */}
+                <div style={{ aspectRatio: '16/10', background: c.grad, overflow: 'hidden' }}>
+                  {c.preview ? (
+                    <img src={c.preview} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block', pointerEvents: 'none' }} />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 22, color: 'rgba(26,26,28,0.18)' }}>{c.name}</span>
+                    </div>
+                  )}
+                </div>
+                {/* Info panel */}
+                <div style={{ padding: '20px 22px 24px' }}>
+                  <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 9, textTransform: 'uppercase' as const, letterSpacing: '0.18em', color: gold, border: `1px solid rgba(196,168,130,0.4)`, borderRadius: 20, padding: '4px 10px', display: 'inline-block', marginBottom: 12 }}>{c.tag}</span>
+                  <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 24, color: charcoal, margin: '0 0 4px', lineHeight: 1.1 }}>{c.name}</h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.14em', color: gold, margin: '0 0 12px' }}>{c.loc} · {c.buildTime}</p>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.65, margin: '0 0 18px', minHeight: '40px' }}>{c.result}</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 20, borderTop: `1px solid ${line}`, paddingTop: 16 }}>
+                    <a href={c.url} target="_blank" rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: charcoal, textDecoration: 'none' }}>
+                      View site →
+                    </a>
+                    <a href={c.caseStudy}
+                      onClick={e => { e.preventDefault(); e.stopPropagation(); navigate(c.caseStudy); }}
+                      style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: gold, textDecoration: 'none' }}>
+                      Case study →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
       </div>
+      )}
+
     </section>
   );
 }
