@@ -573,10 +573,27 @@ function Nav() {
 }
 
 /* ─── Hero ─── */
+function HeroTicker() {
+  const items = ['BESPOKE SITES', 'BUILT-IN BOOKING', 'NO FRESHA', 'NO MONTHLY FEES', 'CUSTOM BRANDING', 'UK BASED AGENCY'];
+  const allItems = [...items, ...items];
+  return (
+    <div style={{ borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, overflow: 'hidden', padding: '9px 0', marginBottom: 0 }}>
+      <div className="hero-marquee-track">
+        {allItems.map((item, i) => (
+          <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 18, paddingRight: 18, whiteSpace: 'nowrap' }}>
+            <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, letterSpacing: '0.22em', color: inkSoft }}>{item}</span>
+            <span style={{ color: gold, fontSize: 7, lineHeight: 1 }}>◆</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: cream, padding: isMobile ? '28px 24px 36px' : '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ background: cream, padding: isMobile ? '28px 0 0' : '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
       {/* Floating circle vectors */}
       {[
         { size: 420, top: '-100px', right: '-100px', y: [0, -22, 0], dur: 9, delay: 0, fill: false },
@@ -606,57 +623,53 @@ function Hero() {
           }}
         />
       ))}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 20 : 80, alignItems: 'center', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 24px' : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 20 : 80, alignItems: 'center', position: 'relative', zIndex: 1 }}>
         {/* Left — Copy */}
-        <div style={{ textAlign: isMobile ? 'center' : 'left', display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: charcoal, borderRadius: 999, padding: isMobile ? '6px 14px' : '6px 14px', marginBottom: isMobile ? 14 : 28 }}>
-            <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: isMobile ? '0.12em' : '0.18em', color: '#F7F4EE' }}>
-              {isMobile ? 'Websites & Booking Systems · UK' : 'Websites & Booking Systems · For UK Aesthetics Clinics'}
+        <div style={{ textAlign: isMobile ? 'left' : 'left', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          {/* Label */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }}
+            style={{ marginBottom: isMobile ? 16 : 28 }}>
+            <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', letterSpacing: '0.22em', color: inkMute }}>
+              Aesthetics · Lash · Beauty
             </span>
           </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 'clamp(2.2rem, 8vw, 2.8rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.08, color: charcoal, margin: isMobile ? '0 0 14px' : '0 0 24px' }}>
-            Turn followers into{' '}
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 700, color: gold, display: isMobile ? 'inline' : 'block', lineHeight: 1.1 }}>bookings</em>
+          {/* Headline */}
+          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.6rem, 10vw, 3.2rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, margin: isMobile ? '0 0 20px' : '0 0 28px' }}>
+            Turn followers<br />
+            <span style={{ color: 'rgba(26,26,28,0.28)', fontWeight: 700 }}>into</span><br />
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 700, color: gold, lineHeight: 1.08 }}>bookings.</em>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.55 }}
-            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 18px' : '0 0 36px' }}>
-            We build premium websites with built-in booking systems for aesthetics clinics, lash techs, and beauty specialists. Look luxury. Book clients 24/7. Stop chasing DMs.
+          {/* Marquee ticker */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.5 }}
+            style={{ width: '100%', marginBottom: isMobile ? 20 : 28 }}>
+            <HeroTicker />
+          </motion.div>
+          {/* Body */}
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.62 }}
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 20px' : '0 0 32px' }}>
+            Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
           </motion.p>
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.72 }}
-            style={{ display: 'flex', gap: isMobile ? 14 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 16 : 28, justifyContent: isMobile ? 'center' : 'flex-start' }}>
+          {/* CTAs */}
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.75 }}
+            style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 20 : 28 }}>
             <WaBtn large />
-            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
+            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </motion.div>
-          {isMobile ? (
-            /* Mobile — quiz prompt */
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-              style={{ paddingTop: 14, borderTop: `1px solid ${line}`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, width: '100%' }}>
-              <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 14, color: gold, letterSpacing: '0.04em' }}>Get your free quote in 60 seconds</span>
-              <motion.span
-                animate={{ y: [0, 5, 0] }}
-                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ fontSize: 16, color: gold, lineHeight: 1 }}>↓</motion.span>
-            </motion.div>
-          ) : (
-            /* Desktop — trust badges */
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-              style={{ paddingTop: 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Trusted by</span>
-              {['FlawlessSkin', 'Dermadoll', 'Starr Beautyy'].map(n => (
-                <span key={n} style={{ background: goldTint, padding: '4px 11px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: 11, color: goldHover }}>{n}</span>
-              ))}
-              <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />
-              <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>
-            </motion.div>
-          )}
+          {/* Stars trust row */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
+            style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <span style={{ color: gold, fontSize: 15, letterSpacing: 2, lineHeight: 1 }}>★★★★★</span>
+            <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal }}>5.0</span>
+            <span style={{ width: 1, height: 14, background: line }} />
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute }}>Trusted by clinics across the UK</span>
+          </motion.div>
         </div>
         {/* Right — Phone */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
-          style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+          style={{ display: isMobile ? 'none' : 'flex', justifyContent: 'center', position: 'relative' }}>
           {/* Floating circles around phone */}
           {[
             { size: 260, top: '10%',  left: '-30px',  y: [0,-18,0], dur: 10, delay: 0.3,  fill: false },
@@ -689,6 +702,18 @@ function Hero() {
           </div>
         </motion.div>
       </div>
+      {/* Mobile — quiz below the copy, full bleed */}
+      {isMobile && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 1.0 }}
+          style={{ marginTop: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 13, color: gold, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Get your free quote in 60 seconds</span>
+          <motion.span animate={{ y: [0, 5, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ fontSize: 16, color: gold, lineHeight: 1 }}>↓</motion.span>
+          <div style={{ width: '100%', paddingTop: 12 }}>
+            <PhoneLeadQuiz />
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 }

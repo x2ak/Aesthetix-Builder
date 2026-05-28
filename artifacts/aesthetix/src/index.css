@@ -106,3 +106,14 @@
 /* FAQ row */
 .faq-row { cursor: pointer; }
 .faq-row:hover h3 { color: #C9A961; }
+
+/* Hero marquee ticker */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.hero-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
