@@ -1154,6 +1154,7 @@ function Portfolio() {
               overflow: 'hidden',
               cursor: 'pointer',
               transition: 'box-shadow 0.25s, transform 0.25s',
+              position: 'relative',
             }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(196,168,130,0.2)';
@@ -1202,6 +1203,9 @@ function Portfolio() {
                 </a>
               </div>
             </div>
+            <span style={{ position: 'absolute', bottom: 16, right: 20, fontFamily: DISP, fontStyle: 'italic', fontSize: 72, color: gold, opacity: 0.11, lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>
+              {String(i + 1).padStart(2, '0')}
+            </span>
           </div>
         ))}
       </div>
@@ -1220,6 +1224,7 @@ function Portfolio() {
                   overflow: 'hidden',
                   cursor: 'pointer',
                   transition: 'box-shadow 0.25s, transform 0.25s',
+                  position: 'relative',
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(196,168,130,0.2)';
@@ -1268,6 +1273,9 @@ function Portfolio() {
                     </a>
                   </div>
                 </div>
+                <span style={{ position: 'absolute', bottom: 16, right: 20, fontFamily: DISP, fontStyle: 'italic', fontSize: 72, color: gold, opacity: 0.11, lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
               </div>
             </FadeIn>
           ))}
