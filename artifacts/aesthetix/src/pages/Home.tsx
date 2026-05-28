@@ -134,9 +134,9 @@ function PhoneLeadQuiz() {
     width: '100%',
     background: QUIZ_CARD,
     border: `1px solid ${QUIZ_BORDER}`,
-    borderRadius: isMobile ? 8 : 10,
-    padding: isMobile ? '7px 10px' : '10px 14px',
-    marginBottom: isMobile ? 5 : 6,
+    borderRadius: isMobile ? 7 : 9,
+    padding: isMobile ? '5px 8px' : '8px 12px',
+    marginBottom: isMobile ? 3 : 4,
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
@@ -147,9 +147,9 @@ function PhoneLeadQuiz() {
   const qStyle: React.CSSProperties = {
     fontFamily: DISP,
     fontStyle: 'italic',
-    fontSize: isMobile ? 14 : 19,
+    fontSize: isMobile ? 13 : 18,
     color: QUIZ_TEXT,
-    margin: `0 0 ${isMobile ? 10 : 13}px`,
+    margin: `0 0 ${isMobile ? 7 : 10}px`,
     lineHeight: 1.2,
   };
 
@@ -192,7 +192,7 @@ function PhoneLeadQuiz() {
               <motion.div key={submitted ? 'done' : step}
                 initial={{ x: 28, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -28, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{ position: 'absolute', inset: 0, padding: isMobile ? '10px 10px 6px' : '14px 16px 8px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}
+                style={{ position: 'absolute', inset: 0, padding: isMobile ? '8px 9px 4px' : '12px 14px 6px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}
               >
                 {/* Label row always pinned at top */}
                 {!submitted && labelRow}
@@ -212,7 +212,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 1 ? (
                   /* ── Step 1: Business type (2-col grid) ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
                     <p style={qStyle}>What kind of business do you run?</p>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 5 : 6 }}>
                       {['Aesthetics', 'Lash & Brow', 'Skin/Facials', 'Hair', 'Nails', 'Other'].map(opt => (
@@ -227,7 +227,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 2 ? (
                   /* ── Step 2: Current booking method ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
                     <p style={qStyle}>How are clients booking right now?</p>
                     {['Instagram DMs', 'WhatsApp', 'Fresha / Booksy', 'Phone & walk-ins', 'Nothing yet'].map(opt => (
                       <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => pick(2, opt)}
@@ -240,7 +240,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 3 ? (
                   /* ── Step 3: Bookings per month ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
                     <p style={qStyle}>Roughly how many bookings a month?</p>
                     {['0 – 20', '20 – 50', '50 – 100', '100+'].map(opt => (
                       <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => pick(3, opt)}
@@ -255,7 +255,7 @@ function PhoneLeadQuiz() {
                   /* ── Step 4: Pain points (multi-select) ── */
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <p style={qStyle}>What's holding you back?</p>
-                    <p style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8, letterSpacing: '0.15em', color: QUIZ_MUTE, textTransform: 'uppercase', margin: `0 0 ${isMobile ? 7 : 9}px` }}>Select all that apply</p>
+                    <p style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8, letterSpacing: '0.15em', color: QUIZ_MUTE, textTransform: 'uppercase', margin: `0 0 ${isMobile ? 5 : 7}px` }}>Select all that apply</p>
                     {["No-shows", "Time wasted in DMs", "Looks unprofessional", "No deposits taken", "Can't be found on Google", "Juggling multiple locations"].map(opt => {
                       const sel = checked.includes(opt);
                       return (
@@ -277,7 +277,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 5 ? (
                   /* ── Step 5: Pick your look ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
                     <p style={qStyle}>Pick your look</p>
                     {[
                       { name: 'Warm Luxe',      colors: ['#F5F0E8', '#C4A882', '#1A1A1C'] },
@@ -304,7 +304,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 6 ? (
                   /* ── Step 6: Package ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
                     <p style={qStyle}>Which package feels right?</p>
                     {[
                       { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£999' },
