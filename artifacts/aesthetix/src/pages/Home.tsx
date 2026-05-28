@@ -204,7 +204,7 @@ function PhoneLeadQuiz() {
               position: 'absolute', bottom: isMobile ? 6 : 10, left: 0, right: 0,
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 3 : 4,
               pointerEvents: 'none', zIndex: 0,
-              opacity: (!submitted && (step === 4 || step === 7)) ? 0 : 0.13,
+              opacity: (!submitted && (step === 4 || step === 7)) ? 0 : 0.42,
               transition: 'opacity 0.3s',
             }}>
               <svg width={isMobile ? 18 : 24} height={isMobile ? 18 : 24} viewBox="0 0 28 28" fill="none">
