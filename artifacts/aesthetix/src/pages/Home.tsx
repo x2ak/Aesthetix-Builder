@@ -1841,7 +1841,7 @@ const MAINT_PLANS = [
     from: true,
     price: '£19.99',
     period: '/mo',
-    blurb: 'Security, SSL, hosting & database. Site changes billed separately.',
+    features: ['Hosting, SSL & database', 'Security maintenance', 'Changes billed separately'],
     waMsg: "Hi Sim, I'm interested in the Core maintenance plan for my clinic!",
   },
   {
@@ -1849,7 +1849,7 @@ const MAINT_PLANS = [
     from: false,
     price: '£34.99',
     period: '/mo',
-    blurb: 'Everything in Core, plus 4 hours of site updates per month.',
+    features: ['Everything in Core', '4 hrs of site changes per month', 'Copy, prices & tweaks'],
     highlight: true,
     waMsg: "Hi Sim, I'm interested in the Core + Changes maintenance plan for my clinic!",
   },
@@ -1858,7 +1858,7 @@ const MAINT_PLANS = [
     from: true,
     price: '£59.99',
     period: '/mo',
-    blurb: 'Branded SMS sender, AI receptionist, £10p/m SMS campaign credit & AI credits included so you never run out of chat conversions.',
+    features: ['Branded SMS sender ID', 'AI receptionist — always on', '£10p/m SMS campaign credit'],
     waMsg: "Hi Sim, I'm interested in the Premium Plus maintenance plan for my clinic!",
   },
   {
@@ -1866,106 +1866,210 @@ const MAINT_PLANS = [
     from: true,
     price: '£59.99',
     period: '/mo',
-    blurb: 'Tailored to your platform. Final fee set per project.',
+    features: ['All Premium Plus features', 'Bespoke feature set', 'Fee confirmed per project'],
     waMsg: "Hi Sim, I'm interested in the Custom Build maintenance plan for my clinic!",
   },
 ];
 
+function MaintCard({ p, size }: { p: typeof MAINT_PLANS[0]; size: 'mobile' | 'desktop' }) {
+  const mob = size === 'mobile';
+  return (
+    <div style={{
+      background: p.highlight ? 'rgba(196,168,130,0.10)' : 'rgba(255,255,255,0.03)',
+      border: p.highlight ? `1.5px solid rgba(196,168,130,0.55)` : `1px solid rgba(255,255,255,0.09)`,
+      borderRadius: 20,
+      padding: mob ? '32px 28px' : '28px 24px',
+      display: 'flex',
+      flexDirection: 'column' as const,
+      height: '100%',
+      boxSizing: 'border-box' as const,
+      position: 'relative' as const,
+      overflow: 'hidden' as const,
+    }}>
+      {/* Subtle corner glow on highlighted card */}
+      {p.highlight && (
+        <div style={{ position: 'absolute', top: -40, right: -40, width: 160, height: 160, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.18) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      )}
+
+      {/* Tag + optional "most popular" badge */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: mob ? 24 : 18 }}>
+        <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: 0, opacity: p.highlight ? 1 : 0.75 }}>
+          {p.tag}
+        </p>
+        {p.highlight && (
+          <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.14em', color: charcoal, background: gold, borderRadius: 999, padding: '3px 10px' }}>
+            Popular
+          </span>
+        )}
+      </div>
+
+      {/* Price */}
+      <div style={{ marginBottom: mob ? 28 : 20 }}>
+        {p.from && (
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.35)', letterSpacing: '0.06em', display: 'block', marginBottom: 4 }}>from</span>
+        )}
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
+          <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: mob ? 52 : 38, color: p.highlight ? gold : cream, lineHeight: 1 }}>
+            {p.price}
+          </span>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.35)' }}>{p.period}</span>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div style={{ height: 1, background: p.highlight ? 'rgba(196,168,130,0.2)' : 'rgba(255,255,255,0.07)', marginBottom: mob ? 24 : 18 }} />
+
+      {/* Features */}
+      <ul style={{ listStyle: 'none', margin: '0 0 auto', padding: 0, display: 'flex', flexDirection: 'column', gap: mob ? 12 : 10 }}>
+        {p.features.map((f, fi) => (
+          <li key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+            <span style={{ color: gold, fontSize: 12, lineHeight: '1.5', flexShrink: 0, opacity: p.highlight ? 1 : 0.7 }}>—</span>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: mob ? 14 : 12.5, color: p.highlight ? 'rgba(247,244,238,0.85)' : 'rgba(247,244,238,0.5)', lineHeight: 1.55 }}>{f}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* CTA */}
+      <a
+        href={`https://wa.me/447495963388?text=${encodeURIComponent(p.waMsg ?? '')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: 'none', display: 'block', marginTop: mob ? 28 : 22 }}
+      >
+        <span style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          fontFamily: BODY, fontWeight: 500, fontSize: mob ? 12 : 11, letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: p.highlight ? gold : 'rgba(196,168,130,0.65)',
+          borderTop: `1px solid ${p.highlight ? 'rgba(196,168,130,0.28)' : 'rgba(255,255,255,0.07)'}`,
+          paddingTop: mob ? 18 : 14,
+        }}>
+          Get started
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+            <path d="M2.5 7h9M7.5 3.5l4 3.5-4 3.5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  );
+}
+
 function MaintenancePlans() {
   const isMobile = useIsMobile();
-  return (
-    <section style={{ background: charcoal, padding: isMobile ? '52px 16px' : '80px 0', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '-10%', right: '-6%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.10) 0%, transparent 68%)', pointerEvents: 'none' }} />
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', position: 'relative', zIndex: 1 }}>
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const kids = Array.from(el.children) as HTMLElement[];
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let closest = 0, minDist = Infinity;
+      kids.forEach((child, i) => {
+        const dist = Math.abs(child.offsetLeft + child.offsetWidth / 2 - center);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      setActiveIdx(closest);
+    };
+    el.addEventListener('scroll', handleScroll, { passive: true });
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <section style={{ background: charcoal, padding: isMobile ? '60px 0' : '88px 0', position: 'relative', overflow: 'hidden' }}>
+      {/* Ambient glows */}
+      <div style={{ position: 'absolute', top: '-15%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.08) 0%, transparent 68%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '-10%', left: '-4%', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.06) 0%, transparent 68%)', pointerEvents: 'none' }} />
+
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
         {/* Heading */}
-        <FadeIn style={{ marginBottom: isMobile ? 6 : 8 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: gold, margin: '0 0 10px' }}>
-            After launch
-          </p>
-          <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(1.8rem,7vw,2.4rem)' : 'clamp(2.2rem,3.5vw,3rem)', color: cream, margin: 0, lineHeight: 1.06, letterSpacing: '-0.02em' }}>
-            MAINTENANCE{' '}
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>& Support</em>
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.08} style={{ marginBottom: isMobile ? 28 : 40 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 15, color: 'rgba(247,244,238,0.55)', margin: 0, maxWidth: 480, lineHeight: 1.65 }}>
-            Every build includes a 12-month plan. Keep your platform secure and running — upgrade anytime.
-          </p>
-        </FadeIn>
-
-        {/* Cards grid — 2×2 on mobile, 4-col on desktop */}
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 24 : 40 }}>
-          {MAINT_PLANS.map((p, i) => (
-            <motion.div key={p.tag}
-              initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.45, delay: i * 0.06 }}
-              style={{
-                background: p.highlight ? 'rgba(196,168,130,0.13)' : 'rgba(255,255,255,0.04)',
-                border: p.highlight ? `1.5px solid rgba(196,168,130,0.5)` : `1px solid rgba(255,255,255,0.07)`,
-                borderRadius: 12,
-                padding: isMobile ? '16px 14px' : '24px 20px',
-                position: 'relative',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-              {/* Gold top bar */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: gold, opacity: p.highlight ? 1 : 0.35 }} />
-
-              {/* Tag */}
-              <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: '0.16em', color: gold, margin: '0 0 10px', opacity: p.highlight ? 1 : 0.8, lineHeight: 1.3 }}>
-                {p.tag}
-              </p>
-
-              {/* Price row — "from" inline */}
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 3, marginBottom: isMobile ? 8 : 12, flexWrap: 'wrap' }}>
-                {p.from && (
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.38)', letterSpacing: '0.04em' }}>from</span>
-                )}
-                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 26 : 32, color: p.highlight ? gold : cream, lineHeight: 1 }}>
-                  {p.price}
-                </span>
-                <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.38)' }}>{p.period}</span>
-              </div>
-
-              {/* Divider */}
-              <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', marginBottom: isMobile ? 8 : 12 }} />
-
-              {/* Blurb */}
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11.5 : 13, color: p.highlight ? 'rgba(247,244,238,0.75)' : 'rgba(247,244,238,0.48)', lineHeight: 1.6, margin: '0 0 14px', flexGrow: 1 }}>
-                {p.blurb}
-              </p>
-
-              {/* CTA */}
-              <a
-                href={`https://wa.me/447495963388?text=${encodeURIComponent(p.waMsg ?? '')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none', display: 'block' }}
-              >
-                <span style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 10 : 11, letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  color: p.highlight ? gold : 'rgba(196,168,130,0.7)',
-                  borderTop: `1px solid ${p.highlight ? 'rgba(196,168,130,0.25)' : 'rgba(255,255,255,0.07)'}`,
-                  paddingTop: 10,
-                }}>
-                  Get started
-                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                    <path d="M2.5 7h9M7.5 3.5l4 3.5-4 3.5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            </motion.div>
-          ))}
+        <div style={{ padding: isMobile ? '0 24px' : '0 32px' }}>
+          <FadeIn style={{ marginBottom: 6 }}>
+            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: gold, margin: '0 0 12px' }}>
+              After launch
+            </p>
+            <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2rem,8vw,2.8rem)' : 'clamp(2.4rem,3.8vw,3.2rem)', color: cream, margin: 0, lineHeight: 1.04, letterSpacing: '-0.02em' }}>
+              MAINTENANCE{' '}
+              <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>& Support</em>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.08} style={{ marginBottom: isMobile ? 36 : 48 }}>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13.5 : 15, color: 'rgba(247,244,238,0.5)', margin: 0, maxWidth: 440, lineHeight: 1.7 }}>
+              Every build includes a 12-month plan. Keep your platform secure and running — upgrade anytime.
+            </p>
+          </FadeIn>
         </div>
 
-        {/* T&Cs link — text-only, no pill */}
-        <FadeIn delay={0.18} style={{ textAlign: 'center' }}>
-          <a href="/terms" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', letterSpacing: '0.04em' }}>
+        {isMobile ? (
+          <>
+            {/* Mobile: snap-scroll carousel */}
+            <div
+              ref={scrollRef}
+              style={{
+                display: 'flex',
+                overflowX: 'auto',
+                scrollSnapType: 'x mandatory',
+                gap: 14,
+                paddingLeft: 24,
+                paddingRight: 24,
+                paddingBottom: 4,
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+              }}
+              className="reviews-carousel"
+            >
+              {MAINT_PLANS.map((p) => (
+                <div key={p.tag} style={{ flexShrink: 0, width: 'calc(100vw - 64px)', scrollSnapAlign: 'center' }}>
+                  <MaintCard p={p} size="mobile" />
+                </div>
+              ))}
+            </div>
+
+            {/* Dot indicators */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 24 }}>
+              {MAINT_PLANS.map((p, i) => (
+                <button
+                  key={p.tag}
+                  onClick={() => {
+                    const el = scrollRef.current;
+                    if (!el) return;
+                    const card = el.children[i] as HTMLElement;
+                    el.scrollTo({ left: card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2, behavior: 'smooth' });
+                  }}
+                  style={{
+                    width: i === activeIdx ? 20 : 6,
+                    height: 6,
+                    borderRadius: 999,
+                    background: i === activeIdx ? gold : 'rgba(196,168,130,0.3)',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: 0,
+                    transition: 'width 0.3s, background 0.3s',
+                  }}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          /* Desktop: 4-col grid */
+          <div style={{ padding: '0 32px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+            {MAINT_PLANS.map((p, i) => (
+              <motion.div key={p.tag}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.5, delay: i * 0.07 }}
+                style={{ height: '100%' }}
+              >
+                <MaintCard p={p} size="desktop" />
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* T&Cs link */}
+        <FadeIn delay={0.2} style={{ textAlign: 'center', marginTop: isMobile ? 32 : 44, padding: isMobile ? '0 24px' : '0 32px' }}>
+          <a href="/terms" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.35)', letterSpacing: '0.04em' }}>
             See T&amp;Cs for more information
             <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
               <path d="M2.5 7h9M7.5 3.5l4 3.5-4 3.5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
