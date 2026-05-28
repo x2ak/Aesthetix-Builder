@@ -2261,7 +2261,7 @@ function Footer() {
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, textDecoration: 'none', letterSpacing: '0.03em' }}>
             Privacy Policy
           </a>
-          <a href="/terms-of-service" target="_blank" rel="noopener noreferrer"
+          <a href="/terms" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, textDecoration: 'none', letterSpacing: '0.03em' }}>
             Terms of Service
           </a>

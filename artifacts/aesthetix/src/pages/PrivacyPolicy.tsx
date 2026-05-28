@@ -55,7 +55,7 @@ function LegalFooter() {
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textDecoration: 'underline', textUnderlineOffset: 3 }}>
             Privacy Policy
           </a>
-          <a href="/terms-of-service" target="_blank" rel="noopener noreferrer"
+          <a href="/terms" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textDecoration: 'underline', textUnderlineOffset: 3 }}>
             Terms of Service
           </a>
