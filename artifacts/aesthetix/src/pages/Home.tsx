@@ -610,8 +610,8 @@ function Hero() {
         {/* Left — Copy */}
         <div style={{ textAlign: isMobile ? 'center' : 'left', display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: isMobile ? '6px 14px' : '6px 14px', marginBottom: isMobile ? 14 : 28 }}>
-            <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: isMobile ? '0.12em' : '0.18em', color: gold }}>
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: charcoal, borderRadius: 999, padding: isMobile ? '6px 14px' : '6px 14px', marginBottom: isMobile ? 14 : 28 }}>
+            <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: isMobile ? '0.12em' : '0.18em', color: '#F7F4EE' }}>
               {isMobile ? 'Websites & Booking Systems · UK' : 'Websites & Booking Systems · For UK Aesthetics Clinics'}
             </span>
           </motion.div>
