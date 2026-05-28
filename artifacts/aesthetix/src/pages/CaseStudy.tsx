@@ -251,7 +251,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
               <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.7 }}
                 style={{ marginBottom: 3, borderRadius: 14, overflow: 'hidden', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
                 <div style={{ padding: '14px 18px', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0 }}>{data.screenshots[0].caption}</p>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: accent, textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0, opacity: 0.8 }}>{data.screenshots[0].caption}</p>
                   <div style={{ display: 'flex', gap: 6 }}>
                     {['#FF5F57','#FFBD2E','#28C840'].map(c => <span key={c} style={{ width: 8, height: 8, borderRadius: '50%', background: c, display: 'inline-block' }} />)}
                   </div>
@@ -267,7 +267,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
                     viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.1 }}
                     style={{ borderRadius: 14, overflow: 'hidden', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
                     <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0 }}>{s.caption}</p>
+                      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: accent, textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0, opacity: 0.8 }}>{s.caption}</p>
                     </div>
                     <img src={s.src} alt={s.caption} style={{ width: '100%', display: 'block', objectFit: 'contain' }} />
                   </motion.div>

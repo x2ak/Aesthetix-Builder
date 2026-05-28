@@ -42,7 +42,7 @@ The training academy section lists CPD-accredited courses from Foundation Botox 
   ],
   screenshots: [
     { src: '/hira-hero.png', caption: 'Homepage — "Considered aesthetics, naturally you."' },
-    { src: '/hira-academy.png', caption: 'Training academy — Foundation courses with Klarna' },
+    { src: '/hira-academy.png', caption: 'Training academy — Foundation courses with Klarna, ClearPay & PayPal Credit' },
     { src: '/hira-shop.png', caption: 'Skincare store — branded HIRA product range' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Stripe', 'Klarna', 'Resend', 'PostgreSQL', 'Drizzle ORM', 'Vercel'],
