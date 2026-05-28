@@ -1091,16 +1091,33 @@ function Portfolio() {
     pauseAuto();
     isDraggingRef.current = true;
     setIsDragging(true);
-    startX.current = e.pageX - (scrollRef.current?.offsetLeft || 0);
+    startX.current = e.pageX;
     scrollLeftRef.current = scrollRef.current?.scrollLeft || 0;
+
+    // Disable snap so manual scroll isn't fought by the browser
+    if (scrollRef.current) scrollRef.current.style.scrollSnapType = 'none';
+
+    const handleMove = (ev: MouseEvent) => {
+      if (!isDraggingRef.current || !scrollRef.current) return;
+      ev.preventDefault();
+      scrollRef.current.scrollLeft = scrollLeftRef.current - (ev.pageX - startX.current);
+    };
+
+    const handleUp = () => {
+      isDraggingRef.current = false;
+      setIsDragging(false);
+      // Re-enable snap after a tick so the browser can settle
+      requestAnimationFrame(() => {
+        if (scrollRef.current) scrollRef.current.style.scrollSnapType = 'x mandatory';
+      });
+      scheduleResume();
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('mouseup', handleUp);
+    };
+
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleUp);
   };
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDraggingRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - (scrollRef.current?.offsetLeft || 0);
-    if (scrollRef.current) scrollRef.current.scrollLeft = scrollLeftRef.current - (x - startX.current) * 1.4;
-  };
-  const stopDrag = () => { scheduleResume(); };
 
   const onTouchStart = () => { pauseAuto(); };
   const onTouchEnd = () => { scheduleResume(); };
@@ -1121,9 +1138,6 @@ function Portfolio() {
       <div
         ref={scrollRef}
         onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={stopDrag}
-        onMouseLeave={stopDrag}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
         style={{
