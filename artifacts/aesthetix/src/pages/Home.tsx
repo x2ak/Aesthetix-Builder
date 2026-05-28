@@ -1515,7 +1515,7 @@ const PRICING_PLANS = [
 const CUSTOM_FEATURES = [
   ['Everything in Core & Premium', 'Loyalty schemes & memberships'],
   ['Training academies & courses', 'Multi-location & franchise setups'],
-  ['Online stores & e-commerce', 'Any feature or integration you need'],
+  ['Online stores', 'E-commerce', 'Any feature or integration you need'],
 ];
 
 /* ─── Book Slot Modal ─── */
