@@ -136,6 +136,25 @@
   box-shadow: 0 0 0 3px rgba(196,168,130,0.18);
 }
 
+/* Quiz option buttons — hover + selected gold state */
+.quiz-opt {
+  transition: border-color 0.15s, background 0.15s !important;
+}
+.quiz-opt:hover {
+  border-color: rgba(196,168,130,0.55) !important;
+  background: rgba(196,168,130,0.08) !important;
+}
+.quiz-opt:hover .quiz-opt-label {
+  color: #C4A882 !important;
+}
+.quiz-opt--selected {
+  border-color: #C4A882 !important;
+  background: rgba(196,168,130,0.13) !important;
+}
+.quiz-opt--selected .quiz-opt-label {
+  color: #C4A882 !important;
+}
+
 /* ── Hero CSS-driven responsive layout ── */
 .hero-section { background: #F7F4EE; padding: 120px 0 80px; position: relative; overflow: hidden; }
 @media (max-width: 768px) { .hero-section { padding: 28px 0 0; } }
