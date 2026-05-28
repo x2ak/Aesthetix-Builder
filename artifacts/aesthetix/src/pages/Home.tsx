@@ -608,7 +608,7 @@ function Hero() {
       ))}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 20 : 80, alignItems: 'center', position: 'relative', zIndex: 1 }}>
         {/* Left — Copy */}
-        <div>
+        <div style={{ textAlign: isMobile ? 'center' : 'left', display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 0, background: goldTint, border: `1px solid rgba(201,169,97,0.3)`, borderRadius: 999, padding: isMobile ? '6px 14px' : '6px 14px', marginBottom: isMobile ? 14 : 28 }}>
             <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: isMobile ? '0.12em' : '0.18em', color: gold }}>
@@ -625,14 +625,14 @@ function Hero() {
             We build premium websites with built-in booking systems for aesthetics clinics, lash techs, and beauty specialists. Look luxury. Book clients 24/7. Stop chasing DMs.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.72 }}
-            style={{ display: 'flex', gap: isMobile ? 14 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 16 : 28 }}>
+            style={{ display: 'flex', gap: isMobile ? 14 : 14, alignItems: 'center', flexWrap: 'wrap', marginBottom: isMobile ? 16 : 28, justifyContent: isMobile ? 'center' : 'flex-start' }}>
             <WaBtn large />
             <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-            style={{ paddingTop: isMobile ? 14 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 10 : 10, flexWrap: 'wrap' }}>
+            style={{ paddingTop: isMobile ? 14 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 10 : 10, flexWrap: 'wrap', justifyContent: isMobile ? 'center' : 'flex-start', width: '100%' }}>
             <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 11, color: inkMute }}>Trusted by</span>
             {['FlawlessSkin', 'Dermadoll', 'Starr Beautyy'].map(n => (
               <span key={n} style={{ background: goldTint, padding: isMobile ? '5px 13px' : '4px 11px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 11, color: goldHover }}>{n}</span>
