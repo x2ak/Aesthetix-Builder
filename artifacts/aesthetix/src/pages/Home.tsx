@@ -750,28 +750,94 @@ function ProblemStrip() {
 /* ─── How It Works ─── */
 function HowItWorks() {
   const isMobile = useIsMobile();
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const INTERVAL = 4200;
+
   const cards = [
     { n: '01', title: 'We design your site', body: 'A bespoke, luxury website built around your brand. No templates. No compromises. Designed to convert visitors into bookings.', Illust: BrowserIllust },
     { n: '02', title: 'We build your calendar in', body: 'Your own booking calendar — live on your site. No Fresha. No Booksy. No third-party fees. Just your brand, your clients, your bookings.', Illust: CalIllust },
     { n: '03', title: 'You get bookings 24/7', body: 'Clients book while you sleep. You wake up to a full calendar. No chasing. No confusion. Just pure, automated revenue.', Illust: NotifIllust },
   ];
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setActive(a => (a + 1) % cards.length), INTERVAL);
+    return () => clearInterval(t);
+  }, [paused, active]);
+
   return (
-    <section id="services" style={{ background: cream, padding: isMobile ? '64px 20px' : '100px 0' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
+    <section id="services" style={{ background: cream, padding: isMobile ? '64px 0' : '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 32px' }}>
         <FadeIn><Overline>How It Works</Overline></FadeIn>
-        <FadeIn delay={0.1} style={{ marginBottom: 56 }}><SectionHead regular="From DMs to" italic="dashboards" /></FadeIn>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: 24 }}>
-          {cards.map((c, i) => (
-            <FadeIn key={i} delay={i * 0.12}>
-              <div className="hiw-card" style={{ background: surface, border: `1px solid ${line}`, borderRadius: 14, padding: 32, height: '100%' }}>
-                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.5rem', color: gold, opacity: 0.38, lineHeight: 1, margin: 0 }}>{c.n}</p>
-                <div style={{ margin: '16px 0' }}><c.Illust /></div>
-                <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 17, color: charcoal, margin: '0 0 10px' }}>{c.title}</h3>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: gold, lineHeight: 1.72, margin: 0 }}>{c.body}</p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn delay={0.1} style={{ marginBottom: isMobile ? 36 : 48 }}><SectionHead regular="From DMs to" italic="dashboards" /></FadeIn>
+
+        <FadeIn delay={0.2}>
+          {/* Tab row */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: `1px solid ${line}`, marginBottom: 0 }}>
+            {cards.map((c, i) => (
+              <button
+                key={i}
+                onClick={() => { setActive(i); setPaused(true); }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: isMobile ? '16px 8px 0' : '20px 24px 0', textAlign: 'left', position: 'relative', outline: 'none' }}
+              >
+                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '1.6rem' : '2rem', color: i === active ? gold : `rgba(196,168,130,0.32)`, lineHeight: 1, display: 'block', marginBottom: 6, transition: 'color 0.3s' }}>
+                  {c.n}
+                </span>
+                {!isMobile && (
+                  <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: i === active ? charcoal : inkMute, display: 'block', marginBottom: 14, transition: 'color 0.3s' }}>
+                    {c.title}
+                  </span>
+                )}
+                {/* Progress bar */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 2, background: line }}>
+                  {i === active && (
+                    <motion.div
+                      key={`bar-${active}-${paused}`}
+                      initial={{ width: '0%' }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: INTERVAL / 1000, ease: 'linear' }}
+                      style={{ height: '100%', background: gold }}
+                    />
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Content card */}
+          <div style={{ background: surface, border: `1px solid ${line}`, borderTop: 'none', borderRadius: '0 0 16px 16px', overflow: 'hidden', minHeight: isMobile ? 320 : 280 }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
+                style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 0, alignItems: 'center' }}
+              >
+                {/* Illustration */}
+                <div style={{ padding: isMobile ? '32px 32px 16px' : '40px 40px 40px 48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ transform: 'scale(1.15)', transformOrigin: 'center' }}>
+                    {(() => { const I = cards[active].Illust; return <I />; })()}
+                  </div>
+                </div>
+                {/* Copy */}
+                <div style={{ padding: isMobile ? '0 28px 32px' : '40px 48px 40px 0' }}>
+                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3rem', color: gold, opacity: 0.22, lineHeight: 1, margin: '0 0 14px' }}>
+                    {cards[active].n}
+                  </p>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 19 : 22, color: charcoal, margin: '0 0 12px', lineHeight: 1.3 }}>
+                    {cards[active].title}
+                  </h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 15, color: inkSoft, lineHeight: 1.78, margin: 0 }}>
+                    {cards[active].body}
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
