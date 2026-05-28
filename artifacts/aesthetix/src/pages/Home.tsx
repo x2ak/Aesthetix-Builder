@@ -824,7 +824,7 @@ function HowItWorks() {
           {cards.map((c, i) => (
             <button key={i}
               onClick={() => { setActive(i); setPaused(true); }}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: isMobile ? '16px 8px 0' : '22px 24px 0', textAlign: 'left', position: 'relative', outline: 'none', transition: 'background 0.2s' }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: isMobile ? '16px 8px 0' : '22px 24px 0', textAlign: 'center', position: 'relative', outline: 'none', transition: 'background 0.2s' }}
             >
               <span style={{
                 fontFamily: DISP, fontStyle: 'italic',
