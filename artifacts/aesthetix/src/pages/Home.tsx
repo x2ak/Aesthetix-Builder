@@ -630,7 +630,7 @@ function Hero() {
         {/* Warm gold glow behind headline */}
         <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 340, height: 340, background: 'radial-gradient(ellipse, rgba(196,168,130,0.18) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
         <div style={{ padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: inkMute, marginBottom: 22 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: gold, marginBottom: 22 }}>
             Aesthetics · Lash · Beauty
           </p>
           <h1 style={{ fontFamily: BODY, fontWeight: 800, fontSize: 'clamp(2.8rem, 11vw, 3.5rem)', lineHeight: 1.02, color: charcoal, marginBottom: 28, letterSpacing: '-0.02em' }}>
@@ -693,7 +693,7 @@ function Hero() {
         alignItems: 'center', position: 'relative', zIndex: 1,
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, textTransform: 'uppercase' as const, letterSpacing: '0.22em', color: inkMute, marginBottom: 28 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, textTransform: 'uppercase' as const, letterSpacing: '0.22em', color: gold, marginBottom: 28 }}>
             Aesthetics · Lash · Beauty
           </p>
           <h1 style={{ fontFamily: BODY, fontWeight: 700, fontSize: 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, marginBottom: 28 }}>
