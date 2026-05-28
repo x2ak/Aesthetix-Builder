@@ -1287,9 +1287,9 @@ function Pricing() {
 
         {/* Plans grid — 2-col on both mobile and desktop */}
         <FadeIn delay={0.15}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 10 : 24, alignItems: 'start', marginTop: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 10 : 24, alignItems: 'stretch', marginTop: 20 }}>
             {PRICING_PLANS.map((plan, idx) => (
-              <div key={plan.name} style={{ paddingTop: plan.hero ? 13 : 0 }}>
+              <div key={plan.name} style={{ paddingTop: plan.hero ? 13 : 0, display: 'flex', flexDirection: 'column' }}>
                 <PricingCard plan={plan} />
               </div>
             ))}
