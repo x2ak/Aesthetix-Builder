@@ -685,7 +685,7 @@ function Hero() {
           </div>
 
           {/* Scroll teaser pinned to bottom */}
-          <div style={{ padding: '28px 28px 32px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <div style={{ padding: '16px 28px 52px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
             <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 10, color: gold, letterSpacing: '0.2em', textTransform: 'uppercase' as const, margin: '0 0 10px' }}>
               Get your free quote in 60 seconds
             </p>
