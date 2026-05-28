@@ -1406,7 +1406,8 @@ function PricingCard({ plan, open, onToggle, onBookSlot }: { plan: typeof PRICIN
         <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '1.5rem' : '2rem', color: labelCol, margin: '0 0 2px', lineHeight: 1.1 }}>
           {plan.build} <span style={{ fontFamily: BODY, fontStyle: 'normal', fontWeight: 300, fontSize: isMobile ? 10 : 12, color: textCol }}>build</span>
         </p>
-        <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 13, color: gold, margin: '0 0 0' }}>+ {plan.monthly}</p>
+        <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 13, color: gold, margin: '0 0 4px' }}>+ {plan.monthly}</p>
+        <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 9 : 10, color: 'rgba(196,168,130,0.6)', margin: 0, letterSpacing: '0.04em', textTransform: 'uppercase' }}>90 days free monthly</p>
       </div>
       {/* Divider */}
       <div style={{ height: 1, background: divider, margin: '20px 0 16px' }} />
