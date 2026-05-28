@@ -995,7 +995,7 @@ function Portfolio() {
       preview: '/flawlessskin-preview.png',
       grad: `linear-gradient(135deg, ${goldTint}, ${blush})`,
       caseStudy: '/portfolio/flawlessskin',
-      tag: 'CUSTOM BRANDED SITE',
+      tag: 'CORE BUILD',
       result: 'Booking enquiries doubled in the first month. Clients actually book now instead of just following.',
     },
     {
