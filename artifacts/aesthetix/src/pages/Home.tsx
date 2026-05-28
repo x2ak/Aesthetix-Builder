@@ -1396,14 +1396,14 @@ function PricingCard({ plan, open, onToggle, onBookSlot }: { plan: typeof PRICIN
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
         <button
           onClick={onBookSlot}
-          style={{ width: '100%', background: plan.hero ? cream : charcoal, color: plan.hero ? charcoal : cream, border: 'none', borderRadius: 8, padding: isMobile ? '10px 16px' : '11px 16px', fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 12 : 13, cursor: 'pointer', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
+          style={{ width: '100%', boxSizing: 'border-box', background: plan.hero ? cream : charcoal, color: plan.hero ? charcoal : cream, border: 'none', borderRadius: 8, padding: '10px 16px', fontFamily: BODY, fontWeight: 600, fontSize: 13, lineHeight: 1, cursor: 'pointer', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
           Book Build Slot
         </button>
         <a
           href={WA}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: isMobile ? '8px 16px' : '9px 16px', borderRadius: 8, border: plan.hero ? '1px solid rgba(196,168,130,0.3)' : '1px solid rgba(26,26,28,0.14)', background: 'transparent', color: plan.hero ? 'rgba(247,244,238,0.75)' : charcoal, fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 11 : 12, cursor: 'pointer', textDecoration: 'none', letterSpacing: '0.01em' }}>
+          style={{ boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '10px 16px', borderRadius: 8, border: plan.hero ? '1px solid rgba(196,168,130,0.3)' : '1px solid rgba(26,26,28,0.14)', background: 'transparent', color: plan.hero ? 'rgba(247,244,238,0.75)' : charcoal, fontFamily: BODY, fontWeight: 500, fontSize: 13, lineHeight: 1, cursor: 'pointer', textDecoration: 'none', letterSpacing: '0.01em' }}>
           <FaWhatsapp size={12} color={gold} />
           Book a Call
         </a>
