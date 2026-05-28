@@ -51,6 +51,17 @@ function WaBtn({ large = false, outlined = false, light = false, label = "Messag
 }
 
 /* ─── Overline Label ─── */
+/* ─── Dynamic slot-month label ───
+   Returns "Mid-[Month]" for most of the month.
+   In the last week (day ≥ 24) it flips to the NEXT month so urgency stays fresh. */
+function getSlotMonth(): string {
+  const now = new Date();
+  const day = now.getDate();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const idx = day >= 24 ? (now.getMonth() + 1) % 12 : now.getMonth();
+  return `Mid-${months[idx]}`;
+}
+
 function Overline({ children, centered = false, glow = false }: { children: React.ReactNode; centered?: boolean; glow?: boolean }) {
   return (
     <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: gold, marginBottom: 16, textAlign: centered ? 'center' : 'left', textShadow: glow ? `0 0 12px rgba(196,168,130,0.9), 0 0 28px rgba(196,168,130,0.55), 0 0 54px rgba(196,168,130,0.3)` : 'none' }}>
@@ -1751,7 +1762,7 @@ function FinalCTA() {
         </FadeIn>
         <FadeIn delay={0.15}>
           <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: 'rgba(247,244,238,0.52)', lineHeight: 1.75, maxWidth: 480, margin: isMobile ? '20px auto 0' : '24px auto 0' }}>
-            Your site should work while you sleep. Let's build it — summer slots are filling fast.
+            {getSlotMonth()} slots are filling up. Get your site live and start taking bookings automatically.
           </p>
         </FadeIn>
         <FadeIn delay={0.28}>
