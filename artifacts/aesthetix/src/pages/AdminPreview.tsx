@@ -4,6 +4,7 @@ const BODY = "'Inter Tight', system-ui, sans-serif";
 const DISP = "'Instrument Serif', Georgia, serif";
 
 type Props = { client: 'starr' | 'dermadoll' | 'flawlessskin' };
+type WeekSlot = { label: string; full: boolean; closed?: boolean };
 
 const CONFIGS = {
   starr: {
@@ -277,7 +278,7 @@ export default function AdminPreview({ client }: Props) {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
             {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => {
-              const slot = cfg.week[i];
+              const slot = cfg.week[i] as WeekSlot;
               const bg = slot.closed ? '#F0EDE7' : slot.full ? cfg.accent : slot.label === 'Open' ? '#F7F4EE' : cfg.accentLight;
               const col = slot.closed ? '#C0BDB8' : slot.full ? '#fff' : slot.label === 'Open' ? '#8A8A8E' : cfg.accent;
               return (
