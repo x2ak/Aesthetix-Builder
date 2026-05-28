@@ -2008,6 +2008,83 @@ function useIsMobile() {
 }
 
 /* ─── Home ─── */
+function WhatsAppWidget() {
+  const [hovered, setHovered] = useState(false);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShown(true), 1800);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {shown && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.6 }}
+          transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+          style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 9999, display: 'flex', alignItems: 'flex-end', gap: 12, pointerEvents: 'none' }}
+        >
+          {/* Tooltip label */}
+          <AnimatePresence>
+            {hovered && (
+              <motion.div
+                initial={{ opacity: 0, x: 8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 8 }}
+                transition={{ duration: 0.18 }}
+                style={{
+                  background: charcoal, color: cream, borderRadius: 10,
+                  padding: '8px 14px', pointerEvents: 'none', whiteSpace: 'nowrap' as const,
+                  fontFamily: BODY, fontWeight: 400, fontSize: 12, letterSpacing: '0.02em',
+                  boxShadow: '0 4px 20px rgba(26,26,28,0.22)',
+                  marginBottom: 6,
+                }}
+              >
+                Chat with us on WhatsApp
+                <span style={{ position: 'absolute', right: -6, bottom: 12, width: 0, height: 0,
+                  borderTop: '5px solid transparent', borderBottom: '5px solid transparent',
+                  borderLeft: `6px solid ${charcoal}` }} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Bubble button */}
+          <a
+            href={WA}
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{
+              width: 58, height: 58, borderRadius: '50%',
+              background: '#25D366',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: hovered
+                ? '0 8px 32px rgba(37,211,102,0.55), 0 2px 12px rgba(26,26,28,0.18)'
+                : '0 4px 20px rgba(37,211,102,0.38), 0 2px 8px rgba(26,26,28,0.14)',
+              transition: 'box-shadow 0.25s, transform 0.2s',
+              transform: hovered ? 'scale(1.1)' : 'scale(1)',
+              pointerEvents: 'auto',
+              flexShrink: 0,
+              textDecoration: 'none',
+            }}
+          >
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <path fillRule="evenodd" clipRule="evenodd"
+                d="M16 2C8.268 2 2 8.268 2 16c0 2.478.668 4.797 1.832 6.789L2 30l7.43-1.8A13.938 13.938 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.54 11.54 0 01-5.88-1.608l-.42-.252-4.41 1.068 1.092-4.302-.276-.444A11.56 11.56 0 014.4 16C4.4 9.594 9.594 4.4 16 4.4S27.6 9.594 27.6 16 22.406 27.6 16 27.6zm6.36-8.652c-.348-.174-2.064-1.02-2.382-1.134-.318-.12-.552-.174-.78.174-.234.348-.894 1.134-1.098 1.368-.204.228-.402.258-.75.084-.348-.174-1.47-.543-2.8-1.728-1.032-.924-1.73-2.064-1.932-2.412-.204-.348-.024-.534.15-.708.156-.156.348-.402.522-.6.174-.204.228-.348.348-.582.12-.234.06-.438-.03-.612-.09-.174-.78-1.884-1.074-2.58-.282-.678-.57-.582-.78-.594-.204-.012-.432-.012-.66-.012-.234 0-.612.084-.93.432-.318.348-1.218 1.188-1.218 2.898 0 1.71 1.248 3.36 1.422 3.594.174.234 2.46 3.756 5.958 5.268.834.36 1.482.576 1.992.738.834.264 1.596.228 2.196.138.672-.102 2.064-.846 2.358-1.662.294-.816.294-1.518.204-1.662-.084-.15-.318-.234-.666-.408z"
+                fill="white"
+              />
+            </svg>
+          </a>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function Home() {
   return (
     <div style={{ background: cream, minHeight: '100vh' }}>
@@ -2023,6 +2100,7 @@ export default function Home() {
       <FAQ />
       <FinalCTA />
       <Footer />
+      <WhatsAppWidget />
     </div>
   );
 }
