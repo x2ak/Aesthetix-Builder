@@ -2371,10 +2371,12 @@ function Footer() {
         <div style={{ height: 1, background: line, marginBottom: 20, width: '100%' }} />
 
         {/* Bottom row */}
-        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '4px 20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
           <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, letterSpacing: '0.03em' }}>
-            © {new Date().getFullYear()} Aesthetix Systems · London, UK
+            © {new Date().getFullYear()} Aesthetix Systems
           </span>
+          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '4px 20px' }}>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, letterSpacing: '0.03em' }}>London, UK</span>
           <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, textDecoration: 'none', letterSpacing: '0.03em' }}>
             Privacy Policy
@@ -2383,6 +2385,7 @@ function Footer() {
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, textDecoration: 'none', letterSpacing: '0.03em' }}>
             Terms of Service
           </a>
+          </div>
         </div>
 
       </div>
