@@ -1208,7 +1208,73 @@ const CUSTOM_FEATURES = [
   ['Online stores & e-commerce', 'Any feature or integration you need'],
 ];
 
-function PricingCard({ plan, open, onToggle }: { plan: typeof PRICING_PLANS[0]; open: boolean; onToggle: () => void }) {
+/* ─── Book Slot Modal ─── */
+function BookSlotModal({ onClose }: { onClose: () => void }) {
+  const isMobile = useIsMobile();
+  const goToPay = () => {
+    onClose();
+    window.history.pushState({}, '', '/pay');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
+  const terms = [
+    { label: '£99 deposit today', sub: 'Deducted from your package price' },
+    { label: '50% on kickoff', sub: 'Once we start building your site' },
+    { label: '50% on completion', sub: 'When your site goes live' },
+  ];
+  return (
+    <div
+      onClick={onClose}
+      style={{ position: 'fixed', inset: 0, background: 'rgba(26,26,28,0.72)', backdropFilter: 'blur(6px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.94, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.94, y: 16 }}
+        transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
+        onClick={e => e.stopPropagation()}
+        style={{ background: surface, borderRadius: 20, border: `1px solid ${line}`, padding: isMobile ? '28px 24px' : '40px 44px', maxWidth: 460, width: '100%', position: 'relative' }}>
+        {/* Close */}
+        <button onClick={onClose} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', cursor: 'pointer', color: inkMute, fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
+        {/* Header */}
+        <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: gold, margin: '0 0 10px' }}>Build Queue</p>
+        <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 22 : 26, color: charcoal, margin: '0 0 8px', lineHeight: 1.2 }}>Secure your build slot</h2>
+        <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.7, margin: '0 0 28px' }}>
+          We take a <strong style={{ color: charcoal, fontWeight: 600 }}>£99 deposit</strong> to hold your place in our build queue. This comes straight off the cost of your package.
+        </p>
+        {/* Payment schedule */}
+        <div style={{ background: cream, borderRadius: 12, padding: '20px 20px', marginBottom: 28 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.2em', color: inkMute, margin: '0 0 16px' }}>Payment Schedule</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {terms.map((t, i) => (
+              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                <span style={{ width: 22, height: 22, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+                  <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 10, color: cream }}>{i + 1}</span>
+                </span>
+                <div>
+                  <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal, margin: 0 }}>{t.label}</p>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, margin: 0 }}>{t.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Primary CTA */}
+        <button
+          onClick={goToPay}
+          style={{ width: '100%', background: charcoal, color: cream, border: 'none', borderRadius: 999, padding: '14px 24px', fontFamily: BODY, fontWeight: 600, fontSize: 14, cursor: 'pointer', marginBottom: 12, letterSpacing: '0.01em' }}>
+          Pay £99 Deposit Now →
+        </button>
+        {/* Secondary */}
+        <div style={{ textAlign: 'center' }}>
+          <a href="https://wa.me/447495963388" target="_blank" rel="noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
+            Have questions? Message us on WhatsApp →
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function PricingCard({ plan, open, onToggle, onBookSlot }: { plan: typeof PRICING_PLANS[0]; open: boolean; onToggle: () => void; onBookSlot: () => void }) {
   const isMobile = useIsMobile();
   const divider = plan.hero ? 'rgba(201,169,97,0.2)' : line;
   const textCol = plan.hero ? 'rgba(247,244,238,0.75)' : inkSoft;
@@ -1242,9 +1308,14 @@ function PricingCard({ plan, open, onToggle }: { plan: typeof PRICING_PLANS[0]; 
       </div>
       {/* Divider */}
       <div style={{ height: 1, background: divider, margin: '0 0 16px' }} />
-      {/* CTA */}
-      <div style={{ marginBottom: 16 }}>
-        <WaBtn large={false} light={plan.hero} label={plan.cta} />
+      {/* CTAs */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
+        <button
+          onClick={onBookSlot}
+          style={{ width: '100%', background: plan.hero ? cream : charcoal, color: plan.hero ? charcoal : cream, border: 'none', borderRadius: 999, padding: isMobile ? '11px 20px' : '13px 24px', fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 13 : 14, cursor: 'pointer', letterSpacing: '0.01em' }}>
+          Book Build Slot
+        </button>
+        <WaBtn large={false} light={!plan.hero} label="Book a Call" />
       </div>
       {/* Feature toggle */}
       <button
@@ -1270,6 +1341,7 @@ function PricingCard({ plan, open, onToggle }: { plan: typeof PRICING_PLANS[0]; 
 function Pricing() {
   const isMobile = useIsMobile();
   const [featOpen, setFeatOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <section id="pricing" style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 16px' : '100px 0' }}>
@@ -1284,7 +1356,7 @@ function Pricing() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 10 : 24, alignItems: 'stretch', marginTop: 20 }}>
             {PRICING_PLANS.map((plan, idx) => (
               <div key={plan.name} style={{ paddingTop: plan.hero ? 13 : 0, display: 'flex', flexDirection: 'column' }}>
-                <PricingCard plan={plan} open={featOpen} onToggle={() => setFeatOpen(o => !o)} />
+                <PricingCard plan={plan} open={featOpen} onToggle={() => setFeatOpen(o => !o)} onBookSlot={() => setShowModal(true)} />
               </div>
             ))}
           </div>
@@ -1319,6 +1391,7 @@ function Pricing() {
           </p>
         </FadeIn>
       </div>
+      <AnimatePresence>{showModal && <BookSlotModal onClose={() => setShowModal(false)} />}</AnimatePresence>
     </section>
   );
 }
