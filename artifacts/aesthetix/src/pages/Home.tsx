@@ -199,6 +199,24 @@ function PhoneLeadQuiz() {
 
           {/* Content */}
           <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            {/* Aesthetix watermark — visible in dead space, hidden on packed steps */}
+            <div style={{
+              position: 'absolute', bottom: isMobile ? 6 : 10, left: 0, right: 0,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 3 : 4,
+              pointerEvents: 'none', zIndex: 0,
+              opacity: (!submitted && (step === 4 || step === 7)) ? 0 : 0.13,
+              transition: 'opacity 0.3s',
+            }}>
+              <svg width={isMobile ? 18 : 24} height={isMobile ? 18 : 24} viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.2" />
+                <path d="M14 7l4.5 11H9.5L14 7z" stroke={gold} strokeWidth="1.1" strokeLinejoin="round" fill="none" />
+                <path d="M11 14.5h6" stroke={gold} strokeWidth="1" strokeLinecap="round" />
+              </svg>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 5.5 : 7, letterSpacing: '0.22em', color: gold, textTransform: 'uppercase' as const }}>Aesthetix</span>
+                <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 4 : 5.5, letterSpacing: '0.28em', color: gold, textTransform: 'uppercase' as const }}>Systems</span>
+              </div>
+            </div>
             <AnimatePresence mode="wait">
               <motion.div key={submitted ? 'done' : step}
                 initial={{ x: 28, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -28, opacity: 0 }}
@@ -365,8 +383,8 @@ function PhoneLeadQuiz() {
                       );
                     })}
                     <motion.button whileTap={{ scale: 0.97 }} onClick={goNext}
-                      style={{ width: '100%', background: gold, borderRadius: isMobile ? 8 : 10, padding: isMobile ? '6px' : '8px', border: 'none', cursor: 'pointer', marginTop: isMobile ? 4 : 5 }}>
-                      <span style={{ fontFamily: BODY, fontSize: isMobile ? 9 : 11, fontWeight: 600, color: charcoal }}>Continue →</span>
+                      style={{ width: '100%', background: gold, borderRadius: isMobile ? 6 : 10, padding: isMobile ? '5px' : '8px', border: 'none', cursor: 'pointer', marginTop: isMobile ? 3 : 5 }}>
+                      <span style={{ fontFamily: BODY, fontSize: isMobile ? 7.5 : 11, fontWeight: 600, color: charcoal }}>Continue →</span>
                     </motion.button>
                   </div>
 
@@ -464,8 +482,8 @@ function PhoneLeadQuiz() {
                         } catch { /* non-blocking */ }
                         setSubmitted(true);
                       }}
-                      style={{ width: '100%', background: name && phone ? `linear-gradient(135deg, #D4B892 0%, ${gold} 100%)` : 'rgba(196,168,130,0.20)', borderRadius: isMobile ? 9 : 11, padding: isMobile ? '7px' : '9px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: isMobile ? 5 : 7, transition: 'background 0.3s', boxShadow: name && phone ? '0 4px 14px rgba(196,168,130,0.35)' : 'none' }}>
-                      <span style={{ fontFamily: BODY, fontSize: isMobile ? 9 : 11, fontWeight: 700, color: name && phone ? charcoal : QUIZ_MUTE, letterSpacing: '0.03em' }}>Get my free quote →</span>
+                      style={{ width: '100%', background: name && phone ? `linear-gradient(135deg, #D4B892 0%, ${gold} 100%)` : 'rgba(196,168,130,0.20)', borderRadius: isMobile ? 6 : 11, padding: isMobile ? '5px' : '9px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: isMobile ? 4 : 7, transition: 'background 0.3s', boxShadow: name && phone ? '0 4px 14px rgba(196,168,130,0.35)' : 'none' }}>
+                      <span style={{ fontFamily: BODY, fontSize: isMobile ? 7.5 : 11, fontWeight: 700, color: name && phone ? charcoal : QUIZ_MUTE, letterSpacing: '0.03em' }}>Get my free quote →</span>
                     </motion.button>
                   </div>
                 )}
