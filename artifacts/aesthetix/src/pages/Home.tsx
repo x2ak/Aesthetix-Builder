@@ -1214,9 +1214,8 @@ const CUSTOM_FEATURES = [
   ['Online stores & e-commerce', 'Any feature or integration you need'],
 ];
 
-function PricingCard({ plan }: { plan: typeof PRICING_PLANS[0] }) {
+function PricingCard({ plan, open, onToggle }: { plan: typeof PRICING_PLANS[0]; open: boolean; onToggle: () => void }) {
   const isMobile = useIsMobile();
-  const [open, setOpen] = useState(false);
   const divider = plan.hero ? 'rgba(201,169,97,0.2)' : line;
   const textCol = plan.hero ? 'rgba(247,244,238,0.75)' : inkSoft;
   const labelCol = plan.hero ? cream : charcoal;
@@ -1255,7 +1254,7 @@ function PricingCard({ plan }: { plan: typeof PRICING_PLANS[0] }) {
       </div>
       {/* Feature toggle */}
       <button
-        onClick={() => setOpen(o => !o)}
+        onClick={onToggle}
         style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginBottom: open ? 14 : 0 }}>
         <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.2em', color: textCol }}>{open ? 'Hide Features' : "What's Included"}</span>
         <ChevronDown size={12} color={gold} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s' }} />
@@ -1276,6 +1275,7 @@ function PricingCard({ plan }: { plan: typeof PRICING_PLANS[0] }) {
 
 function Pricing() {
   const isMobile = useIsMobile();
+  const [featOpen, setFeatOpen] = useState(false);
 
   return (
     <section id="pricing" style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 16px' : '100px 0' }}>
@@ -1290,7 +1290,7 @@ function Pricing() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 10 : 24, alignItems: 'stretch', marginTop: 20 }}>
             {PRICING_PLANS.map((plan, idx) => (
               <div key={plan.name} style={{ paddingTop: plan.hero ? 13 : 0, display: 'flex', flexDirection: 'column' }}>
-                <PricingCard plan={plan} />
+                <PricingCard plan={plan} open={featOpen} onToggle={() => setFeatOpen(o => !o)} />
               </div>
             ))}
           </div>
