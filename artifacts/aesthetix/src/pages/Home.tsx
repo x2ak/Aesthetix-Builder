@@ -1023,10 +1023,10 @@ function Bento() {
               <div style={{ background: charcoal, borderRadius: 14, padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 12, height: '100%', boxSizing: 'border-box' }}>
                 <div>
                   <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, margin: '0 0 8px', lineHeight: 1.35 }}>Deposits &amp; no-show protection</h3>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: gold, lineHeight: 1.6, margin: 0 }}>50% deposit collected automatically. No more no-shows.</p>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: gold, lineHeight: 1.6, margin: 0 }}>Set a fixed fee or % — collected automatically. No more no-shows.</p>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {['No more last-minute cancellations', 'Clients pay 50% upfront at booking', 'Refund policy enforced automatically', 'Bank-grade Stripe security'].map(pt => (
+                  {['No more last-minute cancellations', 'Custom fixed fee or % per treatment', 'Refund policy enforced automatically', 'Bank-grade Stripe security'].map(pt => (
                     <div key={pt} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
                       <div style={{ width: 5, height: 5, borderRadius: '50%', background: gold, flexShrink: 0 }} />
                       <span style={{ fontFamily: BODY, fontSize: 9.5, fontWeight: 300, color: 'rgba(247,244,238,0.65)', lineHeight: 1.4 }}>{pt}</span>
@@ -1052,7 +1052,7 @@ function Bento() {
                 <div>
                   <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 20, color: cream, margin: '0 0 14px', lineHeight: 1.35 }}>Deposits & no-show protection</h3>
                   <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: 'rgba(247,244,238,0.6)', lineHeight: 1.78, margin: 0, maxWidth: 380 }}>
-                    Collect a 50% deposit at booking, automatically. No more last-minute cancellations. No more lost revenue. Stripe-powered, bank-grade secure.
+                    Set a fixed fee or percentage deposit per treatment — customisable in your portal. Collected automatically at booking. No more cancellations, no more lost revenue.
                   </p>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
