@@ -1234,7 +1234,7 @@ function PricingCard({ plan, open, onToggle }: { plan: typeof PRICING_PLANS[0]; 
       {/* Name + price */}
       <div style={{ paddingTop: plan.hero ? 8 : 0 }}>
         <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 18 : 22, color: labelCol, margin: '0 0 6px' }}>{plan.name}</p>
-        <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: textCol, lineHeight: 1.55, margin: '0 0 16px' }}>{plan.desc}</p>
+        <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: gold, lineHeight: 1.55, margin: '0 0 16px' }}>{plan.desc}</p>
         <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '1.5rem' : '2rem', color: labelCol, margin: '0 0 2px', lineHeight: 1.1 }}>
           {plan.build} <span style={{ fontFamily: BODY, fontStyle: 'normal', fontWeight: 300, fontSize: isMobile ? 10 : 12, color: textCol }}>build</span>
         </p>
@@ -1297,7 +1297,7 @@ function Pricing() {
               <h3 style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 22 : 28, color: cream, margin: 0 }}>Custom Builds</h3>
               <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, border: `1px solid ${gold}`, borderRadius: 999, padding: '4px 10px' }}>Tailored</span>
             </div>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 15, color: 'rgba(247,244,238,0.55)', margin: '0 0 28px' }}>Built from scratch to your exact spec.</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 15, color: gold, margin: '0 0 28px' }}>Built from scratch to your exact spec.</p>
             <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '2rem' : '2.6rem', color: cream, margin: '0 0 4px', lineHeight: 1 }}>from £3,000+</p>
             <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: 'rgba(247,244,238,0.4)', margin: '0 0 28px' }}>Quoted based on requirements</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '12px 16px' : '16px 32px', marginBottom: 28 }}>
