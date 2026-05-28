@@ -1776,7 +1776,7 @@ function FAQ() {
 function FinalCTA() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: 'linear-gradient(160deg, #0D0D0E 0%, #1A1A1C 100%)', padding: isMobile ? '88px 24px' : '130px 0', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ background: 'linear-gradient(160deg, #0D0D0E 0%, #1A1A1C 100%)', padding: isMobile ? '52px 24px' : '80px 0', position: 'relative', overflow: 'hidden' }}>
       {/* Dramatic gold glow — centre */}
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 500, background: 'radial-gradient(ellipse at center, rgba(196,168,130,0.18) 0%, transparent 62%)', pointerEvents: 'none' }} />
       {/* Decorative rings */}
