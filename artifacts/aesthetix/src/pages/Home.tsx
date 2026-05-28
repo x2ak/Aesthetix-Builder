@@ -1121,7 +1121,7 @@ function Portfolio() {
               <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 26, color: charcoal, margin: '0 0 4px', lineHeight: 1.1 }}>{c.name}</h3>
               <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.14em', color: gold, margin: '0 0 14px' }}>{c.loc} · {c.buildTime}</p>
               <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.65, margin: '0 0 20px' }}>{c.result}</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 20, borderTop: `1px solid ${line}`, paddingTop: 18 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, borderTop: `1px solid ${line}`, paddingTop: 18 }}>
                 <a href={c.url} target="_blank" rel="noopener noreferrer"
                   onClick={e => e.stopPropagation()}
                   style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: charcoal, textDecoration: 'none' }}>
@@ -1187,7 +1187,7 @@ function Portfolio() {
                   <h3 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 24, color: charcoal, margin: '0 0 4px', lineHeight: 1.1 }}>{c.name}</h3>
                   <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.14em', color: gold, margin: '0 0 12px' }}>{c.loc} · {c.buildTime}</p>
                   <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.65, margin: '0 0 18px', minHeight: '40px' }}>{c.result}</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 20, borderTop: `1px solid ${line}`, paddingTop: 16 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10, borderTop: `1px solid ${line}`, paddingTop: 16 }}>
                     <a href={c.url} target="_blank" rel="noopener noreferrer"
                       onClick={e => e.stopPropagation()}
                       style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: charcoal, textDecoration: 'none' }}>
