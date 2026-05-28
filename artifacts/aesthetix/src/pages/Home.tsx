@@ -627,46 +627,40 @@ function Hero() {
         {/* Left — Copy */}
         <div style={{ textAlign: isMobile ? 'center' : 'left', display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
           {/* Label */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }}
-            style={{ marginBottom: isMobile ? 20 : 28 }}>
+          <div style={{ marginBottom: isMobile ? 20 : 28 }}>
             <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', letterSpacing: '0.22em', color: inkMute }}>
               Aesthetics · Lash · Beauty
             </span>
-          </motion.div>
+          </div>
           {/* Headline */}
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.6rem, 10vw, 3.2rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, margin: isMobile ? '0 0 28px' : '0 0 28px' }}>
+          <h1 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.6rem, 10vw, 3.2rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, margin: isMobile ? '0 0 28px' : '0 0 28px' }}>
             Turn followers<br />
             <span style={{ color: 'rgba(26,26,28,0.28)', fontWeight: 700 }}>into</span><br />
             <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 700, color: gold, lineHeight: 1.08 }}>bookings.</em>
-          </motion.h1>
+          </h1>
           {/* Marquee ticker */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.5 }}
-            style={{ width: '100%', marginBottom: isMobile ? 28 : 28 }}>
+          <div style={{ width: '100%', marginBottom: isMobile ? 28 : 28 }}>
             <HeroTicker />
-          </motion.div>
+          </div>
           {/* Body */}
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.62 }}
-            style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 32px' : '0 0 32px' }}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 32px' : '0 0 32px' }}>
             Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
-          </motion.p>
+          </p>
           {/* CTAs */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.75 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: isMobile ? 'center' : 'flex-start', marginBottom: isMobile ? 32 : 28 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: isMobile ? 'center' : 'flex-start', marginBottom: isMobile ? 32 : 28 }}>
             <WaBtn large />
             <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
-          </motion.div>
+          </div>
           {/* Stars trust row */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start', gap: 8 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start', gap: 8 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ color: gold, fontSize: 15, letterSpacing: 2, lineHeight: 1 }}>★★★★★</span>
               <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal }}>5.0</span>
             </div>
             <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute }}>Trusted by clinics across the UK</span>
-          </motion.div>
+          </div>
         </div>
         {/* Right — Phone */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
