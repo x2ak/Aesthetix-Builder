@@ -1372,10 +1372,17 @@ function PricingCard({ plan, open, onToggle, onBookSlot }: { plan: typeof PRICIN
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
         <button
           onClick={onBookSlot}
-          style={{ width: '100%', background: plan.hero ? cream : charcoal, color: plan.hero ? charcoal : cream, border: 'none', borderRadius: 999, padding: isMobile ? '11px 20px' : '13px 24px', fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 13 : 14, cursor: 'pointer', letterSpacing: '0.01em' }}>
+          style={{ width: '100%', background: plan.hero ? cream : charcoal, color: plan.hero ? charcoal : cream, border: 'none', borderRadius: 8, padding: isMobile ? '10px 16px' : '11px 16px', fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 12 : 13, cursor: 'pointer', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
           Book Build Slot
         </button>
-        <WaBtn large={false} light={!plan.hero} label="Book a Call" />
+        <a
+          href={WA}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: isMobile ? '8px 16px' : '9px 16px', borderRadius: 8, border: plan.hero ? '1px solid rgba(196,168,130,0.3)' : '1px solid rgba(26,26,28,0.14)', background: 'transparent', color: plan.hero ? 'rgba(247,244,238,0.75)' : charcoal, fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 11 : 12, cursor: 'pointer', textDecoration: 'none', letterSpacing: '0.01em' }}>
+          <FaWhatsapp size={12} color={gold} />
+          Book a Call
+        </a>
       </div>
       {/* Feature toggle */}
       <button
@@ -1482,7 +1489,7 @@ function Pricing() {
         <FadeIn delay={0.22}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 10 : 24, alignItems: 'stretch' }}>
             {PRICING_PLANS.map((plan) => (
-              <div key={plan.name} style={{ paddingTop: plan.hero ? 13 : 0, display: 'flex', flexDirection: 'column' }}>
+              <div key={plan.name} style={{ paddingTop: 13, display: 'flex', flexDirection: 'column' }}>
                 <PricingCard plan={plan} open={featOpen} onToggle={() => setFeatOpen(o => !o)} onBookSlot={() => setShowModal(true)} />
               </div>
             ))}
