@@ -13,6 +13,10 @@ import CaseStudyHira from "@/pages/CaseStudyHira";
 import Payment from "@/pages/Payment";
 import CityLanding from "@/pages/CityLanding";
 import TreatmentLanding from "@/pages/TreatmentLanding";
+import BespokeWebsites from "@/pages/services/BespokeWebsites";
+import BookingSystems from "@/pages/services/BookingSystems";
+import AiAssistant from "@/pages/services/AiAssistant";
+import OngoingSupport from "@/pages/services/OngoingSupport";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +53,11 @@ function Router() {
   if (treatmentMatch && TREATMENT_SLUGS.includes(treatmentMatch[1])) {
     return <TreatmentLanding treatmentSlug={treatmentMatch[1]} />;
   }
+
+  if (path === "/services/bespoke-websites") return <BespokeWebsites />;
+  if (path === "/services/booking-systems") return <BookingSystems />;
+  if (path === "/services/ai-assistant") return <AiAssistant />;
+  if (path === "/services/ongoing-support") return <OngoingSupport />;
 
   return <Home />;
 }

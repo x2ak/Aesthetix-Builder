@@ -170,13 +170,18 @@ export default function BookingSystems() {
             ))}
           </div>
           <AnimatePresence mode="wait">
-            <motion.div key={activeStep} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.4 }} style={{ background: surface, border: `1px solid ${line}`, borderTop: "none", borderRadius: "0 0 8px 8px", padding: isMobile ? "24px 20px" : "36px 40px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 20 : 40, alignItems: "center" }}>
-              <div>
-                <h3 style={{ fontFamily: DISP, fontStyle: "italic", fontSize: isMobile ? 22 : 28, fontWeight: 400, color: charcoal, margin: "0 0 12px" }}>{STEPS[activeStep].title}</h3>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 16, color: inkSoft, lineHeight: 1.8, margin: 0 }}>{STEPS[activeStep].body}</p>
-              </div>
-              <STEPS[activeStep].Illust />
-            </motion.div>
+            {(() => {
+              const ActiveIllust = STEPS[activeStep].Illust;
+              return (
+                <motion.div key={activeStep} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.4 }} style={{ background: surface, border: `1px solid ${line}`, borderTop: "none", borderRadius: "0 0 8px 8px", padding: isMobile ? "24px 20px" : "36px 40px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 20 : 40, alignItems: "center" }}>
+                  <div>
+                    <h3 style={{ fontFamily: DISP, fontStyle: "italic", fontSize: isMobile ? 22 : 28, fontWeight: 400, color: charcoal, margin: "0 0 12px" }}>{STEPS[activeStep].title}</h3>
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 16, color: inkSoft, lineHeight: 1.8, margin: 0 }}>{STEPS[activeStep].body}</p>
+                  </div>
+                  <ActiveIllust />
+                </motion.div>
+              );
+            })()}
           </AnimatePresence>
         </div>
       </section>

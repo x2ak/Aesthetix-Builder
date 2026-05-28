@@ -2386,9 +2386,18 @@ function Footer() {
 
         {/* Nav links */}
         <div style={{ textAlign: 'center', marginBottom: 20, lineHeight: 2.2 }}>
-          {['Bespoke Websites', 'Booking Systems', 'AI Assistant', 'Ongoing Support'].map((label, i, arr) => (
+          {[
+            { label: 'Bespoke Websites', path: '/services/bespoke-websites' },
+            { label: 'Booking Systems', path: '/services/booking-systems' },
+            { label: 'AI Assistant', path: '/services/ai-assistant' },
+            { label: 'Ongoing Support', path: '/services/ongoing-support' },
+          ].map(({ label, path }, i, arr) => (
             <span key={label} style={{ whiteSpace: 'nowrap' }}>
-              <a href="#" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkSoft, textDecoration: 'none', letterSpacing: '0.02em' }}>
+              <a
+                href={path}
+                onClick={(e) => { e.preventDefault(); navigate(path); }}
+                style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkSoft, textDecoration: 'none', letterSpacing: '0.02em' }}
+              >
                 {label}
               </a>
               {i < arr.length - 1 && (

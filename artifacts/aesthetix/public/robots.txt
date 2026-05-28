@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /_admin-preview/
 
 Sitemap: https://aesthetixsystems.co.uk/sitemap.xml
