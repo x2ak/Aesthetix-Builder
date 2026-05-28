@@ -181,7 +181,7 @@ function PhoneLeadQuiz() {
               <motion.div key={submitted ? 'done' : step}
                 initial={{ x: 28, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -28, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{ position: 'absolute', inset: 0, padding: isMobile ? '10px 10px 6px' : '14px 16px 8px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}
+                style={{ position: 'absolute', inset: 0, padding: isMobile ? '10px 10px 6px' : '14px 16px 8px', overflowY: 'auto', display: 'flex', flexDirection: 'column', justifyContent: (step === 4 || step === 7) ? 'flex-start' : 'center' }}
               >
                 {submitted ? (
                   /* ── Success ── */
