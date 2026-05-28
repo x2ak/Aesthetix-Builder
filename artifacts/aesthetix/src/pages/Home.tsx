@@ -21,6 +21,11 @@ const DISP = "'Instrument Serif', Georgia, serif";
 const BODY = "'Inter Tight', system-ui, sans-serif";
 const WA = "https://wa.me/447495963388?text=Hi%20Sim%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20clinic!";
 
+function navigate(path: string) {
+  window.history.pushState({}, '', path);
+  window.dispatchEvent(new PopStateEvent('popstate'));
+}
+
 /* ─── Fade In on Scroll ─── */
 function FadeIn({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
   return (
@@ -1103,10 +1108,7 @@ function Portfolio() {
     },
   ];
 
-  const navigate = (href: string) => {
-    window.history.pushState({}, '', href);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  };
+
 
   const onMouseDown = (e: React.MouseEvent) => {
     pauseAuto();
