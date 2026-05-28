@@ -605,38 +605,40 @@ function Hero() {
   /* ── MOBILE layout — no grid, no flex wrapper, plain block ── */
   if (isMobile) {
     return (
-      <section style={{ background: cream, paddingTop: 28 }}>
-        <div style={{ padding: '0 24px', textAlign: 'center' }}>
-          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.22em', color: inkMute, marginBottom: 20 }}>
+      <section style={{ background: 'linear-gradient(180deg, #FAF6EE 0%, #F7F4EE 60%)', paddingTop: 36, position: 'relative', overflow: 'hidden' }}>
+        {/* Warm gold glow behind headline */}
+        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 340, height: 340, background: 'radial-gradient(ellipse, rgba(196,168,130,0.18) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+        <div style={{ padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: inkMute, marginBottom: 22 }}>
             Aesthetics · Lash · Beauty
           </p>
-          <h1 style={{ fontFamily: BODY, fontWeight: 700, fontSize: 'clamp(2.6rem, 10vw, 3.2rem)', lineHeight: 1.05, color: charcoal, marginBottom: 28 }}>
+          <h1 style={{ fontFamily: BODY, fontWeight: 800, fontSize: 'clamp(2.8rem, 11vw, 3.5rem)', lineHeight: 1.02, color: charcoal, marginBottom: 28, letterSpacing: '-0.02em' }}>
             Turn followers<br />
-            <span style={{ color: 'rgba(26,26,28,0.28)' }}>into</span><br />
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', color: gold, lineHeight: 1.08 }}>bookings.</em>
+            <span style={{ color: 'rgba(26,26,28,0.22)', fontWeight: 700 }}>into</span><br />
+            <em className="hero-gold-italic" style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, lineHeight: 1.08 }}>bookings.</em>
           </h1>
           <HeroTicker />
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, color: inkSoft, lineHeight: 1.78, marginBottom: 32, marginTop: 28 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, color: inkSoft, lineHeight: 1.8, marginBottom: 32, marginTop: 28 }}>
             Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, marginBottom: 32 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, marginBottom: 32 }}>
             <WaBtn large />
             <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, marginBottom: 32 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ color: gold, fontSize: 15, letterSpacing: 2, lineHeight: 1 }}>★★★★★</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, marginBottom: 36 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ color: gold, fontSize: 13, letterSpacing: 3, lineHeight: 1, textShadow: '0 0 12px rgba(196,168,130,0.6)' }}>★★★★★</span>
               <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal }}>5.0</span>
             </div>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute }}>Trusted by clinics across the UK</span>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute }}>Trusted by clinics across the UK</span>
           </div>
         </div>
         {/* Mobile quiz */}
-        <div style={{ padding: '0 24px', textAlign: 'center' }}>
-          <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: 13, color: gold, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 6 }}>Get your free quote in 60 seconds</p>
-          <p style={{ fontSize: 16, color: gold, lineHeight: 1, marginBottom: 12 }}>↓</p>
+        <div style={{ padding: '0 24px 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: 11, color: gold, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 6 }}>Get your free quote in 60 seconds</p>
+          <p style={{ fontSize: 15, color: gold, lineHeight: 1, marginBottom: 16 }}>↓</p>
           <PhoneLeadQuiz />
         </div>
       </section>
@@ -735,17 +737,29 @@ function ProblemStrip() {
     { n: 'Gone.', s: 'Clients who can\'t book instantly go to a competitor who lets them.' },
   ];
   return (
-    <section style={{ background: charcoal, padding: isMobile ? '40px 0' : '52px 0' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 16px' : '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0 }}>
+    <section style={{
+      background: 'linear-gradient(135deg, #0D0D0E 0%, #1A1A1C 55%, #0F0F10 100%)',
+      padding: isMobile ? '44px 0' : '60px 0',
+      position: 'relative', overflow: 'hidden',
+    }}>
+      {/* Gold glow blob */}
+      <div style={{ position: 'absolute', top: '-80%', left: '25%', width: 600, height: 600, background: 'radial-gradient(ellipse, rgba(196,168,130,0.14) 0%, transparent 68%)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ position: 'absolute', bottom: '-60%', right: '5%', width: 400, height: 400, background: 'radial-gradient(ellipse, rgba(196,168,130,0.08) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 12px' : '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, position: 'relative', zIndex: 1 }}>
         {stats.map((st, i) => (
-          <FadeIn key={i} delay={i * 0.12}>
+          <FadeIn key={i} delay={i * 0.15}>
             <div style={{
               textAlign: 'left',
-              padding: isMobile ? '0 10px' : '0 40px',
-              borderRight: i < 2 ? `1px solid rgba(201,169,97,0.18)` : 'none',
+              padding: isMobile ? '0 8px' : '0 44px',
+              borderRight: i < 2 ? `1px solid rgba(201,169,97,0.12)` : 'none',
             }}>
-              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '1.8rem' : '2.8rem', color: gold, lineHeight: 1, margin: 0 }}>{st.n}</p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 14, color: 'rgba(247,244,238,0.65)', lineHeight: 1.6, marginTop: isMobile ? 8 : 10 }}>{st.s}</p>
+              <p style={{
+                fontFamily: DISP, fontStyle: 'italic',
+                fontSize: isMobile ? '2rem' : '3.4rem',
+                color: gold, lineHeight: 1, margin: `0 0 ${isMobile ? 8 : 12}px`,
+                textShadow: '0 0 32px rgba(196,168,130,0.7), 0 0 72px rgba(196,168,130,0.35)',
+              }}>{st.n}</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 10 : 13, color: 'rgba(247,244,238,0.52)', lineHeight: 1.65 }}>{st.s}</p>
             </div>
           </FadeIn>
         ))}
@@ -766,7 +780,6 @@ function HowItWorks() {
     { n: '02', title: 'We build your calendar in', body: 'Your own booking calendar — live on your site. No Fresha. No Booksy. No third-party fees. Just your brand, your clients, your bookings.', Illust: CalIllust },
     { n: '03', title: 'You get bookings 24/7', body: 'Clients book while you sleep. You wake up to a full calendar. No chasing. No confusion. Just pure, automated revenue.', Illust: NotifIllust },
   ];
-  const ActiveIllust = cards[active].Illust;
 
   useEffect(() => {
     if (paused) return;
@@ -775,77 +788,90 @@ function HowItWorks() {
   }, [paused, active]);
 
   return (
-    <section id="services" style={{ background: cream, padding: isMobile ? '64px 0' : '100px 0' }}>
+    <section id="services" style={{
+      background: 'linear-gradient(180deg, #FAF8F3 0%, #F7F4EE 100%)',
+      padding: isMobile ? '64px 0' : '100px 0',
+    }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 32px' }}>
         <FadeIn><Overline>How It Works</Overline></FadeIn>
-        <FadeIn delay={0.1} style={{ marginBottom: isMobile ? 36 : 48 }}><SectionHead regular="From DMs to" italic="dashboards" /></FadeIn>
+        <FadeIn delay={0.1} style={{ marginBottom: isMobile ? 40 : 56 }}>
+          <SectionHead regular="From DMs to" italic="dashboards" />
+        </FadeIn>
 
-        <FadeIn delay={0.2}>
-          {/* Tab row */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: `1px solid ${line}`, marginBottom: 0 }}>
-            {cards.map((c, i) => (
-              <button
-                key={i}
-                onClick={() => { setActive(i); setPaused(true); }}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: isMobile ? '16px 8px 0' : '20px 24px 0', textAlign: 'left', position: 'relative', outline: 'none' }}
-              >
-                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '1.6rem' : '2rem', color: i === active ? gold : `rgba(196,168,130,0.32)`, lineHeight: 1, display: 'block', marginBottom: 6, transition: 'color 0.3s' }}>
-                  {c.n}
+        {/* Tab row — NOT inside FadeIn so AnimatePresence works properly */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: `1px solid ${line}`, marginBottom: 0 }}>
+          {cards.map((c, i) => (
+            <button key={i}
+              onClick={() => { setActive(i); setPaused(true); }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: isMobile ? '16px 8px 0' : '22px 24px 0', textAlign: 'left', position: 'relative', outline: 'none', transition: 'background 0.2s' }}
+            >
+              <span style={{
+                fontFamily: DISP, fontStyle: 'italic',
+                fontSize: isMobile ? '1.8rem' : '2.2rem',
+                color: i === active ? gold : `rgba(196,168,130,0.28)`,
+                lineHeight: 1, display: 'block', marginBottom: 6,
+                transition: 'color 0.3s, text-shadow 0.3s',
+                textShadow: i === active ? '0 0 28px rgba(196,168,130,0.55)' : 'none',
+              }}>{c.n}</span>
+              {!isMobile && (
+                <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: i === active ? charcoal : inkMute, display: 'block', marginBottom: 16, transition: 'color 0.3s' }}>
+                  {c.title}
                 </span>
-                {!isMobile && (
-                  <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 13, color: i === active ? charcoal : inkMute, display: 'block', marginBottom: 14, transition: 'color 0.3s' }}>
-                    {c.title}
-                  </span>
+              )}
+              {/* Progress bar */}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 2, background: line }}>
+                {i === active && (
+                  <motion.div
+                    key={`bar-${active}-${paused}`}
+                    initial={{ width: '0%' }} animate={{ width: '100%' }}
+                    transition={{ duration: INTERVAL / 1000, ease: 'linear' }}
+                    style={{ height: '100%', background: gold }}
+                  />
                 )}
-                {/* Progress bar */}
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 2, background: line }}>
-                  {i === active && (
-                    <motion.div
-                      key={`bar-${active}-${paused}`}
-                      initial={{ width: '0%' }}
-                      animate={{ width: '100%' }}
-                      transition={{ duration: INTERVAL / 1000, ease: 'linear' }}
-                      style={{ height: '100%', background: gold }}
-                    />
-                  )}
-                </div>
-              </button>
-            ))}
-          </div>
+              </div>
+            </button>
+          ))}
+        </div>
 
-          {/* Content card */}
-          <div style={{ background: surface, border: `1px solid ${line}`, borderTop: 'none', borderRadius: '0 0 16px 16px', overflow: 'hidden', minHeight: isMobile ? 320 : 280 }}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 18 }}
+        {/* Content card */}
+        <div style={{
+          background: surface, border: `1px solid ${line}`, borderTop: 'none',
+          borderRadius: '0 0 20px 20px', overflow: 'hidden',
+          minHeight: isMobile ? 380 : 320,
+          boxShadow: '0 12px 56px rgba(196,168,130,0.14), 0 2px 16px rgba(26,26,28,0.06)',
+        }}>
+          <AnimatePresence mode="wait">
+            {cards.map((card, i) => i === active && (
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
-                style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 0, alignItems: 'center' }}
+                exit={{ opacity: 0, y: -14 }}
+                transition={{ duration: 0.36, ease: [0.25, 0.1, 0.25, 1] }}
+                style={isMobile ? { display: 'flex', flexDirection: 'column' } : { display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center' }}
               >
-                {/* Illustration */}
-                <div style={{ padding: isMobile ? '32px 32px 16px' : '40px 40px 40px 48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div style={{ transform: 'scale(1.15)', transformOrigin: 'center' }}>
-                    <ActiveIllust />
+                {/* Illustration — warm gradient bg */}
+                <div style={{
+                  padding: isMobile ? '36px 28px 24px' : '48px 36px 48px 48px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #FAF7F2 0%, #EEE4D4 100%)',
+                  borderRight: isMobile ? 'none' : `1px solid rgba(196,168,130,0.2)`,
+                  borderBottom: isMobile ? `1px solid rgba(196,168,130,0.15)` : 'none',
+                  minHeight: isMobile ? 200 : 'auto',
+                }}>
+                  <div style={{ transform: 'scale(1.18)', transformOrigin: 'center' }}>
+                    <card.Illust />
                   </div>
                 </div>
                 {/* Copy */}
-                <div style={{ padding: isMobile ? '0 28px 32px' : '40px 48px 40px 0' }}>
-                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3rem', color: gold, opacity: 0.22, lineHeight: 1, margin: '0 0 14px' }}>
-                    {cards[active].n}
-                  </p>
-                  <h3 style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 19 : 22, color: charcoal, margin: '0 0 12px', lineHeight: 1.3 }}>
-                    {cards[active].title}
-                  </h3>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 15, color: inkSoft, lineHeight: 1.78, margin: 0 }}>
-                    {cards[active].body}
-                  </p>
+                <div style={{ padding: isMobile ? '28px 28px 36px' : '48px 48px 48px 44px' }}>
+                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.8rem', color: gold, opacity: 0.16, lineHeight: 1, margin: '0 0 18px' }}>{card.n}</p>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 20 : 24, color: charcoal, margin: '0 0 14px', lineHeight: 1.2 }}>{card.title}</h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 15, color: inkSoft, lineHeight: 1.78, margin: 0 }}>{card.body}</p>
                 </div>
               </motion.div>
-            </AnimatePresence>
-          </div>
-        </FadeIn>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
@@ -1628,24 +1654,36 @@ function FAQ() {
 function FinalCTA() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: charcoal, padding: isMobile ? '80px 20px' : '120px 0', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 400, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.12) 0%, transparent 65%)', pointerEvents: 'none' }} />
-      <div style={{ maxWidth: 700, margin: '0 auto', padding: isMobile ? 0 : '0 32px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+    <section style={{ background: 'linear-gradient(160deg, #0D0D0E 0%, #1A1A1C 100%)', padding: isMobile ? '88px 24px' : '130px 0', position: 'relative', overflow: 'hidden' }}>
+      {/* Dramatic gold glow — centre */}
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 500, background: 'radial-gradient(ellipse at center, rgba(196,168,130,0.18) 0%, transparent 62%)', pointerEvents: 'none' }} />
+      {/* Decorative rings */}
+      <div style={{ position: 'absolute', top: '-100px', right: '-80px', width: 380, height: 380, borderRadius: '50%', border: '1.5px solid rgba(196,168,130,0.1)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '-80px', left: '-60px', width: 280, height: 280, borderRadius: '50%', border: '1.5px solid rgba(196,168,130,0.08)', pointerEvents: 'none' }} />
+
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: isMobile ? 0 : '0 32px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <FadeIn>
-          <h2 style={{ fontFamily: BODY, fontWeight: 600, fontSize: 'clamp(2.8rem,5vw,4.5rem)', color: cream, lineHeight: 1.0, margin: '0 0 0' }}>
-            Ready for a site that actually{' '}
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, display: 'block', lineHeight: 1.15 }}>books clients?</em>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.26em', color: gold, marginBottom: 24, opacity: 0.85 }}>
+            Limited Summer Slots
+          </p>
+          <h2 style={{ fontFamily: BODY, fontWeight: 800, fontSize: isMobile ? 'clamp(2.6rem,11vw,3.4rem)' : 'clamp(3rem,5vw,5rem)', color: cream, lineHeight: 1.0, margin: '0', letterSpacing: '-0.02em' }}>
+            Stop chasing DMs.<br />
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, lineHeight: 1.2, textShadow: '0 0 48px rgba(196,168,130,0.5), 0 0 96px rgba(196,168,130,0.2)' }}>
+              Start waking up to bookings.
+            </em>
           </h2>
         </FadeIn>
         <FadeIn delay={0.15}>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, color: 'rgba(247,244,238,0.58)', lineHeight: 1.72, maxWidth: 460, margin: '22px auto 0' }}>
-            Mid-May slots are filling up. If you want your site live before summer, now is the time.
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: 'rgba(247,244,238,0.52)', lineHeight: 1.75, maxWidth: 480, margin: isMobile ? '20px auto 0' : '24px auto 0' }}>
+            Your site should work while you sleep. Let's build it — summer slots are filling fast.
           </p>
         </FadeIn>
         <FadeIn delay={0.28}>
-          <div style={{ marginTop: 38, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+          <div style={{ marginTop: 42, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
             <WaBtn large light label="Message on WhatsApp" />
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: gold, margin: 0 }}>Reply in under 2 hours, Mon–Sat.</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(196,168,130,0.7)', margin: 0, letterSpacing: '0.04em' }}>
+              Reply in under 2 hours · Mon–Sat
+            </p>
           </div>
         </FadeIn>
       </div>
