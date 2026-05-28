@@ -258,7 +258,7 @@ const FAQ_BASE = [
   },
   {
     q: "What does a website cost?",
-    a: "Bespoke clinic websites start from £999 as a one-time fee, with optional monthly maintenance from £19.99/month. No hidden costs.",
+    a: "Bespoke clinic websites start from £1,499 as a one-time fee, with optional monthly maintenance from £19.99/month. No hidden costs.",
   },
   {
     q: "Do I own my website?",
@@ -304,7 +304,7 @@ export default function TreatmentLanding({ treatmentSlug }: { treatmentSlug: str
       ? `${treatment.name} Website Design | Aesthetix Systems`
       : "Aesthetics Clinic Website Design | Aesthetix Systems",
     description: treatment
-      ? `Bespoke website design for ${treatment.name.toLowerCase()} across the UK. Showcase your ${treatment.shortName} treatments, integrate online booking, and rank on Google. From £999.`
+      ? `Bespoke website design for ${treatment.name.toLowerCase()} across the UK. Showcase your ${treatment.shortName} treatments, integrate online booking, and rank on Google. From £1,499.`
       : "Bespoke websites and booking systems for aesthetics clinics across the UK.",
     canonical: treatment ? `/aesthetics-websites/${treatment.slug}` : "/",
   });
@@ -616,9 +616,9 @@ export default function TreatmentLanding({ treatmentSlug }: { treatmentSlug: str
           </FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
             {[
-              { label: "Essential", price: "from £999", note: "One-time · You own it" },
-              { label: "Premium", price: "from £1,999", note: "One-time · Full feature set" },
-              { label: "Premium Plus", price: "from £3,499", note: "One-time · AI Receptionist included" },
+              { label: "Core", price: "£1,499", note: "One-time · from £19.99/mo" },
+              { label: "Premium", price: "£2,499", note: "One-time · from £59.99/mo" },
+              { label: "Custom", price: "£3,000+", note: "One-time · tailored to you" },
             ].map((tier, i) => (
               <FadeIn key={tier.label} delay={i * 0.1}>
                 <div

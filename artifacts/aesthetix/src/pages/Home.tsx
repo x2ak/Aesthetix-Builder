@@ -313,8 +313,8 @@ function PhoneLeadQuiz() {
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
                     <p style={qStyle}>Which package feels right?</p>
                     {[
-                      { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£999' },
-                      { name: 'Premium', desc: 'Custom design + booking system', price: '£1,499' },
+                      { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£1,499' },
+                      { name: 'Premium', desc: 'Custom design + booking system', price: '£2,499' },
                       { name: 'Custom',  desc: 'Full bespoke build', price: "Let's talk" },
                     ].map(opt => (
                       <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(6, opt.name)}
