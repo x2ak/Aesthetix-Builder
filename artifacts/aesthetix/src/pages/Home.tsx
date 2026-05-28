@@ -759,6 +759,7 @@ function HowItWorks() {
     { n: '02', title: 'We build your calendar in', body: 'Your own booking calendar — live on your site. No Fresha. No Booksy. No third-party fees. Just your brand, your clients, your bookings.', Illust: CalIllust },
     { n: '03', title: 'You get bookings 24/7', body: 'Clients book while you sleep. You wake up to a full calendar. No chasing. No confusion. Just pure, automated revenue.', Illust: NotifIllust },
   ];
+  const ActiveIllust = cards[active].Illust;
 
   useEffect(() => {
     if (paused) return;
@@ -819,7 +820,7 @@ function HowItWorks() {
                 {/* Illustration */}
                 <div style={{ padding: isMobile ? '32px 32px 16px' : '40px 40px 40px 48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <div style={{ transform: 'scale(1.15)', transformOrigin: 'center' }}>
-                    {(() => { const I = cards[active].Illust; return <I />; })()}
+                    <ActiveIllust />
                   </div>
                 </div>
                 {/* Copy */}
