@@ -1842,6 +1842,7 @@ const MAINT_PLANS = [
     price: '£19.99',
     period: '/mo',
     blurb: 'Security, SSL, hosting & database. Site changes billed separately.',
+    waMsg: "Hi Sim, I'm interested in the Core maintenance plan for my clinic!",
   },
   {
     tag: 'CORE + CHANGES',
@@ -1850,6 +1851,7 @@ const MAINT_PLANS = [
     period: '/mo',
     blurb: 'Everything in Core, plus 4 hours of site updates per month.',
     highlight: true,
+    waMsg: "Hi Sim, I'm interested in the Core + Changes maintenance plan for my clinic!",
   },
   {
     tag: 'PREMIUM PLUS',
@@ -1857,6 +1859,7 @@ const MAINT_PLANS = [
     price: '£59.99',
     period: '/mo',
     blurb: 'Branded SMS sender, AI receptionist & £10/mo AI credit included.',
+    waMsg: "Hi Sim, I'm interested in the Premium Plus maintenance plan for my clinic!",
   },
   {
     tag: 'CUSTOM BUILD',
@@ -1864,6 +1867,7 @@ const MAINT_PLANS = [
     price: '£59.99',
     period: '/mo',
     blurb: 'Tailored to your platform. Final fee set per project.',
+    waMsg: "Hi Sim, I'm interested in the Custom Build maintenance plan for my clinic!",
   },
 ];
 
@@ -1936,9 +1940,31 @@ function MaintenancePlans() {
               <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', marginBottom: 18 }} />
 
               {/* Blurb */}
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13.5, color: p.highlight ? 'rgba(247,244,238,0.8)' : 'rgba(247,244,238,0.55)', lineHeight: 1.72, margin: 0 }}>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13.5, color: p.highlight ? 'rgba(247,244,238,0.8)' : 'rgba(247,244,238,0.55)', lineHeight: 1.72, margin: '0 0 24px' }}>
                 {p.blurb}
               </p>
+
+              {/* CTA */}
+              <a
+                href={`https://wa.me/447495963388?text=${encodeURIComponent(p.waMsg ?? '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', display: 'block' }}
+              >
+                <span style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  fontFamily: BODY, fontWeight: 500, fontSize: 12, letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  color: p.highlight ? gold : 'rgba(196,168,130,0.8)',
+                  borderTop: `1px solid ${p.highlight ? 'rgba(196,168,130,0.3)' : 'rgba(255,255,255,0.08)'}`,
+                  paddingTop: 16,
+                }}>
+                  Get started
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7h9M7.5 3.5l4 3.5-4 3.5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </a>
             </motion.div>
           ))}
         </div>
