@@ -117,3 +117,12 @@
   width: max-content;
   animation: marquee-scroll 26s linear infinite;
 }
+
+/* Hero text — always visible, immune to stacking issues */
+.hero-copy { position: relative; z-index: 10; isolation: isolate; }
+.hero-copy h1 { color: #1A1A1C !important; }
+.hero-copy p  { color: #4A4A4E !important; }
+.hero-copy span { color: inherit; }
+.hero-label { color: #8A8A8E !important; }
+.hero-into  { color: rgba(26,26,28,0.28) !important; }
+.hero-italic { color: #C4A882 !important; font-style: italic; }

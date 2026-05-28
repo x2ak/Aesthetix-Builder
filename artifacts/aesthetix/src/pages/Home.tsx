@@ -619,95 +619,94 @@ function Hero() {
             bottom: (c as any).bottom,
             left: (c as any).left,
             pointerEvents: 'none',
-            zIndex: 0,
+            zIndex: -1,
           }}
         />
       ))}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 24px' : '0 32px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 20 : 80, alignItems: 'center', position: 'relative', zIndex: 1 }}>
         {/* Left — Copy */}
-        <div style={{ textAlign: isMobile ? 'center' : 'left', display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}>
+        <div style={{ textAlign: isMobile ? 'center' : 'left', display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start', position: 'relative', zIndex: 5 }}>
           {/* Label */}
           <div style={{ marginBottom: isMobile ? 20 : 28 }}>
-            <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', letterSpacing: '0.22em', color: inkMute }}>
+            <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 10 : 11, textTransform: 'uppercase' as const, letterSpacing: '0.22em', color: '#8A8A8E' }}>
               Aesthetics · Lash · Beauty
             </span>
           </div>
           {/* Headline */}
-          <h1 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.6rem, 10vw, 3.2rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, margin: isMobile ? '0 0 28px' : '0 0 28px' }}>
+          <h1 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.6rem, 10vw, 3.2rem)' : 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: '#1A1A1C', margin: isMobile ? '0 0 28px' : '0 0 28px' }}>
             Turn followers<br />
-            <span style={{ color: 'rgba(26,26,28,0.28)', fontWeight: 700 }}>into</span><br />
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 700, color: gold, lineHeight: 1.08 }}>bookings.</em>
+            <span style={{ fontWeight: 700, color: 'rgba(26,26,28,0.28)' }}>into</span><br />
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 700, color: '#C4A882', lineHeight: 1.08 }}>bookings.</em>
           </h1>
           {/* Marquee ticker */}
           <div style={{ width: '100%', marginBottom: isMobile ? 28 : 28 }}>
             <HeroTicker />
           </div>
           {/* Body */}
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 32px' : '0 0 32px' }}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: '#4A4A4E', lineHeight: 1.78, maxWidth: 480, margin: isMobile ? '0 0 32px' : '0 0 32px' }}>
             Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
           </p>
           {/* CTAs */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: isMobile ? 'center' : 'flex-start', marginBottom: isMobile ? 32 : 28 }}>
             <WaBtn large />
-            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
+            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: '#C4A882', textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </div>
           {/* Stars trust row */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start', gap: 8 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ color: gold, fontSize: 15, letterSpacing: 2, lineHeight: 1 }}>★★★★★</span>
-              <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal }}>5.0</span>
+              <span style={{ color: '#C4A882', fontSize: 15, letterSpacing: 2, lineHeight: 1 }}>★★★★★</span>
+              <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: '#1A1A1C' }}>5.0</span>
             </div>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute }}>Trusted by clinics across the UK</span>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: '#8A8A8E' }}>Trusted by clinics across the UK</span>
           </div>
         </div>
-        {/* Right — Phone */}
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
-          style={{ display: isMobile ? 'none' : 'flex', justifyContent: 'center', position: 'relative' }}>
-          {/* Floating circles around phone */}
-          {[
-            { size: 260, top: '10%',  left: '-30px',  y: [0,-18,0], dur: 10, delay: 0.3,  fill: false },
-            { size: 120, top: '55%',  left: '-10px',  y: [0,-12,0], dur: 8,  delay: 1.6,  fill: true  },
-            { size: 72,  top: '5%',   left: '15%',    y: [0,-10,0], dur: 7,  delay: 2.4,  fill: false },
-            { size: 44,  top: '75%',  left: '5%',     y: [0,-8,0],  dur: 9,  delay: 0.8,  fill: true  },
-            { size: 36,  top: '35%',  right: '5%',    y: [0,-7,0],  dur: 6.5,delay: 3.2,  fill: true  },
-          ].map((c, i) => (
-            <motion.div
-              key={`ph-${i}`}
-              animate={{ y: c.y }}
-              transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
-              style={{
-                position: 'absolute',
-                width: c.size,
-                height: c.size,
-                borderRadius: '50%',
-                border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.32)`,
-                background: c.fill ? `radial-gradient(circle, rgba(201,169,97,0.14) 0%, transparent 70%)` : 'transparent',
-                top: (c as any).top,
-                left: (c as any).left,
-                right: (c as any).right,
-                pointerEvents: 'none',
-                zIndex: 0,
-              }}
-            />
-          ))}
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <PhoneLeadQuiz />
-          </div>
-        </motion.div>
+        {/* Right — Phone (desktop only, not rendered at all on mobile) */}
+        {!isMobile && (
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
+            style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+            {[
+              { size: 260, top: '10%',  left: '-30px',  y: [0,-18,0], dur: 10, delay: 0.3,  fill: false },
+              { size: 120, top: '55%',  left: '-10px',  y: [0,-12,0], dur: 8,  delay: 1.6,  fill: true  },
+              { size: 72,  top: '5%',   left: '15%',    y: [0,-10,0], dur: 7,  delay: 2.4,  fill: false },
+              { size: 44,  top: '75%',  left: '5%',     y: [0,-8,0],  dur: 9,  delay: 0.8,  fill: true  },
+              { size: 36,  top: '35%',  right: '5%',    y: [0,-7,0],  dur: 6.5,delay: 3.2,  fill: true  },
+            ].map((c, i) => (
+              <motion.div
+                key={`ph-${i}`}
+                animate={{ y: c.y }}
+                transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
+                style={{
+                  position: 'absolute',
+                  width: c.size,
+                  height: c.size,
+                  borderRadius: '50%',
+                  border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.32)`,
+                  background: c.fill ? `radial-gradient(circle, rgba(201,169,97,0.14) 0%, transparent 70%)` : 'transparent',
+                  top: (c as any).top,
+                  left: (c as any).left,
+                  right: (c as any).right,
+                  pointerEvents: 'none',
+                  zIndex: 0,
+                }}
+              />
+            ))}
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <PhoneLeadQuiz />
+            </div>
+          </motion.div>
+        )}
       </div>
-      {/* Mobile — quiz below the copy, full bleed */}
+      {/* Mobile — quiz below the copy (plain div, no opacity animation) */}
       {isMobile && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 1.0 }}
-          style={{ marginTop: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+        <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
           <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 13, color: gold, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Get your free quote in 60 seconds</span>
-          <motion.span animate={{ y: [0, 5, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ fontSize: 16, color: gold, lineHeight: 1 }}>↓</motion.span>
+          <span style={{ fontSize: 16, color: gold, lineHeight: 1 }}>↓</span>
           <div style={{ width: '100%', paddingTop: 12 }}>
             <PhoneLeadQuiz />
           </div>
-        </motion.div>
+        </div>
       )}
     </section>
   );
