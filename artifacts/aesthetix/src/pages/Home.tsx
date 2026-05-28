@@ -1261,6 +1261,51 @@ function Pricing() {
   );
 }
 
+/* ─── Flexible Payment ─── */
+function FlexiblePayment() {
+  const isMobile = useIsMobile();
+  return (
+    <section style={{ background: surface, borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, padding: isMobile ? '36px 24px' : '48px 0' }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: isMobile ? 0 : '0 32px', textAlign: 'center' }}>
+        <FadeIn>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.28em', color: inkMute, margin: '0 0 18px' }}>Flexible Payment</p>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 16 : 19, color: inkSoft, margin: '0 0 32px', lineHeight: 1.5 }}>
+            Spread the cost — 0% interest options available.
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? 20 : 40, flexWrap: 'wrap' }}>
+            {/* Klarna */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+              <svg width={isMobile ? 22 : 28} height={isMobile ? 22 : 28} viewBox="0 0 28 28" fill="none">
+                <text x="0" y="22" fontFamily="Georgia, serif" fontWeight="900" fontSize="26" fill="#FF0066">K</text>
+              </svg>
+              <span style={{ fontFamily: "'Inter Tight', system-ui, sans-serif", fontWeight: 700, fontSize: isMobile ? 17 : 20, color: '#FF0066', letterSpacing: '-0.01em' }}>Klarna</span>
+            </div>
+            <span style={{ color: inkMute, fontSize: 10 }}>·</span>
+            {/* Clearpay */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: isMobile ? 22 : 26, height: isMobile ? 22 : 26, borderRadius: 6, background: '#B2FCE4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00796B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <span style={{ fontFamily: "'Inter Tight', system-ui, sans-serif", fontWeight: 700, fontSize: isMobile ? 17 : 20, color: charcoal, letterSpacing: '-0.01em' }}>Clearpay</span>
+            </div>
+            <span style={{ color: inkMute, fontSize: 10 }}>·</span>
+            {/* PayPal */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <svg width={isMobile ? 22 : 26} height={isMobile ? 22 : 26} viewBox="0 0 24 24" fill="none">
+                <path d="M7 4h7a5 5 0 0 1 0 10H9l-1 6H4L7 4z" fill="#009CDE"/>
+                <path d="M9.5 7h5a3 3 0 0 1 0 6H11l-.8 5H7.5L9.5 7z" fill="#003087"/>
+              </svg>
+              <span style={{ fontFamily: "'Inter Tight', system-ui, sans-serif", fontWeight: 700, fontSize: isMobile ? 17 : 20, color: '#003087', letterSpacing: '-0.01em' }}>PayPal</span>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Testimonials ─── */
 const REVIEWS = [
   { q: 'Booking enquiries doubled in the first month. Clients actually book now instead of just following.', name: 'FlawlessSkin', biz: 'Birmingham', init: 'F', dark: false },
@@ -1580,6 +1625,7 @@ export default function Home() {
       <Bento />
       <Portfolio />
       <Pricing />
+      <FlexiblePayment />
       <Testimonials />
       <FAQ />
       <FinalCTA />
