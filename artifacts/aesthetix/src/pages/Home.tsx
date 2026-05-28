@@ -2119,8 +2119,8 @@ export default function Home() {
       <HowItWorks />
       <Bento />
       <Portfolio />
-      <Pricing />
       <FlexiblePayment />
+      <Pricing />
       <Testimonials />
       <FAQ />
       <FinalCTA />
