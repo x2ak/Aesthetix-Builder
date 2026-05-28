@@ -1847,7 +1847,7 @@ const MAINT_PLANS = [
   {
     tag: 'CORE + CHANGES',
     from: false,
-    price: '£29.99',
+    price: '£34.99',
     period: '/mo',
     blurb: 'Everything in Core, plus 4 hours of site updates per month.',
     highlight: true,

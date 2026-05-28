@@ -105,7 +105,7 @@ const sections: Section[] = [
         content: 'Site changes are not included on the Core plan. If you need changes after handover, you can either: (a) pay for each change separately on an ad-hoc quoted basis; or (b) upgrade to the Core + Changes plan (see 3.2).',
       },
       {
-        subheading: '3.2 Core + Changes — £29.99/month',
+        subheading: '3.2 Core + Changes — £34.99/month',
         content: 'Includes everything in Core, plus 4 hours of site changes per month (copy edits, treatment/menu updates, price changes, availability updates, minor tweaks, bug fixes).\n\nUnused hours do not roll over. Work beyond the 4-hour monthly allowance is quoted and billed separately before it is carried out. New features (as opposed to changes) are always treated as separate quoted work, not as part of the allowance.\n\nYou may upgrade to this plan at any time. Upgrading starts a new 12-month minimum term from the date of upgrade (see section 8).',
       },
       {
