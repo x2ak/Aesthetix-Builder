@@ -11,8 +11,11 @@ import CaseStudyDermadoll from "@/pages/CaseStudyDermadoll";
 import CaseStudyStarr from "@/pages/CaseStudyStarr";
 import CaseStudyHira from "@/pages/CaseStudyHira";
 import Payment from "@/pages/Payment";
+import CityLanding from "@/pages/CityLanding";
 
 const queryClient = new QueryClient();
+
+const CITY_SLUGS = ["london", "manchester", "birmingham", "leeds", "liverpool", "bristol", "edinburgh"];
 
 function Router() {
   const [path, setPath] = useState(window.location.pathname);
@@ -34,6 +37,12 @@ function Router() {
   if (path === "/portfolio/starr") return <CaseStudyStarr />;
   if (path === "/portfolio/hiraaesthetics") return <CaseStudyHira />;
   if (path === "/pay") return <Payment />;
+
+  const cityMatch = path.match(/^\/aesthetics-websites\/([a-z]+)$/);
+  if (cityMatch && CITY_SLUGS.includes(cityMatch[1])) {
+    return <CityLanding citySlug={cityMatch[1]} />;
+  }
+
   return <Home />;
 }
 

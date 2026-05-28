@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Mail, MessageCircle, Menu, X, ChevronDown } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { useSEO } from "@/hooks/useSEO";
 
 /* ─── Design Tokens ─── */
 const cream = '#F7F4EE';
@@ -2484,6 +2485,12 @@ function WhatsAppWidget() {
 }
 
 export default function Home() {
+  useSEO({
+    title: "Aesthetix Systems — Premium Websites for Aesthetics Clinics",
+    description: "Aesthetix Systems builds bespoke websites and booking systems for aesthetics and beauty clinics across the UK. Premium design, AI receptionist, and ongoing support — starting from £999.",
+    canonical: "/",
+  });
+
   return (
     <div style={{ background: cream, minHeight: '100vh' }}>
       <Nav />
