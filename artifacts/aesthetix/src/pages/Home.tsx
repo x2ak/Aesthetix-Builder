@@ -2597,6 +2597,20 @@ function FinalCTA() {
 
 /* ─── Footer ─── */
 function Footer() {
+  const tapCount = useRef(0);
+  const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function handleBuiltTap() {
+    tapCount.current += 1;
+    if (tapTimer.current) clearTimeout(tapTimer.current);
+    if (tapCount.current >= 5) {
+      tapCount.current = 0;
+      navigate('/admin');
+    } else {
+      tapTimer.current = setTimeout(() => { tapCount.current = 0; }, 2000);
+    }
+  }
+
   return (
     <footer style={{ background: cream, borderTop: `1px solid ${line}` }}>
       <div style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 32px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -2686,6 +2700,13 @@ function Footer() {
             Terms of Service
           </a>
           </div>
+
+          <span
+            onClick={handleBuiltTap}
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: inkMute, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.45, cursor: 'default', userSelect: 'none', marginTop: 10, display: 'block' }}
+          >
+            Built with intent
+          </span>
         </div>
 
       </div>
