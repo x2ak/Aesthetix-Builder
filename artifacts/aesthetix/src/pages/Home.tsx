@@ -656,7 +656,7 @@ function Hero() {
           <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 340, height: 340, background: 'radial-gradient(ellipse, rgba(196,168,130,0.18) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
           {/* Main copy — grows to fill space */}
-          <div style={{ flex: 1, padding: '44px 28px 0', textAlign: 'center', position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ flex: 1, padding: '16px 28px 0', textAlign: 'center', position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: gold, marginBottom: 28 }}>
               Aesthetics · Lash · Beauty
             </p>
