@@ -1478,7 +1478,7 @@ const PRICING_PLANS = [
   {
     name: 'Core',
     build: '£1,499',
-    monthly: '£49.99/mo',
+    monthly: 'from £19.99/mo',
     desc: 'The complete clinic system. No third-party platforms.',
     features: [
       'Full bespoke multi-page website',
@@ -1496,7 +1496,7 @@ const PRICING_PLANS = [
   {
     name: 'Premium',
     build: '£2,499',
-    monthly: '£79.99/mo',
+    monthly: 'from £59.99/mo',
     desc: 'Everything in Core, plus AI that books clients for you.',
     features: [
       'Everything in Core',
