@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Mail, MessageCircle, Menu, X, ChevronDown } from "lucide-react";
+import { Check, Mail, MessageCircle, Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useSEO } from "@/hooks/useSEO";
 
@@ -2013,6 +2013,100 @@ function MaintCard({ p, size }: { p: typeof MAINT_PLANS[0]; size: 'mobile' | 'de
   );
 }
 
+/* ─── Services Showcase ─── */
+const SERVICES_SHOWCASE = [
+  {
+    label: 'Bespoke Websites',
+    desc: 'Custom-built from scratch. No templates, no compromises.',
+    path: '/services/bespoke-websites',
+    delay: 0,
+  },
+  {
+    label: 'Booking Systems',
+    desc: 'Your calendar, your brand. Zero third-party fees.',
+    path: '/services/booking-systems',
+    delay: 0.7,
+  },
+  {
+    label: 'AI Assistant',
+    desc: '24/7 receptionist that answers and books automatically.',
+    path: '/services/ai-assistant',
+    delay: 1.4,
+  },
+  {
+    label: 'Ongoing Support',
+    desc: 'Hosting, security & updates — always covered.',
+    path: '/services/ongoing-support',
+    delay: 2.1,
+  },
+];
+
+function GlowPill({ svc, index }: { svc: typeof SERVICES_SHOWCASE[0]; index: number }) {
+  const isMobile = useIsMobile();
+  const GLOW_DUR = 2.8;
+  return (
+    <motion.div
+      animate={{
+        boxShadow: [
+          `0 0 0px rgba(196,168,130,0)`,
+          `0 0 22px 4px rgba(196,168,130,0.55)`,
+          `0 0 0px rgba(196,168,130,0)`,
+        ],
+      }}
+      transition={{
+        duration: GLOW_DUR,
+        repeat: Infinity,
+        ease: 'easeInOut',
+        delay: svc.delay,
+      }}
+      style={{
+        background: surface,
+        border: `1.5px solid rgba(196,168,130,0.35)`,
+        borderRadius: 100,
+        padding: isMobile ? '20px 24px' : '22px 32px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 16,
+        cursor: 'pointer',
+      }}
+      onClick={() => navigate(svc.path)}
+    >
+      <div style={{ minWidth: 0 }}>
+        <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 17 : 20, color: charcoal, margin: '0 0 3px', lineHeight: 1.2, whiteSpace: 'nowrap' }}>{svc.label}</p>
+        {!isMobile && <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute, margin: 0, lineHeight: 1.5 }}>{svc.desc}</p>}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+        <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, letterSpacing: '0.06em', color: gold, whiteSpace: 'nowrap' }}>Find out more</span>
+        <ArrowRight size={13} color={gold} />
+      </div>
+    </motion.div>
+  );
+}
+
+function ServicesShowcase() {
+  const isMobile = useIsMobile();
+  return (
+    <section style={{ background: cream, padding: isMobile ? '56px 20px' : '80px 32px' }}>
+      <div style={{ maxWidth: 860, margin: '0 auto' }}>
+        <FadeIn>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: gold, marginBottom: 12 }}>Our Services</p>
+          <h2 style={{ fontFamily: DISP, fontSize: isMobile ? 26 : 36, fontWeight: 400, color: charcoal, marginBottom: isMobile ? 28 : 40, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+            Everything your clinic <em style={{ fontStyle: 'italic' }}>needs to grow.</em>
+          </h2>
+        </FadeIn>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 10 : 14 }}>
+          {SERVICES_SHOWCASE.map((svc, i) => (
+            <FadeIn key={svc.label} delay={i * 0.08}>
+              <GlowPill svc={svc} index={i} />
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function MaintenancePlans() {
   const isMobile = useIsMobile();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -2569,6 +2663,7 @@ export default function Home() {
       <TreatmentsWeServe />
       <FlexiblePayment />
       <Pricing />
+      <ServicesShowcase />
       <MaintenancePlans />
       <Testimonials />
       <FAQ />
