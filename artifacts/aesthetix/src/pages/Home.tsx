@@ -201,7 +201,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 1 ? (
                   /* ── Step 1: Business type (2-col grid) ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
                     <p style={qStyle}>What kind of business do you run?</p>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 5 : 6 }}>
                       {['Aesthetics', 'Lash & Brow', 'Skin/Facials', 'Hair', 'Nails', 'Other'].map(opt => (
@@ -215,7 +215,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 2 ? (
                   /* ── Step 2: Current booking method ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
                     <p style={qStyle}>How are clients booking right now?</p>
                     {['Instagram DMs', 'WhatsApp', 'Fresha / Booksy', 'Phone & walk-ins', 'Nothing yet'].map(opt => (
                       <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => pick(2, opt)} style={optBase}>
@@ -226,7 +226,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 3 ? (
                   /* ── Step 3: Bookings per month ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
                     <p style={qStyle}>Roughly how many bookings a month?</p>
                     {['0 – 20', '20 – 50', '50 – 100', '100+'].map(opt => (
                       <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => pick(3, opt)} style={optBase}>
@@ -260,7 +260,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 5 ? (
                   /* ── Step 5: Pick your look ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
                     <p style={qStyle}>Pick your look</p>
                     {[
                       { name: 'Warm Luxe',      colors: ['#F5F0E8', '#C4A882', '#1A1A1C'] },
@@ -288,7 +288,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 6 ? (
                   /* ── Step 6: Package ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 14 : 20 }}>
                     <p style={qStyle}>Which package feels right?</p>
                     {[
                       { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£999' },
