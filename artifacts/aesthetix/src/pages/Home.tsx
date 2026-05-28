@@ -784,7 +784,7 @@ function ProblemStrip() {
   return (
     <section style={{
       background: 'linear-gradient(135deg, #0D0D0E 0%, #1A1A1C 55%, #0F0F10 100%)',
-      padding: isMobile ? '44px 0' : '60px 0',
+      padding: isMobile ? '28px 0' : '40px 0',
       position: 'relative', overflow: 'hidden',
     }}>
       {/* Gold glow blob */}
