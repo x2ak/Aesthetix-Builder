@@ -798,21 +798,31 @@ function ProblemStrip() {
       {/* Gold glow blob */}
       <div style={{ position: 'absolute', top: '-80%', left: '25%', width: 600, height: 600, background: 'radial-gradient(ellipse, rgba(196,168,130,0.14) 0%, transparent 68%)', pointerEvents: 'none', zIndex: 0 }} />
       <div style={{ position: 'absolute', bottom: '-60%', right: '5%', width: 400, height: 400, background: 'radial-gradient(ellipse, rgba(196,168,130,0.08) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 12px' : '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 32px', position: 'relative', zIndex: 1,
+        display: isMobile ? 'flex' : 'grid',
+        flexDirection: isMobile ? 'column' : undefined,
+        gridTemplateColumns: isMobile ? undefined : '1fr 1fr 1fr',
+        gap: 0,
+      }}>
         {stats.map((st, i) => (
-          <FadeIn key={i} delay={i * 0.15}>
+          <FadeIn key={i} delay={i * 0.12}>
             <div style={{
-              textAlign: 'left',
-              padding: isMobile ? '0 8px' : '0 44px',
-              borderRight: i < 2 ? `1px solid rgba(201,169,97,0.12)` : 'none',
+              display: 'flex',
+              flexDirection: isMobile ? 'row' : 'column',
+              alignItems: isMobile ? 'baseline' : 'flex-start',
+              gap: isMobile ? 14 : 0,
+              padding: isMobile ? '16px 0' : '0 44px',
+              borderBottom: isMobile && i < 2 ? '1px solid rgba(201,169,97,0.12)' : 'none',
+              borderRight: !isMobile && i < 2 ? '1px solid rgba(201,169,97,0.12)' : 'none',
             }}>
               <p style={{
                 fontFamily: DISP, fontStyle: 'italic',
                 fontSize: isMobile ? '2rem' : '3.4rem',
-                color: gold, lineHeight: 1, margin: `0 0 ${isMobile ? 8 : 12}px`,
+                color: gold, lineHeight: 1, margin: isMobile ? 0 : `0 0 12px`,
                 textShadow: '0 0 32px rgba(196,168,130,0.7), 0 0 72px rgba(196,168,130,0.35)',
+                flexShrink: 0,
               }}>{st.n}</p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 10 : 13, color: 'rgba(247,244,238,0.52)', lineHeight: 1.65 }}>{st.s}</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 12 : 13, color: 'rgba(247,244,238,0.52)', lineHeight: 1.65, margin: 0 }}>{st.s}</p>
             </div>
           </FadeIn>
         ))}
