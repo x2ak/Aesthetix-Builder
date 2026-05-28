@@ -1,0 +1,294 @@
+PageSpeed Insights logo
+PageSpeed Insights
+Report from May 29, 2026, 12:36:29 AM
+
+Enter a valid URL
+
+smartphone
+Mobile
+
+computer
+Desktop
+
+Discover what your real users are experiencing
+No Data
+
+Diagnose performance issues
+59
+Performance
+76
+Accessibility
+100
+Best Practices
+100
+SEO
+59
+FCP
++0
+LCP
++2
+TBT
++29
+CLS
++25
+SI
++3
+Performance
+Values are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.
+0–49
+50–89
+90–100
+Final Screenshot
+
+METRICS
+Expand view
+First Contentful Paint
+7.0 s
+Largest Contentful Paint
+7.0 s
+Total Blocking Time
+90 ms
+Cumulative Layout Shift
+0
+Speed Index
+7.0 s
+Captured at May 29, 2026 at 12:36 AM GMT+1
+Emulated Moto G Power with Lighthouse 13.3.0
+Single page session
+Initial page load
+Slow 4G throttling
+Using HeadlessChromium 146.0.7680.177 with lr
+View Treemap
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Show audits relevant to:
+
+All
+
+FCP
+
+LCP
+
+TBT
+
+CLS
+INSIGHTS
+Use efficient cache lifetimes Est savings of 8,396 KiB
+Render-blocking requests Est savings of 1,350 ms
+Forced reflow
+Network dependency tree
+Document request latency Est savings of 5 KiB
+Improve image delivery Est savings of 7,378 KiB
+Optimize DOM size
+LCP breakdown
+3rd parties
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+DIAGNOSTICS
+Reduce unused JavaScript Est savings of 421 KiB
+Avoid enormous network payloads Total size was 8,482 KiB
+Avoid long main-thread tasks 3 long tasks found
+Avoid non-composited animations 2 animated elements found
+More information about the performance of your application. These numbers don't directly affect the Performance score.
+PASSED AUDITS (14)
+Show
+76
+Accessibility
+These checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.
+NAMES AND LABELS
+Buttons do not have an accessible name
+Links do not have a discernible name
+These are opportunities to improve the semantics of the controls in your application. This may enhance the experience for users of assistive technology, like a screen reader.
+BEST PRACTICES
+[user-scalable="no"] is used in the <meta name="viewport"> element or the [maximum-scale] attribute is less than 5.
+Touch targets do not have sufficient size or spacing.
+Document does not have a main landmark.
+Identical links have the same purpose.
+These items highlight common accessibility best practices.
+CONTRAST
+Background and foreground colors do not have a sufficient contrast ratio.
+These are opportunities to improve the legibility of your content.
+ADDITIONAL ITEMS TO MANUALLY CHECK (10)
+Hide
+Interactive controls are keyboard focusable
+Interactive elements indicate their purpose and state
+The page has a logical tab order
+Visual order on the page follows DOM order
+User focus is not accidentally trapped in a region
+The user's focus is directed to new content added to the page
+HTML5 landmark elements are used to improve navigation
+Offscreen content is hidden from assistive technology
+Custom controls have associated labels
+Custom controls have ARIA roles
+These items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.
+PASSED AUDITS (18)
+Hide
+[aria-*] attributes match their roles
+[aria-hidden="true"] is not present on the document <body>
+[role]s have all required [aria-*] attributes
+[role] values are valid
+[aria-*] attributes have valid values
+[aria-*] attributes are valid and not misspelled
+Image elements have [alt] attributes
+ARIA attributes are used as specified for the element's role
+[aria-hidden="true"] elements do not contain focusable descendents
+Elements use only permitted ARIA attributes
+Document has a <title> element
+<html> element has a [lang] attribute
+<html> element has a valid value for its [lang] attribute
+Lists contain only <li> elements and script supporting elements (<script> and <template>).
+List items (<li>) are contained within <ul>, <ol> or <menu> parent elements
+No element has a [tabindex] value greater than 0
+Heading elements appear in a sequentially-descending order
+Deprecated ARIA roles were not used
+NOT APPLICABLE (38)
+Hide
+[accesskey] values are unique
+button, link, and menuitem elements have accessible names
+Elements with role="dialog" or role="alertdialog" have accessible names.
+ARIA input fields have accessible names
+ARIA meter elements have accessible names
+ARIA progressbar elements have accessible names
+Elements with an ARIA [role] that require children to contain a specific [role] have all required children.
+[role]s are contained by their required parent element
+Elements with the role=text attribute do not have focusable descendents.
+ARIA toggle fields have accessible names
+ARIA tooltip elements have accessible names
+ARIA treeitem elements have accessible names
+The page contains a heading, skip link, or landmark region
+<dl>'s contain only properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements.
+Definition list items are wrapped in <dl> elements
+ARIA IDs are unique
+No form fields have multiple labels
+<frame> or <iframe> elements have a title
+<html> element has an [xml:lang] attribute with the same base language as the [lang] attribute.
+Input buttons have discernible text.
+<input type="image"> elements have [alt] text
+Form elements have associated labels
+Links are distinguishable without relying on color.
+The document does not use <meta http-equiv="refresh">
+<object> elements have alternate text
+Select elements have associated label elements.
+Skip links are focusable.
+Cells in a <table> element that use the [headers] attribute refer to table cells within the same table.
+<th> elements and elements with [role="columnheader"/"rowheader"] have data cells they describe.
+[lang] attributes have a valid value
+<video> elements contain a <track> element with [kind="captions"]
+autocomplete attributes are used correctly
+Elements with role="none" or role="presentation" do not have conflicts
+SVG elements with an img role have an accessible text alternative
+Tables have different content in the summary attribute and <caption>.
+All heading elements contain content.
+Uses ARIA roles only on compatible elements
+Image elements do not have [alt] attributes that are redundant text.
+100
+Best Practices
+TRUST AND SAFETY
+Ensure CSP is effective against XSS attacks
+A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks. Learn how to use a CSP to prevent XSSUnscored
+Description
+Directive
+Severity
+No CSP found in enforcement mode
+High
+Use a strong HSTS policy
+Deployment of the HSTS header significantly reduces the risk of downgrading HTTP connections and eavesdropping attacks. A rollout in stages, starting with a low max-age is recommended. Learn more about using a strong HSTS policy.Unscored
+Description
+Directive
+Severity
+No `preload` directive found
+preload
+Medium
+Ensure proper origin isolation with COOP
+The Cross-Origin-Opener-Policy (COOP) can be used to isolate the top-level window from other documents such as pop-ups. Learn more about deploying the COOP header.Unscored
+Description
+Directive
+Severity
+No COOP header found
+High
+Mitigate clickjacking with XFO or CSP
+The X-Frame-Options (XFO) header or the frame-ancestors directive in the Content-Security-Policy (CSP) header control where a page can be embedded. These can mitigate clickjacking attacks by blocking some or all sites from embedding the page. Learn more about mitigating clickjacking.Unscored
+Description
+Severity
+No frame control policy found
+High
+Mitigate DOM-based XSS with Trusted Types
+The require-trusted-types-for directive in the Content-Security-Policy (CSP) header instructs user agents to control the data passed to DOM XSS sink functions. Learn more about mitigating DOM-based XSS with Trusted Types.Unscored
+Description
+Severity
+No `Content-Security-Policy` header with Trusted Types directive found
+High
+BROWSER COMPATIBILITY
+Baseline Features
+Lists web features used on the page and their Baseline status as of 2026-05-01. Learn more about Baseline.Unscored
+GENERAL
+Missing source maps for large first-party JavaScript
+Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps to take advantage of these benefits. Learn more about source maps.Unscored
+URL
+Map URL
+aesthetix-systems.co.uk 1st Party
+/assets/index-Y5PCmtEi.js(aesthetix-systems.co.uk)
+Large JavaScript file is missing a source map
+PASSED AUDITS (12)
+Hide
+Uses HTTPS
+Avoids deprecated APIs
+Avoids third-party cookies
+Allows users to paste into input fields
+Avoids requesting the geolocation permission on page load
+Avoids requesting the notification permission on page load
+Displays images with correct aspect ratio
+Serves images with appropriate resolution
+Page has the HTML doctype
+Properly defines charset
+No browser errors logged to the console
+No issues in the Issues panel in Chrome Devtools
+NOT APPLICABLE (2)
+Hide
+Redirects HTTP traffic to HTTPS
+Detected JavaScript libraries
+100
+SEO
+These checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.
+ADDITIONAL ITEMS TO MANUALLY CHECK (1)
+Hide
+Structured data is valid
+Run the Structured Data Testing Tool to validate structured data. Learn more about Structured Data.Unscored
+Run these additional validators on your site to check additional SEO best practices.
+PASSED AUDITS (10)
+Hide
+Page isn’t blocked from indexing
+Document has a <title> element
+Document has a meta description
+Page has successful HTTP status code
+Links have descriptive text
+Links are crawlable
+robots.txt is valid
+Image elements have [alt] attributes
+Document has a valid hreflang
+Document has a valid rel=canonical
+More on PageSpeed Insights
+What's new
+Documentation
+Learn about Web Performance
+Ask questions on Stack Overflow
+Mailing list
+Related Content
+Updates
+Web Fundamentals
+Case Studies
+Podcasts
+Connect
+Twitter
+Youtube
+Google Developers Logo
+Chrome
+Firebase
+All products
+Terms and Privacy Policy
+For details, see the Google Developers Site Policies.
