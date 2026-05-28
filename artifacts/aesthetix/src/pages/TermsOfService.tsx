@@ -113,17 +113,17 @@ const sections: Section[] = [
         content: 'Includes everything in Core, plus:',
         list: [
           'Branded SMS sender ID (your clinic name shown as the sender instead of a generic +44 number)',
-          'AI receptionist',
-          '£10 of AI usage credit per month',
+          'AI receptionist — included so you never run out of conversations or miss converting an enquiry into a booking',
+          '£10 of SMS campaign credit per month',
         ],
       },
       {
         subheading: '',
-        content: 'AI usage beyond the included £10 credit is charged on a pay-as-you-go basis. You can top up your AI balance at any time from your admin portal. If your included credit and any topped-up balance are exhausted, AI features may be paused until you top up.',
+        content: 'In the rare event AI usage exceeds normal fair use in a given month, a single one-off charge of £9.99 applies for that month. This is very unlikely to happen.\n\nSMS campaign sends use your £10 monthly credit first. Once that credit is used, further sends are charged on a pay-as-you-go basis, which you can top up at any time from your admin portal.',
       },
       {
         subheading: '3.4 Custom Build — from £59.99/month',
-        content: 'For builds with a bespoke feature set. The monthly fee is set per build according to the features included, and is confirmed in your custom build contract. AI usage, SMS and overage charges follow the same model as Premium Plus.',
+        content: 'For builds with a bespoke feature set. The monthly fee is set per build according to the features included, and is confirmed in your custom build contract. SMS campaign credit, AI receptionist, and overage charges follow the same model as Premium Plus.',
       },
     ],
   },

@@ -1,0 +1,43 @@
+CONTEXT:
+I'm Sim from Aesthetix Systems. This is a CORRECTION to the pricing/billing work just built. The £10/month included credit was wrongly described as AI credit — it is SMS campaign credit. Fix only the items below. Do not touch Core/Core+Changes pricing, the 12-month term, sections 8–9, or anything else.
+
+THE CORRECT PREMIUM PLUS MODEL:
+- £59.99/mo includes: branded SMS sender ID, AI receptionist (included — never runs out, so clients always keep converting enquiries into bookings), and £10/month of SMS CAMPAIGN credit.
+- AI overage: AI is NOT metered per-use against a balance. If a client exceeds normal fair use in a given month, add a single flat £9.99 one-off charge to that month only. Resets each month. Very unlikely to trigger.
+- SMS: the £10/month credit applies to campaign sends at the standard rate (8p per standard single-segment text = 2× raw, segment-aware). Once the £10 credit is used, further sends are pay-as-you-go at the same rate, topped up any time in the admin portal.
+
+TASK:
+1. BILLING LOGIC — AI:
+   - Remove the previous AI logic (the "£10 AI credit + draw from topped-up PAYG balance + throttle at zero + AI top-up UI"). AI is now simply included.
+   - Meter AI usage only to detect whether a client crosses a monthly fair-use threshold. If crossed, add ONE flat £9.99 to that month's invoice. No per-message AI charging. No client-facing AI top-up UI. Reset monthly.
+   - KEEP a backend hard safety throttle for runaway/abuse only (e.g. a looping bot or abusive spammer): pause AI + alert me. This is separate from the £9.99 and exists purely to stop an uncapped API bill — it is not shown to clients as a cap.
+
+2. BILLING LOGIC — SMS:
+   - Reassign the £10/month included credit to SMS campaign sends, applied at the 8p (2× raw, segment-aware) rate.
+   - Beyond the £10 credit: pay-as-you-go at the same rate, top up in portal (this part is unchanged — keep the existing breakdown-before-send, charge-before-send, auto-top-TextMagic-with-raw-cost, retain-markup logic).
+
+3. T&C PAGE — replace section 3.3 only:
+   Replace the entire "3.3 Premium Plus" block on the /terms page with this exact text, leaving every other section unchanged:
+
+   ### 3.3 Premium Plus — from £59.99/month
+   Includes everything in Core, plus:
+   - Branded SMS sender ID (your clinic name shown as the sender instead of a generic +44 number)
+   - AI receptionist — included so you never run out of conversations or miss converting an enquiry into a booking
+   - £10 of SMS campaign credit per month
+
+   In the rare event AI usage exceeds normal fair use in a given month, a single one-off charge of £9.99 applies for that month. This is very unlikely to happen.
+
+   SMS campaign sends use your £10 monthly credit first. Once that credit is used, further sends are charged on a pay-as-you-go basis, which you can top up at any time from your admin portal.
+
+4. Check no other section of the /terms page implies the £10 is AI credit. The public pricing card already reads correctly (£10/m SMS campaign credit, AI included) — leave it unless it contradicts the above.
+
+CONSTRAINTS:
+- Change only what's listed. Do not alter other tiers, terms, schema beyond what these changes require, or styling.
+- Keep Stripe webhook signature verification intact.
+- Keep all keys in Replit Secrets.
+
+OUTPUT:
+1. Confirm AI is now included with the flat £9.99 monthly fair-use overage (and the separate abuse throttle).
+2. Confirm the £10 credit now applies to SMS campaigns, PAYG beyond.
+3. Confirm T&C section 3.3 updated and no other section misstates the £10.
+4. Test: simulate a client crossing AI fair use → one £9.99 added that month; simulate SMS spend → £10 credit consumed first, then PAYG.
