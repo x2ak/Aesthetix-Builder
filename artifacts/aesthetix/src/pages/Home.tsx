@@ -574,7 +574,7 @@ function Nav() {
 
 /* ─── Hero ─── */
 function HeroTicker() {
-  const items = ['BESPOKE SITES', 'BUILT-IN BOOKING', 'NO FRESHA', 'NO MONTHLY FEES', 'CUSTOM BRANDING', 'UK BASED AGENCY'];
+  const items = ['BESPOKE SITES', 'BUILT-IN BOOKING', 'NO FRESHA', 'NO COMMISSION FEES', 'CUSTOM BRANDING', 'UK BASED AGENCY'];
   const allItems = [...items, ...items];
   return (
     <div style={{ borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, overflow: 'hidden', padding: '9px 0', marginBottom: 0 }}>
