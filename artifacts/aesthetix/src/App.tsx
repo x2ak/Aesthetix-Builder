@@ -12,10 +12,12 @@ import CaseStudyStarr from "@/pages/CaseStudyStarr";
 import CaseStudyHira from "@/pages/CaseStudyHira";
 import Payment from "@/pages/Payment";
 import CityLanding from "@/pages/CityLanding";
+import TreatmentLanding from "@/pages/TreatmentLanding";
 
 const queryClient = new QueryClient();
 
 const CITY_SLUGS = ["london", "manchester", "birmingham", "leeds", "liverpool", "bristol", "edinburgh"];
+const TREATMENT_SLUGS = ["botox-clinics", "lip-filler-clinics", "medical-aesthetics-clinics", "beauty-clinics", "skin-clinics"];
 
 function Router() {
   const [path, setPath] = useState(window.location.pathname);
@@ -41,6 +43,11 @@ function Router() {
   const cityMatch = path.match(/^\/aesthetics-websites\/([a-z]+)$/);
   if (cityMatch && CITY_SLUGS.includes(cityMatch[1])) {
     return <CityLanding citySlug={cityMatch[1]} />;
+  }
+
+  const treatmentMatch = path.match(/^\/aesthetics-websites\/([a-z-]+)$/);
+  if (treatmentMatch && TREATMENT_SLUGS.includes(treatmentMatch[1])) {
+    return <TreatmentLanding treatmentSlug={treatmentMatch[1]} />;
   }
 
   return <Home />;

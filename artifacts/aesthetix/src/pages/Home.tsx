@@ -1787,6 +1787,62 @@ function Pricing() {
   );
 }
 
+/* ─── Treatments We Serve ─── */
+const TREATMENT_TYPES = [
+  { label: 'Botox & Anti-Wrinkle', href: '/aesthetics-websites/botox-clinics' },
+  { label: 'Lip Filler', href: '/aesthetics-websites/lip-filler-clinics' },
+  { label: 'Dermal Fillers', href: '/aesthetics-websites/lip-filler-clinics' },
+  { label: 'Profhilo', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'Polynucleotides', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'Morpheus8', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'HIFU', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'Skin Boosters', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'Fat Dissolving', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'Chemical Peels', href: '/aesthetics-websites/skin-clinics' },
+  { label: 'Laser Treatments', href: '/aesthetics-websites/skin-clinics' },
+  { label: 'Microneedling', href: '/aesthetics-websites/skin-clinics' },
+  { label: 'PRP Therapy', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'PDO Threads', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'IV Therapy', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'Weight Loss Injections', href: '/aesthetics-websites/medical-aesthetics-clinics' },
+  { label: 'Hydrafacial', href: '/aesthetics-websites/skin-clinics' },
+  { label: 'Semi-Permanent Makeup', href: '/aesthetics-websites/beauty-clinics' },
+];
+
+function TreatmentsWeServe() {
+  const isMobile = useIsMobile();
+  return (
+    <section style={{ background: '#FDFAF5', borderTop: `1px solid ${line}`, padding: isMobile ? '56px 20px' : '72px 32px' }}>
+      <div style={{ maxWidth: 960, margin: '0 auto' }}>
+        <FadeIn>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: gold, textAlign: 'center', marginBottom: 12 }}>
+            Every Treatment. Every Clinic.
+          </p>
+          <h2 style={{ fontFamily: DISP, fontSize: isMobile ? 26 : 36, fontWeight: 400, color: charcoal, textAlign: 'center', marginBottom: 12, letterSpacing: '-0.01em' }}>
+            We build websites for clinics offering
+          </h2>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, color: inkSoft, textAlign: 'center', lineHeight: 1.7, maxWidth: 540, margin: '0 auto 40px' }}>
+            Whether you specialise in injectables, skin health, laser, or holistic beauty — your website should make every treatment the hero of the page.
+          </p>
+        </FadeIn>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
+          {TREATMENT_TYPES.map((t, i) => (
+            <FadeIn key={t.label} delay={i * 0.03}>
+              <a
+                href={t.href}
+                onClick={e => { e.preventDefault(); window.history.pushState({}, '', t.href); window.dispatchEvent(new PopStateEvent('popstate')); }}
+                style={{ fontFamily: BODY, fontSize: 13, fontWeight: 400, color: inkSoft, background: goldTint, border: `1px solid ${line}`, borderRadius: 2, padding: '9px 18px', textDecoration: 'none', display: 'inline-block', transition: 'border-color 0.2s' }}
+              >
+                {t.label}
+              </a>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Flexible Payment ─── */
 function FlexiblePayment() {
   const isMobile = useIsMobile();
@@ -2499,6 +2555,7 @@ export default function Home() {
       <HowItWorks />
       <Bento />
       <Portfolio />
+      <TreatmentsWeServe />
       <FlexiblePayment />
       <Pricing />
       <MaintenancePlans />
