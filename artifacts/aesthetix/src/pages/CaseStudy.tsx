@@ -77,8 +77,24 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
 
       {/* ─── HERO ─── */}
       <section style={{ background: heroBg, minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden', paddingTop: 60 }}>
-        {/* subtle radial glow */}
-        <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 80% 60% at 50% 30%, rgba(${accentRgb},0.18) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+        {/* Animated ambient orbs */}
+        <motion.div
+          animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0], scale: [1, 1.15, 0.95, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ position: 'absolute', top: '8%', left: '60%', width: 480, height: 480, borderRadius: '50%', background: `radial-gradient(circle, rgba(${accentRgb},0.22) 0%, transparent 70%)`, filter: 'blur(60px)', pointerEvents: 'none' }}
+        />
+        <motion.div
+          animate={{ x: [0, -50, 30, 0], y: [0, 40, -25, 0], scale: [1, 0.9, 1.1, 1] }}
+          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+          style={{ position: 'absolute', top: '40%', left: '-5%', width: 360, height: 360, borderRadius: '50%', background: `radial-gradient(circle, rgba(${accentRgb},0.16) 0%, transparent 70%)`, filter: 'blur(50px)', pointerEvents: 'none' }}
+        />
+        <motion.div
+          animate={{ x: [0, 25, -35, 0], y: [0, -20, 40, 0], scale: [1, 1.2, 0.85, 1] }}
+          transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut', delay: 7 }}
+          style={{ position: 'absolute', bottom: '20%', right: '10%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(${accentRgb},0.13) 0%, transparent 70%)`, filter: 'blur(45px)', pointerEvents: 'none' }}
+        />
+        {/* Central fixed glow anchor */}
+        <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 60% 40% at 50% 20%, rgba(${accentRgb},0.1) 0%, transparent 65%)`, pointerEvents: 'none' }} />
         {/* noise texture feel */}
         <div style={{ position: 'absolute', inset: 0, opacity: 0.03, backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")', pointerEvents: 'none' }} />
 
