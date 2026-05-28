@@ -150,39 +150,28 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       </section>
 
       {/* ─── THE STORY ─── */}
-      <section style={{ background: cream, padding: 'clamp(56px, 6vw, 88px) 28px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'clamp(40px, 6vw, 100px)', alignItems: 'start' }}>
-          {/* Left: The Problem */}
-          <div>
-            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: accent, margin: '0 0 20px' }}>
-              The Problem
-            </motion.p>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 }}
-              style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: charcoal, margin: '0 0 28px', lineHeight: 1.15 }}>
-              {data.brief.split('\n\n')[0].split('.')[0]}.
-            </motion.h2>
-            {data.brief.split('\n\n').slice(0, 1).map((para, i) => (
-              <motion.p key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.14 }}
-                style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, color: inkSoft, lineHeight: 1.9, margin: 0 }}>
-                {para}
-              </motion.p>
-            ))}
-          </div>
+      <section style={{ background: cream, padding: 'clamp(64px, 8vw, 104px) 28px' }}>
+        <div style={{ maxWidth: 780, margin: '0 auto' }}>
+          {/* Section label */}
+          <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.26em', color: accent, margin: '0 0 28px' }}>
+            The Brief
+          </motion.p>
 
-          {/* Right: What We Built */}
-          <div>
-            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: accent, margin: '0 0 20px' }}>
-              What We Built
+          {/* Elegant intro line */}
+          <motion.h2 initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 }}
+            style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)', color: charcoal, margin: '0 0 36px', lineHeight: 1.35, fontWeight: 400 }}>
+            {data.tagline}
+          </motion.h2>
+
+          {/* Body paragraphs — clean, readable, well-spaced */}
+          {data.brief.split('\n\n').map((para, i) => (
+            <motion.p key={i}
+              initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.07 }}
+              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.95, margin: i === 0 ? '0 0 28px' : '0 0 28px', marginBottom: i < data.brief.split('\n\n').length - 1 ? 28 : 0 }}>
+              {para}
             </motion.p>
-            {data.brief.split('\n\n').slice(1).map((para, i) => (
-              <motion.p key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08 }}
-                style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, color: inkSoft, lineHeight: 1.9, margin: i === 0 ? 0 : '20px 0 0' }}>
-                {para}
-              </motion.p>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
 
