@@ -415,8 +415,8 @@ function CalIllust() {
     return () => clearTimeout(t);
   }, []);
   return (
-    <div style={{ width: '100%', maxWidth: 210, height: 112, margin: '0 auto' }}>
-      <div style={{ border: `1px solid ${line}`, borderRadius: 8, padding: 10, height: '100%', background: surface, position: 'relative' }}>
+    <div style={{ width: '100%', maxWidth: 210, margin: '0 auto' }}>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 8, padding: 10, background: surface, position: 'relative', overflow: 'hidden' }}>
         <p style={{ fontFamily: BODY, fontSize: 8, fontWeight: 500, color: charcoal, margin: '0 0 7px' }}>May 2025</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 3 }}>
           {Array.from({ length: 21 }, (_, i) => {
