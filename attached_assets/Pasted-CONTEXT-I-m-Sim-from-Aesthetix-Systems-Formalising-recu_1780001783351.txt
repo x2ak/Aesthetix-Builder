@@ -1,0 +1,68 @@
+CONTEXT:
+I'm Sim from Aesthetix Systems. Formalising recurring monthly pricing + contract terms across all builds and wiring it into the platform. Build this into the MASTER TEMPLATE so every future fork inherits it.
+
+Stack: Stripe (GBP) Subscriptions, TextMagic (branded SMS), Anthropic Claude (PP AI receptionist), Supabase/Postgres.
+
+PRICING MODEL (source of truth):
+- CORE — from £19.99/mo. Includes: security, SSL, hosting, database. No site changes included; changes are billed separately ad-hoc OR client upgrades to the £29.99 tier.
+- CORE + CHANGES — £29.99/mo. Everything in Core + 4 hours of site changes per month. Work beyond 4 hrs billed extra. Clients can upgrade to this anytime — upgrading starts a NEW 12-month term.
+- PREMIUM PLUS — from £59.99/mo. Includes: branded SMS sender ID (e.g. "NurAndCo" instead of a +44 number), AI receptionist, and £10 of AI credit per month. AI usage beyond £10 is pay-as-you-go via top-up in the admin portal (top up anytime).
+- CUSTOM BUILD — from £59.99/mo. Final fee set per build by feature set. Same overage + SMS logic as Premium Plus. Terms defined in the custom build contract.
+
+CONTRACT TERMS (enforce in billing logic):
+- Every plan is a 12-month minimum term.
+- Upgrading mid-term starts a fresh 12-month term from the upgrade date.
+- Early cancellation = client pays 50% of the remaining monthly fees upfront. System must store contract_start, term_end, and compute the early-termination figure on demand.
+
+SMS PRICING:
+- Charge = 2× raw TextMagic cost, segment-aware (defaults to 8p on a standard single-segment text; multi-segment scales automatically). Do NOT hardcode the raw rate — pull from config/env.
+
+TODAY'S TASK:
+1. SUBSCRIPTIONS
+   - Wire Stripe Subscriptions for all four plans (Core £19.99, Core+Changes £29.99, PP £59.99, Custom variable).
+   - Store per-client: plan, monthly fee, contract_start, term_end (start + 12 months).
+   - Admin portal "Billing" section: current plan, monthly fee, next charge date, contract end date, months remaining, and the current early-termination figure (50% of remaining).
+   - Upgrade flow: changing plan resets contract_start/term_end to the upgrade date + 12 months.
+
+2. CHANGES ALLOWANCE (£29.99 tier)
+   - Track a monthly 4-hour changes allowance per client. Log time used against it. Show remaining hours in portal. Flag overage (don't auto-bill — surface it for Sim to quote).
+
+3. PREMIUM PLUS — AI
+   - £10 of AI credit included per month, metered against actual Claude API cost.
+   - When the £10 is exhausted, draw from the client's topped-up PAYG balance.
+   - Top-up UI in the admin portal (client tops up any time via Stripe).
+   - COST PROTECTION: if included credit + topped-up balance both hit zero, THROTTLE / fall back gracefully — never keep incurring uncapped API cost on Aesthetix's account. The AI must not run on credit the client hasn't paid for.
+
+4. PREMIUM PLUS / CUSTOM — SMS CAMPAIGNS (PAYG)
+   - Before any campaign send: calculate raw cost = recipient_count × per-SMS rate (segment-aware for long/branded/emoji messages).
+   - Apply 2× markup. Show client a breakdown (raw / fee / total) and charge via Stripe BEFORE the send fires.
+   - Separate automation: auto-add the RAW cost (no markup) to the TextMagic balance so there's always credit. Markup retained as Aesthetix margin.
+
+5. PUBLIC SITE — PRICING DISPLAY
+   - Pricing section with "from" pricing cards: Core from £19.99/mo, Premium Plus from £59.99/mo, Custom from £59.99/mo. Short blurb each — do NOT list full feature breakdowns.
+   - A "See T&Cs for more information" button on the pricing section linking to a /terms page.
+   - Build a /terms page that renders the Aesthetix Systems Terms & Conditions (I will provide the T&C content as a separate document — scaffold the page and drop in placeholder text I can replace).
+
+CONSTRAINTS:
+- All new billing/usage/contract data in NEW tables. Do not pollute core tables.
+- Stripe webhook signature verification — no shortcuts. Use express.raw() on the webhook route only.
+- TextMagic + Stripe + Anthropic keys in Replit Secrets — never client-side, never in VITE_ vars.
+- Tier-gate all UI: changes-hours UI only on £29.99; AI + SMS PAYG UI only on PP/Custom.
+- Respect existing brand tokens. Admin portal stays structurally identical across clients (themed only).
+- Idempotent schema (CREATE TABLE IF NOT EXISTS). RLS policies run last on every new table.
+
+OUTPUT:
+1. Create a test subscription per tier; confirm each bills correctly and contract_start/term_end populate.
+2. Test upgrade flow: confirm term resets to a fresh 12 months.
+3. Test changes-hour metering: log 4hrs, confirm overage flags.
+4. Test AI: deplete £10 credit, confirm draw from topped-up balance, then confirm throttle/fallback at zero.
+5. Test SMS campaign: confirm breakdown shows, Stripe charges total, raw cost auto-tops TextMagic, markup retained.
+6. Confirm pricing cards + "See T&Cs" button + /terms page render.
+7. New schema tables documented. New Replit Secrets listed.
+8. One paragraph: how Sim sets a client's plan + how a client tops up / runs a paid campaign (for the handover video).
+
+REFERENCES:
+- MASTER_TEMPLATE_IMPLEMENTATION_DETAILS (schema order, admin portal rules, Stripe patterns, cron, env)
+- PREMIUM_PLUS_ADD_ONS_SPEC
+- 04_ENV_VARIABLES
+- PRICING_LADDER
