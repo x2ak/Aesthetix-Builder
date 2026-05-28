@@ -270,7 +270,7 @@ function PhoneLeadQuiz() {
                       );
                     })}
                     <motion.button whileTap={{ scale: 0.97 }} onClick={goNext}
-                      style={{ width: '100%', background: gold, borderRadius: isMobile ? 8 : 10, padding: isMobile ? '9px' : '12px', border: 'none', cursor: 'pointer', marginTop: isMobile ? 4 : 5 }}>
+                      style={{ width: '100%', background: gold, borderRadius: isMobile ? 8 : 10, padding: isMobile ? '6px' : '8px', border: 'none', cursor: 'pointer', marginTop: isMobile ? 4 : 5 }}>
                       <span style={{ fontFamily: BODY, fontSize: isMobile ? 9 : 11, fontWeight: 600, color: charcoal }}>Continue →</span>
                     </motion.button>
                   </div>
@@ -283,17 +283,14 @@ function PhoneLeadQuiz() {
                       { name: 'Warm Luxe',      colors: ['#F5F0E8', '#C4A882', '#1A1A1C'] },
                       { name: 'Clean Clinical', colors: ['#FFFFFF', '#D0DCE8', '#2E4A6A'] },
                       { name: 'Bold Editorial', colors: ['#111111', '#C4A882', '#C0392B'] },
-                      { name: 'Custom',         colors: [], badge: 'BESPOKE', sub: 'Unique to your brand' },
+                      { name: 'Custom',         colors: [], badge: 'BESPOKE' },
                     ].map(opt => (
                       <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(5, opt.name)}
                         className={`quiz-opt${answers[5] === opt.name ? ' quiz-opt--selected' : ''}`}
                         style={{ ...optBase, justifyContent: 'space-between' }}>
-                        <div>
-                          <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 300, display: 'block' }}>{opt.name}</span>
-                          {opt.sub && <span style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8.5, color: QUIZ_MUTE }}>{opt.sub}</span>}
-                        </div>
+                        <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 300 }}>{opt.name}</span>
                         {opt.badge ? (
-                          <span style={{ fontFamily: BODY, fontSize: isMobile ? 6 : 7.5, letterSpacing: '0.12em', color: gold, border: `1px solid ${gold}`, borderRadius: 999, padding: isMobile ? '2px 5px' : '3px 8px' }}>{opt.badge}</span>
+                          <span style={{ fontFamily: BODY, fontSize: isMobile ? 6 : 7.5, letterSpacing: '0.12em', color: QUIZ_MUTE, border: `1px solid ${QUIZ_BORDER}`, borderRadius: 999, padding: isMobile ? '2px 5px' : '3px 8px' }}>{opt.badge}</span>
                         ) : (
                           <div style={{ display: 'flex', gap: 3 }}>
                             {opt.colors.map((c, ci) => (
@@ -342,7 +339,7 @@ function PhoneLeadQuiz() {
                       </div>
                     ))}
                     <motion.button whileTap={{ scale: 0.97 }} onClick={() => { if (name && phone) setSubmitted(true); }}
-                      style={{ width: '100%', background: name && phone ? gold : 'rgba(196,168,130,0.25)', borderRadius: isMobile ? 8 : 10, padding: isMobile ? '9px' : '12px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: isMobile ? 4 : 5, transition: 'background 0.25s' }}>
+                      style={{ width: '100%', background: name && phone ? gold : 'rgba(196,168,130,0.25)', borderRadius: isMobile ? 8 : 10, padding: isMobile ? '6px' : '8px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: isMobile ? 4 : 5, transition: 'background 0.25s' }}>
                       <span style={{ fontFamily: BODY, fontSize: isMobile ? 9 : 11, fontWeight: 600, color: charcoal }}>Get my free quote →</span>
                     </motion.button>
                   </div>
