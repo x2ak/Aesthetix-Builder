@@ -1,0 +1,1 @@
+- [Hero mobile grid text bug](hero-mobile-grid-text.md) — text inside CSS grid is invisible on mobile in Replit preview; use plain block layout instead.
