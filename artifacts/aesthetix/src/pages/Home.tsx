@@ -210,18 +210,78 @@ function PhoneLeadQuiz() {
 
                 {submitted ? (
                   /* ── Success ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 0, padding: isMobile ? '0 6px' : '0 10px' }}>
-                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 280, damping: 18 }}
-                      style={{ width: isMobile ? 40 : 52, height: isMobile ? 40 : 52, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? 10 : 14 }}>
-                      <Check size={isMobile ? 18 : 24} color={charcoal} strokeWidth={2.5} />
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: isMobile ? '0 8px' : '0 14px' }}>
+                    {/* Gold check circle */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      style={{ width: isMobile ? 38 : 48, height: isMobile ? 38 : 48, borderRadius: '50%', background: `linear-gradient(135deg, #D4B892 0%, ${gold} 100%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? 10 : 13, flexShrink: 0, boxShadow: `0 4px 18px rgba(196,168,130,0.35)` }}
+                    >
+                      <Check size={isMobile ? 17 : 22} color={charcoal} strokeWidth={2.5} />
                     </motion.div>
-                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 14 : 19, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 8 : 10}px`, lineHeight: 1.2 }}>Thank you!</p>
-                    <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 8.5 : 11, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 5 : 7}px`, lineHeight: 1.5 }}>
+
+                    {/* Heading */}
+                    <motion.p
+                      initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.3 }}
+                      style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 16 : 22, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 4 : 6}px`, lineHeight: 1.15, fontWeight: 400 }}
+                    >
+                      Thank you!
+                    </motion.p>
+
+                    {/* Subheading */}
+                    <motion.p
+                      initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22, duration: 0.3 }}
+                      style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 8.5 : 10.5, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 3 : 4}px`, lineHeight: 1.55 }}
+                    >
                       We'll be in touch within 24 hours.
-                    </p>
-                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 7.5 : 9.5, color: QUIZ_MUTE, margin: 0, lineHeight: 1.55 }}>
-                      We aim to get back to you<br />within 1–2 hours.
-                    </p>
+                    </motion.p>
+                    <motion.p
+                      initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28, duration: 0.3 }}
+                      style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 7.5 : 9, color: QUIZ_MUTE, margin: 0, lineHeight: 1.5 }}
+                    >
+                      We aim to reply within 1–2 hours.
+                    </motion.p>
+
+                    {/* Divider */}
+                    <motion.div
+                      initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.35, duration: 0.4 }}
+                      style={{ width: '100%', height: 1, background: `linear-gradient(90deg, transparent, rgba(196,168,130,0.3), transparent)`, margin: `${isMobile ? 12 : 16}px 0` }}
+                    />
+
+                    {/* WhatsApp CTA */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.42, duration: 0.3 }}
+                      style={{ width: '100%' }}
+                    >
+                      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 7 : 8.5, color: QUIZ_MUTE, margin: `0 0 ${isMobile ? 6 : 8}px`, lineHeight: 1.4 }}>
+                        Need anything in the meantime?
+                      </p>
+                      <a
+                        href={WA}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? 5 : 6,
+                          width: '100%', boxSizing: 'border-box',
+                          background: 'rgba(196,168,130,0.12)',
+                          border: `1px solid rgba(196,168,130,0.30)`,
+                          borderRadius: isMobile ? 8 : 10,
+                          padding: isMobile ? '7px 10px' : '9px 12px',
+                          textDecoration: 'none',
+                          transition: 'background 0.18s',
+                        }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(196,168,130,0.22)'; }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(196,168,130,0.12)'; }}
+                      >
+                        <svg width={isMobile ? 12 : 14} height={isMobile ? 12 : 14} viewBox="0 0 32 32" fill="none">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.478.668 4.797 1.832 6.789L2 30l7.43-1.8A13.938 13.938 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.54 11.54 0 01-5.88-1.608l-.42-.252-4.41 1.068 1.092-4.302-.276-.444A11.56 11.56 0 014.4 16C4.4 9.594 9.594 4.4 16 4.4S27.6 9.594 27.6 16 22.406 27.6 16 27.6zm6.36-8.652c-.348-.174-2.064-1.02-2.382-1.134-.318-.12-.552-.174-.78.174-.234.348-.894 1.134-1.098 1.368-.204.228-.402.258-.75.084-.348-.174-1.47-.543-2.8-1.728-1.032-.924-1.73-2.064-1.932-2.412-.204-.348-.024-.534.15-.708.156-.156.348-.402.522-.6.174-.204.228-.348.348-.582.12-.234.06-.438-.03-.612-.09-.174-.78-1.884-1.074-2.58-.282-.678-.57-.582-.78-.594-.204-.012-.432-.012-.66-.012-.234 0-.612.084-.93.432-.318.348-1.218 1.188-1.218 2.898 0 1.71 1.248 3.36 1.422 3.594.174.234 2.46 3.756 5.958 5.268.834.36 1.482.576 1.992.738.834.264 1.596.228 2.196.138.672-.102 2.064-.846 2.358-1.662.294-.816.294-1.518.204-1.662-.084-.15-.318-.234-.666-.408z" fill={gold} />
+                        </svg>
+                        <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 8 : 9.5, color: gold, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                          Message us on WhatsApp
+                        </span>
+                      </a>
+                    </motion.div>
                   </div>
 
                 ) : step === 1 ? (
