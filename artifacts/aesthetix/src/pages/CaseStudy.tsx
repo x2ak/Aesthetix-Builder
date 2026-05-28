@@ -121,7 +121,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
               style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, letterSpacing: '0.06em', color: charcoal, background: accent, borderRadius: 999, padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               Visit live site →
             </a>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: accent, letterSpacing: '0.06em', opacity: 0.8 }}>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: cream, letterSpacing: '0.06em', opacity: 0.6 }}>
               {data.location} · {data.buildTime}
             </span>
           </motion.div>
