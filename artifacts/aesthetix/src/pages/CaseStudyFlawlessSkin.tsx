@@ -40,7 +40,7 @@ As the first Aesthetix build, FlawlessSkin set the standard: clean branding, fas
   ],
   screenshots: [
     { src: '/portfolio/flawlessskin/01-homepage.png', caption: 'Homepage — desktop view' },
-    { src: '/portfolio/flawlessskin/05-admin-dashboard.jpg', caption: 'Admin portal — dashboard overview' },
+    { src: '/portfolio/flawlessskin/02-homepage-full.png', caption: 'Homepage — full page layout' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Supabase', 'Stripe', 'Resend', 'Tailwind CSS', 'Vercel'],
 };

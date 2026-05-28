@@ -42,8 +42,7 @@ Klarna Pay in 3 was integrated alongside Stripe to make higher-ticket treatments
   ],
   screenshots: [
     { src: '/portfolio/starr/01-homepage.png', caption: 'Homepage — desktop view' },
-    { src: '/portfolio/starr/04-admin-login.png', caption: 'Admin portal — login screen' },
-    { src: '/portfolio/starr/05-admin-dashboard.jpg', caption: 'Admin portal — dashboard overview' },
+    { src: '/portfolio/starr/02-founder.png', caption: 'Meet the founder — Eva' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Supabase', 'Stripe', 'Klarna', 'Google Calendar API', 'Resend', 'PostgreSQL', 'Vercel'],
 };
