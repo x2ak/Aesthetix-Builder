@@ -6,7 +6,7 @@ const data: CaseStudyData = {
   tagline: 'Redefining natural beauty — and automating every booking.',
   industry: 'Aesthetic Clinic',
   location: 'Birmingham & Solihull',
-  buildTime: '2 weeks',
+  buildTime: '5 days',
   liveUrl: 'https://dermadoll-aesthetics.co.uk',
   metaTitle: 'Dermadoll Aesthetics Case Study | Aesthetix Systems',
   metaDesc: 'How Aesthetix Systems built a premium booking platform for Dermadoll Aesthetics in Birmingham — with deposit collection and a full admin portal.',
@@ -17,7 +17,7 @@ const data: CaseStudyData = {
     accentRgb: '196,168,130',
   },
   metrics: [
-    { value: '2 weeks', label: 'Brief to launch' },
+    { value: '5 days', label: 'Brief to launch' },
     { value: '100%', label: 'Bookings automated' },
     { value: '23', label: 'Clients registered' },
     { value: '£0', label: 'Admin time per booking' },

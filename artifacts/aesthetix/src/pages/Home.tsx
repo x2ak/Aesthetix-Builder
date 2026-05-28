@@ -1001,7 +1001,7 @@ function Portfolio() {
     {
       name: 'Dermadoll Aesthetics',
       loc: 'Birmingham',
-      buildTime: '2 weeks',
+      buildTime: '5 days',
       url: 'https://dermadoll-aesthetics.co.uk',
       preview: '/dermadoll-preview.png',
       grad: `linear-gradient(135deg, ${goldTint}, #e8e0d8)`,
@@ -1379,7 +1379,7 @@ function Bento() {
 /* ─── Pricing ─── */
 const PRICING_PLANS = [
   {
-    name: 'Growth',
+    name: 'Core',
     build: '£1,499',
     monthly: '£49.99/mo',
     desc: 'The complete clinic system. No third-party platforms.',
@@ -1400,9 +1400,9 @@ const PRICING_PLANS = [
     name: 'Premium',
     build: '£2,499',
     monthly: '£79.99/mo',
-    desc: 'Everything in Growth, plus AI that books clients for you.',
+    desc: 'Everything in Core, plus AI that books clients for you.',
     features: [
-      'Everything in Growth',
+      'Everything in Core',
       'AI trained on your treatments',
       'Books enquiries 24/7 automatically',
       'Multi-practitioner management',
@@ -1416,7 +1416,7 @@ const PRICING_PLANS = [
 ];
 
 const CUSTOM_FEATURES = [
-  ['Everything in Growth & Premium', 'Loyalty schemes & memberships'],
+  ['Everything in Core & Premium', 'Loyalty schemes & memberships'],
   ['Training academies & courses', 'Multi-location & franchise setups'],
   ['Online stores & e-commerce', 'Any feature or integration you need'],
 ];
@@ -1879,7 +1879,7 @@ function FAQ() {
   const faqs = [
     { q: 'How long does a build take?', a: 'Most websites are live within 5–10 days of our first conversation. We move fast — we know you can\'t wait weeks to start taking bookings.' },
     { q: 'Do I own my website?', a: 'Yes — completely. You own the code, the domain, the content and all your client data. We host it for you as part of the monthly support plan, which you can cancel anytime with 30 days notice.' },
-    { q: 'Do I still need Fresha or Booksy?', a: 'No — and that\'s the whole point. Our Growth and Premium packages include your own fully custom booking system, built directly into your website. Your clients book on YOUR site, in YOUR brand, with no redirects to third-party platforms. No monthly Fresha fees. No Booksy branding. Just your clinic, end to end.' },
+    { q: 'Do I still need Fresha or Booksy?', a: 'No — and that\'s the whole point. Our Core and Premium packages include your own fully custom booking system, built directly into your website. Your clients book on YOUR site, in YOUR brand, with no redirects to third-party platforms. No monthly Fresha fees. No Booksy branding. Just your clinic, end to end.' },
     { q: 'Can you integrate my existing Calendly or Fresha?', a: 'Yes — on the Starter package we embed your existing booking tool cleanly into your new site. But most clients switch to our built-in system once they see how much better the experience is for their clients.' },
     { q: 'Does the AI assistant actually book clients?', a: 'Yes. It\'s trained on your specific treatments, prices and availability. It answers questions, qualifies leads and books clients straight into your calendar — automatically, 24/7. Not just a chatbot that says "DM us for more info."' },
     { q: 'Do you offer ongoing support?', a: 'Yes — monthly support plans start at £25/mo and include hosting, security updates, minor content changes and priority support. No long-term contracts. Cancel anytime.' },
