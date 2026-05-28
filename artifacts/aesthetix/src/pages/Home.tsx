@@ -681,8 +681,11 @@ function Hero() {
             </div>
           </div>
 
+          {/* Bottom fade into Segment 2 */}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 140, background: `linear-gradient(to bottom, transparent, ${cream})`, pointerEvents: 'none', zIndex: 2 }} />
+
           {/* Scroll teaser pinned to bottom */}
-          <div style={{ padding: '16px 28px 52px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <div style={{ padding: '16px 28px 52px', textAlign: 'center', position: 'relative', zIndex: 3 }}>
             <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 10, color: gold, letterSpacing: '0.2em', textTransform: 'uppercase' as const, margin: '0 0 10px' }}>
               Get your free quote in 60 seconds
             </p>
