@@ -1471,6 +1471,7 @@ function Pricing() {
             <div style={{ borderTop: '1px solid rgba(196,168,130,0.1)', marginTop: isMobile ? 24 : 32, paddingTop: isMobile ? 18 : 22, textAlign: 'center' }}>
               <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 12, color: 'rgba(196,168,130,0.75)', margin: 0, lineHeight: 1.6 }}>
                 The average aesthetics clinic takes <strong style={{ color: gold, fontWeight: 600 }}>8–12 extra bookings per month</strong> within the first 30 days of going live.<br />
+                <br />
                 At £80–£150 per treatment, that's your build fee back — <em style={{ fontFamily: DISP, fontStyle: 'italic' }}>twice over.</em>
               </p>
             </div>
