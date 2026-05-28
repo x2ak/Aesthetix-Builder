@@ -129,7 +129,7 @@ function PhoneLeadQuiz() {
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     transition: 'border-color 0.15s',
   };
 
@@ -244,7 +244,7 @@ function PhoneLeadQuiz() {
                       const sel = checked.includes(opt);
                       return (
                         <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => toggleCheck(opt)}
-                          style={{ ...optBase, border: `1px solid ${sel ? gold : QUIZ_BORDER}` }}>
+                          style={{ ...optBase, justifyContent: 'space-between', border: `1px solid ${sel ? gold : QUIZ_BORDER}` }}>
                           <span style={{ fontFamily: BODY, fontSize: isMobile ? 7.5 : 10, color: QUIZ_TEXT, fontWeight: 300, textAlign: 'left' as const }}>{opt}</span>
                           <div style={{ width: isMobile ? 12 : 15, height: isMobile ? 12 : 15, borderRadius: 3, border: `1.5px solid ${sel ? gold : QUIZ_MUTE}`, background: sel ? gold : 'transparent', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.15s' }}>
                             {sel && <Check size={isMobile ? 7 : 9} color={charcoal} strokeWidth={2.5} />}
@@ -268,7 +268,7 @@ function PhoneLeadQuiz() {
                       { name: 'Bold Editorial', colors: ['#111111', '#C4A882', '#C0392B'] },
                       { name: 'Custom',         colors: [], badge: 'BESPOKE', sub: 'Unique to your brand' },
                     ].map(opt => (
-                      <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(5, opt.name)} style={optBase}>
+                      <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(5, opt.name)} style={{ ...optBase, justifyContent: 'space-between' }}>
                         <div>
                           <span style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 300, display: 'block' }}>{opt.name}</span>
                           {opt.sub && <span style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8.5, color: QUIZ_MUTE }}>{opt.sub}</span>}
@@ -295,7 +295,7 @@ function PhoneLeadQuiz() {
                       { name: 'Premium', desc: 'Custom design + booking system', price: '£1,499' },
                       { name: 'Custom',  desc: 'Full bespoke build', price: "Let's talk" },
                     ].map(opt => (
-                      <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(6, opt.name)} style={optBase}>
+                      <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(6, opt.name)} style={{ ...optBase, justifyContent: 'space-between' }}>
                         <div>
                           <span style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 500, display: 'block' }}>{opt.name}</span>
                           <span style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8.5, color: QUIZ_MUTE }}>{opt.desc}</span>
