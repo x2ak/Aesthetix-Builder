@@ -693,7 +693,7 @@ function Hero() {
   return (
     <section style={{
       background: cream,
-      padding: '120px 0 80px',
+      padding: '96px 0 72px',
       position: 'relative',
       overflow: 'hidden',
     }}>
@@ -712,70 +712,70 @@ function Hero() {
         />
       ))}
       <div style={{
-        maxWidth: 1200, margin: '0 auto', padding: '0 32px',
-        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80,
+        maxWidth: 1200, margin: '0 auto', padding: '0 48px',
+        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64,
         alignItems: 'center', position: 'relative', zIndex: 1,
       }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, textTransform: 'uppercase' as const, letterSpacing: '0.22em', color: gold, marginBottom: 28 }}>
+        {/* Left column */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', minWidth: 0 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, textTransform: 'uppercase' as const, letterSpacing: '0.22em', color: gold, marginBottom: 24 }}>
             Aesthetics · Lash · Beauty
           </p>
-          <h1 style={{ fontFamily: BODY, fontWeight: 700, fontSize: 'clamp(3rem,6vw,5rem)', lineHeight: 1.05, color: charcoal, marginBottom: 28 }}>
+          <h1 style={{ fontFamily: BODY, fontWeight: 700, fontSize: 'clamp(2.8rem,5vw,4.4rem)', lineHeight: 1.06, color: charcoal, marginBottom: 24 }}>
             Turn followers<br />
             <span style={{ color: 'rgba(26,26,28,0.28)' }}>into</span><br />
             <em style={{ fontFamily: DISP, fontStyle: 'italic', color: gold, lineHeight: 1.08 }}>bookings.</em>
           </h1>
-          <div style={{ width: '100%', marginBottom: 28 }}><HeroTicker /></div>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, marginBottom: 24 }}>
-            Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
+          <div style={{ width: '100%', marginBottom: 24 }}><HeroTicker /></div>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, color: inkSoft, lineHeight: 1.75, maxWidth: 460, marginBottom: 20 }}>
+            Premium websites with built-in booking for UK aesthetics clinics.<br />Look luxury. Book 24/7. Stop chasing DMs.
           </p>
           {/* Trust pills */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
             {['✓ Live in 14 days', '✓ No 3rd party apps', '✓ UK based team'].map(pill => (
               <span key={pill} style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, background: goldTint, border: `1px solid rgba(196,168,130,0.35)`, borderRadius: 999, padding: '5px 12px', letterSpacing: '0.03em', whiteSpace: 'nowrap' as const }}>
                 {pill}
               </span>
             ))}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'flex-start', marginBottom: 28 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start', marginBottom: 24 }}>
             <WaBtn large />
             <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
               See recent work →
             </a>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ color: gold, fontSize: 15, letterSpacing: 2, lineHeight: 1 }}>★★★★★</span>
-              <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal }}>5.0</span>
-            </div>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute }}>Trusted by clinics across the UK</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ color: gold, fontSize: 14, letterSpacing: 2, lineHeight: 1 }}>★★★★★</span>
+            <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: charcoal }}>5.0</span>
+            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute }}>· Trusted by clinics across the UK</span>
           </div>
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+        {/* Right column — phone quiz, always visible */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+          {/* Background ambient orbs */}
           {[
-            { size: 260, top: '10%', left: '-30px', y: [0,-18,0], dur: 10, delay: 0.3, fill: false },
-            { size: 120, top: '55%', left: '-10px', y: [0,-12,0], dur: 8,  delay: 1.6, fill: true  },
-            { size: 72,  top: '5%',  left: '15%',  y: [0,-10,0], dur: 7,  delay: 2.4, fill: false },
-            { size: 44,  top: '75%', left: '5%',   y: [0,-8,0],  dur: 9,  delay: 0.8, fill: true  },
-            { size: 36,  top: '35%', right: '5%',  y: [0,-7,0],  dur: 6.5,delay: 3.2, fill: true  },
+            { size: 280, top: '5%',  left: '-20px', y: [0,-16,0], dur: 10, delay: 0.3, fill: false },
+            { size: 130, top: '60%', left: '-5px',  y: [0,-11,0], dur: 8,  delay: 1.6, fill: true  },
+            { size: 68,  top: '0%',  left: '18%',   y: [0,-9,0],  dur: 7,  delay: 2.4, fill: false },
           ].map((c, i) => (
             <motion.div key={`ph-${i}`}
               animate={{ y: [...c.y] }}
               transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
               style={{
                 position: 'absolute', width: c.size, height: c.size, borderRadius: '50%',
-                border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.32)`,
-                background: c.fill ? `radial-gradient(circle,rgba(201,169,97,0.14) 0%,transparent 70%)` : 'transparent',
-                top: (c as any).top, left: (c as any).left, right: (c as any).right,
+                border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.28)`,
+                background: c.fill ? `radial-gradient(circle,rgba(201,169,97,0.12) 0%,transparent 70%)` : 'transparent',
+                top: (c as any).top, left: (c as any).left,
                 pointerEvents: 'none', zIndex: 0,
               }}
             />
           ))}
+          <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: 11, color: gold, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 14, position: 'relative', zIndex: 1 }}>
+            Get your free quote in 60 seconds
+          </p>
           <div style={{ position: 'relative', zIndex: 1 }}><PhoneLeadQuiz /></div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
