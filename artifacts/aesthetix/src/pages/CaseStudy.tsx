@@ -76,7 +76,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       <Nav />
 
       {/* ─── HERO ─── */}
-      <section style={{ background: heroBg, minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden', paddingTop: 60 }}>
+      <section style={{ background: heroBg, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden', paddingTop: 60 }}>
         {/* Animated ambient orbs */}
         <motion.div
           animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0], scale: [1, 1.15, 0.95, 1] }}
@@ -98,7 +98,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
         {/* noise texture feel */}
         <div style={{ position: 'absolute', inset: 0, opacity: 0.03, backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")', pointerEvents: 'none' }} />
 
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 28px', width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 80 }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 28px', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 52, paddingBottom: 52 }}>
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 32 }}>
             <span style={{ width: 28, height: 1, background: accent }} />
