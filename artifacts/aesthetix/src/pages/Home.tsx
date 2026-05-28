@@ -2057,7 +2057,7 @@ const MAINT_PLANS = [
     from: true,
     price: '£59.99',
     period: '/mo',
-    features: ['Branded SMS sender ID', 'AI receptionist — always on', '£10p/m SMS campaign credit'],
+    features: ['Branded SMS sender ID', 'AI receptionist — always on', '£10p/m SMS campaign credit', 'AI Tokens included'],
     highlight: true,
     waMsg: "Hi Sim, I'm interested in the Premium Plus maintenance plan for my clinic!",
   },

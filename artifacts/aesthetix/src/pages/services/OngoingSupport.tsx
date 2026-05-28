@@ -84,6 +84,7 @@ const PLANS = [
     features: [
       { label: "Everything in Core + Changes", detail: "All maintenance, hosting, and change hours." },
       { label: "AI receptionist included", detail: "24/7 AI that answers questions and books patients — always on." },
+      { label: "AI Tokens included", detail: "AI usage covered — no separate API costs or usage limits to worry about." },
       { label: "Branded SMS sender ID", detail: "Your clinic name appears as the SMS sender, not a number." },
       { label: "£10/mo SMS campaign credit", detail: "Send patient campaigns, appointment reminders, and promos." },
       { label: "£9.99 fair-use overage", detail: "Predictable costs even in busy months." },
