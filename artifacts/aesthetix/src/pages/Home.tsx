@@ -1487,44 +1487,40 @@ function Pricing() {
         <FadeIn delay={0.18}>
           <div style={{
             background: charcoal,
-            borderRadius: 20,
-            padding: isMobile ? '28px 20px' : '44px 56px',
-            border: `1px solid rgba(196,168,130,0.28)`,
-            boxShadow: '0 12px 56px rgba(26,26,28,0.2), 0 0 0 1px rgba(196,168,130,0.08)',
-            marginBottom: isMobile ? 32 : 48,
+            borderRadius: 16,
+            padding: isMobile ? '20px 16px' : '36px 48px',
+            border: `1px solid rgba(196,168,130,0.22)`,
+            boxShadow: '0 8px 40px rgba(26,26,28,0.18), 0 0 0 1px rgba(196,168,130,0.06)',
+            marginBottom: isMobile ? 24 : 40,
             position: 'relative', overflow: 'hidden',
           }}>
-            {/* Inner glow */}
-            <div style={{ position: 'absolute', top: '-40%', left: '50%', transform: 'translateX(-50%)', width: 500, height: 300, background: 'radial-gradient(ellipse, rgba(196,168,130,0.1) 0%, transparent 65%)', pointerEvents: 'none' }} />
-            <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 8 : 9, textTransform: 'uppercase' as const, letterSpacing: '0.3em', color: 'rgba(196,168,130,0.6)', textAlign: 'center', margin: `0 0 ${isMobile ? 24 : 32}px` }}>
+            <div style={{ position: 'absolute', top: '-50%', left: '50%', transform: 'translateX(-50%)', width: 480, height: 260, background: 'radial-gradient(ellipse, rgba(196,168,130,0.09) 0%, transparent 65%)', pointerEvents: 'none' }} />
+            <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 7, textTransform: 'uppercase' as const, letterSpacing: '0.32em', color: 'rgba(196,168,130,0.45)', textAlign: 'center', margin: `0 0 ${isMobile ? 16 : 24}px` }}>
               Real results · Real clinics · Real money
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 24 : 0, position: 'relative', zIndex: 1 }}>
+            {/* 3-col grid on all breakpoints */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, position: 'relative', zIndex: 1 }}>
               {ROI_STATS.map((s, i) => (
                 <div key={i} style={{
                   textAlign: 'center',
-                  padding: isMobile ? 0 : '0 36px',
-                  borderRight: !isMobile && i < 2 ? '1px solid rgba(196,168,130,0.12)' : 'none',
-                  borderBottom: isMobile && i < 2 ? '1px solid rgba(196,168,130,0.1)' : 'none',
-                  paddingBottom: isMobile && i < 2 ? 24 : 0,
+                  padding: isMobile ? '0 8px' : '0 32px',
+                  borderRight: i < 2 ? '1px solid rgba(196,168,130,0.1)' : 'none',
                 }}>
                   <p style={{
                     fontFamily: DISP, fontStyle: 'italic',
-                    fontSize: isMobile ? '2.8rem' : '3.8rem',
-                    color: gold, lineHeight: 1, margin: `0 0 ${isMobile ? 10 : 14}px`,
-                    textShadow: '0 0 32px rgba(196,168,130,0.65), 0 0 72px rgba(196,168,130,0.3)',
+                    fontSize: isMobile ? '1.75rem' : '3.2rem',
+                    color: gold, lineHeight: 1, margin: `0 0 ${isMobile ? 6 : 10}px`,
+                    textShadow: '0 0 28px rgba(196,168,130,0.6)',
                   }}>{s.pct}</p>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 12 : 13, color: 'rgba(247,244,238,0.52)', lineHeight: 1.65, margin: 0, maxWidth: 200, marginLeft: 'auto', marginRight: 'auto' }}>{s.label}</p>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 9 : 12, color: 'rgba(247,244,238,0.45)', lineHeight: 1.5, margin: 0 }}>{s.label}</p>
                 </div>
               ))}
             </div>
-            <div style={{ borderTop: '1px solid rgba(196,168,130,0.1)', marginTop: isMobile ? 24 : 32, paddingTop: isMobile ? 18 : 22, textAlign: 'center' }}>
-              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 12, color: 'rgba(196,168,130,0.75)', margin: 0, lineHeight: 1.6 }}>
-                The average aesthetics clinic takes <strong style={{ color: gold, fontWeight: 600 }}>8–12 extra bookings per month</strong> within the first 30 days of going live.<br />
-                <br />
-                At £80–£150 per treatment, that's your build fee back — <em style={{ fontFamily: DISP, fontStyle: 'italic' }}>twice over.</em>
+            <div style={{ borderTop: '1px solid rgba(196,168,130,0.08)', marginTop: isMobile ? 16 : 24, paddingTop: isMobile ? 14 : 18, textAlign: 'center' }}>
+              <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 10 : 12, color: 'rgba(196,168,130,0.65)', margin: 0, lineHeight: 1.65 }}>
+                8–12 extra bookings in the first 30 days. At £80–£150 per treatment — <em style={{ fontFamily: DISP, fontStyle: 'italic' }}>that's your build fee back, twice over.</em>
               </p>
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 9 : 10, color: 'rgba(196,168,130,0.35)', margin: '10px 0 0', letterSpacing: '0.04em' }}>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 9, color: 'rgba(196,168,130,0.28)', margin: '8px 0 0', letterSpacing: '0.04em' }}>
                 Results may vary depending on clinic size, marketing &amp; content.
               </p>
             </div>
