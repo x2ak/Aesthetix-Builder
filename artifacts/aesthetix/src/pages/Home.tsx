@@ -1020,6 +1020,17 @@ function Portfolio() {
       tag: 'MULTI-LOCATION',
       result: 'Two locations, one system — every booking syncs to calendar instantly.',
     },
+    {
+      name: 'Hira Aesthetics',
+      loc: 'Thornaby, North East',
+      buildTime: '4 weeks',
+      url: 'https://hiraaesthetics.co.uk',
+      preview: '/hira-hero.png',
+      grad: `linear-gradient(135deg, #1A1612, #2E2318)`,
+      caseStudy: '/portfolio/hiraaesthetics',
+      tag: 'CUSTOM PLATFORM BUILD',
+      result: 'Clinic site, skincare store, CPD academy and admin portal — one complete platform.',
+    },
   ];
 
   const navigate = (href: string) => {

@@ -9,6 +9,7 @@ import AdminPreview from "@/pages/AdminPreview";
 import CaseStudyFlawlessSkin from "@/pages/CaseStudyFlawlessSkin";
 import CaseStudyDermadoll from "@/pages/CaseStudyDermadoll";
 import CaseStudyStarr from "@/pages/CaseStudyStarr";
+import CaseStudyHira from "@/pages/CaseStudyHira";
 import Payment from "@/pages/Payment";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ function Router() {
   if (path === "/portfolio/flawlessskin") return <CaseStudyFlawlessSkin />;
   if (path === "/portfolio/dermadoll") return <CaseStudyDermadoll />;
   if (path === "/portfolio/starr") return <CaseStudyStarr />;
+  if (path === "/portfolio/hiraaesthetics") return <CaseStudyHira />;
   if (path === "/pay") return <Payment />;
   return <Home />;
 }
