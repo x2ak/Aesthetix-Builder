@@ -1972,17 +1972,16 @@ function Footer() {
         </p>
 
         {/* Nav links */}
-        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 24px', marginBottom: 20 }}>
-          {[
-            { label: 'Bespoke Websites', href: '#' },
-            { label: 'Booking Systems',  href: '#' },
-            { label: 'AI Assistant',     href: '#' },
-            { label: 'Ongoing Support',  href: '#' },
-          ].map(({ label, href }) => (
-            <a key={label} href={href}
-              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, textDecoration: 'none', letterSpacing: '0.02em' }}>
-              {label}
-            </a>
+        <div style={{ textAlign: 'center', marginBottom: 20, lineHeight: 2.4 }}>
+          {['Bespoke Websites', 'Booking Systems', 'AI Assistant', 'Ongoing Support'].map((label, i, arr) => (
+            <span key={label}>
+              <a href="#" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, textDecoration: 'none', letterSpacing: '0.02em' }}>
+                {label}
+              </a>
+              {i < arr.length - 1 && (
+                <span style={{ color: line, margin: '0 12px', fontSize: 10 }}>·</span>
+              )}
+            </span>
           ))}
         </div>
 
