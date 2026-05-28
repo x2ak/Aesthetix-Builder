@@ -1874,73 +1874,67 @@ const MAINT_PLANS = [
 function MaintenancePlans() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: charcoal, padding: isMobile ? '72px 20px' : '100px 0', position: 'relative', overflow: 'hidden' }}>
-      {/* Ambient gold glows */}
-      <div style={{ position: 'absolute', top: '-10%', right: '-6%', width: 560, height: 560, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.12) 0%, transparent 68%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '-5%', left: '-4%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.08) 0%, transparent 68%)', pointerEvents: 'none' }} />
+    <section style={{ background: charcoal, padding: isMobile ? '52px 16px' : '80px 0', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: '-10%', right: '-6%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.10) 0%, transparent 68%)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', position: 'relative', zIndex: 1 }}>
 
         {/* Heading */}
-        <FadeIn style={{ marginBottom: isMobile ? 8 : 10 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: gold, margin: '0 0 14px' }}>
+        <FadeIn style={{ marginBottom: isMobile ? 6 : 8 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: gold, margin: '0 0 10px' }}>
             After launch
           </p>
-          <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.2rem,9vw,3.2rem)' : 'clamp(2.6rem,4.5vw,4rem)', color: cream, margin: 0, lineHeight: 1.04, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(1.8rem,7vw,2.4rem)' : 'clamp(2.2rem,3.5vw,3rem)', color: cream, margin: 0, lineHeight: 1.06, letterSpacing: '-0.02em' }}>
             MAINTENANCE{' '}
             <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>& Support</em>
           </h2>
         </FadeIn>
-        <FadeIn delay={0.08} style={{ marginBottom: isMobile ? 44 : 60 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 16, color: 'rgba(247,244,238,0.6)', margin: 0, maxWidth: 520, lineHeight: 1.7 }}>
-            Every build comes with a 12-month maintenance plan. Keep your platform secure, hosted, and running — with optional support tiers depending on how much hands-on help you need.
+        <FadeIn delay={0.08} style={{ marginBottom: isMobile ? 28 : 40 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 15, color: 'rgba(247,244,238,0.55)', margin: 0, maxWidth: 480, lineHeight: 1.65 }}>
+            Every build includes a 12-month plan. Keep your platform secure and running — upgrade anytime.
           </p>
         </FadeIn>
 
-        {/* Cards grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: isMobile ? 14 : 18, marginBottom: isMobile ? 40 : 52 }}>
+        {/* Cards grid — 2×2 on mobile, 4-col on desktop */}
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 24 : 40 }}>
           {MAINT_PLANS.map((p, i) => (
             <motion.div key={p.tag}
-              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.08 }}
+              initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.45, delay: i * 0.06 }}
               style={{
-                background: p.highlight ? 'rgba(196,168,130,0.14)' : 'rgba(255,255,255,0.05)',
-                border: p.highlight ? `1.5px solid rgba(196,168,130,0.55)` : `1px solid rgba(255,255,255,0.08)`,
-                borderRadius: 16,
-                padding: isMobile ? '28px 24px' : '32px 28px',
+                background: p.highlight ? 'rgba(196,168,130,0.13)' : 'rgba(255,255,255,0.04)',
+                border: p.highlight ? `1.5px solid rgba(196,168,130,0.5)` : `1px solid rgba(255,255,255,0.07)`,
+                borderRadius: 12,
+                padding: isMobile ? '16px 14px' : '24px 20px',
                 position: 'relative',
                 overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
               }}>
               {/* Gold top bar */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: gold, opacity: p.highlight ? 1 : 0.4 }} />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: gold, opacity: p.highlight ? 1 : 0.35 }} />
 
               {/* Tag */}
-              <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 20px', opacity: p.highlight ? 1 : 0.8 }}>
+              <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 9 : 10, textTransform: 'uppercase', letterSpacing: '0.16em', color: gold, margin: '0 0 10px', opacity: p.highlight ? 1 : 0.8, lineHeight: 1.3 }}>
                 {p.tag}
               </p>
 
-              {/* Price */}
-              <div style={{ marginBottom: 18 }}>
+              {/* Price row — "from" inline */}
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 3, marginBottom: isMobile ? 8 : 12, flexWrap: 'wrap' }}>
                 {p.from && (
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.4)', letterSpacing: '0.06em', display: 'block', marginBottom: 2 }}>
-                    from
-                  </span>
+                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.38)', letterSpacing: '0.04em' }}>from</span>
                 )}
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
-                  <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 38 : 42, color: p.highlight ? gold : cream, lineHeight: 1 }}>
-                    {p.price}
-                  </span>
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.4)' }}>
-                    {p.period}
-                  </span>
-                </div>
+                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 26 : 32, color: p.highlight ? gold : cream, lineHeight: 1 }}>
+                  {p.price}
+                </span>
+                <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.38)' }}>{p.period}</span>
               </div>
 
               {/* Divider */}
-              <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', marginBottom: 18 }} />
+              <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', marginBottom: isMobile ? 8 : 12 }} />
 
               {/* Blurb */}
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13.5, color: p.highlight ? 'rgba(247,244,238,0.8)' : 'rgba(247,244,238,0.55)', lineHeight: 1.72, margin: '0 0 24px' }}>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11.5 : 13, color: p.highlight ? 'rgba(247,244,238,0.75)' : 'rgba(247,244,238,0.48)', lineHeight: 1.6, margin: '0 0 14px', flexGrow: 1 }}>
                 {p.blurb}
               </p>
 
@@ -1953,14 +1947,14 @@ function MaintenancePlans() {
               >
                 <span style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  fontFamily: BODY, fontWeight: 500, fontSize: 12, letterSpacing: '0.06em',
+                  fontFamily: BODY, fontWeight: 500, fontSize: isMobile ? 10 : 11, letterSpacing: '0.06em',
                   textTransform: 'uppercase',
-                  color: p.highlight ? gold : 'rgba(196,168,130,0.8)',
-                  borderTop: `1px solid ${p.highlight ? 'rgba(196,168,130,0.3)' : 'rgba(255,255,255,0.08)'}`,
-                  paddingTop: 16,
+                  color: p.highlight ? gold : 'rgba(196,168,130,0.7)',
+                  borderTop: `1px solid ${p.highlight ? 'rgba(196,168,130,0.25)' : 'rgba(255,255,255,0.07)'}`,
+                  paddingTop: 10,
                 }}>
                   Get started
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                     <path d="M2.5 7h9M7.5 3.5l4 3.5-4 3.5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </span>
@@ -1969,26 +1963,14 @@ function MaintenancePlans() {
           ))}
         </div>
 
-        {/* T&Cs button */}
-        <FadeIn delay={0.2} style={{ textAlign: 'center' }}>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <a href="/terms" style={{ display: 'inline-block', textDecoration: 'none' }}>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                fontFamily: BODY, fontWeight: 400, fontSize: 13, color: 'rgba(247,244,238,0.7)',
-                letterSpacing: '0.04em',
-                border: `1px solid rgba(196,168,130,0.35)`,
-                borderRadius: 999,
-                padding: '12px 28px',
-                background: 'transparent',
-              }}>
-                See T&amp;Cs for more information
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M2.5 7h9M7.5 3.5l4 3.5-4 3.5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </a>
-          </motion.div>
+        {/* T&Cs link — text-only, no pill */}
+        <FadeIn delay={0.18} style={{ textAlign: 'center' }}>
+          <a href="/terms" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.4)', letterSpacing: '0.04em' }}>
+            See T&amp;Cs for more information
+            <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
+              <path d="M2.5 7h9M7.5 3.5l4 3.5-4 3.5" stroke={gold} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
         </FadeIn>
 
       </div>
