@@ -631,58 +631,74 @@ function Hero() {
     { size: 44,  top: '58%',    right: '22%',    y: [0,-8,0],  dur: 8,   delay: 2.5, fill: true,  spin: 'orb-pulse'    },
   ];
 
-  /* ── MOBILE layout — no grid, no flex wrapper, plain block ── */
+  /* ── MOBILE layout — two scroll segments ── */
   if (isMobile) {
     return (
-      <section style={{ background: 'linear-gradient(180deg, #FAF6EE 0%, #F7F4EE 60%)', paddingTop: 36, position: 'relative', overflow: 'hidden' }}>
-        {/* Animated orbs */}
-        {MOBILE_ORBS.map((c, i) => (
-          <motion.div key={`mo-${i}`}
-            className={c.spin}
-            animate={{ y: c.y }}
-            transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute', width: c.size, height: c.size, borderRadius: '50%',
-              border: c.fill ? 'none' : '1.5px solid rgba(201,169,97,0.28)',
-              background: c.fill ? 'radial-gradient(circle,rgba(201,169,97,0.11) 0%,transparent 72%)' : 'transparent',
-              top: (c as any).top, right: (c as any).right, bottom: (c as any).bottom, left: (c as any).left,
-              pointerEvents: 'none', zIndex: 0,
-            }}
-          />
-        ))}
-        {/* Warm gold glow behind headline */}
-        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 340, height: 340, background: 'radial-gradient(ellipse, rgba(196,168,130,0.18) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
-        <div style={{ padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: gold, marginBottom: 22 }}>
-            Aesthetics · Lash · Beauty
-          </p>
-          <h1 style={{ fontFamily: BODY, fontWeight: 800, fontSize: 'clamp(2.8rem, 11vw, 3.5rem)', lineHeight: 1.02, color: charcoal, marginBottom: 28, letterSpacing: '-0.02em' }}>
-            Turn followers<br />
-            <span style={{ color: 'rgba(26,26,28,0.22)', fontWeight: 700 }}>into</span><br />
-            <em className="hero-gold-italic" style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, lineHeight: 1.08 }}>bookings.</em>
-          </h1>
-          <HeroTicker />
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, color: inkSoft, lineHeight: 1.8, marginBottom: 32, marginTop: 28 }}>
-            Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, marginBottom: 32 }}>
-            <WaBtn large />
-            <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
-              See recent work →
-            </a>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, marginBottom: 36 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ color: gold, fontSize: 13, letterSpacing: 3, lineHeight: 1, textShadow: '0 0 12px rgba(196,168,130,0.6)' }}>★★★★★</span>
-              <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal }}>5.0</span>
+      <section style={{ background: 'linear-gradient(180deg, #FAF6EE 0%, #F7F4EE 60%)', position: 'relative' }}>
+        {/* ── Segment 1: copy — full viewport height ── */}
+        <div style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+          {/* Animated orbs */}
+          {MOBILE_ORBS.map((c, i) => (
+            <motion.div key={`mo-${i}`}
+              className={c.spin}
+              animate={{ y: c.y }}
+              transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                position: 'absolute', width: c.size, height: c.size, borderRadius: '50%',
+                border: c.fill ? 'none' : '1.5px solid rgba(201,169,97,0.28)',
+                background: c.fill ? 'radial-gradient(circle,rgba(201,169,97,0.11) 0%,transparent 72%)' : 'transparent',
+                top: (c as any).top, right: (c as any).right, bottom: (c as any).bottom, left: (c as any).left,
+                pointerEvents: 'none', zIndex: 0,
+              }}
+            />
+          ))}
+          {/* Warm gold glow */}
+          <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 340, height: 340, background: 'radial-gradient(ellipse, rgba(196,168,130,0.18) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+
+          {/* Main copy — grows to fill space */}
+          <div style={{ flex: 1, padding: '44px 28px 0', textAlign: 'center', position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '0.24em', color: gold, marginBottom: 28 }}>
+              Aesthetics · Lash · Beauty
+            </p>
+            <h1 style={{ fontFamily: BODY, fontWeight: 800, fontSize: 'clamp(2.8rem, 11vw, 3.5rem)', lineHeight: 1.02, color: charcoal, marginBottom: 32, letterSpacing: '-0.02em' }}>
+              Turn followers<br />
+              <span style={{ color: 'rgba(26,26,28,0.22)', fontWeight: 700 }}>into</span><br />
+              <em className="hero-gold-italic" style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold, lineHeight: 1.08 }}>bookings.</em>
+            </h1>
+            <HeroTicker />
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, color: inkSoft, lineHeight: 1.85, marginBottom: 36, marginTop: 28 }}>
+              Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, marginBottom: 40 }}>
+              <WaBtn large />
+              <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
+                See recent work →
+              </a>
             </div>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute }}>Trusted by clinics across the UK</span>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ color: gold, fontSize: 13, letterSpacing: 3, lineHeight: 1, textShadow: '0 0 12px rgba(196,168,130,0.6)' }}>★★★★★</span>
+                <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, color: charcoal }}>5.0</span>
+              </div>
+              <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkMute }}>Trusted by clinics across the UK</span>
+            </div>
+          </div>
+
+          {/* Scroll teaser pinned to bottom */}
+          <div style={{ padding: '28px 28px 32px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+            <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 10, color: gold, letterSpacing: '0.2em', textTransform: 'uppercase' as const, margin: '0 0 10px' }}>
+              Get your free quote in 60 seconds
+            </p>
+            <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 3v14M4 11l6 6 6-6" stroke={gold} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </motion.div>
           </div>
         </div>
-        {/* Mobile quiz */}
-        <div style={{ padding: '0 24px 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: 11, color: gold, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 6 }}>Get your free quote in 60 seconds</p>
-          <p style={{ fontSize: 15, color: gold, lineHeight: 1, marginBottom: 16 }}>↓</p>
+
+        {/* ── Segment 2: phone quiz — appears on scroll ── */}
+        <div style={{ padding: '48px 24px 64px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <PhoneLeadQuiz />
         </div>
       </section>
