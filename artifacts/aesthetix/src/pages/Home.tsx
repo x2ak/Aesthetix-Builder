@@ -2330,7 +2330,7 @@ function Footer() {
         {/* Nav links */}
         <div style={{ textAlign: 'center', marginBottom: 20, lineHeight: 2.4 }}>
           {['Bespoke Websites', 'Booking Systems', 'AI Assistant', 'Ongoing Support'].map((label, i, arr) => (
-            <span key={label}>
+            <span key={label} style={{ whiteSpace: 'nowrap' }}>
               <a href="#" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, textDecoration: 'none', letterSpacing: '0.02em' }}>
                 {label}
               </a>
