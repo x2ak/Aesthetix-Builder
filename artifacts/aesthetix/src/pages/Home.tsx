@@ -1815,100 +1815,72 @@ function FinalCTA() {
 
 /* ─── Footer ─── */
 function Footer() {
-  const isMobile = useIsMobile();
   return (
-    <footer style={{ background: cream, borderTop: `1px solid ${line}`, position: 'relative', overflow: 'hidden' }}>
-      {/* Floating circles — mirrors hero */}
-      {[
-        { size: 380, top: '-80px',  right: '-80px',  y: [0,-20,0], dur: 9,   delay: 0,   fill: false },
-        { size: 200, top: '30%',    right: '-20px',  y: [0,-13,0], dur: 12,  delay: 1.8, fill: false },
-        { size: 130, bottom: '10%', left: '6%',      y: [0,-16,0], dur: 10,  delay: 0.6, fill: true  },
-        { size: 80,  top: '12%',    left: '40%',     y: [0,-11,0], dur: 7.5, delay: 2.2, fill: false },
-        { size: 50,  top: '60%',    right: '30%',    y: [0,-9,0],  dur: 8.5, delay: 1.2, fill: true  },
-        { size: 30,  top: '22%',    left: '16%',     y: [0,-7,0],  dur: 6.5, delay: 3,   fill: true  },
-      ].map((c, i) => (
-        <motion.div
-          key={`ft-${i}`}
-          animate={{ y: c.y }}
-          transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
-          style={{
-            position: 'absolute',
-            width: c.size,
-            height: c.size,
-            borderRadius: '50%',
-            border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.35)`,
-            background: c.fill ? `radial-gradient(circle, rgba(201,169,97,0.13) 0%, transparent 72%)` : 'transparent',
-            top: (c as any).top,
-            right: (c as any).right,
-            bottom: (c as any).bottom,
-            left: (c as any).left,
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
-      ))}
+    <footer style={{ background: cream, borderTop: `1px solid ${line}` }}>
+      <div style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 32px', textAlign: 'center' }}>
 
-      {/* Main footer body */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '48px 20px 40px' : '64px 32px 52px', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '32px 24px' : 40 }}>
-          {/* Col 1 Brand */}
-          <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
-                <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.5" />
-                <path d="M14 7 L20.5 21 M14 7 L7.5 21 M10.5 16.5 L17.5 16.5" stroke={gold} strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <div>
-                <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: charcoal, letterSpacing: '0.15em', margin: 0, lineHeight: 1 }}>AESTHETIX</p>
-                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 8, color: gold, letterSpacing: '0.22em', margin: 0, lineHeight: 1.6 }}>SYSTEMS</p>
-              </div>
-            </div>
-            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 14, color: gold, margin: '0 0 6px', lineHeight: 1.65 }}>We build the digital presence your clinic deserves.</p>
-            <a
-              href="/pay"
-              onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/pay'); window.dispatchEvent(new PopStateEvent('popstate')); }}
-              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, margin: 0, letterSpacing: '0.04em', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textDecoration: 'none', display: 'block' }}
-            >London, UK</a>
-          </div>
-          {/* Col 2 Work */}
-          <div>
-            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Work</p>
-            {['FlawlessSkin', 'Dermadoll', 'Starr Beautyy'].map(n => (
-              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
-            ))}
-          </div>
-          {/* Col 3 Services */}
-          <div>
-            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Services</p>
-            {['Bespoke Websites', 'Booking Systems', 'AI Assistant', 'Ongoing Support'].map(n => (
-              <p key={n} style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, margin: '0 0 10px', lineHeight: 1.5 }}>{n}</p>
-            ))}
-          </div>
-          {/* Col 4 Contact */}
-          <div>
-            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 16px' }}>Contact</p>
-            <a href={WA} target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textDecoration: 'none', display: 'block', marginBottom: 10 }}>WhatsApp →</a>
-            <a href="https://instagram.com/aesthetix_systems" target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textDecoration: 'none', display: 'block' }}>@aesthetix_systems</a>
+        {/* Logo */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, marginBottom: 14 }}>
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.5" />
+            <path d="M14 7 L20.5 21 M14 7 L7.5 21 M10.5 16.5 L17.5 16.5" stroke={gold} strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          <div style={{ textAlign: 'left' }}>
+            <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 12, color: charcoal, letterSpacing: '0.16em', margin: 0, lineHeight: 1 }}>AESTHETIX</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 7.5, color: gold, letterSpacing: '0.24em', margin: 0, lineHeight: 1.6 }}>SYSTEMS</p>
           </div>
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div style={{ borderTop: `1px solid ${line}`, padding: isMobile ? '14px 20px' : '14px 32px', position: 'relative', zIndex: 1 }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.02em' }}>Aesthetix Systems · London, UK · © 2026</span>
-            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textDecoration: 'underline', textUnderlineOffset: 3, letterSpacing: '0.02em' }}>
-              Privacy Policy
+        {/* Tagline */}
+        <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 15, color: gold, margin: '0 0 28px', lineHeight: 1.5, opacity: 0.9 }}>
+          We build the digital presence your clinic deserves.
+        </p>
+
+        {/* Nav links — single row, centred */}
+        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 24px', marginBottom: 20 }}>
+          {[
+            { label: 'Bespoke Websites', href: '#' },
+            { label: 'Booking Systems',  href: '#' },
+            { label: 'AI Assistant',     href: '#' },
+            { label: 'Ongoing Support',  href: '#' },
+          ].map(({ label, href }) => (
+            <a key={label} href={href}
+              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: inkSoft, textDecoration: 'none', letterSpacing: '0.02em' }}>
+              {label}
             </a>
-            <a href="/terms-of-service" target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, textDecoration: 'underline', textUnderlineOffset: 3, letterSpacing: '0.02em' }}>
-              Terms of Service
-            </a>
-          </div>
-          <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 11, color: '#00FFFF', letterSpacing: '0.02em' }}>Built with Intent.</span>
+          ))}
         </div>
+
+        {/* Contact links */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 32 }}>
+          <a href={WA} target="_blank" rel="noopener noreferrer"
+            style={{ fontFamily: BODY, fontWeight: 400, fontSize: 12, color: gold, textDecoration: 'none', letterSpacing: '0.03em' }}>
+            WhatsApp →
+          </a>
+          <a href="https://instagram.com/aesthetix_systems" target="_blank" rel="noopener noreferrer"
+            style={{ fontFamily: BODY, fontWeight: 400, fontSize: 12, color: gold, textDecoration: 'none', letterSpacing: '0.03em' }}>
+            @aesthetix_systems
+          </a>
+        </div>
+
+        {/* Divider */}
+        <div style={{ height: 1, background: line, marginBottom: 20 }} />
+
+        {/* Bottom row */}
+        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '4px 20px' }}>
+          <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, letterSpacing: '0.03em' }}>
+            © {new Date().getFullYear()} Aesthetix Systems · London, UK
+          </span>
+          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, textDecoration: 'none', letterSpacing: '0.03em' }}>
+            Privacy Policy
+          </a>
+          <a href="/terms-of-service" target="_blank" rel="noopener noreferrer"
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: inkMute, textDecoration: 'none', letterSpacing: '0.03em' }}>
+            Terms of Service
+          </a>
+        </div>
+
       </div>
     </footer>
   );
