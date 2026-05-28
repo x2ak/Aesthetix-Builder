@@ -1505,6 +1505,9 @@ function Pricing() {
                 <br />
                 At £80–£150 per treatment, that's your build fee back — <em style={{ fontFamily: DISP, fontStyle: 'italic' }}>twice over.</em>
               </p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 9 : 10, color: 'rgba(196,168,130,0.35)', margin: '10px 0 0', letterSpacing: '0.04em' }}>
+                Results may vary depending on clinic size, marketing &amp; content.
+              </p>
             </div>
           </div>
         </FadeIn>
