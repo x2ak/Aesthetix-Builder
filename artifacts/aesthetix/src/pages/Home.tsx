@@ -1402,7 +1402,7 @@ function PricingCard({ plan, open, onToggle, onBookSlot }: { plan: typeof PRICIN
       {/* Name + price — flex:1 so this section grows, pinning CTAs to the bottom */}
       <div style={{ paddingTop: plan.hero ? 8 : 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
         <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 18 : 22, color: labelCol, margin: '0 0 6px' }}>{plan.name}</p>
-        <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: gold, lineHeight: 1.55, margin: '0 0 16px' }}>{plan.desc}</p>
+        <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: gold, lineHeight: 1.55, margin: '0 0 16px', minHeight: isMobile ? '51px' : '61px' }}>{plan.desc}</p>
         <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '1.5rem' : '2rem', color: labelCol, margin: '0 0 2px', lineHeight: 1.1 }}>
           {plan.build} <span style={{ fontFamily: BODY, fontStyle: 'normal', fontWeight: 300, fontSize: isMobile ? 10 : 12, color: textCol }}>build</span>
         </p>
