@@ -1550,7 +1550,18 @@ function Pricing() {
               ))}
             </div>
             <div style={{ height: 1, background: 'rgba(201,169,97,0.2)', marginBottom: 24 }} />
-            <WaBtn large light label="Talk to us" />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+              <button
+                onClick={() => window.open(WA, '_blank')}
+                style={{ boxSizing: 'border-box', background: cream, color: charcoal, border: 'none', borderRadius: 8, padding: '10px 32px', fontFamily: BODY, fontWeight: 600, fontSize: 13, lineHeight: 1, cursor: 'pointer', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
+                Talk to us
+              </button>
+              <a href={WA} target="_blank" rel="noopener noreferrer"
+                style={{ boxSizing: 'border-box', display: 'inline-flex', alignItems: 'center', gap: 6, padding: '10px 32px', borderRadius: 8, border: '1px solid rgba(196,168,130,0.3)', background: 'transparent', color: 'rgba(247,244,238,0.75)', fontFamily: BODY, fontWeight: 500, fontSize: 13, lineHeight: 1, cursor: 'pointer', textDecoration: 'none', letterSpacing: '0.01em' }}>
+                <FaWhatsapp size={12} color={gold} />
+                Book a Call
+              </a>
+            </div>
           </div>
         </FadeIn>
 
