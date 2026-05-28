@@ -726,9 +726,17 @@ function Hero() {
             <em style={{ fontFamily: DISP, fontStyle: 'italic', color: gold, lineHeight: 1.08 }}>bookings.</em>
           </h1>
           <div style={{ width: '100%', marginBottom: 28 }}><HeroTicker /></div>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, marginBottom: 32 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.78, maxWidth: 480, marginBottom: 24 }}>
             Premium websites with built-in booking for UK aesthetics clinics. Look luxury. Book 24/7. Stop chasing DMs.
           </p>
+          {/* Trust pills */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
+            {['✓ Live in 14 days', '✓ No 3rd party apps', '✓ UK based team'].map(pill => (
+              <span key={pill} style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: charcoal, background: goldTint, border: `1px solid rgba(196,168,130,0.35)`, borderRadius: 999, padding: '5px 12px', letterSpacing: '0.03em', whiteSpace: 'nowrap' as const }}>
+                {pill}
+              </span>
+            ))}
+          </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'flex-start', marginBottom: 28 }}>
             <WaBtn large />
             <a href="#work" className="gold-underline" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: gold, textDecoration: 'none', letterSpacing: '0.02em' }}>
