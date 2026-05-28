@@ -1023,7 +1023,7 @@ function Portfolio() {
     {
       name: 'Hira Aesthetics',
       loc: 'Thornaby, North East',
-      buildTime: '4 weeks',
+      buildTime: '2 weeks',
       url: 'https://hiraaesthetics.co.uk',
       preview: '/hira-hero.png',
       grad: `linear-gradient(135deg, #1A1612, #2E2318)`,

@@ -6,7 +6,7 @@ const data: CaseStudyData = {
   tagline: 'A full ecosystem — clinic, store, academy and admin. One build.',
   industry: 'Aesthetic Clinic & Training Academy',
   location: 'Thornaby, North East',
-  buildTime: '4 weeks',
+  buildTime: '2 weeks',
   liveUrl: 'https://hiraaesthetics.co.uk',
   metaTitle: 'Hira Aesthetics Case Study | Aesthetix Systems',
   metaDesc: 'How Aesthetix Systems built a complete digital ecosystem for Hira Aesthetics — a bespoke clinic site, skincare e-commerce store, CPD-accredited training academy, treatment booking system, and self-managed admin portal.',
@@ -20,7 +20,7 @@ const data: CaseStudyData = {
     { value: '5', label: 'Systems in one platform' },
     { value: '£55–£59', label: 'Skincare products, live in store' },
     { value: '£1,200+', label: 'Academy courses from' },
-    { value: '4 weeks', label: 'Brief to full launch' },
+    { value: '2 weeks', label: 'Brief to full launch' },
   ],
   quote: 'I went from juggling three different tools and a WhatsApp to having everything — bookings, shop, academy — all in one place, all under my brand. It\'s completely transformed how I run the business.',
   brief: `Hira Aesthetics is a private clinic based in Thornaby, North East, offering advanced anti-wrinkle, dermal filler, and skin treatments alongside a signature training academy for aesthetics professionals. The founder came to us with a fragmented setup — a generic website, no online store, and manual booking management — wanting something that matched the calibre of the brand she had built.
