@@ -795,9 +795,8 @@ function Hero() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
           {/* Background ambient orbs */}
           {[
-            { size: 280, top: '5%',  left: '-20px', y: [0,-16,0], dur: 10, delay: 0.3, fill: false },
-            { size: 130, top: '60%', left: '-5px',  y: [0,-11,0], dur: 8,  delay: 1.6, fill: true  },
-            { size: 68,  top: '0%',  left: '18%',   y: [0,-9,0],  dur: 7,  delay: 2.4, fill: false },
+            { size: 260, top: '8%',  left: '-60px',  y: [0,-16,0], dur: 10, delay: 0.3, fill: false },
+            { size: 160, top: '58%', left: '-40px',  y: [0,-11,0], dur: 8,  delay: 1.6, fill: true  },
           ].map((c, i) => (
             <motion.div key={`ph-${i}`}
               animate={{ y: [...c.y] }}
