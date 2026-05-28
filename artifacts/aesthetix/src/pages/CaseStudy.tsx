@@ -26,7 +26,6 @@ function Nav() {
           </div>
         </a>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-          <a href="/#work" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.6)', textDecoration: 'none', letterSpacing: '0.04em' }}>← All work</a>
           <a href="https://wa.me/447495963388" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: BODY, fontWeight: 500, fontSize: 11, color: charcoal, background: gold, borderRadius: 999, padding: '8px 20px', textDecoration: 'none', letterSpacing: '0.06em' }}>
             Get a build →
@@ -100,9 +99,12 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
 
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 28px', width: '100%', display: 'flex', flexDirection: 'column', paddingTop: 44, paddingBottom: 20 }}>
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-            <span style={{ width: 28, height: 1, background: accent }} />
-            <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.28em', color: accent }}>Case Study</span>
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ width: 28, height: 1, background: accent }} />
+              <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.28em', color: accent }}>Case Study</span>
+            </div>
+            <a href="/#work" style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: 'rgba(247,244,238,0.5)', textDecoration: 'none', letterSpacing: '0.04em' }}>← All work</a>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
