@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 const cream = '#F7F4EE';
@@ -49,6 +50,7 @@ export type CaseStudyData = {
   brief: string;
   features: string[];
   screenshots: { src: string; caption: string }[];
+  customGallery?: ReactNode;
   metaTitle: string;
   metaDesc: string;
   theme: {
@@ -321,6 +323,18 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
                 ))}
               </div>
             )}
+          {data.customGallery && (
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.7, delay: 0.1 }}
+              style={{ marginTop: 3, borderRadius: 14, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ padding: '11px 18px', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(255,255,255,0.04)' }}>
+                <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: accent, textTransform: 'uppercase', letterSpacing: '0.12em', margin: 0, opacity: 0.8 }}>Admin portal — live dashboard</p>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  {['#FF5F57','#FFBD2E','#28C840'].map(c => <span key={c} style={{ width: 8, height: 8, borderRadius: '50%', background: c, display: 'inline-block' }} />)}
+                </div>
+              </div>
+              {data.customGallery}
+            </motion.div>
+          )}
           </div>
         </section>
       )}

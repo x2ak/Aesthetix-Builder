@@ -1,4 +1,5 @@
 import { CaseStudyPage, CaseStudyData } from "./CaseStudy";
+import HiraAdminMockup from "./HiraAdminMockup";
 
 const data: CaseStudyData = {
   slug: 'hiraaesthetics',
@@ -46,6 +47,7 @@ The training academy section lists CPD-accredited courses from Foundation Botox 
     { src: '/hira-shop.png', caption: 'Skincare store — branded HIRA product range' },
   ],
   techStack: ['React', 'Vite', 'TypeScript', 'Stripe', 'Klarna', 'Resend', 'PostgreSQL', 'Drizzle ORM', 'Vercel'],
+  customGallery: <HiraAdminMockup />,
 };
 
 export default function CaseStudyHira() {
