@@ -1084,11 +1084,12 @@ function HowItWorks() {
           ))}
         </div>
 
-        {/* Content card */}
+        {/* Content card — fixed height so switching tabs never resizes the section */}
         <div style={{
           background: surface, border: `1px solid ${line}`, borderTop: 'none',
           borderRadius: '0 0 20px 20px', overflow: 'hidden',
-          minHeight: isMobile ? 380 : 320,
+          height: isMobile ? 440 : 340,
+          position: 'relative',
           boxShadow: '0 12px 56px rgba(196,168,130,0.14), 0 2px 16px rgba(26,26,28,0.06)',
         }}>
           <AnimatePresence mode="wait">
@@ -1098,24 +1099,29 @@ function HowItWorks() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -14 }}
                 transition={{ duration: 0.36, ease: [0.25, 0.1, 0.25, 1] }}
-                style={isMobile ? { display: 'flex', flexDirection: 'column' } : { display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center' }}
+                style={{
+                  position: 'absolute', inset: 0,
+                  ...(isMobile
+                    ? { display: 'flex', flexDirection: 'column' }
+                    : { display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'stretch' })
+                }}
               >
                 {/* Illustration — warm gradient bg */}
                 <div style={{
-                  padding: isMobile ? '36px 28px 24px' : '48px 36px 48px 48px',
+                  padding: isMobile ? '28px 28px 20px' : '48px 36px 48px 48px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: 'linear-gradient(135deg, #FAF7F2 0%, #EEE4D4 100%)',
                   borderRight: isMobile ? 'none' : `1px solid rgba(196,168,130,0.2)`,
                   borderBottom: isMobile ? `1px solid rgba(196,168,130,0.15)` : 'none',
-                  minHeight: isMobile ? 200 : 'auto',
+                  flexShrink: 0,
                 }}>
                   <card.Illust />
                 </div>
                 {/* Copy */}
-                <div style={{ padding: isMobile ? '28px 28px 36px' : '48px 48px 48px 44px' }}>
-                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: '3.8rem', color: gold, opacity: 0.16, lineHeight: 1, margin: '0 0 18px' }}>{card.n}</p>
-                  <h3 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 20 : 24, color: charcoal, margin: '0 0 14px', lineHeight: 1.2 }}>{card.title}</h3>
-                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 15, color: inkSoft, lineHeight: 1.78, margin: 0 }}>{card.body}</p>
+                <div style={{ padding: isMobile ? '20px 28px 28px' : '48px 48px 48px 44px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? '2.8rem' : '3.8rem', color: gold, opacity: 0.16, lineHeight: 1, margin: isMobile ? '0 0 10px' : '0 0 18px' }}>{card.n}</p>
+                  <h3 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 18 : 24, color: charcoal, margin: isMobile ? '0 0 8px' : '0 0 14px', lineHeight: 1.2 }}>{card.title}</h3>
+                  <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 15, color: inkSoft, lineHeight: 1.72, margin: 0 }}>{card.body}</p>
                 </div>
               </motion.div>
             ))}
