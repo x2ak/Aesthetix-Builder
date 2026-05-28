@@ -981,9 +981,10 @@ function HowItWorks() {
 function Portfolio() {
   const isMobile = useIsMobile();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const startX = useRef(0);
+  const scrollLeftRef = useRef(0);
 
   const clients = [
     {
@@ -1027,17 +1028,18 @@ function Portfolio() {
   };
 
   const onMouseDown = (e: React.MouseEvent) => {
+    isDraggingRef.current = true;
     setIsDragging(true);
-    setStartX(e.pageX - (scrollRef.current?.offsetLeft || 0));
-    setScrollLeft(scrollRef.current?.scrollLeft || 0);
+    startX.current = e.pageX - (scrollRef.current?.offsetLeft || 0);
+    scrollLeftRef.current = scrollRef.current?.scrollLeft || 0;
   };
   const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
     e.preventDefault();
     const x = e.pageX - (scrollRef.current?.offsetLeft || 0);
-    if (scrollRef.current) scrollRef.current.scrollLeft = scrollLeft - (x - startX) * 1.4;
+    if (scrollRef.current) scrollRef.current.scrollLeft = scrollLeftRef.current - (x - startX.current) * 1.4;
   };
-  const stopDrag = () => setIsDragging(false);
+  const stopDrag = () => { isDraggingRef.current = false; setIsDragging(false); };
 
   const cardW = isMobile ? 'min(82vw, 340px)' : '440px';
   const padLeft = isMobile ? '24px' : 'max(24px, calc((100vw - 1200px) / 2 + 32px))';
