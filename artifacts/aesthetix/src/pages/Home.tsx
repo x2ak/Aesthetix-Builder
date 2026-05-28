@@ -181,8 +181,11 @@ function PhoneLeadQuiz() {
               <motion.div key={submitted ? 'done' : step}
                 initial={{ x: 28, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -28, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{ position: 'absolute', inset: 0, padding: isMobile ? '10px 10px 6px' : '14px 16px 8px', overflowY: 'auto', display: 'flex', flexDirection: 'column', justifyContent: (step === 4 || step === 7) ? 'flex-start' : 'center' }}
+                style={{ position: 'absolute', inset: 0, padding: isMobile ? '10px 10px 6px' : '14px 16px 8px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}
               >
+                {/* Label row always pinned at top */}
+                {!submitted && labelRow}
+
                 {submitted ? (
                   /* ── Success ── */
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 0 }}>
@@ -198,8 +201,7 @@ function PhoneLeadQuiz() {
 
                 ) : step === 1 ? (
                   /* ── Step 1: Business type (2-col grid) ── */
-                  <>
-                    {labelRow}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p style={qStyle}>What kind of business do you run?</p>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 5 : 6 }}>
                       {['Aesthetics', 'Lash & Brow', 'Skin/Facials', 'Hair', 'Nails', 'Other'].map(opt => (
@@ -209,36 +211,33 @@ function PhoneLeadQuiz() {
                         </motion.button>
                       ))}
                     </div>
-                  </>
+                  </div>
 
                 ) : step === 2 ? (
                   /* ── Step 2: Current booking method ── */
-                  <>
-                    {labelRow}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p style={qStyle}>How are clients booking right now?</p>
                     {['Instagram DMs', 'WhatsApp', 'Fresha / Booksy', 'Phone & walk-ins', 'Nothing yet'].map(opt => (
                       <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => pick(2, opt)} style={optBase}>
                         <span style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 300 }}>{opt}</span>
                       </motion.button>
                     ))}
-                  </>
+                  </div>
 
                 ) : step === 3 ? (
                   /* ── Step 3: Bookings per month ── */
-                  <>
-                    {labelRow}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p style={qStyle}>Roughly how many bookings a month?</p>
                     {['0 – 20', '20 – 50', '50 – 100', '100+'].map(opt => (
                       <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => pick(3, opt)} style={optBase}>
                         <span style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 300 }}>{opt}</span>
                       </motion.button>
                     ))}
-                  </>
+                  </div>
 
                 ) : step === 4 ? (
                   /* ── Step 4: Pain points (multi-select) ── */
-                  <>
-                    {labelRow}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <p style={qStyle}>What's holding you back?</p>
                     <p style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8, letterSpacing: '0.15em', color: QUIZ_MUTE, textTransform: 'uppercase', margin: `0 0 ${isMobile ? 7 : 9}px` }}>Select all that apply</p>
                     {["No-shows", "Time wasted in DMs", "Looks unprofessional", "No deposits taken", "Can't be found on Google", "Juggling multiple locations"].map(opt => {
@@ -257,12 +256,11 @@ function PhoneLeadQuiz() {
                       style={{ width: '100%', background: gold, borderRadius: isMobile ? 8 : 10, padding: isMobile ? '9px' : '12px', border: 'none', cursor: 'pointer', marginTop: isMobile ? 4 : 5 }}>
                       <span style={{ fontFamily: BODY, fontSize: isMobile ? 9 : 11, fontWeight: 600, color: charcoal }}>Continue →</span>
                     </motion.button>
-                  </>
+                  </div>
 
                 ) : step === 5 ? (
                   /* ── Step 5: Pick your look ── */
-                  <>
-                    {labelRow}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p style={qStyle}>Pick your look</p>
                     {[
                       { name: 'Warm Luxe',      colors: ['#F5F0E8', '#C4A882', '#1A1A1C'] },
@@ -286,12 +284,11 @@ function PhoneLeadQuiz() {
                         )}
                       </motion.button>
                     ))}
-                  </>
+                  </div>
 
                 ) : step === 6 ? (
                   /* ── Step 6: Package ── */
-                  <>
-                    {labelRow}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p style={qStyle}>Which package feels right?</p>
                     {[
                       { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£999' },
@@ -306,12 +303,11 @@ function PhoneLeadQuiz() {
                         <span style={{ fontFamily: BODY, fontSize: isMobile ? 7 : 9.5, color: gold, fontWeight: 500, flexShrink: 0, marginLeft: 6 }}>{opt.price}</span>
                       </motion.button>
                     ))}
-                  </>
+                  </div>
 
                 ) : (
                   /* ── Step 7: Contact details ── */
-                  <>
-                    {labelRow}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <p style={qStyle}>Almost there —<br />how do we reach you?</p>
                     {[
                       { label: 'Your name',        value: name,   set: setName,   ph: 'e.g. Jade' },
@@ -328,7 +324,7 @@ function PhoneLeadQuiz() {
                       style={{ width: '100%', background: name && phone ? gold : 'rgba(196,168,130,0.25)', borderRadius: isMobile ? 8 : 10, padding: isMobile ? '9px' : '12px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: isMobile ? 4 : 5, transition: 'background 0.25s' }}>
                       <span style={{ fontFamily: BODY, fontSize: isMobile ? 9 : 11, fontWeight: 600, color: charcoal }}>Get my free quote →</span>
                     </motion.button>
-                  </>
+                  </div>
                 )}
               </motion.div>
             </AnimatePresence>
