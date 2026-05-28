@@ -1015,16 +1015,12 @@ function Bento() {
               <FadeIn delay={0.25}>{card4}</FadeIn>
             )}
           </div>
-          {/* Card 4 — mobile: left col | desktop: in right flex column above */}
-          {isMobile && (
-            <FadeIn delay={0.25}>
-              {card4}
-            </FadeIn>
-          )}
-          {/* Card 5 — desktop: full width | mobile: right col next to Card 4 */}
+          {/* Cards 4 + 5 — mobile: side-by-side in their own 2-col sub-grid | desktop: separate */}
           {isMobile ? (
-            <FadeIn delay={0.3}>
-              <div style={{ background: charcoal, borderRadius: 14, padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, alignItems: 'stretch' }}>
+              <FadeIn delay={0.25} style={{ height: '100%' }}>{card4}</FadeIn>
+              <FadeIn delay={0.3} style={{ height: '100%' }}>
+              <div style={{ background: charcoal, borderRadius: 14, padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 12, height: '100%', boxSizing: 'border-box' }}>
                 <div>
                   <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, margin: '0 0 8px', lineHeight: 1.35 }}>Deposits &amp; no-show protection</h3>
                   <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: gold, lineHeight: 1.6, margin: 0 }}>50% deposit collected automatically. No more no-shows.</p>
@@ -1048,7 +1044,8 @@ function Bento() {
                   </div>
                 </div>
               </div>
-            </FadeIn>
+              </FadeIn>
+            </div>
           ) : (
             <FadeIn delay={0.3} style={{ gridColumn: '1 / -1' }}>
               <div style={{ background: charcoal, borderRadius: 14, padding: 36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'center' }}>
