@@ -342,15 +342,18 @@ function PhoneLeadQuiz() {
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
                     <p style={qStyle}>Which package feels right?</p>
                     {[
-                      { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£1,499' },
-                      { name: 'Premium', desc: 'Custom design + booking system', price: '£2,499' },
-                      { name: 'Custom',  desc: 'Full bespoke build', price: "Let's talk" },
+                      { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£1,499', popular: false },
+                      { name: 'Premium', desc: 'Custom design + booking system', price: '£2,499', popular: true },
+                      { name: 'Custom',  desc: 'Full bespoke build', price: "Let's talk", popular: false },
                     ].map(opt => (
                       <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(6, opt.name)}
                         className={`quiz-opt${answers[6] === opt.name ? ' quiz-opt--selected' : ''}`}
                         style={{ ...optBase, justifyContent: 'space-between', textAlign: 'left' }}>
                         <div>
-                          <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 500, display: 'block' }}>{opt.name}</span>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 4 : 5, marginBottom: 1 }}>
+                            <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 500 }}>{opt.name}</span>
+                            {opt.popular && <span style={{ fontFamily: BODY, fontSize: isMobile ? 5 : 6.5, fontWeight: 700, color: charcoal, background: gold, borderRadius: 999, padding: isMobile ? '1px 4px' : '1px 5px', letterSpacing: '0.06em', textTransform: 'uppercase', lineHeight: 1.4 }}>Popular</span>}
+                          </div>
                           <span style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8.5, color: QUIZ_MUTE }}>{opt.desc}</span>
                         </div>
                         <span style={{ fontFamily: BODY, fontSize: isMobile ? 7 : 9.5, color: gold, fontWeight: 500, flexShrink: 0, marginLeft: 6 }}>{opt.price}</span>
@@ -1552,8 +1555,8 @@ const PRICING_PLANS = [
       'Custom domain + hosting included',
     ],
     cta: 'Book a Call',
-    hero: true,
-    light: true,
+    hero: false,
+    light: false,
   },
   {
     name: 'Premium',
@@ -1569,8 +1572,8 @@ const PRICING_PLANS = [
       'Priority support & updates',
     ],
     cta: 'Enquire Now',
-    hero: false,
-    light: false,
+    hero: true,
+    light: true,
   },
 ];
 

@@ -684,20 +684,24 @@ export default function CityLanding({ citySlug }: { citySlug: string }) {
           </FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
             {[
-              { label: "Core", price: "£1,499", note: "One-time fee · from £19.99/mo" },
-              { label: "Premium", price: "£2,499", note: "One-time fee · from £59.99/mo" },
-              { label: "Custom", price: "£3,000+", note: "One-time fee · tailored to you" },
+              { label: "Core", price: "£1,499", note: "One-time fee · from £19.99/mo", popular: false },
+              { label: "Premium", price: "£2,499", note: "One-time fee · from £59.99/mo", popular: true },
+              { label: "Custom", price: "£3,000+", note: "One-time fee · tailored to you", popular: false },
             ].map((tier, i) => (
               <FadeIn key={tier.label} delay={i * 0.1}>
                 <div
                   style={{
                     background: i === 2 ? charcoal : "#FDFAF5",
-                    border: `1px solid ${i === 2 ? "transparent" : line}`,
+                    border: `1.5px solid ${i === 1 ? gold : i === 2 ? "transparent" : line}`,
                     borderRadius: 4,
                     padding: "28px 20px",
                     textAlign: "center",
+                    position: "relative",
                   }}
                 >
+                  {tier.popular && (
+                    <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: gold, color: charcoal, fontFamily: "Inter Tight, system-ui, sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", padding: "3px 12px", borderRadius: 999, whiteSpace: "nowrap" }}>Most Popular</div>
+                  )}
                   <p
                     style={{
                       fontFamily: BODY,
