@@ -698,8 +698,33 @@ function Hero() {
         </div>
 
         {/* ── Segment 2: phone quiz — appears on scroll ── */}
-        <div style={{ padding: '48px 24px 64px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <PhoneLeadQuiz />
+        <div style={{ padding: '48px 24px 64px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          {/* Ambient orbs behind the quiz */}
+          {[
+            { size: 380, top: '-60px',  right: '-140px', y: [0,-18,0] as number[], dur: 11,  delay: 0,   fill: false, spin: 'orb-spin-cw'  },
+            { size: 220, bottom: '-40px', left: '-90px', y: [0,-14,0] as number[], dur: 14,  delay: 1.5, fill: false, spin: 'orb-spin-ccw' },
+            { size: 130, top: '20%',    left: '-30px',   y: [0,-16,0] as number[], dur: 9.5, delay: 0.7, fill: true,  spin: ''             },
+            { size: 80,  bottom: '18%', right: '-20px',  y: [0,-10,0] as number[], dur: 8,   delay: 2,   fill: true,  spin: 'orb-pulse'    },
+            { size: 50,  top: '40%',    right: '10%',    y: [0,-8,0]  as number[], dur: 7,   delay: 3,   fill: false, spin: 'orb-spin-cw'  },
+          ].map((c, i) => (
+            <motion.div key={`sq2-${i}`}
+              className={c.spin}
+              animate={{ y: c.y }}
+              transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                position: 'absolute', width: c.size, height: c.size, borderRadius: '50%',
+                border: c.fill ? 'none' : '1.5px solid rgba(201,169,97,0.25)',
+                background: c.fill ? 'radial-gradient(circle,rgba(201,169,97,0.10) 0%,transparent 72%)' : 'transparent',
+                top: (c as any).top, right: (c as any).right, bottom: (c as any).bottom, left: (c as any).left,
+                pointerEvents: 'none', zIndex: 0,
+              }}
+            />
+          ))}
+          {/* Central warm glow */}
+          <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%,-50%)', width: 420, height: 420, background: 'radial-gradient(ellipse, rgba(196,168,130,0.13) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <PhoneLeadQuiz />
+          </div>
         </div>
       </section>
     );
