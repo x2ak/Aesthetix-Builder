@@ -635,7 +635,7 @@ function Hero() {
             /* Mobile — quiz prompt */
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
               style={{ paddingTop: 14, borderTop: `1px solid ${line}`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, width: '100%' }}>
-              <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, color: gold, letterSpacing: '0.04em' }}>Get your free quote in 60 seconds</span>
+              <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 14, color: gold, letterSpacing: '0.04em' }}>Get your free quote in 60 seconds</span>
               <motion.span
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
