@@ -989,8 +989,9 @@ function Portfolio() {
   const userPausedRef = useRef(false);
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isAutoScrollingRef = useRef(false);
 
-  // Auto-scroll: advances one card every 3.5s, only when visible, pauses on interaction
+  // Auto-scroll setup with scroll-event detection for user interaction
   useEffect(() => {
     const el = scrollRef.current;
     const section = sectionRef.current;
@@ -1003,27 +1004,46 @@ function Portfolio() {
     );
     observer.observe(section);
 
+    // Detect user-initiated scroll (touch swipe or trackpad) and pause immediately
+    const onScroll = () => {
+      if (isAutoScrollingRef.current) return; // ignore our own auto-scroll events
+      userPausedRef.current = true;
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+      resumeTimerRef.current = setTimeout(() => { userPausedRef.current = false; }, 3000);
+    };
+    el.addEventListener('scroll', onScroll, { passive: true });
+
     autoTimerRef.current = setInterval(() => {
       if (!el || !visible || userPausedRef.current) return;
       const maxScroll = el.scrollWidth - el.clientWidth;
+      isAutoScrollingRef.current = true;
       if (el.scrollLeft >= maxScroll - 8) {
-        el.scrollTo({ left: 0, behavior: 'smooth' });
+        el.scrollTo({ left: 0, behavior: 'auto' }); // instant wrap-around
       } else {
-        // Advance by roughly one card width (first child width + gap)
         const firstCard = el.firstElementChild as HTMLElement | null;
         const step = firstCard ? firstCard.offsetWidth + 20 : el.clientWidth * 0.9;
         el.scrollBy({ left: step, behavior: 'smooth' });
       }
+      // Auto-scroll animation takes ~600ms; clear flag after that
+      setTimeout(() => { isAutoScrollingRef.current = false; }, 700);
     }, 3500);
 
     return () => {
       observer.disconnect();
+      el.removeEventListener('scroll', onScroll);
       if (autoTimerRef.current) clearInterval(autoTimerRef.current);
       if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
     };
   }, []);
 
+  const cancelSmoothScroll = () => {
+    // Setting scrollLeft = scrollLeft cancels any running CSS smooth-scroll animation
+    if (scrollRef.current) scrollRef.current.scrollLeft = scrollRef.current.scrollLeft;
+    isAutoScrollingRef.current = false;
+  };
+
   const pauseAuto = () => {
+    cancelSmoothScroll();
     userPausedRef.current = true;
     if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
   };
@@ -1032,7 +1052,7 @@ function Portfolio() {
     isDraggingRef.current = false;
     setIsDragging(false);
     if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => { userPausedRef.current = false; }, 2000);
+    resumeTimerRef.current = setTimeout(() => { userPausedRef.current = false; }, 3000);
   };
 
   const clients = [
