@@ -148,7 +148,7 @@ function PhoneLeadQuiz() {
         Step {step} of {QUIZ_TOTAL}
       </span>
       {step > 1 && !submitted && (
-        <button onClick={goBack} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: BODY, fontSize: isMobile ? 7 : 8.5, color: QUIZ_MUTE, padding: 0 }}>
+        <button onClick={goBack} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: BODY, fontSize: isMobile ? 7 : 8.5, color: gold, padding: 0 }}>
           ← Back
         </button>
       )}
@@ -337,7 +337,7 @@ function PhoneLeadQuiz() {
           {/* Bottom tag */}
           {!submitted && (
             <div style={{ padding: isMobile ? '4px 0 6px' : '6px 0 8px', textAlign: 'center', flexShrink: 0 }}>
-              <span style={{ fontFamily: BODY, fontSize: isMobile ? 5.5 : 7, letterSpacing: '0.2em', color: QUIZ_MUTE, textTransform: 'uppercase' }}>
+              <span style={{ fontFamily: BODY, fontSize: isMobile ? 5.5 : 7, letterSpacing: '0.2em', color: gold, textTransform: 'uppercase' }}>
                 60 seconds · no obligation
               </span>
             </div>
