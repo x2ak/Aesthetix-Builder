@@ -200,7 +200,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
             "{data.quote}"
           </motion.p>
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.4)', letterSpacing: '0.14em', textTransform: 'uppercase', margin: 0 }}>
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: accent, letterSpacing: '0.14em', textTransform: 'uppercase', margin: 0, opacity: 0.75 }}>
             {data.client} · {data.location}
           </motion.p>
         </div>
