@@ -131,6 +131,21 @@
 }
 .hero-gold-italic { animation: gold-pulse 4s ease-in-out infinite; }
 
+/* ── Investment heartbeat ── */
+@keyframes heartbeat {
+  0%   { transform: scale(1);    text-shadow: 0 0 24px rgba(196,168,130,0.45), 0 0 48px rgba(196,168,130,0.2); }
+  14%  { transform: scale(1.05); text-shadow: 0 0 52px rgba(196,168,130,1),    0 0 100px rgba(196,168,130,0.55), 0 0 160px rgba(196,168,130,0.25); }
+  28%  { transform: scale(1);    text-shadow: 0 0 24px rgba(196,168,130,0.45), 0 0 48px rgba(196,168,130,0.2); }
+  42%  { transform: scale(1.025);text-shadow: 0 0 36px rgba(196,168,130,0.7),  0 0 72px rgba(196,168,130,0.35); }
+  56%  { transform: scale(1);    text-shadow: 0 0 24px rgba(196,168,130,0.45), 0 0 48px rgba(196,168,130,0.2); }
+  100% { transform: scale(1);    text-shadow: 0 0 24px rgba(196,168,130,0.45), 0 0 48px rgba(196,168,130,0.2); }
+}
+.investment-heartbeat {
+  animation: heartbeat 2.4s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: center;
+}
+
 /* Smooth WA button glow on hover */
 .wa-btn.wa-default:hover {
   box-shadow: 0 0 0 3px rgba(196,168,130,0.18);
