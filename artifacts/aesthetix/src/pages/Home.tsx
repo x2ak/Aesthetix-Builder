@@ -1061,7 +1061,7 @@ function Portfolio() {
     {
       name: 'Starr Beautyy',
       loc: 'Hornchurch & Marylebone',
-      buildTime: '3 weeks',
+      buildTime: '10 days',
       url: 'https://starrbeautyy.co.uk',
       preview: '/starraesthetics-preview.png',
       grad: `linear-gradient(135deg, ${blush}, ${goldTint})`,

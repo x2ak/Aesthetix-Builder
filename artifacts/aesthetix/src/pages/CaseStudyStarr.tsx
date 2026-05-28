@@ -6,7 +6,7 @@ const data: CaseStudyData = {
   tagline: 'Two locations. One seamless booking experience.',
   industry: 'Aesthetic Clinic',
   location: 'Hornchurch, Essex & Marylebone, London',
-  buildTime: '3 weeks',
+  buildTime: '10 days',
   liveUrl: 'https://starrbeautyy.co.uk',
   metaTitle: 'Starr Beautyy Case Study | Aesthetix Systems',
   metaDesc: 'How Aesthetix Systems built a multi-location booking platform with two-way Google Calendar sync for Starr Beautyy across Hornchurch and Marylebone.',
@@ -20,7 +20,7 @@ const data: CaseStudyData = {
     { value: '£3.2k', label: 'Monthly revenue tracked' },
     { value: '47', label: 'Active clients' },
     { value: '2', label: 'Locations, one system' },
-    { value: '3 weeks', label: 'Brief to launch' },
+    { value: '10 days', label: 'Brief to launch' },
   ],
   quote: 'Managing two locations used to be chaos. Now every booking, both sites, syncs to my calendar instantly. I actually have time to focus on clients.',
   brief: `Starr Beautyy is one of Essex and London's most sought-after aesthetic clinics, operating from two distinct locations — Hornchurch and Marylebone. Managing bookings across two sites manually had become unworkable: double-bookings, missed enquiries, and hours spent on admin every week.
