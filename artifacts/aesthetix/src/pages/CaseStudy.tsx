@@ -130,9 +130,9 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       </section>
 
       {/* ─── METRICS STRIP ─── */}
-      <section style={{ background: charcoal, borderTop: '1px solid rgba(255,255,255,0.07)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <section style={{ background: charcoal, borderTop: '1px solid rgba(255,255,255,0.07)', borderBottom: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 28px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(160px, 40vw), 1fr))' }}>
             {data.metrics.map((m, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
