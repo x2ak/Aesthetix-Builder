@@ -1104,173 +1104,156 @@ function Bento() {
 /* ─── Pricing ─── */
 const PRICING_PLANS = [
   {
-    name: 'Starter',
-    build: '£749',
-    monthly: '£29.99 p/m',
-    desc: 'For solo practitioners launching online.',
-    features: ['Premium one-page website', 'Mobile-optimised & lightning fast', 'Calendly or Fresha booking embedded', 'Instagram & WhatsApp direct links', 'Google-ready SEO setup', 'Hosting, SSL & ongoing support'],
-    hero: false,
-    light: false,
-  },
-  {
     name: 'Growth',
     build: '£1,499',
-    monthly: '£49.99 p/m',
-    desc: 'The complete clinic system. No Fresha. No Booksy. No commission — ever.',
-    features: ['Full bespoke multi-page website', 'YOUR OWN branded booking platform', 'Clients book directly on your site', '50% Stripe deposits (protects against no-shows)', 'Automated SMS + email confirmations & reminders', 'Private admin portal to manage every booking'],
+    monthly: '£49.99/mo',
+    desc: 'The complete clinic system. No third-party platforms.',
+    features: [
+      'Full bespoke multi-page website',
+      'YOUR OWN branded booking platform',
+      '50% Stripe deposits',
+      'Automated SMS + email confirmations',
+      'Private admin portal',
+      'Mobile-first, loads in under 2s',
+      'Custom domain + hosting included',
+    ],
+    cta: 'Book a Call',
     hero: true,
     light: true,
   },
   {
     name: 'Premium',
     build: '£2,499',
-    monthly: '£79.99 p/m',
-    desc: 'Everything in Growth, plus AI that books clients for you — 24/7, from first enquiry to confirmed appointment.',
-    features: ['Everything in Growth', 'AI assistant trained on your treatments & pricing', 'Answers enquiries & books clients 24/7', 'Multi-practitioner team management', 'Analytics dashboard & booking insights', 'No-show recovery automations'],
+    monthly: '£79.99/mo',
+    desc: 'Everything in Growth, plus AI that books clients for you.',
+    features: [
+      'Everything in Growth',
+      'AI trained on your treatments',
+      'Books enquiries 24/7 automatically',
+      'Multi-practitioner management',
+      'Analytics & insights dashboard',
+      'Priority support & updates',
+    ],
+    cta: 'Enquire Now',
     hero: false,
     light: false,
   },
 ];
 
-function Pricing() {
+const CUSTOM_FEATURES = [
+  ['Everything in Growth & Premium', 'Loyalty schemes & memberships'],
+  ['Training academies & courses', 'Multi-location & franchise setups'],
+  ['Online stores & e-commerce', 'Any feature or integration you need'],
+];
+
+function PricingCard({ plan }: { plan: typeof PRICING_PLANS[0] }) {
   const isMobile = useIsMobile();
-  const [activeIdx, setActiveIdx] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const divider = plan.hero ? 'rgba(201,169,97,0.2)' : line;
+  const textCol = plan.hero ? 'rgba(247,244,238,0.75)' : inkSoft;
+  const labelCol = plan.hero ? cream : charcoal;
 
-  const handleScroll = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = el.scrollWidth / PRICING_PLANS.length;
-    setActiveIdx(Math.min(PRICING_PLANS.length - 1, Math.round(el.scrollLeft / cardWidth)));
-  };
-
-  const scrollTo = (i: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = el.scrollWidth / PRICING_PLANS.length;
-    el.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
-  };
-
-  const checkRow = (text: string, light = false) => (
-    <div key={text} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10 }}>
-      <Check size={14} color={gold} style={{ marginTop: 2, flexShrink: 0 }} />
-      <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: light ? 'rgba(247,244,238,0.8)' : inkSoft, lineHeight: 1.55 }}>{text}</span>
-    </div>
-  );
-
-  const renderCard = (plan: typeof PRICING_PLANS[0]) => (
+  return (
     <div className="pricing-card" style={{
       background: plan.hero ? charcoal : surface,
       border: plan.hero ? `2px solid ${gold}` : `1px solid ${line}`,
-      borderRadius: 14,
-      padding: 32,
+      borderRadius: 16,
+      padding: isMobile ? '20px 16px' : 32,
       position: 'relative',
-      height: '100%',
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
+      boxSizing: 'border-box',
     }}>
       {plan.hero && (
-        <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: gold, color: charcoal, fontFamily: BODY, fontWeight: 600, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '5px 14px', borderRadius: 999, whiteSpace: 'nowrap' }}>
+        <div style={{ position: 'absolute', top: -13, left: isMobile ? 16 : '50%', transform: isMobile ? 'none' : 'translateX(-50%)', background: goldTint, color: goldHover, fontFamily: BODY, fontWeight: 600, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '4px 12px', borderRadius: 999, whiteSpace: 'nowrap', border: `1px solid ${gold}` }}>
           Most Popular
         </div>
       )}
-      <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: gold, margin: '0 0 14px' }}>{plan.name}</p>
-      <div style={{ height: 1, background: plan.hero ? 'rgba(201,169,97,0.2)' : line, margin: '0 0 20px' }} />
-      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: plan.hero ? gold : inkSoft, lineHeight: 1.7, margin: '0 0 20px' }}>{plan.desc}</p>
-      <div style={{ flex: 1 }}>
-        {plan.features.map(t => checkRow(t, plan.light))}
+      {/* Name + price */}
+      <div style={{ paddingTop: plan.hero ? 8 : 0 }}>
+        <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 18 : 22, color: labelCol, margin: '0 0 6px' }}>{plan.name}</p>
+        <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: textCol, lineHeight: 1.55, margin: '0 0 16px' }}>{plan.desc}</p>
+        <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '1.5rem' : '2rem', color: labelCol, margin: '0 0 2px', lineHeight: 1.1 }}>
+          {plan.build} <span style={{ fontFamily: BODY, fontStyle: 'normal', fontWeight: 300, fontSize: isMobile ? 10 : 12, color: textCol }}>build</span>
+        </p>
+        <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 13, color: gold, margin: '0 0 18px' }}>+ {plan.monthly}</p>
       </div>
-      <div style={{ marginTop: 24 }}>
-        <WaBtn large={false} light={plan.hero} label="Get your bespoke quote" />
+      {/* Divider */}
+      <div style={{ height: 1, background: divider, margin: '0 0 16px' }} />
+      {/* CTA */}
+      <div style={{ marginBottom: 16 }}>
+        <WaBtn large={false} light={plan.hero} label={plan.cta} />
       </div>
+      {/* Feature toggle */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginBottom: open ? 14 : 0 }}>
+        <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.2em', color: textCol }}>{open ? 'Hide Features' : "What's Included"}</span>
+        <ChevronDown size={12} color={gold} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s' }} />
+      </button>
+      {open && (
+        <div>
+          {plan.features.map(t => (
+            <div key={t} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 9 }}>
+              <span style={{ color: gold, fontSize: 9, marginTop: 3, flexShrink: 0 }}>◆</span>
+              <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: textCol, lineHeight: 1.55 }}>{t}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
+}
+
+function Pricing() {
+  const isMobile = useIsMobile();
 
   return (
-    <section id="pricing" style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 20px' : '100px 0' }}>
+    <section id="pricing" style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 16px' : '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
         <FadeIn style={{ textAlign: 'center' }}><Overline centered>Investment</Overline></FadeIn>
-        <FadeIn delay={0.1} style={{ textAlign: 'center' }}><SectionHead regular="Three ways to start" italic="booking" centered /></FadeIn>
+        <FadeIn delay={0.1} style={{ textAlign: 'center', marginBottom: isMobile ? 28 : 48 }}>
+          <SectionHead regular="Choose your" italic="package" centered />
+        </FadeIn>
 
-        {/* Price anchor */}
+        {/* Plans grid — 2-col on both mobile and desktop */}
         <FadeIn delay={0.15}>
-          <div style={{ textAlign: 'center', margin: isMobile ? '32px 0 0' : '40px 0 0' }}>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 15, color: inkSoft, margin: '0 0 4px' }}>
-              Builds start from{' '}
-              <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '1.25rem' : '1.4rem', color: gold }}>£749</em>
-            </p>
-            <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 13 : 14, color: charcoal, margin: '0 0 6px' }}>
-              Every clinic is different. Every quote is tailored to yours.
-            </p>
-            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? 12 : 13, color: gold, margin: '0 0 24px' }}>
-              Most clinics invest between £1,499–£2,499 for the complete system.
-            </p>
-            <WaBtn large label="Get your bespoke quote" />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 10 : 24, alignItems: 'start', marginTop: 20 }}>
+            {PRICING_PLANS.map((plan, idx) => (
+              <div key={plan.name} style={{ paddingTop: plan.hero ? 13 : 0 }}>
+                <PricingCard plan={plan} />
+              </div>
+            ))}
           </div>
         </FadeIn>
 
-        {isMobile ? (
-          <>
-            {/* Scroll-snap carousel */}
-            <div style={{ margin: '40px -20px 0' }}>
-              <div
-                ref={scrollRef}
-                onScroll={handleScroll}
-                className="pricing-carousel"
-                style={{
-                  display: 'flex',
-                  overflowX: 'auto',
-                  scrollSnapType: 'x mandatory',
-                  scrollBehavior: 'smooth',
-                  gap: 16,
-                  paddingLeft: 20,
-                  paddingRight: 20,
-                  paddingBottom: 4,
-                }}
-              >
-                {PRICING_PLANS.map(plan => (
-                  <div key={plan.name} style={{
-                    flexShrink: 0,
-                    width: 'calc(100vw - 56px)',
-                    scrollSnapAlign: 'center',
-                    paddingTop: plan.hero ? 20 : 0,
-                  }}>
-                    {renderCard(plan)}
-                  </div>
-                ))}
-              </div>
+        {/* Custom Builds */}
+        <FadeIn delay={0.25}>
+          <div style={{ background: charcoal, borderRadius: 16, padding: isMobile ? '28px 20px' : '40px 48px', marginTop: isMobile ? 16 : 24 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+              <h3 style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 22 : 28, color: cream, margin: 0 }}>Custom Builds</h3>
+              <span style={{ fontFamily: BODY, fontWeight: 500, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, border: `1px solid ${gold}`, borderRadius: 999, padding: '4px 10px' }}>Tailored</span>
             </div>
-            {/* Dot indicators */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 20 }}>
-              {PRICING_PLANS.map((_, i) => (
-                <div
-                  key={i}
-                  onClick={() => scrollTo(i)}
-                  style={{
-                    width: i === activeIdx ? 22 : 6,
-                    height: 6,
-                    borderRadius: 3,
-                    background: i === activeIdx ? gold : line,
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer',
-                  }}
-                />
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 15, color: 'rgba(247,244,238,0.55)', margin: '0 0 28px' }}>Built from scratch to your exact spec.</p>
+            <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '2rem' : '2.6rem', color: cream, margin: '0 0 4px', lineHeight: 1 }}>from £3,000+</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: 'rgba(247,244,238,0.4)', margin: '0 0 28px' }}>Quoted based on requirements</p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '12px 16px' : '16px 32px', marginBottom: 28 }}>
+              {CUSTOM_FEATURES.flat().map(f => (
+                <div key={f} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                  <span style={{ color: gold, fontSize: 9, marginTop: 3, flexShrink: 0 }}>◆</span>
+                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: 'rgba(247,244,238,0.8)', lineHeight: 1.5 }}>{f}</span>
+                </div>
               ))}
             </div>
-          </>
-        ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24, alignItems: 'stretch', marginTop: 48 }}>
-            {PRICING_PLANS.map((plan, idx) => (
-              <FadeIn key={plan.name} delay={0.1 + idx * 0.08}>
-                {renderCard(plan)}
-              </FadeIn>
-            ))}
+            <div style={{ height: 1, background: 'rgba(201,169,97,0.2)', marginBottom: 24 }} />
+            <WaBtn large light label="Talk to us" />
           </div>
-        )}
+        </FadeIn>
 
         <FadeIn delay={0.3}>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textAlign: 'center', marginTop: 28 }}>
-            All builds include hosting, ongoing support &amp; security. Every quote is bespoke — message us to discuss your clinic.
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: gold, textAlign: 'center', marginTop: 20 }}>
+            All builds include hosting, ongoing support &amp; security. Every quote is bespoke.
           </p>
         </FadeIn>
       </div>
