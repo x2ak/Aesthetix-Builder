@@ -924,12 +924,20 @@ function Bento() {
           {/* Card 5 — desktop: full width | mobile: right col next to Card 4 */}
           {isMobile ? (
             <FadeIn delay={0.3}>
-              <div style={{ background: charcoal, borderRadius: 14, padding: '16px 14px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div style={{ background: charcoal, borderRadius: 14, padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div>
                   <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 13, color: cream, margin: '0 0 8px', lineHeight: 1.35 }}>Deposits &amp; no-show protection</h3>
                   <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: gold, lineHeight: 1.6, margin: 0 }}>50% deposit collected automatically. No more no-shows.</p>
                 </div>
-                <div style={{ background: charcoalSoft, borderRadius: 10, padding: '12px 10px', marginTop: 12, position: 'relative' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {['No more last-minute cancellations', 'Clients pay 50% upfront at booking', 'Refund policy enforced automatically', 'Bank-grade Stripe security'].map(pt => (
+                    <div key={pt} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                      <div style={{ width: 5, height: 5, borderRadius: '50%', background: gold, flexShrink: 0 }} />
+                      <span style={{ fontFamily: BODY, fontSize: 9.5, fontWeight: 300, color: 'rgba(247,244,238,0.65)', lineHeight: 1.4 }}>{pt}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ background: charcoalSoft, borderRadius: 10, padding: '12px 10px', position: 'relative' }}>
                   <div style={{ position: 'absolute', top: 8, right: 8 }}>
                     <span style={{ background: sage, color: surface, fontFamily: BODY, fontSize: 7, fontWeight: 500, borderRadius: 3, padding: '2px 5px' }}>SECURED</span>
                   </div>
