@@ -25,6 +25,7 @@ function Router() {
 
   if (path === "/privacy-policy") return <PrivacyPolicy />;
   if (path === "/terms-of-service") return <TermsOfService />;
+  if (path === "/terms") return <TermsOfService />;
   if (path === "/_admin-preview/starr") return <AdminPreview client="starr" />;
   if (path === "/_admin-preview/dermadoll") return <AdminPreview client="dermadoll" />;
   if (path === "/_admin-preview/flawlessskin") return <AdminPreview client="flawlessskin" />;
