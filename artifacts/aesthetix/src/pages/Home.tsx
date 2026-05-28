@@ -348,7 +348,7 @@ function PhoneLeadQuiz() {
                     ].map(opt => (
                       <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(6, opt.name)}
                         className={`quiz-opt${answers[6] === opt.name ? ' quiz-opt--selected' : ''}`}
-                        style={{ ...optBase, justifyContent: 'space-between' }}>
+                        style={{ ...optBase, justifyContent: 'space-between', textAlign: 'left' }}>
                         <div>
                           <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 500, display: 'block' }}>{opt.name}</span>
                           <span style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8.5, color: QUIZ_MUTE }}>{opt.desc}</span>
