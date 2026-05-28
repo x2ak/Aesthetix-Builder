@@ -164,14 +164,12 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
             {data.tagline}
           </motion.h2>
 
-          {/* Body paragraphs — clean, readable, well-spaced */}
-          {data.brief.split('\n\n').map((para, i) => (
-            <motion.p key={i}
-              initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.07 }}
-              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.95, margin: i === 0 ? '0 0 28px' : '0 0 28px', marginBottom: i < data.brief.split('\n\n').length - 1 ? 28 : 0 }}>
-              {para}
-            </motion.p>
-          ))}
+          {/* Body — first paragraph only, keep it punchy */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}
+            style={{ fontFamily: BODY, fontWeight: 300, fontSize: 17, color: inkSoft, lineHeight: 1.9, margin: 0 }}>
+            {data.brief.split('\n\n')[0]}
+          </motion.p>
         </div>
       </section>
 
@@ -193,33 +191,27 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       </section>
 
       {/* ─── FEATURES ─── */}
-      <section style={{ background: surface, padding: 'clamp(56px, 6vw, 88px) 28px' }}>
+      <section style={{ background: surface, padding: 'clamp(40px, 5vw, 64px) 28px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20, marginBottom: 56 }}>
-            <div>
-              <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: accent, margin: '0 0 12px' }}>
-                Everything included
-              </motion.p>
-              <motion.h2 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 }}
-                style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: charcoal, margin: 0, lineHeight: 1.1 }}>
-                What we delivered
-              </motion.h2>
-            </div>
-            <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkMute }}>
-              {data.features.length} features built
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: 28 }}>
+            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: accent, margin: 0 }}>
+              What we delivered
+            </motion.p>
+            <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+              style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.04em' }}>
+              {data.features.length} features
             </motion.span>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 2 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(220px, 100%), 1fr))', gap: 2 }}>
             {data.features.map((f, i) => (
               <motion.div key={i}
-                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.035 }}
-                style={{ background: cream, border: `1px solid ${line}`, padding: '24px 28px', display: 'flex', alignItems: 'flex-start', gap: 18 }}>
-                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 22, color: accent, lineHeight: 1, flexShrink: 0, marginTop: 2 }}>
+                initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.025 }}
+                style={{ background: cream, border: `1px solid ${line}`, padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 14 }}>
+                <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 16, color: accent, lineHeight: 1, flexShrink: 0 }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.7 }}>{f}</span>
+                <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: inkSoft, lineHeight: 1.6 }}>{f}</span>
               </motion.div>
             ))}
           </div>
