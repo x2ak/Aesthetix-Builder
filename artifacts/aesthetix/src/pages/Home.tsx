@@ -1299,7 +1299,7 @@ function Pricing() {
             </div>
             <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 15, color: gold, margin: '0 0 28px' }}>Built from scratch to your exact spec.</p>
             <p style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? '2rem' : '2.6rem', color: cream, margin: '0 0 4px', lineHeight: 1 }}>from £3,000+</p>
-            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: 'rgba(247,244,238,0.4)', margin: '0 0 28px' }}>Quoted based on requirements</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 13, color: gold, margin: '0 0 28px' }}>Quoted based on requirements</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '12px 16px' : '16px 32px', marginBottom: 28 }}>
               {CUSTOM_FEATURES.flat().map(f => (
                 <div key={f} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
