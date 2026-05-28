@@ -87,6 +87,23 @@
 .reviews-carousel { -ms-overflow-style: none; scrollbar-width: none; }
 .reviews-carousel::-webkit-scrollbar { display: none; }
 
+/* Floating orb animations */
+@keyframes orb-spin-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes orb-spin-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.55; }
+  50%       { transform: scale(1.18); opacity: 1; }
+}
+.orb-spin-cw  { animation: orb-spin-cw  32s linear infinite; }
+.orb-spin-ccw { animation: orb-spin-ccw 44s linear infinite; }
+.orb-pulse    { animation: orb-pulse    5s  ease-in-out infinite; }
+
 /* Pricing card hover */
 .pricing-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,26,28,0.10); }
