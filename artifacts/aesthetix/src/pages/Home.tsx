@@ -2746,7 +2746,7 @@ function WhatsAppWidget() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6 }}
           transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-          style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 9999, display: 'flex', alignItems: 'flex-end', gap: 12, pointerEvents: 'none' }}
+          style={{ position: 'fixed', bottom: 20, right: 16, zIndex: 9999, display: 'flex', alignItems: 'flex-end', gap: 10, pointerEvents: 'none' }}
         >
           {/* Tooltip label */}
           <AnimatePresence>
@@ -2780,7 +2780,7 @@ function WhatsAppWidget() {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             style={{
-              width: 58, height: 58, borderRadius: '50%',
+              width: 44, height: 44, borderRadius: '50%',
               background: cream,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: hovered
@@ -2794,7 +2794,7 @@ function WhatsAppWidget() {
               border: `1.5px solid rgba(196,168,130,0.35)`,
             }}
           >
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
               <path fillRule="evenodd" clipRule="evenodd"
                 d="M16 2C8.268 2 2 8.268 2 16c0 2.478.668 4.797 1.832 6.789L2 30l7.43-1.8A13.938 13.938 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.54 11.54 0 01-5.88-1.608l-.42-.252-4.41 1.068 1.092-4.302-.276-.444A11.56 11.56 0 014.4 16C4.4 9.594 9.594 4.4 16 4.4S27.6 9.594 27.6 16 22.406 27.6 16 27.6zm6.36-8.652c-.348-.174-2.064-1.02-2.382-1.134-.318-.12-.552-.174-.78.174-.234.348-.894 1.134-1.098 1.368-.204.228-.402.258-.75.084-.348-.174-1.47-.543-2.8-1.728-1.032-.924-1.73-2.064-1.932-2.412-.204-.348-.024-.534.15-.708.156-.156.348-.402.522-.6.174-.204.228-.348.348-.582.12-.234.06-.438-.03-.612-.09-.174-.78-1.884-1.074-2.58-.282-.678-.57-.582-.78-.594-.204-.012-.432-.012-.66-.012-.234 0-.612.084-.93.432-.318.348-1.218 1.188-1.218 2.898 0 1.71 1.248 3.36 1.422 3.594.174.234 2.46 3.756 5.958 5.268.834.36 1.482.576 1.992.738.834.264 1.596.228 2.196.138.672-.102 2.064-.846 2.358-1.662.294-.816.294-1.518.204-1.662-.084-.15-.318-.234-.666-.408z"
                 fill={gold}
