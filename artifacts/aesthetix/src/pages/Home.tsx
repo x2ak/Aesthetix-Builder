@@ -100,413 +100,254 @@ function SectionDivider() {
   );
 }
 
-/* ─── Phone Lead Quiz ─── */
-const QUIZ_TOTAL = 7;
+/* ─── Lead Form ─── */
 const QUIZ_BG = '#141416';
-const QUIZ_CARD = '#26262C';
-const QUIZ_BORDER = 'rgba(255,255,255,0.10)';
 const QUIZ_TEXT = '#F7F4EE';
 const QUIZ_MUTE = 'rgba(247,244,238,0.45)';
+const FORM_TOTAL = 4;
 
-function PhoneLeadQuiz() {
+function LeadForm() {
   const isMobile = useIsMobile();
-  const PW = isMobile ? 190 : 264;
-  const PH = isMobile ? 382 : 530;
-  const PR = isMobile ? 30 : 40;
-  const PP = isMobile ? 9 : 12;
-
   const [step, setStep] = useState(1);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [businessType, setBusinessType] = useState('');
   const [checked, setChecked] = useState<string[]>([]);
+  const [packageChoice, setPackageChoice] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [handle, setHandle] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
+  const progress = submitted ? 100 : ((step - 1) / (FORM_TOTAL - 1)) * 100;
+  const goNext = () => setStep(s => Math.min(FORM_TOTAL, s + 1));
   const goBack = () => setStep(s => Math.max(1, s - 1));
-  const goNext = () => setStep(s => Math.min(QUIZ_TOTAL, s + 1));
-
-  const pick = (stepNum: number, value: string) => {
-    setAnswers(a => ({ ...a, [stepNum]: value }));
-    setTimeout(goNext, 160);
-  };
-
   const toggleCheck = (item: string) =>
     setChecked(c => c.includes(item) ? c.filter(x => x !== item) : [...c, item]);
 
-  const progressPct = ((step - 1) / (QUIZ_TOTAL - 1)) * 100;
+  const submit = async () => {
+    if (!name || !phone) return;
+    setSubmitting(true);
+    try {
+      await fetch('/api/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, handle: handle || null,
+          businessType: businessType || null,
+          painPoints: checked.length ? checked : null,
+          packageChoice: packageChoice || null,
+        }),
+      });
+    } catch { /* non-blocking */ }
+    setSubmitted(true);
+    setSubmitting(false);
+  };
 
-  const optBase: React.CSSProperties = {
+  const inputStyle: React.CSSProperties = {
     width: '100%',
-    background: QUIZ_CARD,
-    border: `1px solid ${QUIZ_BORDER}`,
-    borderRadius: isMobile ? 8 : 11,
-    padding: isMobile ? '7px 10px' : '10px 14px',
-    marginBottom: isMobile ? 4 : 5,
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'border-color 0.18s, background 0.18s, box-shadow 0.18s',
-  };
-
-  const qStyle: React.CSSProperties = {
-    fontFamily: DISP,
-    fontStyle: 'italic',
-    fontSize: isMobile ? 14 : 19,
+    background: 'rgba(255,255,255,0.05)',
+    border: '1px solid rgba(196,168,130,0.22)',
+    borderRadius: 12,
+    padding: '14px 18px',
+    fontFamily: BODY,
+    fontSize: 15,
     color: QUIZ_TEXT,
-    margin: `0 0 ${isMobile ? 8 : 11}px`,
-    lineHeight: 1.2,
-    letterSpacing: '-0.01em',
+    outline: 'none',
+    boxSizing: 'border-box',
+    caretColor: gold,
+    transition: 'border-color 0.18s, box-shadow 0.18s',
   };
-
-  const labelRow = (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isMobile ? 10 : 13 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 4 : 5 }}>
-        {Array.from({ length: QUIZ_TOTAL }).map((_, i) => (
-          <div key={i} style={{
-            width: i === step - 1 ? (isMobile ? 10 : 13) : (isMobile ? 4 : 5),
-            height: isMobile ? 4 : 5,
-            borderRadius: 99,
-            background: i < step ? gold : (i === step - 1 ? gold : 'rgba(196,168,130,0.22)'),
-            transition: 'width 0.3s, background 0.3s',
-          }} />
-        ))}
-      </div>
-      {step > 1 && !submitted && (
-        <button onClick={goBack} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: BODY, fontSize: isMobile ? 7 : 8.5, color: QUIZ_MUTE, padding: 0, letterSpacing: '0.05em' }}>
-          ← back
-        </button>
-      )}
-    </div>
-  );
 
   return (
-    <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ position: 'absolute', width: isMobile ? 260 : 340, height: isMobile ? 260 : 340, background: 'radial-gradient(ellipse at center, rgba(201,169,97,0.13) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
-      <motion.div
-        animate={{ y: [0, -9, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ width: PW, height: PH, background: charcoal, borderRadius: PR, padding: PP, boxShadow: `0 0 0 1.5px rgba(201,169,97,0.28), 0 36px 72px rgba(26,26,28,0.28)`, position: 'relative' }}
-      >
-        {/* Notch */}
-        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: isMobile ? 60 : 80, height: isMobile ? 20 : 26, background: charcoal, borderRadius: '0 0 14px 14px', zIndex: 10 }} />
+    <div style={{
+      background: `linear-gradient(160deg, #1E1E23 0%, ${QUIZ_BG} 60%)`,
+      borderRadius: 24,
+      overflow: 'hidden',
+      boxShadow: '0 0 0 1px rgba(196,168,130,0.18), 0 40px 100px rgba(26,26,28,0.22)',
+      width: '100%',
+    }}>
+      {/* Gold progress bar */}
+      <div style={{ height: 3, background: 'rgba(196,168,130,0.12)', position: 'relative' }}>
+        <motion.div
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+          style={{ height: '100%', background: `linear-gradient(90deg, #D4B892, ${gold})`, borderRadius: '0 2px 2px 0' }}
+        />
+      </div>
 
-        {/* Screen */}
-        <div style={{ width: '100%', height: '100%', background: `linear-gradient(160deg, #1C1C21 0%, ${QUIZ_BG} 60%)`, borderRadius: 30, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-          {/* Ambient glow top-right */}
-          <div style={{ position: 'absolute', top: '-20%', right: '-20%', width: isMobile ? 120 : 160, height: isMobile ? 120 : 160, background: 'radial-gradient(circle, rgba(196,168,130,0.14) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
-
-          {/* Content */}
-          <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-            {/* Aesthetix watermark — visible in dead space, hidden on packed steps */}
-            <div style={{
-              position: 'absolute', bottom: isMobile ? 6 : 10, left: 0, right: 0,
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 3 : 4,
-              pointerEvents: 'none', zIndex: 0,
-              opacity: (!submitted && (step === 4 || step === 7)) ? 0 : 0.42,
-              transition: 'opacity 0.3s',
-            }}>
-              <svg width={isMobile ? 18 : 24} height={isMobile ? 18 : 24} viewBox="0 0 28 28" fill="none">
-                <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.2" />
-                <path d="M14 7l4.5 11H9.5L14 7z" stroke={gold} strokeWidth="1.1" strokeLinejoin="round" fill="none" />
-                <path d="M11 14.5h6" stroke={gold} strokeWidth="1" strokeLinecap="round" />
-              </svg>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-                <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 5.5 : 7, letterSpacing: '0.22em', color: gold, textTransform: 'uppercase' as const }}>Aesthetix</span>
-                <span style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 4 : 5.5, letterSpacing: '0.28em', color: gold, textTransform: 'uppercase' as const }}>Systems</span>
-              </div>
-            </div>
-            <AnimatePresence mode="wait">
-              <motion.div key={submitted ? 'done' : step}
-                initial={{ x: 28, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -28, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                style={{ position: 'absolute', inset: 0, padding: isMobile ? '8px 9px 4px' : '12px 14px 6px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}
-              >
-                {/* Label row always pinned at top */}
-                {!submitted && labelRow}
-
-                {submitted ? (
-                  /* ── Success ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: isMobile ? '0 8px' : '0 14px' }}>
-                    {/* Gold check circle */}
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      style={{ width: isMobile ? 38 : 48, height: isMobile ? 38 : 48, borderRadius: '50%', background: `linear-gradient(135deg, #D4B892 0%, ${gold} 100%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? 10 : 13, flexShrink: 0, boxShadow: `0 4px 18px rgba(196,168,130,0.35)` }}
-                    >
-                      <Check size={isMobile ? 17 : 22} color={charcoal} strokeWidth={2.5} />
-                    </motion.div>
-
-                    {/* Heading */}
-                    <motion.p
-                      initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.3 }}
-                      style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 16 : 22, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 4 : 6}px`, lineHeight: 1.15, fontWeight: 400 }}
-                    >
-                      Thank you!
-                    </motion.p>
-
-                    {/* Subheading */}
-                    <motion.p
-                      initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22, duration: 0.3 }}
-                      style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 8.5 : 10.5, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 3 : 4}px`, lineHeight: 1.55 }}
-                    >
-                      We'll be in touch within 24 hours.
-                    </motion.p>
-                    <motion.p
-                      initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28, duration: 0.3 }}
-                      style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 7.5 : 9, color: QUIZ_MUTE, margin: 0, lineHeight: 1.5 }}
-                    >
-                      We aim to reply within 1–2 hours.
-                    </motion.p>
-
-                    {/* Divider */}
-                    <motion.div
-                      initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.35, duration: 0.4 }}
-                      style={{ width: '100%', height: 1, background: `linear-gradient(90deg, transparent, rgba(196,168,130,0.3), transparent)`, margin: `${isMobile ? 12 : 16}px 0` }}
-                    />
-
-                    {/* WhatsApp CTA */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.42, duration: 0.3 }}
-                      style={{ width: '100%' }}
-                    >
-                      <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 7 : 8.5, color: QUIZ_MUTE, margin: `0 0 ${isMobile ? 6 : 8}px`, lineHeight: 1.4 }}>
-                        Need anything in the meantime?
-                      </p>
-                      <a
-                        href={WA}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? 5 : 6,
-                          width: '100%', boxSizing: 'border-box',
-                          background: 'rgba(196,168,130,0.12)',
-                          border: `1px solid rgba(196,168,130,0.30)`,
-                          borderRadius: isMobile ? 8 : 10,
-                          padding: isMobile ? '7px 10px' : '9px 12px',
-                          textDecoration: 'none',
-                          transition: 'background 0.18s',
-                        }}
-                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(196,168,130,0.22)'; }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(196,168,130,0.12)'; }}
-                      >
-                        <svg width={isMobile ? 12 : 14} height={isMobile ? 12 : 14} viewBox="0 0 32 32" fill="none">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.478.668 4.797 1.832 6.789L2 30l7.43-1.8A13.938 13.938 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.54 11.54 0 01-5.88-1.608l-.42-.252-4.41 1.068 1.092-4.302-.276-.444A11.56 11.56 0 014.4 16C4.4 9.594 9.594 4.4 16 4.4S27.6 9.594 27.6 16 22.406 27.6 16 27.6zm6.36-8.652c-.348-.174-2.064-1.02-2.382-1.134-.318-.12-.552-.174-.78.174-.234.348-.894 1.134-1.098 1.368-.204.228-.402.258-.75.084-.348-.174-1.47-.543-2.8-1.728-1.032-.924-1.73-2.064-1.932-2.412-.204-.348-.024-.534.15-.708.156-.156.348-.402.522-.6.174-.204.228-.348.348-.582.12-.234.06-.438-.03-.612-.09-.174-.78-1.884-1.074-2.58-.282-.678-.57-.582-.78-.594-.204-.012-.432-.012-.66-.012-.234 0-.612.084-.93.432-.318.348-1.218 1.188-1.218 2.898 0 1.71 1.248 3.36 1.422 3.594.174.234 2.46 3.756 5.958 5.268.834.36 1.482.576 1.992.738.834.264 1.596.228 2.196.138.672-.102 2.064-.846 2.358-1.662.294-.816.294-1.518.204-1.662-.084-.15-.318-.234-.666-.408z" fill={gold} />
-                        </svg>
-                        <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: isMobile ? 8 : 9.5, color: gold, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                          Message us on WhatsApp
-                        </span>
-                      </a>
-                    </motion.div>
-                  </div>
-
-                ) : step === 1 ? (
-                  /* ── Step 1: Business type (2-col grid with emoji) ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 6 : 10 }}>
-                    <p style={qStyle}>What kind of business<br />do you run?</p>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 5 : 7 }}>
-                      {[
-                        { label: 'Aesthetics',   emoji: '💉' },
-                        { label: 'Lash & Brow',  emoji: '👁️' },
-                        { label: 'Skin/Facials', emoji: '✨' },
-                        { label: 'Hair',         emoji: '✂️' },
-                        { label: 'Nails',        emoji: '💅' },
-                        { label: 'Other',        emoji: '⭐' },
-                      ].map(opt => (
-                        <motion.button key={opt.label} whileTap={{ scale: 0.92 }} onClick={() => pick(1, opt.label)}
-                          className={`quiz-opt${answers[1] === opt.label ? ' quiz-opt--selected' : ''}`}
-                          style={{ ...optBase, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: isMobile ? '8px 4px' : '11px 6px', marginBottom: 0, gap: isMobile ? 3 : 4 }}>
-                          <span className="quiz-opt-emoji" style={{ fontSize: isMobile ? 15 : 19, lineHeight: 1 }}>{opt.emoji}</span>
-                          <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 7 : 9, color: QUIZ_TEXT, fontWeight: 400, textAlign: 'center' as const, letterSpacing: '0.02em' }}>{opt.label}</span>
-                        </motion.button>
-                      ))}
-                    </div>
-                  </div>
-
-                ) : step === 2 ? (
-                  /* ── Step 2: Current booking method ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
-                    <p style={qStyle}>How are clients booking right now?</p>
-                    {[
-                      { label: 'Instagram DMs',   emoji: '📸' },
-                      { label: 'WhatsApp',         emoji: '💬' },
-                      { label: 'Fresha / Booksy',  emoji: '📅' },
-                      { label: 'Phone & walk-ins', emoji: '📞' },
-                      { label: 'Nothing yet',      emoji: '🚫' },
-                    ].map(opt => (
-                      <motion.button key={opt.label} whileTap={{ scale: 0.97 }} onClick={() => pick(2, opt.label)}
-                        className={`quiz-opt${answers[2] === opt.label ? ' quiz-opt--selected' : ''}`}
-                        style={{ ...optBase, justifyContent: 'flex-start', gap: isMobile ? 8 : 10 }}>
-                        <span className="quiz-opt-emoji" style={{ fontSize: isMobile ? 13 : 16, lineHeight: 1, flexShrink: 0 }}>{opt.emoji}</span>
-                        <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 300 }}>{opt.label}</span>
-                      </motion.button>
-                    ))}
-                  </div>
-
-                ) : step === 3 ? (
-                  /* ── Step 3: Bookings per month ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
-                    <p style={qStyle}>Roughly how many bookings a month?</p>
-                    {[
-                      { label: '0 – 20',   emoji: '🌱' },
-                      { label: '20 – 50',  emoji: '📈' },
-                      { label: '50 – 100', emoji: '🔥' },
-                      { label: '100+',     emoji: '🚀' },
-                    ].map(opt => (
-                      <motion.button key={opt.label} whileTap={{ scale: 0.97 }} onClick={() => pick(3, opt.label)}
-                        className={`quiz-opt${answers[3] === opt.label ? ' quiz-opt--selected' : ''}`}
-                        style={{ ...optBase, justifyContent: 'flex-start', gap: isMobile ? 8 : 10 }}>
-                        <span className="quiz-opt-emoji" style={{ fontSize: isMobile ? 13 : 16, lineHeight: 1, flexShrink: 0 }}>{opt.emoji}</span>
-                        <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 300 }}>{opt.label}</span>
-                      </motion.button>
-                    ))}
-                  </div>
-
-                ) : step === 4 ? (
-                  /* ── Step 4: Pain points (multi-select) ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <p style={qStyle}>What's holding you back?</p>
-                    <p style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8, letterSpacing: '0.15em', color: gold, textTransform: 'uppercase', margin: `0 0 ${isMobile ? 5 : 7}px` }}>Select all that apply</p>
-                    {["No-shows", "Time wasted in DMs", "Looks unprofessional", "No deposits taken", "Can't be found on Google", "Juggling multiple locations"].map(opt => {
-                      const sel = checked.includes(opt);
-                      return (
-                        <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => toggleCheck(opt)}
-                          className={`quiz-opt${sel ? ' quiz-opt--selected' : ''}`}
-                          style={{ ...optBase, justifyContent: 'space-between', border: `1px solid ${sel ? gold : QUIZ_BORDER}` }}>
-                          <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 7.5 : 10, color: sel ? gold : QUIZ_TEXT, fontWeight: 300, textAlign: 'left' as const }}>{opt}</span>
-                          <div style={{ width: isMobile ? 12 : 15, height: isMobile ? 12 : 15, borderRadius: 3, border: `1.5px solid ${sel ? gold : QUIZ_MUTE}`, background: sel ? gold : 'transparent', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.15s' }}>
-                            {sel && <Check size={isMobile ? 7 : 9} color={charcoal} strokeWidth={2.5} />}
-                          </div>
-                        </motion.button>
-                      );
-                    })}
-                    <motion.button whileTap={{ scale: 0.97 }} onClick={goNext}
-                      style={{ width: '100%', background: gold, borderRadius: isMobile ? 6 : 10, padding: isMobile ? '5px' : '8px', border: 'none', cursor: 'pointer', marginTop: isMobile ? 3 : 5 }}>
-                      <span style={{ fontFamily: BODY, fontSize: isMobile ? 7.5 : 11, fontWeight: 600, color: charcoal }}>Continue →</span>
-                    </motion.button>
-                  </div>
-
-                ) : step === 5 ? (
-                  /* ── Step 5: Pick your look ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
-                    <p style={qStyle}>Pick your look</p>
-                    {[
-                      { name: 'Warm Luxe',      colors: ['#F5F0E8', '#C4A882', '#1A1A1C'], desc: 'Cream & gold' },
-                      { name: 'Clean Clinical', colors: ['#FFFFFF', '#D0DCE8', '#2E4A6A'], desc: 'White & navy' },
-                      { name: 'Bold Editorial', colors: ['#111111', '#C4A882', '#C0392B'], desc: 'Dark & striking' },
-                      { name: 'Custom',         colors: [], badge: 'BESPOKE', desc: 'We design it for you' },
-                    ].map(opt => (
-                      <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(5, opt.name)}
-                        className={`quiz-opt${answers[5] === opt.name ? ' quiz-opt--selected' : ''}`}
-                        style={{ ...optBase, justifyContent: 'space-between', textAlign: 'left' }}>
-                        <div>
-                          <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 400, display: 'block' }}>{opt.name}</span>
-                          <span style={{ fontFamily: BODY, fontSize: isMobile ? 6 : 7.5, color: QUIZ_MUTE }}>{opt.desc}</span>
-                        </div>
-                        {opt.badge ? (
-                          <span style={{ fontFamily: BODY, fontSize: isMobile ? 6 : 7.5, letterSpacing: '0.12em', color: gold, border: `1px solid rgba(196,168,130,0.4)`, borderRadius: 999, padding: isMobile ? '2px 5px' : '3px 8px' }}>{opt.badge}</span>
-                        ) : (
-                          <div style={{ display: 'flex', gap: isMobile ? 3 : 4 }}>
-                            {opt.colors.map((c, ci) => (
-                              <div key={ci} style={{ width: isMobile ? 12 : 16, height: isMobile ? 12 : 16, borderRadius: '50%', background: c, border: '1.5px solid rgba(255,255,255,0.15)', boxShadow: '0 1px 4px rgba(0,0,0,0.3)' }} />
-                            ))}
-                          </div>
-                        )}
-                      </motion.button>
-                    ))}
-                  </div>
-
-                ) : step === 6 ? (
-                  /* ── Step 6: Package ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', paddingTop: isMobile ? 8 : 14 }}>
-                    <p style={qStyle}>Which package feels right?</p>
-                    {[
-                      { name: 'Core',    desc: 'Clean, fast & ready to book', price: '£1,499', popular: false },
-                      { name: 'Premium', desc: 'Custom design + booking system', price: '£2,499', popular: true },
-                      { name: 'Custom',  desc: 'Full bespoke build', price: "Let's talk", popular: false },
-                    ].map(opt => (
-                      <motion.button key={opt.name} whileTap={{ scale: 0.97 }} onClick={() => pick(6, opt.name)}
-                        className={`quiz-opt${answers[6] === opt.name ? ' quiz-opt--selected' : ''}`}
-                        style={{ ...optBase, justifyContent: 'space-between', textAlign: 'left' }}>
-                        <div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 4 : 5, marginBottom: 1 }}>
-                            <span className="quiz-opt-label" style={{ fontFamily: BODY, fontSize: isMobile ? 8 : 11, color: QUIZ_TEXT, fontWeight: 500 }}>{opt.name}</span>
-                            {opt.popular && <span style={{ fontFamily: BODY, fontSize: isMobile ? 5 : 6.5, fontWeight: 700, color: charcoal, background: gold, borderRadius: 999, padding: isMobile ? '1px 4px' : '1px 5px', letterSpacing: '0.06em', textTransform: 'uppercase', lineHeight: 1.4 }}>Popular</span>}
-                          </div>
-                          <span style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8.5, color: QUIZ_MUTE }}>{opt.desc}</span>
-                        </div>
-                        <span style={{ fontFamily: BODY, fontSize: isMobile ? 7 : 9.5, color: gold, fontWeight: 500, flexShrink: 0, marginLeft: 6 }}>{opt.price}</span>
-                      </motion.button>
-                    ))}
-                  </div>
-
-                ) : (
-                  /* ── Step 7: Contact details ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <p style={qStyle}>Almost there —<br />how do we reach you?</p>
-                    {[
-                      { label: 'Your name',           value: name,   set: setName,   ph: 'e.g. Jade', emoji: '👤' },
-                      { label: 'Phone number',        value: phone,  set: setPhone,  ph: '+44 7700 000000', emoji: '📱' },
-                      { label: 'IG / TikTok handle',  value: handle, set: setHandle, ph: '@yourhandle', emoji: '✨' },
-                    ].map(f => (
-                      <div key={f.label} style={{ marginBottom: isMobile ? 7 : 9 }}>
-                        <label style={{ fontFamily: BODY, fontSize: isMobile ? 6 : 7.5, color: QUIZ_MUTE, letterSpacing: '0.12em', textTransform: 'uppercase' as const, display: 'flex', alignItems: 'center', gap: 4, marginBottom: 4 }}>
-                          <span style={{ fontSize: isMobile ? 9 : 11 }}>{f.emoji}</span>
-                          {f.label}
-                        </label>
-                        <input value={f.value} onChange={e => f.set(e.target.value)} placeholder={f.ph}
-                          style={{ width: '100%', background: QUIZ_CARD, border: `1px solid ${QUIZ_BORDER}`, borderRadius: isMobile ? 7 : 9, padding: isMobile ? '7px 10px' : '9px 12px', fontFamily: BODY, fontSize: isMobile ? 9 : 11, color: QUIZ_TEXT, outline: 'none', boxSizing: 'border-box' as const, caretColor: gold, transition: 'border-color 0.18s' }}
-                          onFocus={e => { e.target.style.borderColor = gold; e.target.style.boxShadow = `0 0 0 2px rgba(196,168,130,0.20)`; }}
-                          onBlur={e => { e.target.style.borderColor = QUIZ_BORDER; e.target.style.boxShadow = 'none'; }}
-                        />
-                      </div>
-                    ))}
-                    <motion.button whileTap={{ scale: 0.97 }} onClick={async () => {
-                        if (!name || !phone) return;
-                        try {
-                          await fetch('/api/enquiries', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                              name, phone, handle: handle || null,
-                              businessType: answers[1] || null,
-                              currentBookingMethod: answers[2] || null,
-                              monthlyBookings: answers[3] || null,
-                              painPoints: checked.length ? checked : null,
-                              style: answers[5] || null,
-                              packageChoice: answers[6] || null,
-                            }),
-                          });
-                        } catch { /* non-blocking */ }
-                        setSubmitted(true);
-                      }}
-                      style={{ width: '100%', background: name && phone ? `linear-gradient(135deg, #D4B892 0%, ${gold} 100%)` : 'rgba(196,168,130,0.20)', borderRadius: isMobile ? 6 : 11, padding: isMobile ? '5px' : '9px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: isMobile ? 4 : 7, transition: 'background 0.3s', boxShadow: name && phone ? '0 4px 14px rgba(196,168,130,0.35)' : 'none' }}>
-                      <span style={{ fontFamily: BODY, fontSize: isMobile ? 7.5 : 11, fontWeight: 700, color: name && phone ? charcoal : QUIZ_MUTE, letterSpacing: '0.03em' }}>Get my free quote →</span>
-                    </motion.button>
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Bottom tag */}
+      {/* Card body */}
+      <div style={{ padding: isMobile ? '28px 24px 36px' : '40px 44px 48px' }}>
+        {/* Back + lock badge */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28 }}>
+          {step > 1 && !submitted ? (
+            <button onClick={goBack} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: BODY, fontSize: 13, color: QUIZ_MUTE, padding: 0, letterSpacing: '0.04em' }}>← back</button>
+          ) : <span />}
           {!submitted && (
-            <div style={{ padding: isMobile ? '4px 0 6px' : '6px 0 9px', textAlign: 'center', flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: isMobile ? 4 : 5 }}>
-                <svg width={isMobile ? 8 : 10} height={isMobile ? 8 : 10} viewBox="0 0 12 12" fill="none">
-                  <rect x="2" y="5" width="8" height="6" rx="1" stroke="rgba(196,168,130,0.7)" strokeWidth="1"/>
-                  <path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="rgba(196,168,130,0.7)" strokeWidth="1" strokeLinecap="round"/>
-                </svg>
-                <span style={{ fontFamily: BODY, fontSize: isMobile ? 5.5 : 7, letterSpacing: '0.18em', color: 'rgba(196,168,130,0.7)', textTransform: 'uppercase' }}>
-                  60 seconds · no obligation
-                </span>
-              </div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                <rect x="2" y="5" width="8" height="6" rx="1" stroke="rgba(196,168,130,0.5)" strokeWidth="1"/>
+                <path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="rgba(196,168,130,0.5)" strokeWidth="1" strokeLinecap="round"/>
+              </svg>
+              <span style={{ fontFamily: BODY, fontSize: 11, letterSpacing: '0.12em', color: 'rgba(196,168,130,0.5)', textTransform: 'uppercase' as const }}>No obligation</span>
             </div>
           )}
         </div>
-      </motion.div>
+
+        <AnimatePresence mode="wait">
+          {submitted ? (
+            <motion.div key="done" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.32 }}
+              style={{ textAlign: 'center', padding: '16px 0 8px' }}>
+              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+                style={{ width: 68, height: 68, borderRadius: '50%', background: `linear-gradient(135deg, #D4B892, ${gold})`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 22px', boxShadow: `0 8px 32px rgba(196,168,130,0.38)` }}>
+                <Check size={30} color={charcoal} strokeWidth={2.5} />
+              </motion.div>
+              <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+                style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 32, color: QUIZ_TEXT, margin: '0 0 10px', lineHeight: 1.2 }}>
+                Thank you!
+              </motion.p>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.22 }}
+                style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, color: QUIZ_TEXT, margin: '0 0 4px', lineHeight: 1.6 }}>
+                We'll be in touch within 24 hours.
+              </motion.p>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.28 }}
+                style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: QUIZ_MUTE, margin: '0 0 32px', lineHeight: 1.5 }}>
+                We aim to reply within 1–2 hours.
+              </motion.p>
+              <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.35, duration: 0.4 }}
+                style={{ height: 1, background: `linear-gradient(90deg, transparent, rgba(196,168,130,0.28), transparent)`, margin: '0 0 28px' }} />
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.42 }}
+                style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: QUIZ_MUTE, margin: '0 0 14px' }}>
+                Need anything in the meantime?
+              </motion.p>
+              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.48 }}>
+                <a href={WA} target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'rgba(196,168,130,0.12)', border: `1px solid rgba(196,168,130,0.28)`, borderRadius: 14, padding: '14px 28px', textDecoration: 'none' }}>
+                  <svg width="18" height="18" viewBox="0 0 32 32" fill="none">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.478.668 4.797 1.832 6.789L2 30l7.43-1.8A13.938 13.938 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.54 11.54 0 01-5.88-1.608l-.42-.252-4.41 1.068 1.092-4.302-.276-.444A11.56 11.56 0 014.4 16C4.4 9.594 9.594 4.4 16 4.4S27.6 9.594 27.6 16 22.406 27.6 16 27.6zm6.36-8.652c-.348-.174-2.064-1.02-2.382-1.134-.318-.12-.552-.174-.78.174-.234.348-.894 1.134-1.098 1.368-.204.228-.402.258-.75.084-.348-.174-1.47-.543-2.8-1.728-1.032-.924-1.73-2.064-1.932-2.412-.204-.348-.024-.534.15-.708.156-.156.348-.402.522-.6.174-.204.228-.348.348-.582.12-.234.06-.438-.03-.612-.09-.174-.78-1.884-1.074-2.58-.282-.678-.57-.582-.78-.594-.204-.012-.432-.012-.66-.012-.234 0-.612.084-.93.432-.318.348-1.218 1.188-1.218 2.898 0 1.71 1.248 3.36 1.422 3.594.174.234 2.46 3.756 5.958 5.268.834.36 1.482.576 1.992.738.834.264 1.596.228 2.196.138.672-.102 2.064-.846 2.358-1.662.294-.816.294-1.518.204-1.662-.084-.15-.318-.234-.666-.408z" fill={gold} />
+                  </svg>
+                  <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 14, color: gold, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Message us on WhatsApp</span>
+                </a>
+              </motion.div>
+            </motion.div>
+
+          ) : step === 1 ? (
+            <motion.div key="s1" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.22 }}>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 24 : 30, color: QUIZ_TEXT, margin: '0 0 8px', lineHeight: 1.2 }}>What kind of business do you run?</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: QUIZ_MUTE, margin: '0 0 28px' }}>Pick the one that fits best.</p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: isMobile ? 10 : 12 }}>
+                {[
+                  { label: 'Aesthetics',   emoji: '💉' },
+                  { label: 'Lash & Brow',  emoji: '👁️' },
+                  { label: 'Skin/Facials', emoji: '✨' },
+                  { label: 'Hair',         emoji: '✂️' },
+                  { label: 'Nails',        emoji: '💅' },
+                  { label: 'Other',        emoji: '⭐' },
+                ].map(opt => (
+                  <motion.button key={opt.label} whileTap={{ scale: 0.94 }}
+                    onClick={() => { setBusinessType(opt.label); setTimeout(goNext, 180); }}
+                    style={{
+                      background: businessType === opt.label ? 'rgba(196,168,130,0.16)' : 'rgba(255,255,255,0.04)',
+                      border: `1.5px solid ${businessType === opt.label ? gold : 'rgba(255,255,255,0.09)'}`,
+                      borderRadius: 16, cursor: 'pointer',
+                      padding: isMobile ? '18px 8px' : '22px 10px',
+                      display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 10,
+                      transition: 'all 0.15s',
+                    }}>
+                    <span style={{ fontSize: isMobile ? 24 : 28, lineHeight: 1 }}>{opt.emoji}</span>
+                    <span style={{ fontFamily: BODY, fontSize: isMobile ? 11 : 12, color: businessType === opt.label ? gold : QUIZ_TEXT, fontWeight: businessType === opt.label ? 500 : 300 }}>{opt.label}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+
+          ) : step === 2 ? (
+            <motion.div key="s2" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.22 }}>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 24 : 30, color: QUIZ_TEXT, margin: '0 0 8px', lineHeight: 1.2 }}>What's holding you back?</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: QUIZ_MUTE, margin: '0 0 22px' }}>Select all that apply.</p>
+              {['No-shows', 'Time wasted in DMs', 'Looks unprofessional', 'No deposits taken', "Can't be found on Google", 'Juggling multiple locations'].map(opt => {
+                const sel = checked.includes(opt);
+                return (
+                  <motion.button key={opt} whileTap={{ scale: 0.98 }} onClick={() => toggleCheck(opt)}
+                    style={{
+                      width: '100%', background: sel ? 'rgba(196,168,130,0.10)' : 'rgba(255,255,255,0.04)',
+                      border: `1px solid ${sel ? gold : 'rgba(255,255,255,0.09)'}`,
+                      borderRadius: 12, padding: '14px 18px',
+                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      cursor: 'pointer', marginBottom: 10, transition: 'all 0.15s',
+                    }}>
+                    <span style={{ fontFamily: BODY, fontSize: isMobile ? 13 : 14, color: sel ? gold : QUIZ_TEXT, fontWeight: sel ? 400 : 300, textAlign: 'left' as const }}>{opt}</span>
+                    <div style={{ width: 20, height: 20, borderRadius: 5, border: `1.5px solid ${sel ? gold : 'rgba(255,255,255,0.25)'}`, background: sel ? gold : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.15s' }}>
+                      {sel && <Check size={11} color={charcoal} strokeWidth={2.5} />}
+                    </div>
+                  </motion.button>
+                );
+              })}
+              <motion.button whileTap={{ scale: 0.98 }} onClick={goNext}
+                style={{ width: '100%', background: gold, borderRadius: 12, padding: '15px', border: 'none', cursor: 'pointer', marginTop: 6 }}>
+                <span style={{ fontFamily: BODY, fontSize: 14, fontWeight: 600, color: charcoal, letterSpacing: '0.02em' }}>Continue →</span>
+              </motion.button>
+            </motion.div>
+
+          ) : step === 3 ? (
+            <motion.div key="s3" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.22 }}>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 24 : 30, color: QUIZ_TEXT, margin: '0 0 8px', lineHeight: 1.2 }}>Which package feels right?</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: QUIZ_MUTE, margin: '0 0 22px' }}>Pick one — we'll go over everything on the call.</p>
+              {[
+                { name: 'Core',    desc: 'Clean, fast & ready to book',     price: '£1,499',    popular: false },
+                { name: 'Premium', desc: 'Custom design + booking system',   price: '£2,499',    popular: true  },
+                { name: 'Custom',  desc: 'Full bespoke build',               price: "Let's talk", popular: false },
+              ].map(opt => (
+                <motion.button key={opt.name} whileTap={{ scale: 0.98 }}
+                  onClick={() => { setPackageChoice(opt.name); setTimeout(goNext, 180); }}
+                  style={{
+                    width: '100%', background: packageChoice === opt.name ? 'rgba(196,168,130,0.12)' : 'rgba(255,255,255,0.04)',
+                    border: `1.5px solid ${packageChoice === opt.name ? gold : 'rgba(255,255,255,0.09)'}`,
+                    borderRadius: 14, padding: '18px 22px',
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    cursor: 'pointer', marginBottom: 12, textAlign: 'left' as const, transition: 'all 0.15s',
+                  }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+                      <span style={{ fontFamily: BODY, fontSize: 15, fontWeight: 500, color: QUIZ_TEXT }}>{opt.name}</span>
+                      {opt.popular && <span style={{ fontFamily: BODY, fontSize: 9, fontWeight: 700, color: charcoal, background: gold, borderRadius: 99, padding: '2px 8px', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Popular</span>}
+                    </div>
+                    <span style={{ fontFamily: BODY, fontSize: 13, color: QUIZ_MUTE, fontWeight: 300 }}>{opt.desc}</span>
+                  </div>
+                  <span style={{ fontFamily: BODY, fontSize: 15, color: gold, fontWeight: 500, flexShrink: 0, marginLeft: 20 }}>{opt.price}</span>
+                </motion.button>
+              ))}
+            </motion.div>
+
+          ) : (
+            <motion.div key="s4" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.22 }}>
+              <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 24 : 30, color: QUIZ_TEXT, margin: '0 0 8px', lineHeight: 1.2 }}>Almost there —</p>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: QUIZ_MUTE, margin: '0 0 28px' }}>How do we reach you?</p>
+              {[
+                { label: 'Your name',          value: name,   set: setName,   ph: 'e.g. Jade',         emoji: '👤' },
+                { label: 'Phone number',       value: phone,  set: setPhone,  ph: '+44 7700 000000',   emoji: '📱' },
+                { label: 'IG / TikTok handle', value: handle, set: setHandle, ph: '@yourhandle',       emoji: '✨' },
+              ].map(f => (
+                <div key={f.label} style={{ marginBottom: 16 }}>
+                  <label style={{ fontFamily: BODY, fontSize: 11, color: QUIZ_MUTE, letterSpacing: '0.1em', textTransform: 'uppercase' as const, display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7 }}>
+                    <span style={{ fontSize: 14 }}>{f.emoji}</span>{f.label}
+                  </label>
+                  <input value={f.value} onChange={e => f.set(e.target.value)} placeholder={f.ph}
+                    style={inputStyle}
+                    onFocus={e => { e.target.style.borderColor = gold; e.target.style.boxShadow = '0 0 0 3px rgba(196,168,130,0.14)'; }}
+                    onBlur={e => { e.target.style.borderColor = 'rgba(196,168,130,0.22)'; e.target.style.boxShadow = 'none'; }}
+                  />
+                </div>
+              ))}
+              <motion.button whileTap={{ scale: 0.98 }} onClick={submit} disabled={!name || !phone || submitting}
+                style={{ width: '100%', background: name && phone ? `linear-gradient(135deg, #D4B892 0%, ${gold} 100%)` : 'rgba(196,168,130,0.18)', borderRadius: 12, padding: '16px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: 4, transition: 'all 0.3s', boxShadow: name && phone ? '0 4px 20px rgba(196,168,130,0.38)' : 'none' }}>
+                <span style={{ fontFamily: BODY, fontSize: 15, fontWeight: 700, color: name && phone ? charcoal : QUIZ_MUTE, letterSpacing: '0.03em' }}>
+                  {submitting ? 'Sending...' : 'Get my free quote →'}
+                </span>
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
@@ -871,7 +712,7 @@ function Hero() {
           {/* Central warm glow */}
           <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%,-50%)', width: 420, height: 420, background: 'radial-gradient(ellipse, rgba(196,168,130,0.13) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <PhoneLeadQuiz />
+            <LeadForm />
           </div>
         </div>
       </section>
@@ -940,29 +781,12 @@ function Hero() {
           </div>
         </div>
 
-        {/* Right column — phone quiz, always visible */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-          {/* Background ambient orbs */}
-          {[
-            { size: 260, top: '8%',  left: '-60px',  y: [0,-16,0], dur: 10, delay: 0.3, fill: false },
-            { size: 160, top: '58%', left: '-40px',  y: [0,-11,0], dur: 8,  delay: 1.6, fill: true  },
-          ].map((c, i) => (
-            <motion.div key={`ph-${i}`}
-              animate={{ y: [...c.y] }}
-              transition={{ duration: c.dur, delay: c.delay, repeat: Infinity, ease: 'easeInOut' }}
-              style={{
-                position: 'absolute', width: c.size, height: c.size, borderRadius: '50%',
-                border: c.fill ? 'none' : `1.5px solid rgba(201,169,97,0.28)`,
-                background: c.fill ? `radial-gradient(circle,rgba(201,169,97,0.12) 0%,transparent 70%)` : 'transparent',
-                top: (c as any).top, left: (c as any).left,
-                pointerEvents: 'none', zIndex: 0,
-              }}
-            />
-          ))}
-          <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: 11, color: gold, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 14, position: 'relative', zIndex: 1 }}>
+        {/* Right column — lead form */}
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: 11, color: gold, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 18 }}>
             Get your free quote in 60 seconds
           </p>
-          <div style={{ position: 'relative', zIndex: 1 }}><PhoneLeadQuiz /></div>
+          <LeadForm />
         </div>
       </div>
     </section>
@@ -1673,10 +1497,10 @@ const CUSTOM_FEATURES = [
 /* ─── Book Slot Modal ─── */
 function BookSlotModal({ onClose }: { onClose: () => void }) {
   const isMobile = useIsMobile();
-  const [loading, setLoading] = React.useState(false);
-  const [err, setErr] = React.useState('');
-  const [modalName, setModalName] = React.useState('');
-  const [modalPhone, setModalPhone] = React.useState('');
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState('');
+  const [modalName, setModalName] = useState('');
+  const [modalPhone, setModalPhone] = useState('');
 
   async function handleDeposit() {
     setLoading(true);
