@@ -279,13 +279,21 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       )}
 
       {/* ─── TECH STACK ─── */}
-      <section style={{ background: cream, padding: '56px 28px', borderTop: `1px solid ${line}` }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 24 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.2em', color: inkMute, margin: 0, flexShrink: 0 }}>Built with</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+      <section style={{ background: charcoal, padding: 'clamp(40px, 5vw, 64px) 28px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 50% 80% at 80% 50%, rgba(${accentRgb},0.07) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
+            <span style={{ width: 20, height: 1, background: accent, opacity: 0.6 }} />
+            <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+              style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.24em', color: accent, margin: 0, opacity: 0.7 }}>
+              Built with
+            </motion.p>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
             {data.techStack.map((t, i) => (
-              <motion.span key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.035 }}
-                style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: inkSoft, border: `1px solid ${line}`, borderRadius: 20, padding: '6px 14px' }}>
+              <motion.span key={i}
+                initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}
+                style={{ fontFamily: BODY, fontWeight: 400, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: accent, border: `1px solid rgba(${accentRgb},0.35)`, borderRadius: 999, padding: '8px 18px', background: `rgba(${accentRgb},0.06)` }}>
                 {t}
               </motion.span>
             ))}
