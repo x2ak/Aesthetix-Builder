@@ -79,123 +79,105 @@ type Section = {
 
 const sections: Section[] = [
   {
-    heading: '1. Introduction',
-    content: `Welcome to Aesthetix Systems ("we", "us", "our"). These Terms of Service ("Terms") govern your use of our website (aesthetix-systems.co.uk) and our services, including bespoke website design, booking systems, and related development work for aesthetic clinics.\n\nBy engaging our services or using our website, you agree to these Terms. If you don't agree, please don't use our services.`,
+    heading: '1. About these terms',
+    content: `These Terms & Conditions ("Terms") govern the supply of website, booking platform, hosting and related services ("Services") by Aesthetix Systems ("we", "us", "Aesthetix Systems") to the business client who orders them ("you", "the Client").\n\nBy paying a deposit, signing a proposal, or beginning a monthly plan, you agree to these Terms. They apply alongside any individual proposal or build contract; where a signed proposal conflicts with these Terms, the signed proposal takes precedence.\n\nContact: info@aesthetix-systems.co.uk · aesthetix-systems.co.uk`,
   },
   {
-    heading: '2. Who we are',
-    content: 'Aesthetix Systems is a trading name operating from London, United Kingdom. Contact: info@aesthetix-systems.co.uk.',
+    heading: '2. The Services',
+    content: `Aesthetix Systems builds bespoke booking platforms and websites for aesthetics and related clinics, and provides ongoing hosting, maintenance and optional support under a monthly plan.\n\nThe one-off build fee for your platform is set out in your individual proposal or build contract. These Terms primarily govern the ongoing monthly plan that begins once your platform is live, and the contract terms attached to it.`,
   },
   {
-    heading: '3. Our services',
-    intro: 'We offer:',
-    list: [
-      { bold: 'Starter tier', rest: ' — basic bespoke website build' },
-      { bold: 'Core tier', rest: ' — full website + booking system + admin portal' },
-      { bold: 'Premium tier', rest: ' — Core plus advanced features (AI assistant, multi-location, advanced analytics)' },
-      { bold: 'Retainer', rest: ' — ongoing hosting, maintenance, and support' },
-    ],
-    outro: 'Specific deliverables are outlined in an individual project proposal for each client.',
-  },
-  {
-    heading: '4. Engagement and payment',
+    heading: '3. Monthly plans',
+    content: 'All monthly fees are quoted in GBP. "From" prices are starting points; your actual monthly fee depends on the features included in your build and is confirmed in your proposal or build contract.',
     subsections: [
       {
-        subheading: '4.1 Project agreement',
-        content: 'By paying a deposit (or first Klarna instalment) after receiving a proposal, you agree to these Terms and the project scope in that proposal.',
-      },
-      {
-        subheading: '4.2 Payment structure',
+        subheading: '3.1 Core — from £19.99/month',
+        content: 'Includes:',
         list: [
-          'Standard: 50% deposit upfront, 50% on launch',
-          'Alternative: Klarna Pay in 3 or equivalent instalment plans (where offered)',
-          'Retainers: monthly in advance',
+          'Website and booking platform hosting',
+          'SSL certificate (secure HTTPS)',
+          'Database hosting and maintenance',
+          'Platform security and uptime maintenance',
         ],
       },
       {
-        subheading: '4.3 Late or non-payment',
-        content: 'We reserve the right to pause work or withhold website launch if invoices remain unpaid beyond 7 days after due date.',
+        subheading: '',
+        content: 'Site changes are not included on the Core plan. If you need changes after handover, you can either: (a) pay for each change separately on an ad-hoc quoted basis; or (b) upgrade to the Core + Changes plan (see 3.2).',
       },
       {
-        subheading: '4.4 Refunds',
-        content: 'Deposits are non-refundable once design or development work has begun, as they reserve our time and resources. If you cancel before work has started, we may provide a partial refund at our discretion.',
+        subheading: '3.2 Core + Changes — £29.99/month',
+        content: 'Includes everything in Core, plus 4 hours of site changes per month (copy edits, treatment/menu updates, price changes, availability updates, minor tweaks, bug fixes).\n\nUnused hours do not roll over. Work beyond the 4-hour monthly allowance is quoted and billed separately before it is carried out. New features (as opposed to changes) are always treated as separate quoted work, not as part of the allowance.\n\nYou may upgrade to this plan at any time. Upgrading starts a new 12-month minimum term from the date of upgrade (see section 8).',
+      },
+      {
+        subheading: '3.3 Premium Plus — from £59.99/month',
+        content: 'Includes everything in Core, plus:',
+        list: [
+          'Branded SMS sender ID (your clinic name shown as the sender instead of a generic +44 number)',
+          'AI receptionist',
+          '£10 of AI usage credit per month',
+        ],
+      },
+      {
+        subheading: '',
+        content: 'AI usage beyond the included £10 credit is charged on a pay-as-you-go basis. You can top up your AI balance at any time from your admin portal. If your included credit and any topped-up balance are exhausted, AI features may be paused until you top up.',
+      },
+      {
+        subheading: '3.4 Custom Build — from £59.99/month',
+        content: 'For builds with a bespoke feature set. The monthly fee is set per build according to the features included, and is confirmed in your custom build contract. AI usage, SMS and overage charges follow the same model as Premium Plus.',
       },
     ],
   },
   {
-    heading: '5. Delivery timelines',
-    content: 'Project timelines are estimates provided in the proposal. Typical Core builds take 2–3 weeks from project kickoff. Delays caused by late client feedback, missing assets, or scope changes may extend timelines.',
+    heading: '4. SMS campaigns (Premium Plus & Custom)',
+    content: `Branded SMS marketing campaigns are charged on a pay-as-you-go basis, separate from your monthly fee.\n\nBefore any campaign is sent, your admin portal shows a full cost breakdown (network cost, our send fee, and total). The total is charged before the campaign sends.\n\nLonger messages, branded sender IDs, and certain characters or emojis may split a message into multiple parts ("segments"), each charged separately. The portal calculates this automatically and shows you the total before you confirm.\n\nYou are responsible for ensuring your SMS campaigns comply with applicable marketing and data protection law, including obtaining valid consent from recipients and providing an opt-out.`,
   },
   {
-    heading: '6. Client responsibilities',
-    intro: 'You agree to:',
+    heading: '5. What\'s included and what\'s not',
+    content: 'Included in your monthly plan: hosting, SSL, database, security and uptime maintenance as set out in your plan; and, on the Core + Changes plan, 4 hours of changes per month.',
+    intro: 'Not included (billed separately or by other providers):',
     list: [
-      'Provide timely feedback during the project',
-      'Supply accurate brand assets, content, and information',
-      'Review work at each stage and raise concerns promptly',
-      'Pay invoices on time',
-      'Not use our services for any unlawful or harmful purpose',
+      'One-off build fee (per your proposal/build contract)',
+      'New features or design work beyond your plan\'s scope',
+      'Third-party fees you incur directly or that pass through your account (e.g. payment processing fees, SMS network costs, additional AI usage)',
+      'Search engine optimisation, paid advertising management, and content creation, unless separately agreed',
+      'Stock photography and copywriting beyond what is extracted from your existing materials',
     ],
   },
   {
-    heading: '7. Revisions and scope',
-    content: 'Each tier includes a reasonable number of revisions during the design and development phase. Major scope changes after project kickoff may incur additional fees, which will be communicated and agreed in writing before work proceeds.',
+    heading: '6. Payment terms',
+    content: `Monthly fees are billed in advance, on a recurring basis, via the payment method on file (card or direct debit through our payment provider).\n\nYour monthly plan begins as set out in your proposal or build contract (for some clients an initial fee-free period applies; this will be stated in writing).\n\nIf a payment fails, we may suspend Services (including taking your site offline) after giving you reasonable notice and an opportunity to resolve it. Services resume once the account is brought up to date.\n\nPay-as-you-go charges (AI top-ups, SMS campaigns) are charged at the time of the top-up or send.`,
   },
   {
-    heading: '8. Intellectual property',
-    subsections: [
-      {
-        subheading: '8.1 Your content',
-        content: 'You retain full ownership of all content you provide (logos, images, text, branding). You grant us permission to use this content solely to deliver your project.',
-      },
-      {
-        subheading: '8.2 Our work',
-        content: 'Upon full payment, ownership of the final website code, design assets, and booking system transfers to you. You may use, modify, and host the website as you wish.',
-      },
-      {
-        subheading: '8.3 Our tools and methodologies',
-        content: 'We retain ownership of any reusable templates, frameworks, code libraries, and methodologies we use across clients. You receive a perpetual licence to use these as integrated into your website.',
-      },
-      {
-        subheading: '8.4 Portfolio rights',
-        content: 'We reserve the right to display your completed project in our portfolio, case studies, and marketing materials unless you request otherwise in writing.',
-      },
-    ],
+    heading: '7. Ownership',
+    content: 'On full payment of your one-off build fee, ownership of your platform — source code, domain, brand assets and your client data — transfers to you, as set out in your build contract. Your ongoing monthly plan covers the hosting and services needed to keep it running; it does not affect your ownership of the platform itself.',
   },
   {
-    heading: '9. Third-party services',
-    content: 'Our builds integrate with third-party services (such as Stripe, Supabase, Resend, Google Calendar). You are responsible for maintaining your own accounts and complying with those providers\' terms. We are not liable for outages, pricing changes, or policy changes made by third parties.',
+    heading: '8. Minimum term',
+    content: 'Every monthly plan has a 12-month minimum term unless your individual contract states otherwise. The term begins on the start date stated in your proposal or build contract.\n\nIf you upgrade your plan, a new 12-month minimum term begins on the date of the upgrade. The previous term is superseded by the new one.',
   },
   {
-    heading: '10. Liability',
-    intro: 'To the fullest extent permitted by law, we are not liable for:',
-    list: [
-      'Loss of profits, revenue, or business opportunities',
-      'Loss of data (though we take reasonable steps to protect it)',
-      'Indirect, incidental, or consequential damages',
-      'Issues caused by third-party services or your own hosting decisions',
-    ],
-    outro: 'Our total liability for any claim relating to the services is limited to the amount you paid us in the 12 months preceding the claim.',
+    heading: '9. Cancellation and early termination',
+    content: `You may cancel at the end of your minimum term by giving written notice (email is sufficient) at least 30 days before the term ends.\n\nIf you cancel before the end of your minimum term, an early-termination charge applies: 50% of the total remaining monthly fees for the unexpired portion of the term, payable upfront on cancellation. Your admin portal shows the current figure at any time. This charge reflects the committed costs and capacity reserved for your account over the agreed term.\n\nWe may terminate or suspend Services for non-payment, breach of these Terms, or misuse of the platform (including unlawful use of SMS/AI features), with reasonable notice where practicable.`,
   },
   {
-    heading: '11. Data protection',
-    content: 'Our handling of personal data is governed by our Privacy Policy, available at aesthetix-systems.co.uk/privacy-policy.',
+    heading: '10. Hosting, uptime and third-party services',
+    content: 'We aim to keep your platform available and maintained but do not guarantee uninterrupted service. Downtime may occur due to maintenance, third-party providers, or events outside our control.\n\nYour platform relies on third-party services (e.g. payment processing, email, SMS, AI, calendar). Their availability and pricing are outside our control, and their own terms apply to their parts of the service.',
   },
   {
-    heading: '12. Termination',
-    content: 'Either party may terminate the engagement in writing. If you terminate after work has begun, deposits are non-refundable and any additional work completed up to that point will be invoiced.\n\nWe may terminate immediately if you breach these Terms, fail to pay, or behave abusively towards our team.',
+    heading: '11. Your data and your clients\' data',
+    content: 'You remain the data controller for your own and your clients\' personal data held in your platform; we act as a data processor in providing the Services.\n\nYou are responsible for using the platform — including booking data, medical/consent forms, and SMS/email marketing — in compliance with UK GDPR, the Data Protection Act 2018, and applicable marketing regulations.\n\nWe handle personal data only as needed to provide the Services and in line with applicable data protection law.',
   },
   {
-    heading: '13. Governing law',
-    content: 'These Terms are governed by the laws of England and Wales. Any disputes shall be resolved in the courts of England and Wales.',
+    heading: '12. Liability',
+    content: `Nothing in these Terms limits liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be limited.\n\nSubject to that, our total liability arising out of or in connection with the Services is limited to the total fees you have paid us in the 12 months preceding the event giving rise to the claim.\n\nWe are not liable for indirect or consequential loss, loss of profit, loss of business, or loss of data, except where such loss cannot lawfully be excluded.`,
   },
   {
-    heading: '14. Changes to these Terms',
-    content: 'We may update these Terms from time to time. The "Last updated" date reflects the latest version. Material changes will be communicated via our website.',
+    heading: '13. Changes to these terms',
+    content: 'We may update these Terms from time to time. Material changes affecting your plan or fees will be notified to you in advance. Continued use of the Services after a change takes effect constitutes acceptance.',
   },
   {
-    heading: '15. Contact us',
-    contact: true,
+    heading: '14. Governing law',
+    content: 'These Terms are governed by the laws of England and Wales, and the courts of England and Wales have exclusive jurisdiction.',
   },
 ];
 
@@ -217,7 +199,7 @@ function renderListItem(item: ListItem, j: number) {
 export default function TermsOfService() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Terms of Service | Aesthetix Systems';
+    document.title = 'Terms & Conditions | Aesthetix Systems';
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', 'The Terms of Service governing Aesthetix Systems\' website and bespoke build services.');
   }, []);
@@ -234,12 +216,12 @@ export default function TermsOfService() {
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
             style={{ fontFamily: BODY, fontWeight: 600, fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', color: charcoal, margin: '0 0 16px', lineHeight: 1.08 }}>
-            Terms of{' '}
-            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>Service</em>
+            Terms &{' '}
+            <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>Conditions</em>
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.25 }}
             style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkMute, margin: 0 }}>
-            Last updated: 23 April 2026
+            Last updated: 28 May 2026
           </motion.p>
         </div>
       </section>
@@ -276,9 +258,11 @@ export default function TermsOfService() {
               )}
               {s.subsections && s.subsections.map((sub, si) => (
                 <div key={si} style={{ marginBottom: si < (s.subsections?.length ?? 0) - 1 ? 24 : 0 }}>
-                  <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '0 0 10px', letterSpacing: '0.01em' }}>
-                    {sub.subheading}
-                  </h3>
+                  {sub.subheading && (
+                    <h3 style={{ fontFamily: BODY, fontWeight: 500, fontSize: 15, color: charcoal, margin: '0 0 10px', letterSpacing: '0.01em' }}>
+                      {sub.subheading}
+                    </h3>
+                  )}
                   {sub.content && (
                     <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 15, color: inkSoft, lineHeight: 1.82, margin: sub.list ? '0 0 12px' : 0 }}>
                       {sub.content}
