@@ -1870,10 +1870,10 @@ const MAINT_PLANS = [
 function MaintenancePlans() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: cream, padding: isMobile ? '72px 20px' : '100px 0', position: 'relative', overflow: 'hidden' }}>
-      {/* Subtle ambient orb */}
-      <div style={{ position: 'absolute', top: '10%', right: '-8%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.10) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '5%', left: '-5%', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
+    <section style={{ background: charcoal, padding: isMobile ? '72px 20px' : '100px 0', position: 'relative', overflow: 'hidden' }}>
+      {/* Ambient gold glows */}
+      <div style={{ position: 'absolute', top: '-10%', right: '-6%', width: 560, height: 560, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.12) 0%, transparent 68%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '-5%', left: '-4%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(196,168,130,0.08) 0%, transparent 68%)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? 0 : '0 32px', position: 'relative', zIndex: 1 }}>
 
@@ -1882,13 +1882,13 @@ function MaintenancePlans() {
           <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: gold, margin: '0 0 14px' }}>
             After launch
           </p>
-          <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.2rem,9vw,3.2rem)' : 'clamp(2.6rem,4.5vw,4rem)', color: charcoal, margin: 0, lineHeight: 1.04, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 'clamp(2.2rem,9vw,3.2rem)' : 'clamp(2.6rem,4.5vw,4rem)', color: cream, margin: 0, lineHeight: 1.04, letterSpacing: '-0.02em' }}>
             MAINTENANCE{' '}
             <em style={{ fontFamily: DISP, fontStyle: 'italic', fontWeight: 400, color: gold }}>& Support</em>
           </h2>
         </FadeIn>
         <FadeIn delay={0.08} style={{ marginBottom: isMobile ? 44 : 60 }}>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 16, color: inkSoft, margin: 0, maxWidth: 520, lineHeight: 1.7 }}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 14 : 16, color: 'rgba(247,244,238,0.6)', margin: 0, maxWidth: 520, lineHeight: 1.7 }}>
             Every build comes with a 12-month maintenance plan. Keep your platform secure, hosted, and running — with optional support tiers depending on how much hands-on help you need.
           </p>
         </FadeIn>
@@ -1900,43 +1900,43 @@ function MaintenancePlans() {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.08 }}
               style={{
-                background: p.highlight ? charcoal : surface,
-                border: p.highlight ? `1.5px solid rgba(196,168,130,0.35)` : `1px solid ${line}`,
+                background: p.highlight ? 'rgba(196,168,130,0.14)' : 'rgba(255,255,255,0.05)',
+                border: p.highlight ? `1.5px solid rgba(196,168,130,0.55)` : `1px solid rgba(255,255,255,0.08)`,
                 borderRadius: 16,
                 padding: isMobile ? '28px 24px' : '32px 28px',
                 position: 'relative',
                 overflow: 'hidden',
               }}>
               {/* Gold top bar */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: gold, opacity: p.highlight ? 1 : 0.45 }} />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: gold, opacity: p.highlight ? 1 : 0.4 }} />
 
               {/* Tag */}
-              <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: p.highlight ? gold : gold, margin: '0 0 20px', opacity: p.highlight ? 1 : 0.85 }}>
+              <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: gold, margin: '0 0 20px', opacity: p.highlight ? 1 : 0.8 }}>
                 {p.tag}
               </p>
 
               {/* Price */}
               <div style={{ marginBottom: 18 }}>
                 {p.from && (
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: p.highlight ? 'rgba(255,255,255,0.45)' : inkMute, letterSpacing: '0.06em', display: 'block', marginBottom: 2 }}>
+                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.4)', letterSpacing: '0.06em', display: 'block', marginBottom: 2 }}>
                     from
                   </span>
                 )}
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
-                  <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 38 : 42, color: p.highlight ? cream : charcoal, lineHeight: 1 }}>
+                  <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 38 : 42, color: p.highlight ? gold : cream, lineHeight: 1 }}>
                     {p.price}
                   </span>
-                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: p.highlight ? 'rgba(255,255,255,0.5)' : inkMute }}>
+                  <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.4)' }}>
                     {p.period}
                   </span>
                 </div>
               </div>
 
               {/* Divider */}
-              <div style={{ height: 1, background: p.highlight ? 'rgba(255,255,255,0.1)' : line, marginBottom: 18 }} />
+              <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', marginBottom: 18 }} />
 
               {/* Blurb */}
-              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13.5, color: p.highlight ? 'rgba(255,255,255,0.72)' : inkSoft, lineHeight: 1.72, margin: 0 }}>
+              <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13.5, color: p.highlight ? 'rgba(247,244,238,0.8)' : 'rgba(247,244,238,0.55)', lineHeight: 1.72, margin: 0 }}>
                 {p.blurb}
               </p>
             </motion.div>
@@ -1949,13 +1949,12 @@ function MaintenancePlans() {
             <a href="/terms" style={{ display: 'inline-block', textDecoration: 'none' }}>
               <span style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
-                fontFamily: BODY, fontWeight: 400, fontSize: 13, color: charcoal,
+                fontFamily: BODY, fontWeight: 400, fontSize: 13, color: 'rgba(247,244,238,0.7)',
                 letterSpacing: '0.04em',
-                border: `1.5px solid rgba(196,168,130,0.6)`,
+                border: `1px solid rgba(196,168,130,0.35)`,
                 borderRadius: 999,
                 padding: '12px 28px',
                 background: 'transparent',
-                transition: 'border-color 0.2s, background 0.2s',
               }}>
                 See T&amp;Cs for more information
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
