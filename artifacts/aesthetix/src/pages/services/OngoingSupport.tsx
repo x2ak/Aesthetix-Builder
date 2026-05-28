@@ -64,8 +64,8 @@ const PLANS = [
     tag: "Core + Changes",
     price: "£34.99",
     period: "/mo",
-    note: "Most popular",
-    highlight: true,
+    note: "Good value",
+    highlight: false,
     features: [
       { label: "Everything in Core", detail: "Full hosting, SSL, security and monitoring." },
       { label: "4 hours of changes per month", detail: "Copy updates, price changes, new treatment pages, images — anything." },
@@ -79,8 +79,8 @@ const PLANS = [
     tag: "Premium Plus",
     price: "£59.99",
     period: "/mo",
-    note: "The full package",
-    highlight: false,
+    note: "Most popular",
+    highlight: true,
     features: [
       { label: "Everything in Core + Changes", detail: "All maintenance, hosting, and change hours." },
       { label: "AI receptionist included", detail: "24/7 AI that answers questions and books patients — always on." },

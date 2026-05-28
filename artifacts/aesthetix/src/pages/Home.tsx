@@ -2050,7 +2050,6 @@ const MAINT_PLANS = [
     price: '£34.99',
     period: '/mo',
     features: ['Everything in Core', '4 hrs of site changes per month', 'Copy, prices & tweaks'],
-    highlight: true,
     waMsg: "Hi Sim, I'm interested in the Core + Changes maintenance plan for my clinic!",
   },
   {
@@ -2059,6 +2058,7 @@ const MAINT_PLANS = [
     price: '£59.99',
     period: '/mo',
     features: ['Branded SMS sender ID', 'AI receptionist — always on', '£10p/m SMS campaign credit'],
+    highlight: true,
     waMsg: "Hi Sim, I'm interested in the Premium Plus maintenance plan for my clinic!",
   },
   {
