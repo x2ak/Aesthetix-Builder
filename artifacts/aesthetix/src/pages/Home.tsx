@@ -701,11 +701,10 @@ function Hero() {
         <div style={{ padding: '48px 24px 64px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
           {/* Ambient orbs behind the quiz */}
           {[
-            { size: 380, top: '-60px',  right: '-140px', y: [0,-18,0] as number[], dur: 11,  delay: 0,   fill: false, spin: 'orb-spin-cw'  },
-            { size: 220, bottom: '-40px', left: '-90px', y: [0,-14,0] as number[], dur: 14,  delay: 1.5, fill: false, spin: 'orb-spin-ccw' },
-            { size: 130, top: '20%',    left: '-30px',   y: [0,-16,0] as number[], dur: 9.5, delay: 0.7, fill: true,  spin: ''             },
-            { size: 80,  bottom: '18%', right: '-20px',  y: [0,-10,0] as number[], dur: 8,   delay: 2,   fill: true,  spin: 'orb-pulse'    },
-            { size: 50,  top: '40%',    right: '10%',    y: [0,-8,0]  as number[], dur: 7,   delay: 3,   fill: false, spin: 'orb-spin-cw'  },
+            { size: 380, top: '-80px',  right: '-180px', y: [0,-18,0] as number[], dur: 11,  delay: 0,   fill: false, spin: 'orb-spin-cw'  },
+            { size: 220, bottom: '-60px', left: '-100px',y: [0,-14,0] as number[], dur: 14,  delay: 1.5, fill: false, spin: 'orb-spin-ccw' },
+            { size: 120, top: '22%',    left: '-50px',   y: [0,-16,0] as number[], dur: 9.5, delay: 0.7, fill: true,  spin: ''             },
+            { size: 60,  top: '55%',    right: '-30px',  y: [0,-10,0] as number[], dur: 8,   delay: 2,   fill: true,  spin: 'orb-pulse'    },
           ].map((c, i) => (
             <motion.div key={`sq2-${i}`}
               className={c.spin}
