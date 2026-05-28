@@ -299,7 +299,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
               Message us on WhatsApp →
             </a>
           </motion.div>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: 'rgba(247,244,238,0.25)', letterSpacing: '0.1em', margin: '36px 0 0' }}>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 10, color: gold, letterSpacing: '0.1em', margin: '36px 0 0', opacity: 0.7 }}>
             AESTHETIX SYSTEMS · LONDON, UK · © 2026
           </p>
         </div>
