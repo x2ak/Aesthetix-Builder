@@ -210,14 +210,17 @@ function PhoneLeadQuiz() {
 
                 {submitted ? (
                   /* ── Success ── */
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 0 }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 0, padding: isMobile ? '0 6px' : '0 10px' }}>
                     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 280, damping: 18 }}
-                      style={{ width: isMobile ? 44 : 56, height: isMobile ? 44 : 56, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? 10 : 14 }}>
-                      <Check size={isMobile ? 20 : 26} color={charcoal} strokeWidth={2.5} />
+                      style={{ width: isMobile ? 40 : 52, height: isMobile ? 40 : 52, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? 10 : 14 }}>
+                      <Check size={isMobile ? 18 : 24} color={charcoal} strokeWidth={2.5} />
                     </motion.div>
-                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 15 : 20, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 6 : 8}px`, lineHeight: 1.2 }}>We'll be in touch!</p>
-                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 8 : 10, color: QUIZ_MUTE, margin: 0, lineHeight: 1.55 }}>
-                      Check your WhatsApp —<br />Sim will reach out shortly.
+                    <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 14 : 19, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 8 : 10}px`, lineHeight: 1.2 }}>Thank you!</p>
+                    <p style={{ fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 8.5 : 11, color: QUIZ_TEXT, margin: `0 0 ${isMobile ? 5 : 7}px`, lineHeight: 1.5 }}>
+                      We'll be in touch within 24 hours.
+                    </p>
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 7.5 : 9.5, color: QUIZ_MUTE, margin: 0, lineHeight: 1.55 }}>
+                      We aim to get back to you<br />within 1–2 hours.
                     </p>
                   </div>
 

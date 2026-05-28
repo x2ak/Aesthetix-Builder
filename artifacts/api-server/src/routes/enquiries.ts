@@ -1,6 +1,7 @@
 import { Router, type IRouter } from 'express';
 import { db } from '@workspace/db';
 import { enquiriesTable } from '@workspace/db';
+import { sendEnquiryEmail } from '../mailer.js';
 
 const router: IRouter = Router();
 
@@ -28,6 +29,19 @@ router.post('/enquiries', async (req, res) => {
       style: style ? String(style) : null,
       packageChoice: packageChoice ? String(packageChoice) : null,
     }).returning();
+
+    sendEnquiryEmail({
+      id: row.id,
+      name: row.name,
+      phone: row.phone,
+      handle: row.handle,
+      businessType: row.businessType,
+      currentBookingMethod: row.currentBookingMethod,
+      monthlyBookings: row.monthlyBookings,
+      painPoints: row.painPoints,
+      style: row.style,
+      packageChoice: row.packageChoice,
+    }).catch(() => {});
 
     res.json({ ok: true, id: row.id });
   } catch (err: any) {

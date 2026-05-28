@@ -1,7 +1,8 @@
 import { Router, type IRouter } from 'express';
-import { getUncachableStripeClient, getStripePublishableKey } from '../stripeClient';
+import { getUncachableStripeClient, getStripePublishableKey } from '../stripeClient.js';
 import { db } from '@workspace/db';
 import { slotBookingsTable } from '@workspace/db';
+import { sendDepositEmail } from '../mailer.js';
 
 const router: IRouter = Router();
 
@@ -83,13 +84,21 @@ router.post('/stripe/checkout/deposit', async (req, res) => {
       },
     });
 
-    await db.insert(slotBookingsTable).values({
+    const [booking] = await db.insert(slotBookingsTable).values({
       name: name ? String(name) : null,
       phone: phone ? String(phone) : null,
       stripeSessionId: session.id,
       amountPence: 9900,
       status: 'initiated',
-    });
+    }).returning();
+
+    sendDepositEmail({
+      id: booking.id,
+      name: booking.name,
+      phone: booking.phone,
+      stripeSessionId: session.id,
+      amountPence: 9900,
+    }).catch(() => {});
 
     res.json({ url: session.url });
   } catch (err: any) {
