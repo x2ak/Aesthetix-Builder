@@ -374,22 +374,22 @@ function BrowserIllust() {
     return () => clearInterval(t);
   }, []);
   return (
-    <div style={{ width: '100%', maxWidth: 210, height: 112, margin: '0 auto' }}>
-      <div style={{ border: `1px solid ${line}`, borderRadius: 8, overflow: 'hidden', height: '100%', background: surface }}>
-        <div style={{ background: '#F2F2F2', padding: '5px 8px', display: 'flex', alignItems: 'center', gap: 4, borderBottom: `1px solid ${line}` }}>
-          <div style={{ display: 'flex', gap: 3 }}>
-            {['#FF5F57', '#FFBD2E', '#28C840'].map(c => <div key={c} style={{ width: 6, height: 6, borderRadius: '50%', background: c }} />)}
+    <div style={{ width: '100%' }}>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 14, overflow: 'hidden', background: surface }}>
+        <div style={{ background: '#F2F2F2', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 6, borderBottom: `1px solid ${line}` }}>
+          <div style={{ display: 'flex', gap: 5 }}>
+            {['#FF5F57', '#FFBD2E', '#28C840'].map(c => <div key={c} style={{ width: 11, height: 11, borderRadius: '50%', background: c }} />)}
           </div>
-          <div style={{ flex: 1, background: '#E8E8E8', borderRadius: 3, padding: '2px 8px', marginLeft: 4 }}>
-            <span style={{ fontFamily: BODY, fontSize: 7, color: inkMute }}>yourclinic.co.uk</span>
+          <div style={{ flex: 1, background: '#E8E8E8', borderRadius: 5, padding: '5px 14px', marginLeft: 8 }}>
+            <span style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>yourclinic.co.uk</span>
           </div>
         </div>
-        <div style={{ padding: 12 }}>
-          <motion.div animate={{ opacity: f > 0 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: '60%', height: 5, background: charcoal, borderRadius: 2, marginBottom: 7 }} />
-          <motion.div animate={{ opacity: f > 1 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: '85%', height: 3, background: line, borderRadius: 2, marginBottom: 4 }} />
-          <motion.div animate={{ opacity: f > 1 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.1 }} style={{ width: '70%', height: 3, background: line, borderRadius: 2, marginBottom: 12 }} />
-          <motion.div animate={{ opacity: f > 2 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: 52, height: 20, background: gold, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontFamily: BODY, fontSize: 7, color: charcoal, fontWeight: 600 }}>BOOK NOW</span>
+        <div style={{ padding: '24px 28px 28px' }}>
+          <motion.div animate={{ opacity: f > 0 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: '60%', height: 9, background: charcoal, borderRadius: 3, marginBottom: 12 }} />
+          <motion.div animate={{ opacity: f > 1 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: '85%', height: 6, background: line, borderRadius: 3, marginBottom: 7 }} />
+          <motion.div animate={{ opacity: f > 1 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.1 }} style={{ width: '70%', height: 6, background: line, borderRadius: 3, marginBottom: 22 }} />
+          <motion.div animate={{ opacity: f > 2 ? 1 : 0 }} transition={{ duration: 0.3 }} style={{ width: 100, height: 36, background: gold, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontFamily: BODY, fontSize: 12, color: charcoal, fontWeight: 600 }}>BOOK NOW</span>
           </motion.div>
         </div>
       </div>
@@ -415,10 +415,10 @@ function CalIllust() {
     return () => clearTimeout(t);
   }, []);
   return (
-    <div style={{ width: '100%', maxWidth: 210, margin: '0 auto' }}>
-      <div style={{ border: `1px solid ${line}`, borderRadius: 8, padding: 10, background: surface, position: 'relative', overflow: 'hidden' }}>
-        <p style={{ fontFamily: BODY, fontSize: 8, fontWeight: 500, color: charcoal, margin: '0 0 7px' }}>May 2025</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 3 }}>
+    <div style={{ width: '100%' }}>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 14, padding: '20px 22px 24px', background: surface, position: 'relative', overflow: 'hidden' }}>
+        <p style={{ fontFamily: BODY, fontSize: 13, fontWeight: 500, color: charcoal, margin: '0 0 14px' }}>May 2025</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 6 }}>
           {Array.from({ length: 21 }, (_, i) => {
             const d = i + 1;
             const gi = goldDays.indexOf(d);
@@ -426,7 +426,7 @@ function CalIllust() {
             return (
               <motion.div key={d} animate={{ background: isG ? gold : goldTint }} transition={{ duration: 0.3 }}
                 style={{ aspectRatio: '1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontFamily: BODY, fontSize: 6, color: isG ? charcoal : inkMute }}>{d}</span>
+                <span style={{ fontFamily: BODY, fontSize: 10, color: isG ? charcoal : inkMute }}>{d}</span>
               </motion.div>
             );
           })}
@@ -434,7 +434,7 @@ function CalIllust() {
         <AnimatePresence>
           {full && (
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
-              style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', background: charcoal, color: cream, borderRadius: 6, padding: '4px 10px', fontFamily: BODY, fontSize: 9, fontWeight: 500 }}>
+              style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', background: charcoal, color: cream, borderRadius: 10, padding: '10px 20px', fontFamily: BODY, fontSize: 14, fontWeight: 500 }}>
               CALENDAR FULL ✓
             </motion.div>
           )}
@@ -462,13 +462,13 @@ function NotifIllust() {
     return () => clearTimeout(t);
   }, []);
   return (
-    <div style={{ width: '100%', maxWidth: 210, height: 112, margin: '0 auto' }}>
-      <div style={{ border: `1px solid ${line}`, borderRadius: 8, height: '100%', background: surface, overflow: 'hidden' }}>
+    <div style={{ width: '100%' }}>
+      <div style={{ border: `1px solid ${line}`, borderRadius: 14, background: surface, overflow: 'hidden' }}>
         {/* Email app header */}
-        <div style={{ background: '#F5F5F5', padding: '5px 10px', borderBottom: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 5 }}>
-          <Mail size={9} color={gold} />
-          <span style={{ fontFamily: BODY, fontSize: 7.5, fontWeight: 500, color: charcoal }}>Inbox</span>
-          <span style={{ marginLeft: 'auto', background: gold, color: charcoal, borderRadius: 8, padding: '1px 5px', fontFamily: BODY, fontSize: 6.5, fontWeight: 600 }}>{visible.length}</span>
+        <div style={{ background: '#F5F5F5', padding: '10px 16px', borderBottom: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Mail size={14} color={gold} />
+          <span style={{ fontFamily: BODY, fontSize: 13, fontWeight: 500, color: charcoal }}>Inbox</span>
+          <span style={{ marginLeft: 'auto', background: gold, color: charcoal, borderRadius: 10, padding: '2px 8px', fontFamily: BODY, fontSize: 11, fontWeight: 600 }}>{visible.length}</span>
         </div>
         {/* Email rows */}
         <div style={{ overflow: 'hidden' }}>
@@ -479,15 +479,15 @@ function NotifIllust() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35 }}
-                style={{ padding: '6px 10px', borderBottom: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 7, background: idx === visible[visible.length - 1] ? goldTint : surface }}>
-                <div style={{ width: 18, height: 18, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <span style={{ fontFamily: BODY, fontSize: 7, fontWeight: 600, color: charcoal }}>F</span>
+                style={{ padding: '12px 16px', borderBottom: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 12, background: idx === visible[visible.length - 1] ? goldTint : surface }}>
+                <div style={{ width: 32, height: 32, borderRadius: '50%', background: gold, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, color: charcoal }}>F</span>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontFamily: BODY, fontSize: 7.5, fontWeight: 500, color: charcoal, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{INBOX[idx].subj}</p>
-                  <p style={{ fontFamily: BODY, fontSize: 6.5, fontWeight: 300, color: inkMute, margin: 0 }}>{INBOX[idx].from}</p>
+                  <p style={{ fontFamily: BODY, fontSize: 13, fontWeight: 500, color: charcoal, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{INBOX[idx].subj}</p>
+                  <p style={{ fontFamily: BODY, fontSize: 11, fontWeight: 300, color: inkMute, margin: 0 }}>{INBOX[idx].from}</p>
                 </div>
-                <span style={{ fontFamily: BODY, fontSize: 6.5, color: inkMute, flexShrink: 0 }}>{INBOX[idx].time}</span>
+                <span style={{ fontFamily: BODY, fontSize: 11, color: inkMute, flexShrink: 0 }}>{INBOX[idx].time}</span>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -921,9 +921,7 @@ function HowItWorks() {
                   borderBottom: isMobile ? `1px solid rgba(196,168,130,0.15)` : 'none',
                   minHeight: isMobile ? 200 : 'auto',
                 }}>
-                  <div style={{ transform: 'scale(1.18)', transformOrigin: 'center' }}>
-                    <card.Illust />
-                  </div>
+                  <card.Illust />
                 </div>
                 {/* Copy */}
                 <div style={{ padding: isMobile ? '28px 28px 36px' : '48px 48px 48px 44px' }}>
