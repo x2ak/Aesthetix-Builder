@@ -1927,10 +1927,10 @@ function FinalCTA() {
 function Footer() {
   return (
     <footer style={{ background: cream, borderTop: `1px solid ${line}` }}>
-      <div style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 32px', textAlign: 'center' }}>
+      <div style={{ maxWidth: 640, margin: '0 auto', padding: '44px 24px 32px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
         {/* Logo */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, marginBottom: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9, marginBottom: 14 }}>
           <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
             <circle cx="14" cy="14" r="13" stroke={gold} strokeWidth="1.5" />
             <path d="M14 7 L20.5 21 M14 7 L7.5 21 M10.5 16.5 L17.5 16.5" stroke={gold} strokeWidth="1.5" strokeLinecap="round" />
@@ -1946,7 +1946,7 @@ function Footer() {
           We build the digital presence your clinic deserves.
         </p>
 
-        {/* Nav links — single row, centred */}
+        {/* Nav links */}
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 24px', marginBottom: 20 }}>
           {[
             { label: 'Bespoke Websites', href: '#' },
@@ -1974,7 +1974,7 @@ function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: line, marginBottom: 20 }} />
+        <div style={{ height: 1, background: line, marginBottom: 20, width: '100%' }} />
 
         {/* Bottom row */}
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '4px 20px' }}>
