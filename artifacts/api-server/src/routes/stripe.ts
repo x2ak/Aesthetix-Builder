@@ -1,5 +1,7 @@
 import { Router, type IRouter } from 'express';
 import { getUncachableStripeClient, getStripePublishableKey } from '../stripeClient';
+import { db } from '@workspace/db';
+import { slotBookingsTable } from '@workspace/db';
 
 const router: IRouter = Router();
 
@@ -53,6 +55,7 @@ router.post('/stripe/checkout/deposit', async (req, res) => {
   try {
     const stripe = await getUncachableStripeClient();
     const origin = req.headers.origin || `https://${req.headers.host}`;
+    const { name, phone } = req.body as { name?: string; phone?: string };
 
     const session = await stripe.checkout.sessions.create({
       locale: 'en-GB',
@@ -78,6 +81,14 @@ router.post('/stripe/checkout/deposit', async (req, res) => {
         product: 'build_slot_deposit',
         agency: 'Aesthetix Systems',
       },
+    });
+
+    await db.insert(slotBookingsTable).values({
+      name: name ? String(name) : null,
+      phone: phone ? String(phone) : null,
+      stripeSessionId: session.id,
+      amountPence: 9900,
+      status: 'initiated',
     });
 
     res.json({ url: session.url });

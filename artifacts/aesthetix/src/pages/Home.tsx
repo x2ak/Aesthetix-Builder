@@ -379,7 +379,25 @@ function PhoneLeadQuiz() {
                         />
                       </div>
                     ))}
-                    <motion.button whileTap={{ scale: 0.97 }} onClick={() => { if (name && phone) setSubmitted(true); }}
+                    <motion.button whileTap={{ scale: 0.97 }} onClick={async () => {
+                        if (!name || !phone) return;
+                        try {
+                          await fetch('/api/enquiries', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              name, phone, handle: handle || null,
+                              businessType: answers[1] || null,
+                              currentBookingMethod: answers[2] || null,
+                              monthlyBookings: answers[3] || null,
+                              painPoints: checked.length ? checked : null,
+                              style: answers[5] || null,
+                              packageChoice: answers[6] || null,
+                            }),
+                          });
+                        } catch { /* non-blocking */ }
+                        setSubmitted(true);
+                      }}
                       style={{ width: '100%', background: name && phone ? `linear-gradient(135deg, #D4B892 0%, ${gold} 100%)` : 'rgba(196,168,130,0.20)', borderRadius: isMobile ? 9 : 11, padding: isMobile ? '7px' : '9px', border: 'none', cursor: name && phone ? 'pointer' : 'not-allowed', marginTop: isMobile ? 5 : 7, transition: 'background 0.3s', boxShadow: name && phone ? '0 4px 14px rgba(196,168,130,0.35)' : 'none' }}>
                       <span style={{ fontFamily: BODY, fontSize: isMobile ? 9 : 11, fontWeight: 700, color: name && phone ? charcoal : QUIZ_MUTE, letterSpacing: '0.03em' }}>Get my free quote →</span>
                     </motion.button>
@@ -1567,6 +1585,8 @@ function BookSlotModal({ onClose }: { onClose: () => void }) {
   const isMobile = useIsMobile();
   const [loading, setLoading] = React.useState(false);
   const [err, setErr] = React.useState('');
+  const [modalName, setModalName] = React.useState('');
+  const [modalPhone, setModalPhone] = React.useState('');
 
   async function handleDeposit() {
     setLoading(true);
@@ -1575,6 +1595,7 @@ function BookSlotModal({ onClose }: { onClose: () => void }) {
       const res = await fetch('/api/stripe/checkout/deposit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: modalName || undefined, phone: modalPhone || undefined }),
       });
       const data = await res.json();
       if (data.url) {
@@ -1613,6 +1634,26 @@ function BookSlotModal({ onClose }: { onClose: () => void }) {
         <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.7, margin: '0 0 28px' }}>
           We take a <strong style={{ color: charcoal, fontWeight: 600 }}>£99 deposit</strong> to hold your place in our build queue. This comes straight off the cost of your package. After payment, we'll be in touch to discuss your build date.
         </p>
+        {/* Name + Phone */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
+          {[
+            { label: 'Your name', value: modalName, set: setModalName, ph: 'e.g. Jade' },
+            { label: 'Phone', value: modalPhone, set: setModalPhone, ph: '+44 7700 000000' },
+          ].map(f => (
+            <div key={f.label}>
+              <label style={{ fontFamily: BODY, fontSize: 10, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: inkMute, display: 'block', marginBottom: 5 }}>{f.label}</label>
+              <input
+                value={f.value}
+                onChange={e => f.set(e.target.value)}
+                placeholder={f.ph}
+                style={{ width: '100%', boxSizing: 'border-box' as const, border: `1px solid ${line}`, borderRadius: 8, padding: '10px 12px', fontFamily: BODY, fontSize: 13, color: charcoal, outline: 'none', background: cream, transition: 'border-color 0.18s' }}
+                onFocus={e => { e.target.style.borderColor = gold; }}
+                onBlur={e => { e.target.style.borderColor = line; }}
+              />
+            </div>
+          ))}
+        </div>
+
         {/* Payment schedule */}
         <div style={{ background: cream, borderRadius: 12, padding: '20px 20px', marginBottom: 28 }}>
           <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.2em', color: inkMute, margin: '0 0 16px' }}>Payment Schedule</p>

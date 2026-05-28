@@ -17,6 +17,7 @@ import BespokeWebsites from "@/pages/services/BespokeWebsites";
 import BookingSystems from "@/pages/services/BookingSystems";
 import AiAssistant from "@/pages/services/AiAssistant";
 import OngoingSupport from "@/pages/services/OngoingSupport";
+import Admin from "@/pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ function Router() {
   if (path === "/services/booking-systems") return <BookingSystems />;
   if (path === "/services/ai-assistant") return <AiAssistant />;
   if (path === "/services/ongoing-support") return <OngoingSupport />;
+  if (path === "/admin") return <Admin />;
 
   return <Home />;
 }
