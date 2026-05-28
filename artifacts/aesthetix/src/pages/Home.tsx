@@ -255,7 +255,7 @@ function PhoneLeadQuiz() {
                   /* ── Step 4: Pain points (multi-select) ── */
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <p style={qStyle}>What's holding you back?</p>
-                    <p style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8, letterSpacing: '0.15em', color: QUIZ_MUTE, textTransform: 'uppercase', margin: `0 0 ${isMobile ? 5 : 7}px` }}>Select all that apply</p>
+                    <p style={{ fontFamily: BODY, fontSize: isMobile ? 6.5 : 8, letterSpacing: '0.15em', color: gold, textTransform: 'uppercase', margin: `0 0 ${isMobile ? 5 : 7}px` }}>Select all that apply</p>
                     {["No-shows", "Time wasted in DMs", "Looks unprofessional", "No deposits taken", "Can't be found on Google", "Juggling multiple locations"].map(opt => {
                       const sel = checked.includes(opt);
                       return (
