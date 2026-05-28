@@ -55,6 +55,71 @@ export default function Payment() {
     }
   }
 
+  if (status === 'deposit-success') {
+    const schedule = [
+      { label: '£99 deposit', sub: 'Paid today — deducted from your total', done: true },
+      { label: '50% on kickoff date', sub: 'Invoiced once we agree your start date', done: false },
+      { label: '50% on completion', sub: 'Paid when your site goes live', done: false },
+    ];
+    return (
+      <div style={{ minHeight: '100vh', background: CREAM, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ maxWidth: 480, width: '100%' }}>
+          {/* Tick */}
+          <div style={{ width: 64, height: 64, borderRadius: '50%', background: GOLD, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M6 14l6 6 10-12" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.75rem' }}>Build Slot Secured</p>
+          <h1 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 'clamp(2rem,5vw,3rem)', color: CHARCOAL, marginBottom: '1rem', lineHeight: 1.15 }}>Deposit received.</h1>
+          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 16, color: INK_MUTE, maxWidth: 400, margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
+            Your place in our build queue is confirmed. We'll contact you within <strong style={{ color: CHARCOAL, fontWeight: 600 }}>24 hours</strong> to discuss your build date and kick things off.
+          </p>
+
+          {/* Payment schedule card */}
+          <div style={{ background: '#fff', border: '1px solid #E5DFD3', borderRadius: 12, padding: '24px 28px', marginBottom: '2.5rem', textAlign: 'left' }}>
+            <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.2em', color: INK_MUTE, margin: '0 0 18px' }}>Your Payment Schedule</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {schedule.map((s, i) => (
+                <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                  <div style={{ width: 26, height: 26, borderRadius: '50%', background: s.done ? GOLD : 'transparent', border: s.done ? 'none' : `1.5px solid #C4A882`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+                    {s.done ? (
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6l3 3 5-5.5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    ) : (
+                      <span style={{ fontFamily: BODY, fontWeight: 600, fontSize: 10, color: GOLD }}>{i + 1}</span>
+                    )}
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 14, color: CHARCOAL, margin: 0 }}>{s.label}</p>
+                    <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: INK_MUTE, margin: 0 }}>{s.sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a
+              href="https://wa.me/447495963388?text=Hi%20Sim%2C%20I%27ve%20just%20paid%20my%20deposit%20and%20I%27m%20ready%20to%20discuss%20my%20build%20date!"
+              target="_blank" rel="noopener noreferrer"
+              style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', background: CHARCOAL, color: CREAM, border: 'none', borderRadius: 2, padding: '14px 28px', textDecoration: 'none', display: 'inline-block' }}
+            >
+              Message us on WhatsApp
+            </a>
+            <button
+              onClick={() => navigate('/')}
+              style={{ fontFamily: BODY, fontWeight: 600, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'transparent', color: CHARCOAL, border: `1.5px solid ${CHARCOAL}`, borderRadius: 2, padding: '14px 28px', cursor: 'pointer' }}
+            >
+              Back to home
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
   if (status === 'success') {
     return (
       <div style={{ minHeight: '100vh', background: CREAM, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>

@@ -1524,15 +1524,34 @@ const CUSTOM_FEATURES = [
 /* ─── Book Slot Modal ─── */
 function BookSlotModal({ onClose }: { onClose: () => void }) {
   const isMobile = useIsMobile();
-  const goToPay = () => {
-    onClose();
-    window.history.pushState({}, '', '/pay');
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  };
+  const [loading, setLoading] = React.useState(false);
+  const [err, setErr] = React.useState('');
+
+  async function handleDeposit() {
+    setLoading(true);
+    setErr('');
+    try {
+      const res = await fetch('/api/stripe/checkout/deposit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setErr(data.error || 'Something went wrong. Please try again.');
+        setLoading(false);
+      }
+    } catch {
+      setErr('Connection error. Please try again.');
+      setLoading(false);
+    }
+  }
+
   const terms = [
-    { label: '£99 deposit today', sub: 'Deducted from your package price' },
-    { label: '50% on kickoff', sub: 'Once we start building your site' },
-    { label: '50% on completion', sub: 'When your site goes live' },
+    { label: '£99 deposit today', sub: 'Deducted from your total package price' },
+    { label: '50% on kickoff date', sub: 'Invoiced once we agree your start date' },
+    { label: '50% on completion', sub: 'Paid when your site goes live' },
   ];
   return (
     <div
@@ -1551,7 +1570,7 @@ function BookSlotModal({ onClose }: { onClose: () => void }) {
         <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: gold, margin: '0 0 10px' }}>Build Queue</p>
         <h2 style={{ fontFamily: BODY, fontWeight: 700, fontSize: isMobile ? 22 : 26, color: charcoal, margin: '0 0 8px', lineHeight: 1.2 }}>Secure your build slot</h2>
         <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: inkSoft, lineHeight: 1.7, margin: '0 0 28px' }}>
-          We take a <strong style={{ color: charcoal, fontWeight: 600 }}>£99 deposit</strong> to hold your place in our build queue. This comes straight off the cost of your package.
+          We take a <strong style={{ color: charcoal, fontWeight: 600 }}>£99 deposit</strong> to hold your place in our build queue. This comes straight off the cost of your package. After payment, we'll be in touch to discuss your build date.
         </p>
         {/* Payment schedule */}
         <div style={{ background: cream, borderRadius: 12, padding: '20px 20px', marginBottom: 28 }}>
@@ -1570,11 +1589,15 @@ function BookSlotModal({ onClose }: { onClose: () => void }) {
             ))}
           </div>
         </div>
+        {err && (
+          <p style={{ fontFamily: BODY, fontSize: 13, color: '#c0392b', marginBottom: 12, textAlign: 'center' }}>{err}</p>
+        )}
         {/* Primary CTA */}
         <button
-          onClick={goToPay}
-          style={{ width: '100%', background: charcoal, color: cream, border: 'none', borderRadius: 999, padding: '14px 24px', fontFamily: BODY, fontWeight: 600, fontSize: 14, cursor: 'pointer', marginBottom: 12, letterSpacing: '0.01em' }}>
-          Pay £99 Deposit Now →
+          onClick={handleDeposit}
+          disabled={loading}
+          style={{ width: '100%', background: charcoal, color: cream, border: 'none', borderRadius: 999, padding: '14px 24px', fontFamily: BODY, fontWeight: 600, fontSize: 14, cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1, marginBottom: 12, letterSpacing: '0.01em', transition: 'opacity 0.2s' }}>
+          {loading ? 'Redirecting to checkout…' : 'Pay £99 Deposit — Secure Checkout →'}
         </button>
         {/* Secondary */}
         <div style={{ textAlign: 'center' }}>
