@@ -1399,39 +1399,42 @@ function Pricing() {
 function FlexiblePayment() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: surface, borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, padding: isMobile ? '36px 24px' : '48px 0' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: isMobile ? 0 : '0 32px', textAlign: 'center' }}>
-        <FadeIn>
-          <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.28em', color: inkMute, margin: '0 0 18px' }}>Flexible Payment</p>
-          <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 16 : 19, color: inkSoft, margin: '0 0 32px', lineHeight: 1.5 }}>
-            Spread the cost — 0% interest options available.
-          </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? 20 : 40, flexWrap: 'wrap' }}>
-            {/* Klarna */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-              <svg width={isMobile ? 22 : 28} height={isMobile ? 22 : 28} viewBox="0 0 28 28" fill="none">
-                <text x="0" y="22" fontFamily="Georgia, serif" fontWeight="900" fontSize="26" fill="#FF0066">K</text>
+    <section style={{ background: surface, borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, padding: isMobile ? '24px 20px' : '28px 0' }}>
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: isMobile ? 0 : '0 32px', display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', justifyContent: 'space-between', gap: isMobile ? 16 : 0 }}>
+        <FadeIn style={{ flex: '0 0 auto' }}>
+          <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
+            <p style={{ fontFamily: BODY, fontWeight: 500, fontSize: 9, textTransform: 'uppercase' as const, letterSpacing: '0.28em', color: gold, margin: '0 0 4px' }}>Flexible Payment</p>
+            <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 13 : 14, color: inkSoft, margin: 0, lineHeight: 1.4 }}>
+              Spread the cost — 0% interest options available.
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn delay={0.1} style={{ flex: '0 0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 16 : 24 }}>
+            {/* Klarna pill */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#FFB3C7', borderRadius: 8, padding: '5px 12px' }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M5.5 2.5C5.5 2.5 5.5 9 2.5 13.5H5C5 13.5 6.5 10.5 6.5 7V2.5H5.5Z" fill="#17120F"/>
+                <path d="M11 2.5C11 2.5 11 6.5 8.5 8.5L11 13.5H13.5L11 8.5C12.5 7 13.5 5 13.5 2.5H11Z" fill="#17120F"/>
+                <circle cx="12.25" cy="12.25" r="1.25" fill="#17120F"/>
               </svg>
-              <span style={{ fontFamily: "'Inter Tight', system-ui, sans-serif", fontWeight: 700, fontSize: isMobile ? 17 : 20, color: '#FF0066', letterSpacing: '-0.01em' }}>Klarna</span>
+              <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 12, color: '#17120F', letterSpacing: '-0.01em' }}>Klarna</span>
             </div>
-            <span style={{ color: inkMute, fontSize: 10 }}>·</span>
-            {/* Clearpay */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: isMobile ? 22 : 26, height: isMobile ? 22 : 26, borderRadius: 6, background: '#B2FCE4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00796B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                </svg>
-              </div>
-              <span style={{ fontFamily: "'Inter Tight', system-ui, sans-serif", fontWeight: 700, fontSize: isMobile ? 17 : 20, color: charcoal, letterSpacing: '-0.01em' }}>Clearpay</span>
-            </div>
-            <span style={{ color: inkMute, fontSize: 10 }}>·</span>
-            {/* PayPal */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <svg width={isMobile ? 22 : 26} height={isMobile ? 22 : 26} viewBox="0 0 24 24" fill="none">
-                <path d="M7 4h7a5 5 0 0 1 0 10H9l-1 6H4L7 4z" fill="#009CDE"/>
-                <path d="M9.5 7h5a3 3 0 0 1 0 6H11l-.8 5H7.5L9.5 7z" fill="#003087"/>
+            {/* Clearpay pill */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#B2FCE4', borderRadius: 8, padding: '5px 12px' }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <rect width="16" height="16" rx="4" fill="#B2FCE4"/>
+                <path d="M4 8.5L6.5 11L12 5.5" stroke="#00796B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span style={{ fontFamily: "'Inter Tight', system-ui, sans-serif", fontWeight: 700, fontSize: isMobile ? 17 : 20, color: '#003087', letterSpacing: '-0.01em' }}>PayPal</span>
+              <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 12, color: '#00796B', letterSpacing: '-0.01em' }}>Clearpay</span>
+            </div>
+            {/* PayPal pill */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#EEF3FB', borderRadius: 8, padding: '5px 12px' }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M4.5 2h5.2a3.3 3.3 0 0 1 3.3 3.7C12.6 7.6 11 9 9.2 9H7.5l-.8 4.5H4.2L4.5 2z" fill="#009CDE"/>
+                <path d="M5.5 4.5h3.8a2 2 0 0 1 2 2.2C11 7.9 10 9 8.5 9H7l-.6 3.5H4.5l1-8z" fill="#003087"/>
+              </svg>
+              <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 12, color: '#003087', letterSpacing: '-0.01em' }}>PayPal</span>
             </div>
           </div>
         </FadeIn>
