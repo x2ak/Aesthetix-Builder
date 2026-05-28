@@ -193,6 +193,7 @@ function LeadForm() {
           )}
         </div>
 
+        <div style={{ minHeight: isMobile ? 440 : 460 }}>
         <AnimatePresence mode="wait">
           {submitted ? (
             <motion.div key="done" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.32 }}
@@ -347,6 +348,7 @@ function LeadForm() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
     </div>
   );
