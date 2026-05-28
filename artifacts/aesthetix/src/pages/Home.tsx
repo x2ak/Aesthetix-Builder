@@ -631,15 +631,28 @@ function Hero() {
               See recent work →
             </a>
           </motion.div>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
-            style={{ paddingTop: isMobile ? 14 : 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: isMobile ? 10 : 10, flexWrap: 'wrap', justifyContent: isMobile ? 'center' : 'flex-start', width: '100%' }}>
-            <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 11 : 11, color: inkMute }}>Trusted by</span>
-            {['FlawlessSkin', 'Dermadoll', 'Starr Beautyy'].map(n => (
-              <span key={n} style={{ background: goldTint, padding: isMobile ? '5px 13px' : '4px 11px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: isMobile ? 11 : 11, color: goldHover }}>{n}</span>
-            ))}
-            {!isMobile && <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />}
-            {!isMobile && <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>}
-          </motion.div>
+          {isMobile ? (
+            /* Mobile — quiz prompt */
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
+              style={{ paddingTop: 14, borderTop: `1px solid ${line}`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, width: '100%' }}>
+              <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute, letterSpacing: '0.04em' }}>Get your free quote in 60 seconds</span>
+              <motion.span
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ fontSize: 16, color: gold, lineHeight: 1 }}>↓</motion.span>
+            </motion.div>
+          ) : (
+            /* Desktop — trust badges */
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.65, delay: 0.9 }}
+              style={{ paddingTop: 20, borderTop: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Trusted by</span>
+              {['FlawlessSkin', 'Dermadoll', 'Starr Beautyy'].map(n => (
+                <span key={n} style={{ background: goldTint, padding: '4px 11px', borderRadius: 999, fontFamily: BODY, fontWeight: 400, fontSize: 11, color: goldHover }}>{n}</span>
+              ))}
+              <span style={{ width: 1, height: 14, background: line, margin: '0 2px' }} />
+              <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: inkMute }}>Based in London, UK</span>
+            </motion.div>
+          )}
         </div>
         {/* Right — Phone */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
