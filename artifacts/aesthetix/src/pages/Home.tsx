@@ -304,7 +304,6 @@ function LeadForm() {
                     width: '100%', background: packageChoice === opt.name ? 'rgba(196,168,130,0.12)' : 'rgba(255,255,255,0.04)',
                     border: `1.5px solid ${packageChoice === opt.name ? gold : 'rgba(255,255,255,0.09)'}`,
                     borderRadius: 14, padding: '18px 22px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                     cursor: 'pointer', marginBottom: 12, textAlign: 'left' as const, transition: 'all 0.15s',
                   }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
