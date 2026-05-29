@@ -294,9 +294,9 @@ function LeadForm() {
               <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: isMobile ? 24 : 30, color: QUIZ_TEXT, margin: '0 0 8px', lineHeight: 1.2 }}>Which package feels right?</p>
               <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 14, color: QUIZ_MUTE, margin: '0 0 22px' }}>Pick one — we'll go over everything on the call.</p>
               {[
-                { name: 'Core',    desc: 'Clean, fast & ready to book',     price: '£1,499',    popular: false },
-                { name: 'Premium', desc: 'Custom design + booking system',   price: '£2,499',    popular: true  },
-                { name: 'Custom',  desc: 'Full bespoke build',               price: "Let's talk", popular: false },
+                { name: 'Core',    desc: 'Clean, fast & ready to book',   popular: false },
+                { name: 'Premium', desc: 'Custom design + booking system', popular: true  },
+                { name: 'Custom',  desc: 'Full bespoke build',             popular: false },
               ].map(opt => (
                 <motion.button key={opt.name} whileTap={{ scale: 0.98 }}
                   onClick={() => { setPackageChoice(opt.name); setTimeout(goNext, 180); }}
@@ -307,14 +307,11 @@ function LeadForm() {
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                     cursor: 'pointer', marginBottom: 12, textAlign: 'left' as const, transition: 'all 0.15s',
                   }}>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
-                      <span style={{ fontFamily: BODY, fontSize: 15, fontWeight: 500, color: QUIZ_TEXT }}>{opt.name}</span>
-                      {opt.popular && <span style={{ fontFamily: BODY, fontSize: 9, fontWeight: 700, color: charcoal, background: gold, borderRadius: 99, padding: '2px 8px', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Popular</span>}
-                    </div>
-                    <span style={{ fontFamily: BODY, fontSize: 13, color: QUIZ_MUTE, fontWeight: 300 }}>{opt.desc}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+                    <span style={{ fontFamily: BODY, fontSize: 15, fontWeight: 500, color: QUIZ_TEXT }}>{opt.name}</span>
+                    {opt.popular && <span style={{ fontFamily: BODY, fontSize: 9, fontWeight: 700, color: charcoal, background: gold, borderRadius: 99, padding: '2px 8px', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Popular</span>}
                   </div>
-                  <span style={{ fontFamily: BODY, fontSize: 15, color: gold, fontWeight: 500, flexShrink: 0, marginLeft: 20 }}>{opt.price}</span>
+                  <span style={{ fontFamily: BODY, fontSize: 13, color: QUIZ_MUTE, fontWeight: 300 }}>{opt.desc}</span>
                 </motion.button>
               ))}
             </motion.div>
