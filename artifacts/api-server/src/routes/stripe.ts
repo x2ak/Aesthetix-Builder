@@ -27,10 +27,10 @@ router.post('/stripe/checkout', async (req, res) => {
         {
           price_data: {
             currency: 'gbp',
-            unit_amount: 99900,
+            unit_amount: 74900,
             product_data: {
-              name: 'Aesthetix Website Build',
-              description: 'Bespoke clinic website — design, development, booking system & launch. Built to convert.',
+              name: 'Core Build — Aesthetix Systems',
+              description: 'Bespoke clinic website — custom design, online booking, mobile-first, SEO ready & 30-day support. Tonight-only price.',
               images: [],
             },
           },
@@ -41,7 +41,7 @@ router.post('/stripe/checkout', async (req, res) => {
       success_url: `${origin}/pay?status=success`,
       cancel_url: `${origin}/pay?status=cancelled`,
       metadata: {
-        product: 'website_build',
+        product: 'core_build',
         agency: 'Aesthetix Systems',
       },
     });
