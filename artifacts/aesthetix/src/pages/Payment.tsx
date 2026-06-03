@@ -223,7 +223,7 @@ export default function Payment() {
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: '0.4rem', flexWrap: 'wrap' as const }}>
               <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 64, color: '#F7F4EE', lineHeight: 1 }}>£749</span>
               <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 4 }}>
-                <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 20, color: 'rgba(247,244,238,0.3)', textDecoration: 'line-through' }}>£1,499</span>
+                <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 20, color: 'rgba(247,244,238,0.3)', textDecoration: 'line-through' }}>£999</span>
                 <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 10, letterSpacing: '0.1em', color: '#1A1A1C', background: '#E05C5C', borderRadius: 99, padding: '2px 8px', textAlign: 'center' as const }}>50% OFF</span>
               </div>
             </div>
