@@ -217,7 +217,7 @@ export default function Payment() {
               Complete package
             </p>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: '0.4rem' }}>
-              <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 64, color: '#F7F4EE', lineHeight: 1 }}>£999</span>
+              <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 64, color: '#F7F4EE', lineHeight: 1 }}>£1,098</span>
             </div>
             <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.5)', marginBottom: '2rem', letterSpacing: '0.02em' }}>
               One-time · no monthly fees · VAT not included
@@ -247,7 +247,7 @@ export default function Payment() {
               whileTap={{ scale: 0.98 }}
               style={{ width: '100%', fontFamily: BODY, fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', background: GOLD, color: CHARCOAL, border: 'none', borderRadius: 2, padding: '16px 24px', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s' }}
             >
-              {loading ? 'Redirecting…' : 'Pay £999 — secure checkout'}
+              {loading ? 'Redirecting…' : 'Pay £1,098 — secure checkout'}
             </motion.button>
 
             <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 11, color: 'rgba(247,244,238,0.4)', marginTop: '1rem', textAlign: 'center', letterSpacing: '0.03em' }}>
@@ -287,7 +287,7 @@ export default function Payment() {
             We've built for Starr Beautyy, Dermadoll, FlawlessSkin and more. Every site is bespoke — no templates, no shortcuts.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(2rem,6vw,5rem)', flexWrap: 'wrap' }}>
-            {[['3+', 'Clinics launched'], ['£999', 'Fixed price'], ['7 days', 'Fastest build'], ['30 days', 'Post-launch support']].map(([val, label]) => (
+            {[['3+', 'Clinics launched'], ['£1,098', 'Fixed price'], ['7 days', 'Fastest build'], ['30 days', 'Post-launch support']].map(([val, label]) => (
               <div key={label} style={{ textAlign: 'center' }}>
                 <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 'clamp(1.5rem,4vw,2.2rem)', color: GOLD, marginBottom: 4 }}>{val}</p>
                 <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 12, color: INK_MUTE, letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>{label}</p>
