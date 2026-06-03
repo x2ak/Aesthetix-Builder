@@ -216,8 +216,12 @@ export default function Payment() {
             <p style={{ fontFamily: BODY, fontWeight: 600, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: GOLD, marginBottom: '1.5rem' }}>
               Complete package
             </p>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: '0.4rem' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: '0.4rem', flexWrap: 'wrap' as const }}>
               <span style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 64, color: '#F7F4EE', lineHeight: 1 }}>£1,098</span>
+              <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 4 }}>
+                <span style={{ fontFamily: BODY, fontWeight: 300, fontSize: 20, color: 'rgba(247,244,238,0.35)', textDecoration: 'line-through' }}>£1,499</span>
+                <span style={{ fontFamily: BODY, fontWeight: 700, fontSize: 10, letterSpacing: '0.1em', color: '#fff', background: 'rgba(196,168,130,0.35)', borderRadius: 99, padding: '2px 8px', textAlign: 'center' as const }}>27% OFF</span>
+              </div>
             </div>
             <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: 13, color: 'rgba(247,244,238,0.5)', marginBottom: '2rem', letterSpacing: '0.02em' }}>
               One-time · no monthly fees · VAT not included
