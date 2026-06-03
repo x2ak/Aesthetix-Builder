@@ -27,10 +27,10 @@ router.post('/stripe/checkout', async (req, res) => {
         {
           price_data: {
             currency: 'gbp',
-            unit_amount: 74900,
+            unit_amount: 99900,
             product_data: {
               name: 'Core Build — Aesthetix Systems',
-              description: 'Bespoke clinic website — custom design, online booking, mobile-first, SEO ready & 30-day support. Tonight-only price.',
+              description: 'Bespoke clinic website — custom design, online booking, mobile-first, SEO ready & 30-day support.',
               images: [],
             },
           },
