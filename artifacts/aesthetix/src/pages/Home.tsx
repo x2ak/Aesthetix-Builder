@@ -2491,7 +2491,7 @@ function FinalCTA() {
         </FadeIn>
         <FadeIn delay={0.15}>
           <p style={{ fontFamily: BODY, fontWeight: 300, fontSize: isMobile ? 15 : 17, color: 'rgba(247,244,238,0.52)', lineHeight: 1.75, maxWidth: 480, margin: isMobile ? '20px auto 0' : '24px auto 0' }}>
-            {getSlotMonth()} slots are filling up. Get your site live and start taking bookings automatically.
+            June is fully booked — July build slots are now open. Secure yours before they go.
           </p>
         </FadeIn>
         <FadeIn delay={0.28}>
