@@ -5,11 +5,12 @@ interface SEOProps {
   description: string;
   canonical?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const BASE = "https://aesthetixsystems.co.uk";
+const BASE = "https://aesthetix-systems.co.uk";
 
-export function useSEO({ title, description, canonical, ogImage = "/opengraph.jpg" }: SEOProps) {
+export function useSEO({ title, description, canonical, ogImage = "/opengraph.jpg", noindex = false }: SEOProps) {
   useEffect(() => {
     document.title = title;
 
@@ -18,13 +19,18 @@ export function useSEO({ title, description, canonical, ogImage = "/opengraph.jp
       if (el) el.setAttribute(attr, value);
     };
 
+    const imageUrl = ogImage.startsWith("http") ? ogImage : `${BASE}${ogImage}`;
+    const canonicalHref = canonical ? `${BASE}${canonical}` : BASE;
+
     set('meta[name="description"]', "content", description);
+    set('meta[name="robots"]', "content", noindex ? "noindex, nofollow" : "index, follow");
     set('meta[property="og:title"]', "content", title);
     set('meta[property="og:description"]', "content", description);
-    set('meta[property="og:image"]', "content", ogImage);
-
-    const canonicalHref = canonical ? `${BASE}${canonical}` : BASE;
+    set('meta[property="og:image"]', "content", imageUrl);
     set('meta[property="og:url"]', "content", canonicalHref);
+    set('meta[name="twitter:title"]', "content", title);
+    set('meta[name="twitter:description"]', "content", description);
+    set('meta[name="twitter:image"]', "content", imageUrl);
 
     let linkEl = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!linkEl) {
@@ -33,5 +39,22 @@ export function useSEO({ title, description, canonical, ogImage = "/opengraph.jp
       document.head.appendChild(linkEl);
     }
     linkEl.href = canonicalHref;
-  }, [title, description, canonical, ogImage]);
+  }, [title, description, canonical, ogImage, noindex]);
+}
+
+export function usePageSchema(schema: object) {
+  useEffect(() => {
+    const id = "page-ld-json";
+    let el = document.getElementById(id) as HTMLScriptElement | null;
+    if (!el) {
+      el = document.createElement("script");
+      el.id = id;
+      el.type = "application/ld+json";
+      document.head.appendChild(el);
+    }
+    (el as HTMLScriptElement).text = JSON.stringify(schema);
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 }

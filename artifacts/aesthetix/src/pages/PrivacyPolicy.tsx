@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSEO } from "@/hooks/useSEO";
 import { motion } from "framer-motion";
 
 const cream = '#F7F4EE';
@@ -179,11 +180,14 @@ function renderListItem(item: string | { bold: string; rest: string }, j: number
 }
 
 export default function PrivacyPolicy() {
+  useSEO({
+    title: "Privacy Policy | Aesthetix Systems",
+    description: "How Aesthetix Systems collects, uses, and protects your personal data. Read our full privacy policy.",
+    canonical: "/privacy-policy",
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Privacy Policy | Aesthetix Systems';
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'How Aesthetix Systems collects, uses, and protects your personal data.');
   }, []);
 
   return (

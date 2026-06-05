@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, Zap, Clock, MessageCircle, TrendingUp } from "lucide-react";
-import { useSEO } from "@/hooks/useSEO";
+import { useSEO, usePageSchema } from "@/hooks/useSEO";
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -92,6 +92,15 @@ export default function AiAssistant() {
     title: "AI Receptionist for Aesthetics Clinics | Aesthetix Systems",
     description: "24/7 AI receptionist for aesthetics and beauty clinics. Answers treatment questions, captures leads, and books consultations automatically. Never miss an enquiry.",
     canonical: "/services/ai-assistant",
+  });
+  usePageSchema({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQ.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a },
+    })),
   });
 
   return (

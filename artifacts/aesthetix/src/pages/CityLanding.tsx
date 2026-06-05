@@ -289,6 +289,27 @@ export default function CityLanding({ citySlug }: { citySlug: string }) {
 
   const faq = [...FAQ_BASE, ...city.faqExtra];
 
+  useEffect(() => {
+    const id = "page-ld-json";
+    let el = document.getElementById(id) as HTMLScriptElement | null;
+    if (!el) {
+      el = document.createElement("script");
+      el.id = id;
+      el.type = "application/ld+json";
+      document.head.appendChild(el);
+    }
+    el.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faq.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a },
+      })),
+    });
+    return () => { document.getElementById(id)?.remove(); };
+  }, [citySlug]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div style={{ background: cream, minHeight: "100vh", fontFamily: BODY }}>
       {/* Nav */}

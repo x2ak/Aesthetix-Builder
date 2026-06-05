@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Mail, MessageCircle, Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { useSEO } from "@/hooks/useSEO";
+import { useSEO, usePageSchema } from "@/hooks/useSEO";
 
 /* ─── Design Tokens ─── */
 const cream = '#F7F4EE';
@@ -2420,18 +2420,22 @@ function Testimonials() {
   );
 }
 
+const HOME_FAQS = [
+  { q: 'How long does a build take?', a: 'Most websites are live within 5–10 days of our first conversation. We move fast — we know you can\'t wait weeks to start taking bookings.' },
+  { q: 'Do I own my website and booking system?', a: 'Yes — completely. You own the code, the domain, the content, and all your client data. We host it for you as part of the monthly support plan, which you can cancel anytime with 30 days\' notice.' },
+  { q: 'What happens to my bookings and data if I leave?', a: 'Everything stays with you. Your client records, appointment history, and all data can be exported in standard formats at any time. We provide a full handover pack if you ever move on. No lock-in contracts, no data held hostage — it\'s your clinic, your data, full stop.' },
+  { q: 'Do you build on my own domain?', a: 'Always. Your website lives on a domain you own and fully control. We never host on a subdomain of our site or redirect your patients to a third-party platform URL. Your domain, your brand, your site.' },
+  { q: 'How is this different from Fresha or Booksy?', a: 'Fresha and Booksy are rental platforms — your clinic page lives on their domain, and they own the relationship with your clients. With Aesthetix Systems, we build a bespoke website on your own domain that you own outright. No monthly rental fees, no competitor listings, no third-party branding. Your clients book with you, not via a platform.' },
+  { q: 'Can you integrate my existing Calendly or Fresha?', a: 'Yes — on the Starter package we embed your existing booking tool cleanly into your new site. But most clients switch to our built-in system once they see how much better the experience is for their clients.' },
+  { q: 'Does the AI assistant actually book clients?', a: 'Yes. It\'s trained on your specific treatments, prices and availability. It answers questions, qualifies leads and books clients straight into your calendar — automatically, 24/7. Not just a chatbot that says "DM us for more info."' },
+  { q: 'Do you offer ongoing support?', a: 'Yes — monthly support plans start at £25/mo and include hosting, security updates, minor content changes and priority support. No long-term contracts. Cancel anytime.' },
+];
+
 /* ─── FAQ ─── */
 function FAQ() {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState<number | null>(null);
-  const faqs = [
-    { q: 'How long does a build take?', a: 'Most websites are live within 5–10 days of our first conversation. We move fast — we know you can\'t wait weeks to start taking bookings.' },
-    { q: 'Do I own my website?', a: 'Yes — completely. You own the code, the domain, the content and all your client data. We host it for you as part of the monthly support plan, which you can cancel anytime with 30 days notice.' },
-    { q: 'Do I still need Fresha or Booksy?', a: 'No — and that\'s the whole point. Our Core and Premium packages include your own fully custom booking system, built directly into your website. Your clients book on YOUR site, in YOUR brand, with no redirects to third-party platforms. No monthly Fresha fees. No Booksy branding. Just your clinic, end to end.' },
-    { q: 'Can you integrate my existing Calendly or Fresha?', a: 'Yes — on the Starter package we embed your existing booking tool cleanly into your new site. But most clients switch to our built-in system once they see how much better the experience is for their clients.' },
-    { q: 'Does the AI assistant actually book clients?', a: 'Yes. It\'s trained on your specific treatments, prices and availability. It answers questions, qualifies leads and books clients straight into your calendar — automatically, 24/7. Not just a chatbot that says "DM us for more info."' },
-    { q: 'Do you offer ongoing support?', a: 'Yes — monthly support plans start at £25/mo and include hosting, security updates, minor content changes and priority support. No long-term contracts. Cancel anytime.' },
-  ];
+  const faqs = HOME_FAQS;
   return (
     <section style={{ background: `linear-gradient(160deg, ${blush} 0%, ${goldTint} 100%)`, padding: isMobile ? '64px 20px' : '100px 0' }}>
       <div style={{ maxWidth: 720, margin: '0 auto', padding: isMobile ? 0 : '0 32px' }}>
@@ -2721,6 +2725,15 @@ export default function Home() {
     title: "Aesthetix Systems — Premium Websites for Aesthetics Clinics",
     description: "Aesthetix Systems builds bespoke websites and booking systems for aesthetics and beauty clinics across the UK. Premium design, AI receptionist, and ongoing support — starting from £999.",
     canonical: "/",
+  });
+  usePageSchema({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": HOME_FAQS.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a },
+    })),
   });
 
   return (

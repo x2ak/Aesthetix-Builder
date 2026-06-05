@@ -28,56 +28,65 @@
     <meta name="twitter:description" content="Bespoke websites and booking systems for aesthetics clinics across the UK. From £999." />
     <meta name="twitter:image" content="https://aesthetix-systems.co.uk/opengraph.jpg" />
 
-    <!-- Structured Data: LocalBusiness -->
+    <!-- Structured Data: Organization + Service + WebSite -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": ["LocalBusiness", "ProfessionalService"],
-          "@id": "https://aesthetixsystems.co.uk/#business",
+          "@type": "Organization",
+          "@id": "https://aesthetix-systems.co.uk/#organisation",
           "name": "Aesthetix Systems",
-          "description": "Bespoke websites, booking systems, and AI receptionists for aesthetics and beauty clinics across the UK.",
-          "url": "https://aesthetixsystems.co.uk",
+          "url": "https://aesthetix-systems.co.uk",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://aesthetix-systems.co.uk/favicon-192.png",
+            "width": 192,
+            "height": 192
+          },
+          "description": "Aesthetix Systems builds bespoke websites and booking systems for aesthetics and beauty clinics across the United Kingdom. Clinics own their website, domain, and all client data outright.",
           "telephone": "+447495963388",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "London",
-            "addressRegion": "Greater London",
-            "addressCountry": "GB"
+          "areaServed": {
+            "@type": "Country",
+            "name": "United Kingdom"
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 51.5074,
-            "longitude": -0.1278
-          },
-          "areaServed": [
-            { "@type": "City", "name": "London" },
-            { "@type": "City", "name": "Manchester" },
-            { "@type": "City", "name": "Birmingham" },
-            { "@type": "City", "name": "Leeds" },
-            { "@type": "City", "name": "Liverpool" },
-            { "@type": "City", "name": "Bristol" },
-            { "@type": "City", "name": "Edinburgh" },
-            { "@type": "City", "name": "Glasgow" },
-            { "@type": "City", "name": "Cardiff" },
-            { "@type": "Country", "name": "United Kingdom" }
-          ],
-          "priceRange": "£££",
-          "currenciesAccepted": "GBP",
-          "paymentAccepted": "Credit Card, Bank Transfer",
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-              "opens": "09:00",
-              "closes": "18:00"
-            }
-          ],
           "sameAs": [
             "https://www.instagram.com/aesthetix_systems",
             "https://www.tiktok.com/@aesthetix_systems"
           ],
+          "knowsAbout": [
+            "Aesthetics clinic website design",
+            "Beauty clinic booking systems",
+            "UK aesthetics industry digital marketing",
+            "AI receptionist for clinics"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://aesthetix-systems.co.uk/#website",
+          "url": "https://aesthetix-systems.co.uk",
+          "name": "Aesthetix Systems",
+          "description": "Premium websites and booking systems for UK aesthetics clinics.",
+          "publisher": { "@id": "https://aesthetix-systems.co.uk/#organisation" },
+          "inLanguage": "en-GB"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://aesthetix-systems.co.uk/#service",
+          "name": "Bespoke Website and Booking Platform for UK Aesthetics Clinics",
+          "description": "Aesthetix Systems designs, builds, and launches fully owned bespoke websites and integrated booking systems for aesthetics and beauty clinics across the UK. Clinics own the code, the domain, and all client data outright — with no ongoing platform rental fees.",
+          "provider": { "@id": "https://aesthetix-systems.co.uk/#organisation" },
+          "areaServed": {
+            "@type": "Country",
+            "name": "United Kingdom"
+          },
+          "serviceType": [
+            "Bespoke Aesthetics Clinic Website Design",
+            "Online Booking System Integration",
+            "AI Receptionist for Clinics",
+            "Website Maintenance and Support"
+          ],
+          "url": "https://aesthetix-systems.co.uk/services/bespoke-websites",
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Digital Services for Aesthetics Clinics",
@@ -87,17 +96,15 @@
                 "itemOffered": {
                   "@type": "Service",
                   "name": "Bespoke Aesthetics Clinic Website",
-                  "description": "Custom-designed websites for aesthetics and beauty clinics, built from scratch with no templates."
-                },
-                "price": "999",
-                "priceCurrency": "GBP"
+                  "description": "Custom-designed websites for aesthetics and beauty clinics, built from scratch with no templates. The clinic owns the code, domain, and content outright."
+                }
               },
               {
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
-                  "name": "Online Booking System Integration",
-                  "description": "Booking system integration for aesthetics clinics including Fresha, Ovatu, and bespoke solutions."
+                  "name": "Integrated Booking System",
+                  "description": "Booking system built directly into your clinic website — on your own domain, in your own brand, with no third-party redirects or platform rental fees."
                 }
               },
               {
@@ -105,24 +112,16 @@
                 "itemOffered": {
                   "@type": "Service",
                   "name": "AI Receptionist for Clinics",
-                  "description": "24/7 AI receptionist trained on your services, treatments, and pricing to capture enquiries and bookings."
+                  "description": "24/7 AI receptionist trained on your clinic's services, treatments, and pricing to capture enquiries and book consultations automatically."
                 }
               }
             ]
           }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://aesthetixsystems.co.uk/#website",
-          "url": "https://aesthetixsystems.co.uk",
-          "name": "Aesthetix Systems",
-          "description": "Premium websites and booking systems for UK aesthetics clinics.",
-          "publisher": { "@id": "https://aesthetixsystems.co.uk/#business" },
-          "inLanguage": "en-GB"
         }
       ]
     }
     </script>
+    <link rel="canonical" href="https://aesthetix-systems.co.uk/" />
 
     <meta name="google-site-verification" content="9u36sOpuR6IV8EsYM4pFO7AKYBSKUbWLMp3VX6DQZNU" />
     <link rel="icon" href="/favicon.ico" sizes="any" />

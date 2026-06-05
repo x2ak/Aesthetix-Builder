@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSEO } from '@/hooks/useSEO';
 import { motion } from 'framer-motion';
 
 const DISP = "'Instrument Serif', Georgia, serif";
@@ -23,6 +24,13 @@ const features = [
 ];
 
 export default function Payment() {
+  useSEO({
+    title: "Secure Payment | Aesthetix Systems",
+    description: "Complete your secure payment for your Aesthetix Systems clinic website build.",
+    canonical: "/pay",
+    noindex: true,
+  });
+
   const params = new URLSearchParams(window.location.search);
   const status = params.get('status');
 

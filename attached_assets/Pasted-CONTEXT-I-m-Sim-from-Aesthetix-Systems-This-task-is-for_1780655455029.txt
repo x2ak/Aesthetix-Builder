@@ -1,0 +1,34 @@
+CONTEXT:
+I'm Sim from Aesthetix Systems. This task is for my OWN agency site, aesthetix-systems.co.uk, not a client build. The site sells bespoke, fully owned booking platforms and websites to UK aesthetics and beauty clinics. The core positioning: clinics own everything outright on their own domain, unlike the rental model of Fresha, Booksy, Treatwell and Pabau where the clinic owns nothing.
+GOAL:
+Improve the site's technical and on-page SEO so it ranks in traditional Google search AND gets cited by AI answer engines (Google AI Overviews, ChatGPT, Perplexity, Gemini) when a clinic owner asks questions like "who builds custom booking sites for UK aesthetics clinics" or "do I own my Fresha website".
+TASKS:
+1. Structured data (schema.org, JSON-LD):
+   - Organization schema (name, logo, URL, sameAs links to my social profiles)
+   - Service schema describing the booking platform / website build service, with areaServed set to United Kingdom
+   - FAQPage schema on any page with an FAQ section
+   - Do NOT add LocalBusiness schema with a physical address unless I confirm a public business address. The business is remote. If unsure, use Organization + Service with areaServed, and flag it.
+2. On-page structure:
+   - Exactly one H1 per page, logical H2/H3 hierarchy under it
+   - Make sure the homepage states plainly, in crawlable text (not just images), who we are, what we build, and who it's for: bespoke owned booking platforms for UK aesthetics and beauty clinics
+   - Break long blocks into clear, scannable sections with descriptive subheadings
+3. Meta and crawl:
+   - Unique, intent-matched title tag and meta description for every page
+   - Open Graph and Twitter card tags on every page
+   - Canonical tags
+   - Generate sitemap.xml and robots.txt, confirm robots allows crawling and points to the sitemap
+   - Confirm all images have descriptive alt text
+4. Add an FAQ section to the homepage (or a dedicated FAQ page) answering these high-intent questions in clear, factual copy: "Do I own my website and booking system?", "How is this different from Fresha or Booksy?", "What happens to my bookings and data if I leave?", "Do you build on my own domain?". Wrap it in FAQPage schema.
+CONSTRAINTS:
+- Do NOT change the visual design, brand tokens, or layout. SEO and structure only.
+- Do NOT touch the pricing page, pricing copy, or any tier names/numbers. Pricing is mid-revision and the tier naming is being standardised separately. Leave all pricing content exactly as is.
+- Do NOT invent business facts (address, phone, founding date, registration number). Where a fact is needed for schema and you don't have it, leave a clearly marked placeholder and list it for me to fill.
+- Do NOT make unsubstantiated claims about competitors. Factual differentiation only (ownership, domain, data portability).
+- British English throughout.
+- Validate all JSON-LD before finishing.
+OUTPUT:
+1. List of every change made, by file.
+2. Confirmation that all JSON-LD validates (paste a sample or validator result).
+3. A list of business facts you need from me to complete schema (address decision, phone, social URLs, etc).
+4. Confirm sitemap.xml and robots.txt are live and correct.
+5. Any page where the crawlable text was too thin to describe the service clearly, flagged for a copy pass.

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSEO } from "@/hooks/useSEO";
 import { motion } from "framer-motion";
 
 const cream = '#F7F4EE';
@@ -197,11 +198,14 @@ function renderListItem(item: ListItem, j: number) {
 }
 
 export default function TermsOfService() {
+  useSEO({
+    title: "Terms & Conditions | Aesthetix Systems",
+    description: "The terms and conditions governing Aesthetix Systems' website build and ongoing support services for UK aesthetics clinics.",
+    canonical: "/terms-of-service",
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Terms & Conditions | Aesthetix Systems';
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'The Terms of Service governing Aesthetix Systems\' website and bespoke build services.');
   }, []);
 
   return (
