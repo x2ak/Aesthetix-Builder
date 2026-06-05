@@ -1,5 +1,7 @@
 import app from "./app";
 import { logger } from "./lib/logger";
+import cron from "node-cron";
+import { runSeoCrawl } from "./seo-crawler";
 
 const rawPort = process.env["PORT"];
 
@@ -22,4 +24,11 @@ app.listen(port, (err) => {
   }
 
   logger.info({ port }, "Server listening");
+
+  cron.schedule("0 7 * * *", () => {
+    logger.info("Daily SEO crawl triggered by cron");
+    runSeoCrawl().catch((err) => logger.error({ err }, "SEO crawl failed"));
+  }, { timezone: "UTC" });
+
+  logger.info("SEO crawl cron scheduled — runs daily at 07:00 UTC");
 });

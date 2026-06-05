@@ -34,6 +34,33 @@ type SlotBooking = {
   createdAt: string;
 };
 
+type SeoCrawlRun = {
+  id: number;
+  runAt: string;
+  totalPages: number;
+  pagesOk: number;
+  pagesFailed: number;
+  googlePinged: boolean;
+  durationMs: number | null;
+};
+
+type SeoPageResult = {
+  id: number;
+  runId: number;
+  url: string;
+  statusCode: number | null;
+  responseTimeMs: number | null;
+  hasTitle: boolean;
+  title: string | null;
+  hasMetaDescription: boolean;
+  metaDescription: string | null;
+  hasCanonical: boolean;
+  hasOgTitle: boolean;
+  hasSchema: boolean;
+  isNoindex: boolean;
+  issues: string[];
+};
+
 function Logo() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -216,6 +243,202 @@ function BookingDrawer({ row, onClose }: { row: SlotBooking; onClose: () => void
         )}
       </div>
     </>
+  );
+}
+
+function SeoTab({ pwd }: { pwd: string }) {
+  const [runs, setRuns] = useState<SeoCrawlRun[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState('');
+  const [selectedRun, setSelectedRun] = useState<SeoCrawlRun | null>(null);
+  const [pages, setPages] = useState<SeoPageResult[]>([]);
+  const [pagesLoading, setPagesLoading] = useState(false);
+  const [crawling, setCrawling] = useState(false);
+  const [crawlMsg, setCrawlMsg] = useState('');
+
+  function loadRuns() {
+    setLoading(true);
+    fetch('/api/admin/seo/runs', { headers: { 'x-admin-key': pwd } })
+      .then(r => r.json())
+      .then(data => { if (Array.isArray(data)) setRuns(data); else setErr(data.error ?? 'Error'); })
+      .catch(() => setErr('Failed to load'))
+      .finally(() => setLoading(false));
+  }
+
+  useEffect(() => { loadRuns(); }, [pwd]);
+
+  function selectRun(run: SeoCrawlRun) {
+    setSelectedRun(run);
+    setPages([]);
+    setPagesLoading(true);
+    fetch(`/api/admin/seo/runs/${run.id}/pages`, { headers: { 'x-admin-key': pwd } })
+      .then(r => r.json())
+      .then(data => { if (Array.isArray(data)) setPages(data); })
+      .catch(() => {})
+      .finally(() => setPagesLoading(false));
+  }
+
+  async function triggerCrawl() {
+    setCrawling(true);
+    setCrawlMsg('Crawling all pages… this takes about 30 seconds.');
+    try {
+      const res = await fetch('/api/admin/seo/crawl', { method: 'POST', headers: { 'x-admin-key': pwd } });
+      const data = await res.json();
+      if (data.ok) {
+        setCrawlMsg('Crawl complete! Refreshing…');
+        loadRuns();
+      } else {
+        setCrawlMsg(`Error: ${data.error}`);
+      }
+    } catch {
+      setCrawlMsg('Failed to trigger crawl.');
+    }
+    setTimeout(() => { setCrawling(false); setCrawlMsg(''); }, 3000);
+  }
+
+  if (loading) return <div style={{ fontFamily: BODY, color: inkMute, padding: 40, textAlign: 'center' }}>Loading…</div>;
+  if (err) return <div style={{ fontFamily: BODY, color: '#c62828', padding: 40, textAlign: 'center' }}>{err}</div>;
+
+  const latest = runs[0];
+
+  return (
+    <div style={{ padding: 24 }}>
+      {/* Header row */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
+        <div>
+          <p style={{ fontFamily: BODY, fontSize: 10, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: gold, margin: '0 0 4px' }}>SEO Crawler</p>
+          <h2 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 22, color: charcoal, margin: 0, fontWeight: 400 }}>
+            {latest ? `Last crawl: ${new Date(latest.runAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}` : 'No crawls yet'}
+          </h2>
+        </div>
+        <button
+          onClick={triggerCrawl}
+          disabled={crawling}
+          style={{
+            fontFamily: BODY, fontWeight: 700, fontSize: 12, letterSpacing: '0.08em', textTransform: 'uppercase',
+            background: crawling ? 'rgba(196,168,130,0.3)' : gold, color: crawling ? 'rgba(196,168,130,0.6)' : charcoal,
+            border: 'none', borderRadius: 999, padding: '10px 22px', cursor: crawling ? 'not-allowed' : 'pointer', transition: 'background 0.2s',
+          }}
+        >
+          {crawling ? 'Crawling…' : 'Run Crawl Now'}
+        </button>
+      </div>
+      {crawlMsg && (
+        <div style={{ fontFamily: BODY, fontSize: 13, color: inkSoft, background: goldTint, border: `1px solid ${line}`, borderRadius: 8, padding: '10px 16px', marginBottom: 20 }}>
+          {crawlMsg}
+        </div>
+      )}
+
+      {/* Latest summary cards */}
+      {latest && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12, marginBottom: 28 }}>
+          {[
+            { icon: '✅', val: latest.pagesOk, label: 'Pages OK', color: '#388E3C' },
+            { icon: '🔴', val: latest.pagesFailed, label: 'Pages Failed', color: '#C62828' },
+            { icon: '📄', val: latest.totalPages, label: 'Total Pages', color: charcoal },
+            { icon: '🔔', val: latest.googlePinged ? 'Yes' : 'No', label: 'Google Pinged', color: latest.googlePinged ? '#388E3C' : inkMute },
+            { icon: '⚡', val: latest.durationMs ? `${(latest.durationMs / 1000).toFixed(1)}s` : '—', label: 'Duration', color: charcoal },
+          ].map(c => (
+            <div key={c.label} style={{ background: '#FDFAF5', border: `1px solid ${line}`, borderRadius: 10, padding: '14px 16px' }}>
+              <div style={{ fontSize: 18, marginBottom: 6 }}>{c.icon}</div>
+              <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 22, color: c.color, marginBottom: 2 }}>{c.val}</div>
+              <div style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>{c.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Runs list */}
+      {runs.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: '40px 24px', color: inkMute, fontFamily: BODY }}>
+          No crawls yet — click "Run Crawl Now" to start your first check.
+        </div>
+      ) : (
+        <div>
+          <p style={{ fontFamily: BODY, fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: inkMute, marginBottom: 10 }}>Crawl History</p>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: BODY, marginBottom: 28 }}>
+            <thead>
+              <tr style={{ borderBottom: `2px solid ${line}` }}>
+                {['Date', 'Pages OK', 'Failed', 'Google Pinged', 'Duration', ''].map(h => (
+                  <th key={h} style={{ padding: '8px 12px', textAlign: 'left', fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: inkMute, whiteSpace: 'nowrap' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {runs.map((r, i) => (
+                <tr
+                  key={r.id}
+                  onClick={() => selectRun(r)}
+                  style={{ borderBottom: `1px solid ${line}`, background: selectedRun?.id === r.id ? goldTint : (i % 2 === 0 ? 'transparent' : '#FDFAF5'), cursor: 'pointer', transition: 'background 0.12s' }}
+                  onMouseEnter={e => { if (selectedRun?.id !== r.id) (e.currentTarget as HTMLElement).style.background = goldTint; }}
+                  onMouseLeave={e => { if (selectedRun?.id !== r.id) (e.currentTarget as HTMLElement).style.background = i % 2 === 0 ? 'transparent' : '#FDFAF5'; }}
+                >
+                  <td style={{ padding: '10px 12px', fontSize: 12, color: charcoal, whiteSpace: 'nowrap' }}>{new Date(r.runAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
+                  <td style={{ padding: '10px 12px', fontSize: 13, fontWeight: 700, color: '#388E3C' }}>{r.pagesOk}</td>
+                  <td style={{ padding: '10px 12px', fontSize: 13, fontWeight: 700, color: r.pagesFailed > 0 ? '#C62828' : inkMute }}>{r.pagesFailed}</td>
+                  <td style={{ padding: '10px 12px' }}><Badge label={r.googlePinged ? 'Yes' : 'No'} color={r.googlePinged ? 'green' : 'grey'} /></td>
+                  <td style={{ padding: '10px 12px', fontSize: 12, color: inkMute }}>{r.durationMs ? `${(r.durationMs / 1000).toFixed(1)}s` : '—'}</td>
+                  <td style={{ padding: '10px 12px', fontSize: 11, fontWeight: 600, color: gold }}>Details →</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Per-page results */}
+          {selectedRun && (
+            <div>
+              <p style={{ fontFamily: BODY, fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: inkMute, marginBottom: 10 }}>
+                Page Results — {new Date(selectedRun.runAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+              </p>
+              {pagesLoading ? (
+                <div style={{ fontFamily: BODY, color: inkMute, padding: 20 }}>Loading pages…</div>
+              ) : (
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: BODY, fontSize: 12 }}>
+                    <thead>
+                      <tr style={{ borderBottom: `2px solid ${line}` }}>
+                        {['URL', 'Status', 'Response', 'Title', 'Description', 'Canonical', 'Schema', 'Issues'].map(h => (
+                          <th key={h} style={{ padding: '8px 10px', textAlign: 'left', fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: inkMute, whiteSpace: 'nowrap' }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pages.map((p, i) => {
+                        const ok = p.statusCode === 200;
+                        return (
+                          <tr key={p.id} style={{ borderBottom: `1px solid ${line}`, background: i % 2 === 0 ? 'transparent' : '#FDFAF5' }}>
+                            <td style={{ padding: '9px 10px', maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: charcoal, fontWeight: 500 }}>
+                              {p.url.replace('https://aesthetix-systems.co.uk', '')}
+                            </td>
+                            <td style={{ padding: '9px 10px' }}>
+                              <Badge label={String(p.statusCode ?? '—')} color={ok ? 'green' : 'red'} />
+                            </td>
+                            <td style={{ padding: '9px 10px', color: (p.responseTimeMs ?? 0) > 3000 ? '#C62828' : inkSoft }}>
+                              {p.responseTimeMs ? `${p.responseTimeMs}ms` : '—'}
+                            </td>
+                            <td style={{ padding: '9px 10px', textAlign: 'center' }}>{p.hasTitle ? '✅' : '❌'}</td>
+                            <td style={{ padding: '9px 10px', textAlign: 'center' }}>{p.hasMetaDescription ? '✅' : '❌'}</td>
+                            <td style={{ padding: '9px 10px', textAlign: 'center' }}>{p.hasCanonical ? '✅' : '❌'}</td>
+                            <td style={{ padding: '9px 10px', textAlign: 'center' }}>{p.hasSchema ? '✅' : '❌'}</td>
+                            <td style={{ padding: '9px 10px', maxWidth: 200 }}>
+                              {p.issues.length === 0 ? (
+                                <span style={{ color: '#388E3C', fontWeight: 600, fontSize: 11 }}>All good</span>
+                              ) : (
+                                <span style={{ color: '#C62828', fontSize: 11 }}>{p.issues.join(', ')}</span>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -448,9 +671,10 @@ function SlotBookingsTab({ pwd }: { pwd: string }) {
 
 export default function Admin() {
   const [pwd, setPwd] = useState<string | null>(() => sessionStorage.getItem('aesthetix_admin_key'));
-  const [tab, setTab] = useState<'enquiries' | 'bookings'>('enquiries');
+  const [tab, setTab] = useState<'enquiries' | 'bookings' | 'seo'>('enquiries');
   const [enquiryCount, setEnquiryCount] = useState<number | null>(null);
   const [bookingCount, setBookingCount] = useState<number | null>(null);
+  const [seoHealthLabel, setSeoHealthLabel] = useState<string | null>(null);
 
   useEffect(() => {
     if (!pwd) return;
@@ -458,6 +682,18 @@ export default function Admin() {
       .then(r => r.json()).then(d => Array.isArray(d) && setEnquiryCount(d.length)).catch(() => {});
     fetch('/api/admin/slot-bookings', { headers: { 'x-admin-key': pwd } })
       .then(r => r.json()).then(d => Array.isArray(d) && setBookingCount(d.length)).catch(() => {});
+    fetch('/api/admin/seo/runs', { headers: { 'x-admin-key': pwd } })
+      .then(r => r.json())
+      .then(d => {
+        if (Array.isArray(d) && d.length > 0) {
+          const latest = d[0] as SeoCrawlRun;
+          const pct = latest.totalPages > 0 ? Math.round((latest.pagesOk / latest.totalPages) * 100) : 0;
+          setSeoHealthLabel(`${pct}%`);
+        } else {
+          setSeoHealthLabel('—');
+        }
+      })
+      .catch(() => {});
   }, [pwd]);
 
   function handleLogin(password: string) {
@@ -470,7 +706,7 @@ export default function Admin() {
     setPwd(null);
   }
 
-  function goToTab(t: 'enquiries' | 'bookings') {
+  function goToTab(t: 'enquiries' | 'bookings' | 'seo') {
     setTab(t);
     setTimeout(() => {
       document.getElementById('admin-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -537,32 +773,51 @@ export default function Admin() {
             <div style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, color: charcoal, marginBottom: 2 }}>Deposit Value</div>
             <div style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>At £99 each</div>
           </div>
+
+          {/* SEO Health */}
+          <button
+            onClick={() => goToTab('seo')}
+            style={{ background: '#FFFFFF', border: `1px solid ${line}`, borderRadius: 14, padding: '20px 22px', textAlign: 'left', cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = `0 4px 20px rgba(196,168,130,0.18)`; (e.currentTarget as HTMLElement).style.borderColor = gold; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; (e.currentTarget as HTMLElement).style.borderColor = line; }}
+          >
+            <div style={{ fontSize: 24, marginBottom: 10 }}>🔍</div>
+            <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 28, color: charcoal, marginBottom: 2 }}>{seoHealthLabel ?? '…'}</div>
+            <div style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, color: charcoal, marginBottom: 2 }}>SEO Health</div>
+            <div style={{ fontFamily: BODY, fontSize: 11, color: inkMute, marginBottom: 10 }}>Pages passing last crawl</div>
+            <div style={{ fontFamily: BODY, fontSize: 11, fontWeight: 600, color: gold, letterSpacing: '0.06em' }}>View report →</div>
+          </button>
         </div>
 
         {/* Tabs */}
         <div id="admin-tabs" style={{ background: '#FFFFFF', border: `1px solid ${line}`, borderRadius: 16, overflow: 'hidden' }}>
-          <div style={{ borderBottom: `1px solid ${line}`, display: 'flex', padding: '0 24px' }}>
-            {(['enquiries', 'bookings'] as const).map(t => (
+          <div style={{ borderBottom: `1px solid ${line}`, display: 'flex', padding: '0 24px', overflowX: 'auto' }}>
+            {([
+              { key: 'enquiries', label: `Quiz Enquiries${enquiryCount !== null ? ` (${enquiryCount})` : ''}` },
+              { key: 'bookings', label: `Slot Bookings${bookingCount !== null ? ` (${bookingCount})` : ''}` },
+              { key: 'seo', label: 'SEO Crawler' },
+            ] as const).map(t => (
               <button
-                key={t}
-                onClick={() => setTab(t)}
+                key={t.key}
+                onClick={() => setTab(t.key)}
                 style={{
                   fontFamily: BODY, fontSize: 13, fontWeight: 600,
-                  color: tab === t ? charcoal : inkMute,
+                  color: tab === t.key ? charcoal : inkMute,
                   background: 'none', border: 'none', cursor: 'pointer',
-                  padding: '16px 20px', marginRight: 4,
-                  borderBottom: `2px solid ${tab === t ? gold : 'transparent'}`,
+                  padding: '16px 20px', marginRight: 4, whiteSpace: 'nowrap',
+                  borderBottom: `2px solid ${tab === t.key ? gold : 'transparent'}`,
                   transition: 'color 0.15s, border-color 0.15s',
-                  textTransform: 'capitalize',
                 }}
               >
-                {t === 'enquiries' ? `Quiz Enquiries ${enquiryCount !== null ? `(${enquiryCount})` : ''}` : `Slot Bookings ${bookingCount !== null ? `(${bookingCount})` : ''}`}
+                {t.label}
               </button>
             ))}
           </div>
 
           <div style={{ padding: 0 }}>
-            {tab === 'enquiries' ? <EnquiriesTab key={pwd} pwd={pwd} /> : <SlotBookingsTab key={pwd} pwd={pwd} />}
+            {tab === 'enquiries' && <EnquiriesTab key={pwd} pwd={pwd} />}
+            {tab === 'bookings' && <SlotBookingsTab key={pwd} pwd={pwd} />}
+            {tab === 'seo' && <SeoTab key={pwd} pwd={pwd} />}
           </div>
         </div>
       </div>
