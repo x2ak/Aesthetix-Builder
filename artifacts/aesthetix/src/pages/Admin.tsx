@@ -34,6 +34,27 @@ type SlotBooking = {
   createdAt: string;
 };
 
+type SeoKeywordPosition = {
+  id: number;
+  keyword: string;
+  ourPath: string;
+  ourPosition: number | null;
+  competitors: Array<{ rank: number; url: string; title: string; description: string }>;
+  suggestedTitle: string | null;
+  suggestedDescription: string | null;
+  analyzedAt: string;
+};
+
+type SeoMetaOverride = {
+  id: number;
+  path: string;
+  title: string;
+  metaDescription: string;
+  reason: string | null;
+  ourPreviousRank: number | null;
+  updatedAt: string;
+};
+
 type SeoCrawlRun = {
   id: number;
   runAt: string;
@@ -679,6 +700,205 @@ type BlogPostSummary = {
   publishedAt: string;
 };
 
+function IntelligenceTab({ pwd }: { pwd: string }) {
+  const [data, setData] = useState<{ keywords: SeoKeywordPosition[]; overrides: SeoMetaOverride[] } | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [running, setRunning] = useState(false);
+  const [message, setMessage] = useState('');
+  const [expandedKeyword, setExpandedKeyword] = useState<number | null>(null);
+
+  function loadData() {
+    setLoading(true);
+    fetch('/api/admin/seo/intelligence', { headers: { 'x-admin-key': pwd } })
+      .then(r => r.json())
+      .then(d => setData(d as { keywords: SeoKeywordPosition[]; overrides: SeoMetaOverride[] }))
+      .catch(() => setData(null))
+      .finally(() => setLoading(false));
+  }
+
+  useEffect(() => { loadData(); }, []);
+
+  async function handleRun() {
+    setRunning(true);
+    setMessage('');
+    try {
+      const res = await fetch('/api/admin/seo/intelligence/run', {
+        method: 'POST',
+        headers: { 'x-admin-key': pwd },
+      });
+      const d = await res.json() as { message?: string; error?: string };
+      setMessage(d.message ?? d.error ?? 'Started');
+    } catch {
+      setMessage('Request failed');
+    } finally {
+      setRunning(false);
+    }
+  }
+
+  function rankBadge(pos: number | null) {
+    if (pos === null) return <span style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, background: '#FFEBEE', color: '#C62828', borderRadius: 999, padding: '2px 10px' }}>Not found</span>;
+    if (pos <= 3) return <span style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, background: '#E8F5E9', color: '#388E3C', borderRadius: 999, padding: '2px 10px' }}>#{pos} Top 3 🏆</span>;
+    if (pos <= 10) return <span style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, background: goldTint, color: gold, borderRadius: 999, padding: '2px 10px' }}>#{pos} Page 1</span>;
+    return <span style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, background: '#F5F5F5', color: inkMute, borderRadius: 999, padding: '2px 10px' }}>#{pos}</span>;
+  }
+
+  const keywords = data?.keywords ?? [];
+  const overrides = data?.overrides ?? [];
+  const trackedCount = keywords.length;
+  const top10Count = keywords.filter(k => k.ourPosition !== null && k.ourPosition <= 10).length;
+  const overrideCount = overrides.length;
+
+  return (
+    <div style={{ padding: 24 }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
+        <div>
+          <h2 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 22, color: charcoal, margin: '0 0 4px' }}>SEO Intelligence</h2>
+          <p style={{ fontFamily: BODY, fontSize: 13, color: inkMute, margin: 0 }}>Runs every Monday at 08:00 UTC. Checks rankings, crawls competitors, rewrites meta tags with AI.</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+          {message && (
+            <span style={{ fontFamily: BODY, fontSize: 12, color: inkMute, background: '#F5F5F5', padding: '6px 14px', borderRadius: 999 }}>
+              {message}
+            </span>
+          )}
+          <button
+            onClick={handleRun}
+            disabled={running}
+            style={{
+              fontFamily: BODY, fontSize: 13, fontWeight: 600,
+              background: running ? '#F5F5F5' : charcoal, color: running ? inkMute : cream,
+              border: 'none', borderRadius: 8, padding: '10px 20px', cursor: running ? 'default' : 'pointer',
+              letterSpacing: '0.04em',
+            }}
+          >
+            {running ? 'Starting…' : '⟳ Run Now'}
+          </button>
+          <button
+            onClick={loadData}
+            style={{ fontFamily: BODY, fontSize: 13, fontWeight: 600, background: 'none', color: inkSoft, border: `1px solid ${line}`, borderRadius: 8, padding: '10px 20px', cursor: 'pointer' }}
+          >
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      {/* Warning banner on first run */}
+      {!loading && keywords.length === 0 && (
+        <div style={{ background: goldTint, border: `1px solid ${gold}44`, borderRadius: 10, padding: '14px 18px', marginBottom: 24 }}>
+          <p style={{ fontFamily: BODY, fontSize: 13, color: charcoal, margin: 0 }}>
+            <strong>No data yet.</strong> Click "Run Now" to start the first analysis. It takes 5–10 minutes to check all 8 keywords and crawl competitors. Check back after — the page will update when done.
+          </p>
+        </div>
+      )}
+
+      {/* Stats */}
+      <div style={{ display: 'flex', gap: 12, marginBottom: 28, flexWrap: 'wrap' }}>
+        {[
+          { label: 'Keywords Tracked', value: trackedCount },
+          { label: 'On Page 1 (Top 10)', value: top10Count },
+          { label: 'Pages Auto-Updated', value: overrideCount },
+        ].map(s => (
+          <div key={s.label} style={{ background: '#FDFAF5', border: `1px solid ${line}`, borderRadius: 10, padding: '12px 18px', minWidth: 130 }}>
+            <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 22, color: charcoal }}>{s.value}</div>
+            <div style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {loading ? (
+        <div style={{ color: inkMute, padding: '40px 0', textAlign: 'center', fontFamily: BODY }}>Loading…</div>
+      ) : (
+        <>
+          {/* Keyword Rankings */}
+          {keywords.length > 0 && (
+            <div style={{ marginBottom: 36 }}>
+              <h3 style={{ fontFamily: BODY, fontSize: 12, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: inkMute, margin: '0 0 14px' }}>Keyword Rankings</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {keywords.map((kw, i) => (
+                  <div key={kw.id} style={{ borderBottom: `1px solid ${line}` }}>
+                    <button
+                      onClick={() => setExpandedKeyword(expandedKeyword === i ? null : i)}
+                      style={{
+                        width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16,
+                        padding: '14px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', flexWrap: 'wrap',
+                      }}
+                    >
+                      <div style={{ flex: 1, minWidth: 200 }}>
+                        <p style={{ fontFamily: BODY, fontSize: 14, fontWeight: 600, color: charcoal, margin: '0 0 3px' }}>{kw.keyword}</p>
+                        <p style={{ fontFamily: BODY, fontSize: 11, color: inkMute, margin: 0 }}>
+                          {kw.ourPath} · Checked {new Date(kw.analyzedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
+                        </p>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        {rankBadge(kw.ourPosition)}
+                        <span style={{ fontFamily: BODY, fontSize: 12, color: inkMute }}>{expandedKeyword === i ? '▲' : '▼'}</span>
+                      </div>
+                    </button>
+
+                    {expandedKeyword === i && (
+                      <div style={{ padding: '0 0 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+                        {/* Competitors */}
+                        {kw.competitors.length > 0 && (
+                          <div>
+                            <p style={{ fontFamily: BODY, fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: inkMute, margin: '0 0 8px' }}>Competitors above us</p>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                              {kw.competitors.map(c => (
+                                <div key={c.url} style={{ background: '#FDFAF5', border: `1px solid ${line}`, borderRadius: 8, padding: '10px 14px' }}>
+                                  <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 4 }}>
+                                    <span style={{ fontFamily: BODY, fontSize: 11, fontWeight: 700, color: inkMute, flexShrink: 0 }}>#{c.rank}</span>
+                                    <a href={c.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: BODY, fontSize: 12, color: gold, wordBreak: 'break-all', textDecoration: 'none' }}>{c.url.replace(/^https?:\/\//, '').slice(0, 60)}</a>
+                                  </div>
+                                  <p style={{ fontFamily: BODY, fontSize: 13, fontWeight: 600, color: charcoal, margin: '0 0 2px' }}>{c.title}</p>
+                                  <p style={{ fontFamily: BODY, fontSize: 12, color: inkSoft, margin: 0 }}>{c.description.slice(0, 160)}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* AI Suggestions */}
+                        {(kw.suggestedTitle || kw.suggestedDescription) && (
+                          <div style={{ background: '#F0F7F0', border: '1px solid #C8E6C9', borderRadius: 8, padding: '12px 14px' }}>
+                            <p style={{ fontFamily: BODY, fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#388E3C', margin: '0 0 8px' }}>AI-generated improvement</p>
+                            {kw.suggestedTitle && <p style={{ fontFamily: BODY, fontSize: 13, fontWeight: 600, color: charcoal, margin: '0 0 4px' }}>{kw.suggestedTitle}</p>}
+                            {kw.suggestedDescription && <p style={{ fontFamily: BODY, fontSize: 12, color: inkSoft, margin: 0 }}>{kw.suggestedDescription}</p>}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Applied Meta Overrides */}
+          {overrides.length > 0 && (
+            <div>
+              <h3 style={{ fontFamily: BODY, fontSize: 12, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: inkMute, margin: '0 0 14px' }}>Live Meta Tag Overrides</h3>
+              <p style={{ fontFamily: BODY, fontSize: 13, color: inkMute, margin: '0 0 16px' }}>These AI-written titles and descriptions are now live on your site, replacing the defaults.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {overrides.map(o => (
+                  <div key={o.id} style={{ border: `1px solid ${line}`, borderRadius: 10, padding: '14px 18px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 8, flexWrap: 'wrap' }}>
+                      <code style={{ fontFamily: 'monospace', fontSize: 12, color: gold, background: goldTint, padding: '2px 8px', borderRadius: 4 }}>{o.path}</code>
+                      <span style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>Updated {new Date(o.updatedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                    </div>
+                    <p style={{ fontFamily: BODY, fontSize: 14, fontWeight: 600, color: charcoal, margin: '0 0 4px' }}>{o.title}</p>
+                    <p style={{ fontFamily: BODY, fontSize: 12, color: inkSoft, margin: '0 0 8px' }}>{o.metaDescription}</p>
+                    {o.reason && <p style={{ fontFamily: BODY, fontSize: 11, color: inkMute, margin: 0 }}>Reason: {o.reason}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
 function BlogTab({ pwd }: { pwd: string }) {
   const [posts, setPosts] = useState<BlogPostSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -802,7 +1022,7 @@ function BlogTab({ pwd }: { pwd: string }) {
 
 export default function Admin() {
   const [pwd, setPwd] = useState<string | null>(() => sessionStorage.getItem('aesthetix_admin_key'));
-  const [tab, setTab] = useState<'enquiries' | 'bookings' | 'seo' | 'blog'>('enquiries');
+  const [tab, setTab] = useState<'enquiries' | 'bookings' | 'seo' | 'blog' | 'intelligence'>('enquiries');
   const [blogCount, setBlogCount] = useState<number | null>(null);
   const [enquiryCount, setEnquiryCount] = useState<number | null>(null);
   const [bookingCount, setBookingCount] = useState<number | null>(null);
@@ -840,7 +1060,7 @@ export default function Admin() {
     setPwd(null);
   }
 
-  function goToTab(t: 'enquiries' | 'bookings' | 'seo' | 'blog') {
+  function goToTab(t: 'enquiries' | 'bookings' | 'seo' | 'blog' | 'intelligence') {
     setTab(t);
     setTimeout(() => {
       document.getElementById('admin-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -945,6 +1165,7 @@ export default function Admin() {
               { key: 'bookings', label: `Slot Bookings${bookingCount !== null ? ` (${bookingCount})` : ''}` },
               { key: 'seo', label: 'SEO Crawler' },
               { key: 'blog', label: `Blog Posts${blogCount !== null ? ` (${blogCount})` : ''}` },
+              { key: 'intelligence', label: '🧠 SEO Intelligence' },
             ] as const).map(t => (
               <button
                 key={t.key}
@@ -968,6 +1189,7 @@ export default function Admin() {
             {tab === 'bookings' && <SlotBookingsTab key={pwd} pwd={pwd} />}
             {tab === 'seo' && <SeoTab key={pwd} pwd={pwd} />}
             {tab === 'blog' && <BlogTab key={pwd} pwd={pwd} />}
+            {tab === 'intelligence' && <IntelligenceTab key={pwd} pwd={pwd} />}
           </div>
         </div>
       </div>

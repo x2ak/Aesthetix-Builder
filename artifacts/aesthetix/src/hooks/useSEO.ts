@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { getOverrideForPath } from "./useSEOOverrides";
 
 interface SEOProps {
   title: string;
@@ -12,7 +13,13 @@ const BASE = "https://aesthetix-systems.co.uk";
 
 export function useSEO({ title, description, canonical, ogImage = "/opengraph.jpg", noindex = false }: SEOProps) {
   useEffect(() => {
-    document.title = title;
+    const path = canonical ?? window.location.pathname;
+    const override = getOverrideForPath(path);
+
+    const finalTitle = override?.title ?? title;
+    const finalDescription = override?.metaDescription ?? description;
+
+    document.title = finalTitle;
 
     const set = (selector: string, attr: string, value: string) => {
       const el = document.querySelector(selector);
@@ -22,14 +29,14 @@ export function useSEO({ title, description, canonical, ogImage = "/opengraph.jp
     const imageUrl = ogImage.startsWith("http") ? ogImage : `${BASE}${ogImage}`;
     const canonicalHref = canonical ? `${BASE}${canonical}` : BASE;
 
-    set('meta[name="description"]', "content", description);
+    set('meta[name="description"]', "content", finalDescription);
     set('meta[name="robots"]', "content", noindex ? "noindex, nofollow" : "index, follow");
-    set('meta[property="og:title"]', "content", title);
-    set('meta[property="og:description"]', "content", description);
+    set('meta[property="og:title"]', "content", finalTitle);
+    set('meta[property="og:description"]', "content", finalDescription);
     set('meta[property="og:image"]', "content", imageUrl);
     set('meta[property="og:url"]', "content", canonicalHref);
-    set('meta[name="twitter:title"]', "content", title);
-    set('meta[name="twitter:description"]', "content", description);
+    set('meta[name="twitter:title"]', "content", finalTitle);
+    set('meta[name="twitter:description"]', "content", finalDescription);
     set('meta[name="twitter:image"]', "content", imageUrl);
 
     let linkEl = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;

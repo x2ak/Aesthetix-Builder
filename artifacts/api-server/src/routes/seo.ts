@@ -1,8 +1,9 @@
 import { Router, type IRouter, type Request, type Response, type NextFunction } from "express";
 import { db } from "@workspace/db";
-import { seoCrawlRunsTable, seoPageResultsTable } from "@workspace/db";
+import { seoCrawlRunsTable, seoPageResultsTable, seoMetaOverridesTable } from "@workspace/db";
 import { desc, eq } from "drizzle-orm";
 import { runSeoCrawl } from "../seo-crawler";
+import { runSeoIntelligence, getAllMetaOverrides, getLatestKeywordPositions } from "../seo-intelligence";
 
 const router: IRouter = Router();
 
@@ -19,6 +20,17 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
   }
   next();
 }
+
+router.get("/seo/overrides", async (_req, res) => {
+  try {
+    const overrides = await getAllMetaOverrides();
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.json(overrides);
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    res.status(500).json({ error: msg });
+  }
+});
 
 router.get("/admin/seo/runs", requireAdmin, async (_req, res) => {
   try {
@@ -57,6 +69,32 @@ router.post("/admin/seo/crawl", requireAdmin, async (_req, res) => {
   try {
     const runId = await runSeoCrawl();
     res.json({ ok: true, runId });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    res.status(500).json({ error: msg });
+  }
+});
+
+router.get("/admin/seo/intelligence", requireAdmin, async (_req, res) => {
+  try {
+    const [keywords, overrides] = await Promise.all([
+      getLatestKeywordPositions(),
+      db.select().from(seoMetaOverridesTable).orderBy(desc(seoMetaOverridesTable.updatedAt)),
+    ]);
+    res.json({ keywords, overrides });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    res.status(500).json({ error: msg });
+  }
+});
+
+router.post("/admin/seo/intelligence/run", requireAdmin, async (_req, res) => {
+  try {
+    res.json({ ok: true, message: "SEO intelligence run started in background" });
+    runSeoIntelligence().catch((err: unknown) => {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error("SEO intelligence background run failed:", msg);
+    });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     res.status(500).json({ error: msg });
