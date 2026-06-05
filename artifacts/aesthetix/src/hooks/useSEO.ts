@@ -66,6 +66,29 @@ export function usePageSchema(schema: object) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
+export function useFAQSchema(faqs: { q: string; a: string }[]) {
+  useEffect(() => {
+    const id = "faq-ld-json";
+    let el = document.getElementById(id) as HTMLScriptElement | null;
+    if (!el) {
+      el = document.createElement("script");
+      el.id = id;
+      el.type = "application/ld+json";
+      document.head.appendChild(el);
+    }
+    el.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a },
+      })),
+    });
+    return () => { document.getElementById(id)?.remove(); };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+}
+
 export function useBreadcrumb(items: { name: string; url: string }[]) {
   useEffect(() => {
     const id = "breadcrumb-ld-json";

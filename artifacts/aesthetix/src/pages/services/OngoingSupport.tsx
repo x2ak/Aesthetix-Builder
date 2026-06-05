@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight, Shield, Zap, MessageCircle, RefreshCw } from "lucide-react";
-import { useSEO, useBreadcrumb } from "@/hooks/useSEO";
+import { useSEO, useBreadcrumb, useFAQSchema } from "@/hooks/useSEO";
+
+const FAQS = [
+  { q: "What's included in the monthly website maintenance plan?", a: "Our plans include fast UK hosting, SSL security, software and plugin updates, unlimited minor content edits, AI receptionist management, weekly SEO intelligence analysis, and priority WhatsApp support — all for a fixed monthly fee." },
+  { q: "How much does the monthly maintenance plan cost?", a: "Plans start from £19.99/month. There are no long-term contracts — you can cancel anytime." },
+  { q: "How quickly do you respond to support requests?", a: "We aim to respond within 2 hours on business days via WhatsApp. For urgent issues like site downtime, we treat these as priority and respond as quickly as possible." },
+  { q: "Do you provide website hosting?", a: "Yes — fast, secure UK-based hosting is included in all our maintenance plans. You don't need to manage a separate hosting account or deal with technical server settings." },
+  { q: "Can I cancel the maintenance plan at any time?", a: "Yes — there are no long-term contracts or cancellation fees. If you decide to cancel, we'll provide a full handover of your website and all assets." },
+];
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -154,6 +162,7 @@ export default function OngoingSupport() {
     { name: "Home", url: "/" },
     { name: "Maintenance & Support", url: "/services/ongoing-support" },
   ]);
+  useFAQSchema(FAQS);
 
   return (
     <div style={{ background: charcoal, minHeight: "100vh", fontFamily: BODY }}>

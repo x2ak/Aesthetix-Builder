@@ -175,6 +175,23 @@ Include practical advice, UK-specific examples, and real value for aesthetics cl
     .returning({ id: blogPostsTable.id });
 
   logger.info({ postId: inserted.id, slug, title: parsed.title }, "Blog post published");
+
+  try {
+    const pingUrl = `https://www.google.com/ping?sitemap=https://aesthetix-systems.co.uk/sitemap.xml`;
+    await fetch(pingUrl, { method: "GET", signal: AbortSignal.timeout(8000) });
+    logger.info({ slug }, "Google sitemap pinged after blog post publication");
+  } catch {
+    logger.warn({ slug }, "Google sitemap ping failed (non-fatal)");
+  }
+
+  try {
+    const bingUrl = `https://www.bing.com/ping?sitemap=https://aesthetix-systems.co.uk/sitemap.xml`;
+    await fetch(bingUrl, { method: "GET", signal: AbortSignal.timeout(8000) });
+    logger.info({ slug }, "Bing sitemap pinged after blog post publication");
+  } catch {
+    logger.warn({ slug }, "Bing sitemap ping failed (non-fatal)");
+  }
+
   return inserted.id;
 }
 

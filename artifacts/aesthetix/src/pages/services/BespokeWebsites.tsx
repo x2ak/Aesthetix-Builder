@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
-import { useSEO, useBreadcrumb } from "@/hooks/useSEO";
+import { useSEO, useBreadcrumb, useFAQSchema } from "@/hooks/useSEO";
+
+const FAQS = [
+  { q: "How much does a bespoke aesthetics clinic website cost?", a: "Our bespoke clinic websites start from £1,499. The exact price depends on the number of pages, features, and integrations required. We offer flexible payment options — contact us for a custom quote." },
+  { q: "How long does it take to build an aesthetics clinic website?", a: "Most projects are completed in 2–4 weeks from initial briefing to launch. More complex sites with custom booking systems or treatment libraries may take slightly longer." },
+  { q: "Do you use website templates for aesthetics clinics?", a: "No — every website we build is designed from scratch around your specific brand, treatments, and target clientele. You won't find the same design anywhere else." },
+  { q: "Will my aesthetics clinic website rank on Google?", a: "Yes. Every site we build is SEO-optimised from day one — proper meta tags, structured data schema markup, fast load times, a sitemap, and canonical URLs. We also offer ongoing SEO intelligence as part of our support plans." },
+  { q: "Can I update my clinic's website content myself?", a: "Yes, or we handle all updates for you as part of our monthly maintenance plans starting from £19.99/month, including priority WhatsApp support." },
+];
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -152,6 +160,7 @@ export default function BespokeWebsites() {
     { name: "Home", url: "/" },
     { name: "Bespoke Websites", url: "/services/bespoke-websites" },
   ]);
+  useFAQSchema(FAQS);
 
   return (
     <div style={{ background: cream, minHeight: "100vh", fontFamily: BODY }}>

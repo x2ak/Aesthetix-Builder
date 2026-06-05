@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, Calendar, Clock, Bell, Shield } from "lucide-react";
-import { useSEO, useBreadcrumb } from "@/hooks/useSEO";
+import { useSEO, useBreadcrumb, useFAQSchema } from "@/hooks/useSEO";
+
+const FAQS = [
+  { q: "What booking systems do you integrate with?", a: "We integrate with Fresha, Ovatu, Timely, and Treatwell. We can also build a fully bespoke booking system if you need something tailored to your clinic's specific workflow." },
+  { q: "How much does a clinic booking system integration cost?", a: "Booking system integration is included in our website packages. As a standalone add-on to an existing website, pricing depends on the platform and complexity — contact us for a quote." },
+  { q: "Can clients book appointments online 24/7?", a: "Yes — your clients can view availability and book appointments at any time, day or night, directly through your website without needing to call or message." },
+  { q: "Are there any booking fees or transaction charges?", a: "No. Unlike some third-party booking platforms that take a percentage of each booking, our integrations carry zero per-transaction fees. You keep all your revenue." },
+  { q: "Will a new booking system work with my existing website?", a: "Yes — we can integrate a booking system into your current website regardless of how it was originally built. We'll assess your existing site and recommend the best approach." },
+];
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -104,6 +112,7 @@ export default function BookingSystems() {
     { name: "Home", url: "/" },
     { name: "Booking Systems", url: "/services/booking-systems" },
   ]);
+  useFAQSchema(FAQS);
 
   return (
     <div style={{ background: cream, minHeight: "100vh", fontFamily: BODY }}>
