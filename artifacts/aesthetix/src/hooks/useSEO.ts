@@ -58,3 +58,29 @@ export function usePageSchema(schema: object) {
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 }
+
+export function useBreadcrumb(items: { name: string; url: string }[]) {
+  useEffect(() => {
+    const id = "breadcrumb-ld-json";
+    let el = document.getElementById(id) as HTMLScriptElement | null;
+    if (!el) {
+      el = document.createElement("script");
+      el.id = id;
+      el.type = "application/ld+json";
+      document.head.appendChild(el);
+    }
+    el.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items.map((item, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": item.name,
+        "item": `https://aesthetix-systems.co.uk${item.url}`,
+      })),
+    });
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+}

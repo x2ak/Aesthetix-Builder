@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight, Shield, Zap, MessageCircle, RefreshCw } from "lucide-react";
-import { useSEO } from "@/hooks/useSEO";
+import { useSEO, useBreadcrumb } from "@/hooks/useSEO";
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -150,6 +150,10 @@ export default function OngoingSupport() {
     description: "Monthly maintenance plans for aesthetics clinic websites. Hosting, security, content updates, AI receptionist, and priority WhatsApp support. From £19.99/month.",
     canonical: "/services/ongoing-support",
   });
+  useBreadcrumb([
+    { name: "Home", url: "/" },
+    { name: "Maintenance & Support", url: "/services/ongoing-support" },
+  ]);
 
   return (
     <div style={{ background: charcoal, minHeight: "100vh", fontFamily: BODY }}>

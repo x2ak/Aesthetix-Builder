@@ -1,5 +1,31 @@
 User-agent: *
 Allow: /
 Disallow: /_admin-preview/
+Disallow: /admin
+Disallow: /pay
+Crawl-delay: 1
+
+User-agent: Googlebot
+Allow: /
+Disallow: /_admin-preview/
+Disallow: /admin
+
+User-agent: Bingbot
+Allow: /
+Disallow: /_admin-preview/
+Disallow: /admin
+Crawl-delay: 2
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
 
 Sitemap: https://aesthetix-systems.co.uk/sitemap.xml

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
-import { useSEO } from "@/hooks/useSEO";
+import { useSEO, useBreadcrumb } from "@/hooks/useSEO";
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -148,6 +148,10 @@ export default function BespokeWebsites() {
     description: "Custom-designed websites for aesthetics and beauty clinics. No templates. Built around your brand, your treatments, and your patients. From £1,499.",
     canonical: "/services/bespoke-websites",
   });
+  useBreadcrumb([
+    { name: "Home", url: "/" },
+    { name: "Bespoke Websites", url: "/services/bespoke-websites" },
+  ]);
 
   return (
     <div style={{ background: cream, minHeight: "100vh", fontFamily: BODY }}>

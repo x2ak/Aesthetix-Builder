@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { useSEO } from "@/hooks/useSEO";
+import { useSEO, useBreadcrumb } from "@/hooks/useSEO";
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -308,6 +308,11 @@ export default function TreatmentLanding({ treatmentSlug }: { treatmentSlug: str
       : "Bespoke websites and booking systems for aesthetics clinics across the UK.",
     canonical: treatment ? `/aesthetics-websites/${treatment.slug}` : "/",
   });
+  useBreadcrumb(treatment ? [
+    { name: "Home", url: "/" },
+    { name: "Aesthetics Websites", url: "/aesthetics-websites/london" },
+    { name: treatment.name, url: `/aesthetics-websites/${treatment.slug}` },
+  ] : [{ name: "Home", url: "/" }]);
 
   if (!treatment) {
     return (

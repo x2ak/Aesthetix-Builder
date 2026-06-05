@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, Zap, Clock, MessageCircle, TrendingUp } from "lucide-react";
-import { useSEO, usePageSchema } from "@/hooks/useSEO";
+import { useSEO, usePageSchema, useBreadcrumb } from "@/hooks/useSEO";
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -102,6 +102,10 @@ export default function AiAssistant() {
       "acceptedAnswer": { "@type": "Answer", "text": f.a },
     })),
   });
+  useBreadcrumb([
+    { name: "Home", url: "/" },
+    { name: "AI Receptionist", url: "/services/ai-assistant" },
+  ]);
 
   return (
     <div style={{ background: charcoal, minHeight: "100vh", fontFamily: BODY }}>

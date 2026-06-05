@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, Calendar, Clock, Bell, Shield } from "lucide-react";
-import { useSEO } from "@/hooks/useSEO";
+import { useSEO, useBreadcrumb } from "@/hooks/useSEO";
 
 const cream = "#F7F4EE";
 const charcoal = "#1A1A1C";
@@ -100,6 +100,10 @@ export default function BookingSystems() {
     description: "Online booking systems for aesthetics and beauty clinics. Fresha, Ovatu, Timely integration or fully bespoke. Your brand, zero third-party fees.",
     canonical: "/services/booking-systems",
   });
+  useBreadcrumb([
+    { name: "Home", url: "/" },
+    { name: "Booking Systems", url: "/services/booking-systems" },
+  ]);
 
   return (
     <div style={{ background: cream, minHeight: "100vh", fontFamily: BODY }}>
