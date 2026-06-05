@@ -2555,6 +2555,7 @@ function Footer() {
             { label: 'Booking Systems', path: '/services/booking-systems' },
             { label: 'AI Assistant', path: '/services/ai-assistant' },
             { label: 'Ongoing Support', path: '/services/ongoing-support' },
+            { label: 'Blog', path: '/blog' },
           ].map(({ label, path }, i, arr) => (
             <span key={label} style={{ whiteSpace: 'nowrap' }}>
               <a

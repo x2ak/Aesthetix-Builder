@@ -137,6 +137,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog -->
+  <url>
+    <loc>https://aesthetix-systems.co.uk/blog</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Legal -->
   <url>
     <loc>https://aesthetix-systems.co.uk/privacy-policy</loc>

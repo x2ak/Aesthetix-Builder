@@ -6,6 +6,8 @@ import Home from "@/pages/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import AdminPreview from "@/pages/AdminPreview";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
 import CaseStudyFlawlessSkin from "@/pages/CaseStudyFlawlessSkin";
 import CaseStudyDermadoll from "@/pages/CaseStudyDermadoll";
 import CaseStudyStarr from "@/pages/CaseStudyStarr";
@@ -60,6 +62,10 @@ function Router() {
   if (path === "/services/ai-assistant") return <AiAssistant />;
   if (path === "/services/ongoing-support") return <OngoingSupport />;
   if (path === "/admin") return <Admin />;
+  if (path === "/blog") return <Blog />;
+
+  const blogPostMatch = path.match(/^\/blog\/([a-z0-9-]+)$/);
+  if (blogPostMatch) return <BlogPost slug={blogPostMatch[1]} />;
 
   return <Home />;
 }

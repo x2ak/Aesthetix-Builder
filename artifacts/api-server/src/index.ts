@@ -2,6 +2,7 @@ import app from "./app";
 import { logger } from "./lib/logger";
 import cron from "node-cron";
 import { runSeoCrawl } from "./seo-crawler";
+import { generateMonthlyBlogPost } from "./blog-generator";
 
 const rawPort = process.env["PORT"];
 
@@ -31,4 +32,11 @@ app.listen(port, (err) => {
   }, { timezone: "UTC" });
 
   logger.info("SEO crawl cron scheduled — runs daily at 07:00 UTC");
+
+  cron.schedule("0 9 1 * *", () => {
+    logger.info("Monthly blog generation triggered by cron");
+    generateMonthlyBlogPost().catch((err) => logger.error({ err }, "Blog generation failed"));
+  }, { timezone: "UTC" });
+
+  logger.info("Blog generator cron scheduled — runs 1st of every month at 09:00 UTC");
 });

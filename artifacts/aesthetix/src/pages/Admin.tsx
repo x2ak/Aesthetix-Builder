@@ -669,9 +669,141 @@ function SlotBookingsTab({ pwd }: { pwd: string }) {
   );
 }
 
+type BlogPostSummary = {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  readingMinutes: number;
+  publishedAt: string;
+};
+
+function BlogTab({ pwd }: { pwd: string }) {
+  const [posts, setPosts] = useState<BlogPostSummary[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [generating, setGenerating] = useState(false);
+  const [message, setMessage] = useState('');
+
+  function loadPosts() {
+    setLoading(true);
+    fetch('/api/blog/posts?limit=50')
+      .then(r => r.json())
+      .then(d => setPosts(Array.isArray(d.posts) ? d.posts : []))
+      .catch(() => setPosts([]))
+      .finally(() => setLoading(false));
+  }
+
+  useEffect(() => { loadPosts(); }, []);
+
+  async function handleGenerate() {
+    setGenerating(true);
+    setMessage('');
+    try {
+      const res = await fetch('/api/blog/generate', {
+        method: 'POST',
+        headers: { 'x-admin-key': pwd, 'Content-Type': 'application/json' },
+      });
+      const data = await res.json() as { message?: string; postId?: number; error?: string };
+      setMessage(data.message ?? data.error ?? 'Done');
+      if (data.postId) loadPosts();
+    } catch {
+      setMessage('Request failed');
+    } finally {
+      setGenerating(false);
+    }
+  }
+
+  const CATEGORY_LABELS: Record<string, string> = { insights: 'Insights', guides: 'Guides', seo: 'SEO', technology: 'Technology' };
+
+  return (
+    <div style={{ padding: 24 }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
+        <div>
+          <h2 style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 22, color: charcoal, margin: '0 0 4px' }}>Blog Posts</h2>
+          <p style={{ fontFamily: BODY, fontSize: 13, color: inkMute, margin: 0 }}>AI generates one post on the 1st of every month. Trigger manually below.</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          {message && (
+            <span style={{ fontFamily: BODY, fontSize: 12, color: message.includes('generated') ? '#388E3C' : inkMute, background: message.includes('generated') ? '#E8F5E9' : '#F5F5F5', padding: '6px 14px', borderRadius: 999 }}>
+              {message}
+            </span>
+          )}
+          <button
+            onClick={handleGenerate}
+            disabled={generating}
+            style={{
+              fontFamily: BODY, fontSize: 13, fontWeight: 600,
+              background: generating ? '#F5F5F5' : charcoal, color: generating ? inkMute : cream,
+              border: 'none', borderRadius: 8, padding: '10px 20px', cursor: generating ? 'default' : 'pointer',
+              letterSpacing: '0.04em', transition: 'background 0.15s',
+            }}
+          >
+            {generating ? 'Generating…' : '✦ Generate Now'}
+          </button>
+        </div>
+      </div>
+
+      {/* Stats row */}
+      <div style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
+        {[
+          { label: 'Published', value: posts.length },
+          { label: 'Topics Remaining', value: Math.max(0, 12 - posts.length) },
+        ].map(s => (
+          <div key={s.label} style={{ background: '#FDFAF5', border: `1px solid ${line}`, borderRadius: 10, padding: '12px 18px', minWidth: 120 }}>
+            <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 22, color: charcoal }}>{s.value}</div>
+            <div style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Posts list */}
+      {loading ? (
+        <div style={{ color: inkMute, padding: '40px 0', textAlign: 'center', fontFamily: BODY }}>Loading…</div>
+      ) : posts.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: '48px 24px', color: inkMute, fontFamily: BODY }}>
+          <div style={{ fontSize: 36, marginBottom: 12 }}>✍️</div>
+          <p style={{ fontSize: 15 }}>No posts yet. Click "Generate Now" to create your first article.</p>
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+          {posts.map((p, i) => (
+            <div key={p.id} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, padding: '16px 0', borderBottom: `1px solid ${line}`, flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+                  <Badge label={CATEGORY_LABELS[p.category] ?? p.category} color="gold" />
+                  <span style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>{p.readingMinutes} min</span>
+                  <span style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>#{i + 1}</span>
+                </div>
+                <p style={{ fontFamily: DISP, fontStyle: 'italic', fontSize: 17, color: charcoal, margin: '0 0 4px', lineHeight: 1.3 }}>{p.title}</p>
+                <p style={{ fontFamily: BODY, fontSize: 12, color: inkSoft, margin: '0 0 4px' }}>{p.excerpt.slice(0, 120)}{p.excerpt.length > 120 ? '…' : ''}</p>
+                <p style={{ fontFamily: BODY, fontSize: 11, color: inkMute, margin: 0 }}>
+                  {new Date(p.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  {' · '}
+                  <code style={{ fontSize: 10 }}>/blog/{p.slug}</code>
+                </p>
+              </div>
+              <a
+                href={`/blog/${p.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, color: gold, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}
+              >
+                View →
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Admin() {
   const [pwd, setPwd] = useState<string | null>(() => sessionStorage.getItem('aesthetix_admin_key'));
-  const [tab, setTab] = useState<'enquiries' | 'bookings' | 'seo'>('enquiries');
+  const [tab, setTab] = useState<'enquiries' | 'bookings' | 'seo' | 'blog'>('enquiries');
+  const [blogCount, setBlogCount] = useState<number | null>(null);
   const [enquiryCount, setEnquiryCount] = useState<number | null>(null);
   const [bookingCount, setBookingCount] = useState<number | null>(null);
   const [seoHealthLabel, setSeoHealthLabel] = useState<string | null>(null);
@@ -682,6 +814,8 @@ export default function Admin() {
       .then(r => r.json()).then(d => Array.isArray(d) && setEnquiryCount(d.length)).catch(() => {});
     fetch('/api/admin/slot-bookings', { headers: { 'x-admin-key': pwd } })
       .then(r => r.json()).then(d => Array.isArray(d) && setBookingCount(d.length)).catch(() => {});
+    fetch('/api/blog/posts?limit=50')
+      .then(r => r.json()).then(d => Array.isArray(d.posts) && setBlogCount(d.posts.length)).catch(() => {});
     fetch('/api/admin/seo/runs', { headers: { 'x-admin-key': pwd } })
       .then(r => r.json())
       .then(d => {
@@ -706,7 +840,7 @@ export default function Admin() {
     setPwd(null);
   }
 
-  function goToTab(t: 'enquiries' | 'bookings' | 'seo') {
+  function goToTab(t: 'enquiries' | 'bookings' | 'seo' | 'blog') {
     setTab(t);
     setTimeout(() => {
       document.getElementById('admin-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -774,6 +908,20 @@ export default function Admin() {
             <div style={{ fontFamily: BODY, fontSize: 11, color: inkMute }}>At £99 each</div>
           </div>
 
+          {/* Blog Posts */}
+          <button
+            onClick={() => goToTab('blog')}
+            style={{ background: '#FFFFFF', border: `1px solid ${line}`, borderRadius: 14, padding: '20px 22px', textAlign: 'left', cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = `0 4px 20px rgba(196,168,130,0.18)`; (e.currentTarget as HTMLElement).style.borderColor = gold; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; (e.currentTarget as HTMLElement).style.borderColor = line; }}
+          >
+            <div style={{ fontSize: 24, marginBottom: 10 }}>✍️</div>
+            <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 28, color: charcoal, marginBottom: 2 }}>{blogCount ?? '…'}</div>
+            <div style={{ fontFamily: BODY, fontSize: 12, fontWeight: 600, color: charcoal, marginBottom: 2 }}>Blog Posts</div>
+            <div style={{ fontFamily: BODY, fontSize: 11, color: inkMute, marginBottom: 10 }}>AI-generated monthly</div>
+            <div style={{ fontFamily: BODY, fontSize: 11, fontWeight: 600, color: gold, letterSpacing: '0.06em' }}>Manage →</div>
+          </button>
+
           {/* SEO Health */}
           <button
             onClick={() => goToTab('seo')}
@@ -796,6 +944,7 @@ export default function Admin() {
               { key: 'enquiries', label: `Quiz Enquiries${enquiryCount !== null ? ` (${enquiryCount})` : ''}` },
               { key: 'bookings', label: `Slot Bookings${bookingCount !== null ? ` (${bookingCount})` : ''}` },
               { key: 'seo', label: 'SEO Crawler' },
+              { key: 'blog', label: `Blog Posts${blogCount !== null ? ` (${blogCount})` : ''}` },
             ] as const).map(t => (
               <button
                 key={t.key}
@@ -818,6 +967,7 @@ export default function Admin() {
             {tab === 'enquiries' && <EnquiriesTab key={pwd} pwd={pwd} />}
             {tab === 'bookings' && <SlotBookingsTab key={pwd} pwd={pwd} />}
             {tab === 'seo' && <SeoTab key={pwd} pwd={pwd} />}
+            {tab === 'blog' && <BlogTab key={pwd} pwd={pwd} />}
           </div>
         </div>
       </div>
